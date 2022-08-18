@@ -1,6 +1,6 @@
 object FormAcesso: TFormAcesso
-  Left = 314
-  Top = 278
+  Left = 814
+  Top = 326
   BorderStyle = bsDialog
   Caption = 'Login de Acesso'
   ClientHeight = 331

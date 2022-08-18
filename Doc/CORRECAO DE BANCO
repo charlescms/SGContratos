@@ -1,0 +1,226 @@
+
+
+Edição do Mês
+	
+  Fórum DevMedia
+Fórum de Discussão
+
+ FAQFAQ   PesquisarPesquisar   MembrosMembros   GruposGrupos   RegistrarRegistrar 
+ PerfilPerfil   Entrar e ver Mensagens ParticularesEntrar e ver Mensagens Particulares   EntrarEntrar 
+	
+Edição do Mês
+
+Como Posso Recuperar meu Banco de Dados Firebird?
+
+ 
+Novo Tópico   Responder Mensagem 	   Fórum DevMedia - Índice do Fórum -> Interbase/Firebird
+Exibir mensagem anterior :: Exibir próxima mensagem  
+Autor 	Mensagem
+Helio Nascimento
+
+
+
+Registrado em: Sábado, 10 de Abril de 2004
+Mensagens: 198
+Localização: Birigui-SP
+	
+MensagemEnviada: Seg Mai 22, 2006 12:02 pm    Assunto: Como Posso Recuperar meu Banco de Dados Firebird? 	Responder com Citação
+Colegas estou tendo dificuldades em acessar uma tabela do meu banco de dadis Firebird, nao consegue fazer inserção.Fui fazer uma backup iniciou e parou com a seguinte caixa de mensagem:
+
+'Unsuccessful execution caused by system error that does not preclude successful
+Execution of subsequent statements.
+Message length error (encountered 38, expected 34).
+gds_$receive failed.'
+
+O que vem a ser isto.Como posso recuperá-lo.
+
+Obrigado a todos.
+Aguardo breve resposta
+
+Hélio Nascimento
+Voltar ao Topo 	
+Ver o perfil de Usuários Enviar Mensagem Particular Enviar Email MSN Messenger	 	
+juliorondon
+
+
+
+Registrado em: Quinta-Feira, 6 de Abril de 2006
+Mensagens: 8
+Localização: Cuiabá - MT
+	
+MensagemEnviada: Seg Mai 22, 2006 3:30 pm    Assunto: Recuperar bd Fire 	Responder com Citação
+Caro Amigo,
+tente esses passos:
+A corrupção de um BD que pode ser reparada geralmente poderá ser recuperada usando o gfix ou uma combinação do gfix e do gbak.
+
+1. Defina as seguints variáveis para tornar o processo mais fácil pois voce não terá que digitar toda hora o usuário e a senha.
+
+SET ISC_USER=SYSDBA
+
+SET ISC_PASSWORD=masterkey
+
+2. Sempre tenha certeza de estar trabalhando com uma cópia do BD e não o arquivo original. Use o sistema operacional para fazer uma cópia do arquivo. Voce deve ter acesso exclusivo ao BD para fazer isso.
+
+copy employee.gdb database.gdb
+
+3.Agora confira se o BD está corrompido. Voce precisa ter acesso exclusivo ao BD para fazer isso, mas como voce está trabalhando com uma cópia do BD original, isso não é problema.
+
+gfix -v -full database.gdb
+
+4. Se o comando anterior indicou que há um problema com o BD, agora nós devemos repara-lo.
+
+gfix -mend -full -ignore database.gdb
+
+5.O próximo passo é conferir se o BD foi reparado.
+
+gfix -v -full database.gdb
+
+6. Se o BD continua com erros, voce deve fazer um backup completo e restaura-lo. No seu estilo mais simples, a linha de comando do backup pode ser :
+
+gbak -backup -v -ignore database.gdb database.gbk
+
+7. No entanto, se o gbak falhar porque está tendo problemas com garbage collection, então use o seguinte comando :
+
+gbak -backup -v -ignore -garbage database.gdb database.gbk
+
+8. Se houver corrupção nas versões dos registros de uma transação em limbo, então voce deve incluir a opção -limbo :
+
+gbak -backup -v -ignore -garbage -limbo database.gdb database.gbk
+
+9. Agora crie um novo BD do backup:
+
+gbak -create -v atlas.gbk atlas_new.gdb
+
+10. Se houver problemas durante o restore, considere usar as seguintes opções.
+
+-inactive, se houver problemas de índices, isso irá restaurar o BD mas não irá ativar nenhum índice, depois voce poderá ativar os índices manualmente um de cada vez.
+
+-one_at_a_time, isso irá restaurar o BD uma tabela por vez, e commitar as tabelas restauradas, se houver um problema maior pelo menos voce terá uma parte dos dados.
+
+Se tudo isso não funcionar, mas voce ainda puder acessar o banco de dados corrompido, considere usar o QLI para mover os dados e estruturas das tabelas do BD danificado para um novo.
+
+1. Crie um banco de dados em branco.
+
+2. Edite o seguinte (get_tables.sql) para apontar para o BD corrompido.
+
+connect database.gdb
+
+user 'sysdba' password 'masterkey;
+
+select 'define relation tgt.',
+
+Qualquer coisa é só falar
+
+Julio Rondon
+setembrosjnr@hotmail.com
+Voltar ao Topo 	
+Ver o perfil de Usuários Enviar Mensagem Particular Enviar Email MSN Messenger	 	
+juliorondon
+
+
+
+Registrado em: Quinta-Feira, 6 de Abril de 2006
+Mensagens: 8
+Localização: Cuiabá - MT
+	
+MensagemEnviada: Seg Mai 22, 2006 3:32 pm    Assunto: Recuperar bd Fire 	Responder com Citação
+Caro Amigo,
+tente esses passos:
+A corrupção de um BD que pode ser reparada geralmente poderá ser recuperada usando o gfix ou uma combinação do gfix e do gbak.
+
+1. Defina as seguints variáveis para tornar o processo mais fácil pois voce não terá que digitar toda hora o usuário e a senha.
+
+SET ISC_USER=SYSDBA
+
+SET ISC_PASSWORD=masterkey
+
+2. Sempre tenha certeza de estar trabalhando com uma cópia do BD e não o arquivo original. Use o sistema operacional para fazer uma cópia do arquivo. Voce deve ter acesso exclusivo ao BD para fazer isso.
+
+copy employee.gdb database.gdb
+
+3.Agora confira se o BD está corrompido. Voce precisa ter acesso exclusivo ao BD para fazer isso, mas como voce está trabalhando com uma cópia do BD original, isso não é problema.
+
+gfix -v -full database.gdb
+
+4. Se o comando anterior indicou que há um problema com o BD, agora nós devemos repara-lo.
+
+gfix -mend -full -ignore database.gdb
+
+5.O próximo passo é conferir se o BD foi reparado.
+
+gfix -v -full database.gdb
+
+6. Se o BD continua com erros, voce deve fazer um backup completo e restaura-lo. No seu estilo mais simples, a linha de comando do backup pode ser :
+
+gbak -backup -v -ignore database.gdb database.gbk
+
+7. No entanto, se o gbak falhar porque está tendo problemas com garbage collection, então use o seguinte comando :
+
+gbak -backup -v -ignore -garbage database.gdb database.gbk
+
+8. Se houver corrupção nas versões dos registros de uma transação em limbo, então voce deve incluir a opção -limbo :
+
+gbak -backup -v -ignore -garbage -limbo database.gdb database.gbk
+
+9. Agora crie um novo BD do backup:
+
+gbak -create -v atlas.gbk atlas_new.gdb
+
+10. Se houver problemas durante o restore, considere usar as seguintes opções.
+
+-inactive, se houver problemas de índices, isso irá restaurar o BD mas não irá ativar nenhum índice, depois voce poderá ativar os índices manualmente um de cada vez.
+
+-one_at_a_time, isso irá restaurar o BD uma tabela por vez, e commitar as tabelas restauradas, se houver um problema maior pelo menos voce terá uma parte dos dados.
+
+Se tudo isso não funcionar, mas voce ainda puder acessar o banco de dados corrompido, considere usar o QLI para mover os dados e estruturas das tabelas do BD danificado para um novo.
+
+1. Crie um banco de dados em branco.
+
+2. Edite o seguinte (get_tables.sql) para apontar para o BD corrompido.
+
+connect database.gdb
+
+user 'sysdba' password 'masterkey;
+
+select 'define relation tgt.',
+
+Qualquer coisa é só falar
+
+Julio Rondon
+setembrosjnr@hotmail.com
+Voltar ao Topo 	
+Ver o perfil de Usuários Enviar Mensagem Particular Enviar Email MSN Messenger	 	
+Helio Nascimento
+
+
+
+Registrado em: Sábado, 10 de Abril de 2004
+Mensagens: 198
+Localização: Birigui-SP
+	
+MensagemEnviada: Seg Mai 22, 2006 4:54 pm    Assunto: 	Responder com Citação
+Caro Amigo juliorondon
+
+Basicamente consigo com estes comandos recuperá-lo e voltar a fazer o backup automaticamente. Eu utilizo o IBExpert para fazer o Backup. ok
+
+Ah ia me esquecendo ... de lhe agradecer por ter lido meu tópico e me ajudado.É muito bom contar com amigos. Até breve.
+
+Hélio Nascimento
+Voltar ao Topo 	
+Ver o perfil de Usuários Enviar Mensagem Particular Enviar Email MSN Messenger	 	
+Mostrar os tópicos anteriores:   
+Novo Tópico   Responder Mensagem 	   Fórum DevMedia - Índice do Fórum -> Interbase/Firebird 	Todos os horários são GMT - 3 Hours
+Página 1 de 1
+
+ 
+	
+Ir para:  
+Enviar Mensagens Novas: Proibído.
+Responder Tópicos Proibído
+Editar Mensagens: Proibído.
+Excluir Mensagens: Proibído.
+Votar em Enquetes: Proibído.
+
+
+Powered by phpBB © 2001, 2005 phpBB Group
+Traduzido por: Suporte phpBB

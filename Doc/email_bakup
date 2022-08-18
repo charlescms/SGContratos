@@ -1,0 +1,12 @@
+ Informo que foi instalado no servidor o programa FireBackup que tem por finalidade realizar
+ o backup dos dados do sistema planner . Este backup sera grado na  pasta f:\Planner\CMS\backup
+ sera gerado um arquivo com o formato de nome data+hora.gbk  (exp: 200802210712.gbk ) as 12:00 horas e as 19:00 estes arquivos deveram ser 
+ salvos em fita e apos esta operacao retirados do diretorio.
+ Desta forme resolvendo o programa de backup do sistema.
+ 
+ Informe que o sistema atual encontra-se na pasta f:\Planner\CMS\ e que esta deve esta no backup mensal 
+ 
+ APROVAÇAO
+ CTI2129
+ 
+ 015893

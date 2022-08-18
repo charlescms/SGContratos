@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2011/03/27 12:27:09.922,=C:\Users\server\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2011/03/27 13:08:34.223,D:\Delphi Developer\Delphi Examples\Win32\Manipulando StringGrid\Unit1.pas=C:\Users\server\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2011/03/27 13:08:34.224,D:\Delphi Developer\Delphi Examples\Win32\Manipulando StringGrid\Unit1.dfm=C:\Users\server\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2011/03/27 13:08:36.238,D:\Delphi Developer\Delphi Examples\Win32\Manipulando StringGrid\Project1.dproj=C:\Users\server\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

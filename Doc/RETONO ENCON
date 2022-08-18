@@ -1,0 +1,59 @@
+O campo TBCATPRODUTO armazena a informação do grupo de produtos ?
+        sim
+
+Qual o campo que armazena a alíquota de IPI ? TAXAIPI ou ALIIPI ?
+TAXAIPI = %
+ALIIPI  = valor calculado em funcao da porcentagem aplicada
+
+Qual o campo que armazena a alíquota de ICMS ? TAXAICMS ou ALIICMS ?
+// tive uma pessoa que trabalho para min e ela nao padronizou os nomes
+ALIICMS = %  tem informacao
+TAXAICMS = nill nao tem informacao
+
+O CFOP do item não é armazenado ?
+ nao entre em conatoco o o contator
+ o lique ja falie coma funcionaria Ivana e a mesma ao sabe responde
+ 
+Os valores de ICMS e valores IPI de cada item são armazenados ? Se sim, em quais campos ?
+nao so e armazenada as porcentagens
+
+ 
+
+ 
+
+Referente a View de capa :
+
+ 
+
+A alíquota e a base de cálculo de IPI não são armazenadas na view da capa ?
+sim campo TAXAIPI
+
+Qual o campo que armazena os valores de IPI ? É o campo VALIPI ?
+VALIPI = VALOR TOTAL DO IPI NA NOTA CADA ITEM TEM A SUA PORCENTAGEM NO CAMPO TAXAIPI
+
+Se realmente é o campo VALIPI que armazena os valores do IPI da capa, o que significam os valores negativos ?
+ERRO DEVALCULO
+
+Por que algumas notas não possuem CFOP ?
+DADOS VELHOS
+
+Qual a informação que o campo NUMNOTIMP armazena ?
+NUMORO DA NOTA IMPRESSO
+
+Qual a informação que o campo TIPONOTA armazena ?
+NOTA DE PRODUTO OU SERVICO COMO AS NOTAS DE SERVICOS. GERADAS PELA PREFEITURA AGORA
+ 
+
+Fico no aguardo.
+
+ 
+
+Qualquer dúvida estamos a disposição.
+
+ 
+
+Muito obrigado.
+
+ 
+
+ 
