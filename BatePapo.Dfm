@@ -1,13 +1,13 @@
 object FormBatePapo: TFormBatePapo
-  Left = 1115
-  Top = 316
+  Left = 196
+  Top = 128
   Width = 587
   Height = 413
   Caption = 'Bate Papo ( Rede Local )'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -17
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -23,13 +23,13 @@ object FormBatePapo: TFormBatePapo
   OnKeyPress = FormKeyPress
   OnResize = FormResize
   OnShow = FormShow
-  PixelsPerInch = 144
-  TextHeight = 20
+  PixelsPerInch = 96
+  TextHeight = 13
   object PnSup: TPanel
     Left = 0
     Top = 0
     Width = 579
-    Height = 31
+    Height = 20
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -37,7 +37,7 @@ object FormBatePapo: TFormBatePapo
       Left = 0
       Top = 0
       Width = 579
-      Height = 31
+      Height = 20
       Align = alClient
       Brush.Color = 14743792
       ParentShowHint = False
@@ -48,13 +48,13 @@ object FormBatePapo: TFormBatePapo
       Left = 0
       Top = 0
       Width = 579
-      Height = 31
+      Height = 20
       Align = alClient
       Alignment = taCenter
       Caption = 'Bate Papo ( Rede Local )'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clMaroon
-      Font.Height = -18
+      Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -63,15 +63,15 @@ object FormBatePapo: TFormBatePapo
       OnClick = LbTituloFormClick
     end
     object BtnAjuda: TSpeedButton
-      Left = 834
-      Top = 3
-      Width = 24
-      Height = 22
+      Left = 542
+      Top = 2
+      Width = 16
+      Height = 14
       Hint = 'Ajuda'
       Caption = '?'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
@@ -80,15 +80,15 @@ object FormBatePapo: TFormBatePapo
       Transparent = False
     end
     object BtnFechar: TSpeedButton
-      Left = 862
-      Top = 3
-      Width = 24
-      Height = 22
+      Left = 560
+      Top = 2
+      Width = 16
+      Height = 14
       Hint = 'Fechar'
       Caption = 'X'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
@@ -100,72 +100,72 @@ object FormBatePapo: TFormBatePapo
   end
   object PnInferior: TPanel
     Left = 0
-    Top = 177
+    Top = 257
     Width = 579
-    Height = 199
+    Height = 129
     Align = alBottom
     BevelOuter = bvNone
     Color = 13608528
     TabOrder = 1
     object Label1: TLabel
-      Left = 5
-      Top = 132
-      Width = 79
-      Height = 20
+      Left = 3
+      Top = 86
+      Width = 52
+      Height = 13
       Caption = 'Mensagem'
     end
     object Label2: TLabel
-      Left = 5
-      Top = 74
-      Width = 72
-      Height = 20
+      Left = 3
+      Top = 48
+      Width = 47
+      Height = 13
       Caption = 'Falar para'
     end
     object Label3: TLabel
-      Left = 5
-      Top = 14
-      Width = 107
-      Height = 20
+      Left = 3
+      Top = 9
+      Width = 74
+      Height = 13
       Caption = 'Nome / Apelido'
     end
     object Label5: TLabel
-      Left = 325
-      Top = 43
-      Width = 153
-      Height = 24
-      Caption = 'Nome da esta'#231#227'o:'
+      Left = 211
+      Top = 28
+      Width = 87
+      Height = 13
+      Caption = 'Nome da estação:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
-      Font.Height = -18
+      Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
     end
     object LbEstacao: TLabel
-      Left = 466
-      Top = 43
-      Width = 15
-      Height = 24
+      Left = 303
+      Top = 28
+      Width = 9
+      Height = 13
       Caption = '...'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
-      Font.Height = -18
+      Font.Height = -11
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
     end
     object EdTexto: TEdit
-      Left = 5
-      Top = 154
-      Width = 592
+      Left = 3
+      Top = 100
+      Width = 385
       Height = 21
       TabOrder = 2
     end
     object BtnEnviar: TButton
-      Left = 603
-      Top = 151
-      Width = 115
-      Height = 38
+      Left = 392
+      Top = 98
+      Width = 75
+      Height = 25
       Hint = 'Enviar mensagem'
       Caption = 'Enviar'
       ParentShowHint = False
@@ -174,38 +174,38 @@ object FormBatePapo: TFormBatePapo
       OnClick = BtnEnviarClick
     end
     object CbDestino: TComboBox
-      Left = 5
-      Top = 95
-      Width = 255
-      Height = 28
+      Left = 3
+      Top = 62
+      Width = 166
+      Height = 21
       Style = csDropDownList
-      ItemHeight = 20
+      ItemHeight = 13
       TabOrder = 0
     end
     object EdApelido: TEdit
-      Left = 5
-      Top = 35
-      Width = 255
+      Left = 3
+      Top = 23
+      Width = 166
       Height = 21
       TabOrder = 4
       OnExit = EdApelidoExit
     end
     object CheckTodos: TCheckBox
-      Left = 271
-      Top = 98
-      Width = 89
-      Height = 27
-      Hint = 'Enviar mensagens para todos usu'#225'rios'
+      Left = 176
+      Top = 64
+      Width = 58
+      Height = 17
+      Hint = 'Enviar mensagens para todos usuários'
       Caption = 'TODOS'
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
     end
     object BtnFinalizar: TButton
-      Left = 268
-      Top = 40
-      Width = 41
-      Height = 26
+      Left = 174
+      Top = 26
+      Width = 27
+      Height = 17
       Hint = 'Sair do bate papo'
       Caption = 'Sair'
       ParentShowHint = False
@@ -216,15 +216,15 @@ object FormBatePapo: TFormBatePapo
   end
   object MemoMensagem: TRichEdit
     Left = 0
-    Top = 31
+    Top = 20
     Width = 579
-    Height = 137
+    Height = 231
     Align = alClient
     BorderStyle = bsNone
     Color = 14671839
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -22
+    Font.Height = -13
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
@@ -234,9 +234,9 @@ object FormBatePapo: TFormBatePapo
   end
   object PnDivisao: TPanel
     Left = 0
-    Top = 168
+    Top = 251
     Width = 579
-    Height = 9
+    Height = 6
     Align = alBottom
     BevelInner = bvRaised
     TabOrder = 3

@@ -19,7 +19,6 @@ uses
   {$ENDIF}
   Db, IniFiles, FileCtrl, FR_E_HTM, FR_E_CSV, FR_E_RTF, FR_E_TXT, FR_Desgn,
   FR_Shape, FR_Rich, FR_OLE, FR_ChBox, FR_RRect, FR_Chart, FR_BarC;
- // ZAbstractConnection, ZConnection;
 
 type
   TBaseDados = class(TDataModule)
@@ -35,8 +34,6 @@ type
     frOLEObject: TfrOLEObject;
     frRichObject: TfrRichObject;
     frShapeObject: TfrShapeObject;
- //   IBTransaction1: TIBTransaction;
-  //  ZConnection1: TZConnection;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -44,20 +41,8 @@ type
   public
     { Public declarations }
     {10-Início do Bloco Modular. Modificações não serão preservadas}
-{
-}
-  //{$IFDEF IBX}
-
     BD_Base_Dados: TIBDataBase;
     TRS_BD_Base_Dados: TIBTransaction;
-  //{$ELSE}
-
- //   BD_Base_Dados: TZConnection;
-//    TRS_BD_Base_Dados: TIBTransaction;
-
- // {$ENDIF}
-
-
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     ListaBaseDados : TStringList;
     ListaBaseDadosArq: TStringList;
@@ -93,7 +78,6 @@ begin
     ListaNomeTabelas    := TStringList.Create;
     ListaNomeTabelas_DB := TStringList.Create;
     {20-Início do Bloco Modular. Modificações não serão preservadas}
-{
     TRS_BD_Base_Dados:= TIBTransaction.Create(Self);
     with TRS_BD_Base_Dados do
     begin
@@ -104,7 +88,6 @@ begin
       Params.Add('nowait');
       Name := 'TRS_BD_Base_Dados';
     end;
-}
     BD_Base_Dados := TIBDatabase.Create(Self);
     with BD_Base_Dados do
     begin

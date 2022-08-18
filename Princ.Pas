@@ -185,9 +185,33 @@ arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
      problema identificado no arquivo Informe.pas
      linha
      RELCOMPEN layout relatorio foi modificado a pedido da elaine
+
+14/11/2014    versao := 3.51 indefinido
+   nao registrei erro charles
+
+07/09/2015    versao := 3.52
+    preocesso finalizado nesta data
+    foi criado uma rotina que como o mome de
+
+15/09/2015    versao := 3.52
+    ORRIGIDO O RELATORIO  unit RESUMEN;
+    O FILTRO ESTAVO COM PROBLEMA E FOI CORRIGIDO
+
+24/09/2015    versao := 3.53
+   ARQUIVO MODIFICADO unit Exportacao;
+   VALIDACAO PARA QUE O GRUPO 0001 TENHA ACESSO AO COMPO
+
+01/10/2015    versao := 3.54
+   ARQUIVO MODIFICADO unit RESUMEN;
+   ERRO DE ENTENDIMENTO DO RELATORIO SISTEMA RETORNOU A VERSAO NESTE RELATORIO NA 3.52
+
+   
       }
 
-                       
+
+
+
+
 unit Princ;
 
 interface

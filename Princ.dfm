@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 537
-  Top = 236
+  Left = 484
+  Top = 314
   Width = 950
   Height = 732
   Caption = 'Titulo do Projeto'
@@ -22,7 +22,7 @@ object FormPrincipal: TFormPrincipal
   PixelsPerInch = 144
   TextHeight = 20
   object Divisor: TSplitter
-    Left = 359
+    Left = 358
     Top = 72
     Width = 0
     Height = 575
@@ -72,7 +72,7 @@ object FormPrincipal: TFormPrincipal
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       Glyph.Data = {
@@ -104,7 +104,7 @@ object FormPrincipal: TFormPrincipal
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       Glyph.Data = {
@@ -127,16 +127,16 @@ object FormPrincipal: TFormPrincipal
       ShowHint = True
     end
     object BtnModificar: TSpeedButton
-      Left = 473
+      Left = 472
       Top = 5
-      Width = 115
+      Width = 116
       Height = 38
       Hint = 'Modificar registro'
       Caption = 'Modificar'
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       Glyph.Data = {
@@ -168,7 +168,7 @@ object FormPrincipal: TFormPrincipal
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       Glyph.Data = {
@@ -243,7 +243,7 @@ object FormPrincipal: TFormPrincipal
     object BtnProximo: TSpeedButton
       Left = 786
       Top = 5
-      Width = 35
+      Width = 36
       Height = 38
       Hint = 'Pr'#243'ximo registro'
       Flat = True
@@ -266,9 +266,9 @@ object FormPrincipal: TFormPrincipal
       Visible = False
     end
     object BtnUltimo: TSpeedButton
-      Left = 821
+      Left = 822
       Top = 5
-      Width = 37
+      Width = 35
       Height = 38
       Hint = #250'ltimo registro'
       Flat = True
@@ -303,7 +303,7 @@ object FormPrincipal: TFormPrincipal
   object PnOpcoes: TPanel
     Left = 5
     Top = 72
-    Width = 354
+    Width = 353
     Height = 575
     Align = alLeft
     BevelOuter = bvNone
@@ -312,7 +312,7 @@ object FormPrincipal: TFormPrincipal
     object ShapeOpcoes: TShape
       Left = 0
       Top = 26
-      Width = 354
+      Width = 353
       Height = 549
       Align = alClient
       Pen.Color = 7021576
@@ -320,27 +320,27 @@ object FormPrincipal: TFormPrincipal
     object PnTitulo: TPanel
       Left = 0
       Top = 0
-      Width = 354
+      Width = 353
       Height = 26
       Align = alTop
       BevelOuter = bvNone
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
       object BtnMinimiza: TSpeedButton
-        Left = 198
+        Left = 197
         Top = 3
-        Width = 17
+        Width = 18
         Height = 20
         Cursor = crHandPoint
         Caption = '<'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
-        Font.Height = -20
+        Font.Height = -18
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         Layout = blGlyphBottom
@@ -352,27 +352,27 @@ object FormPrincipal: TFormPrincipal
       object PnLista1: TPanel
         Left = 3
         Top = 8
-        Width = 190
-        Height = 5
+        Width = 189
+        Height = 4
         TabOrder = 0
       end
       object PnLista2: TPanel
         Left = 3
         Top = 14
-        Width = 190
-        Height = 5
+        Width = 189
+        Height = 4
         TabOrder = 1
       end
     end
     object TreeOpcoes: TTreeView
       Left = 11
-      Top = 39
-      Width = 348
-      Height = 750
+      Top = 38
+      Width = 347
+      Height = 751
       BorderStyle = bsNone
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       HideSelection = False
@@ -433,14 +433,14 @@ object FormPrincipal: TFormPrincipal
         20506167616D656E746F}
     end
     object TreeMenuSup: TTreeView
-      Left = 33
+      Left = 32
       Top = 675
-      Width = 108
+      Width = 110
       Height = 88
       BorderStyle = bsNone
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -20
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       HideSelection = False
@@ -562,9 +562,9 @@ object FormPrincipal: TFormPrincipal
     end
   end
   object PnLateral2: TPanel
-    Left = 359
+    Left = 358
     Top = 72
-    Width = 4
+    Width = 5
     Height = 575
     Align = alLeft
     BevelOuter = bvLowered
@@ -833,7 +833,7 @@ object FormPrincipal: TFormPrincipal
   end
   object ListaImagem: TImageList
     Bitmap = {
-      494C010115001800380010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010115001800580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

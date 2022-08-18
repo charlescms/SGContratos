@@ -215,7 +215,7 @@ begin
   AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   CamposCalculados;
-  if VNivel then begin
+  if ( VNivel or VNivelG ) then begin
      ComisaoSFatura.Color := clWindow ;
      ComisaoSFatura.ReadOnly := false ;
   end

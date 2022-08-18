@@ -1,6 +1,6 @@
 object FormProdutoContrato: TFormProdutoContrato
-  Left = 281
-  Top = 246
+  Left = 134
+  Top = 353
   Width = 822
   Height = 275
   Caption = 'Entrada de Dados'
@@ -789,8 +789,8 @@ object FormProdutoContrato: TFormProdutoContrato
           ParentShowHint = False
           ShowHint = True
           TabOrder = 10
-          Text = 'Cadastro'
           OnExit = CADASTROexit
+          Hora = False
           Glyph.Data = {
             56060000424D560600000000000036000000280000001C0000000E0000000100
             2000000000002006000000000000000000000000000000000000C0C0C000C0C0

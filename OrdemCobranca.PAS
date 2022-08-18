@@ -1965,7 +1965,8 @@ if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
 
       TabGlobal.DFatura.Close ;
       TabGlobal.DFatura.Filtro.Clear ;
-      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+//cms      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S''  ' );
       TabGlobal.DFatura.ATUALIZASQL(False);
       TabGlobal.DFatura.PREPARE ;
       TabGlobal.DFatura.OPEN ;

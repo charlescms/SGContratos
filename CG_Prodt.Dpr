@@ -2,7 +2,7 @@
  Empresa....: CMS
  Programa...: CG_Prodt.Dpr - Gerenciador dos Módulos do Projeto
  Sistema....: 
- Data.......: 19/09/2014
+ Data.......: 24/08/2015
  Versão.....: 3.49
  Analista...: Charles
  Programador: Charles
@@ -13,7 +13,6 @@
 program CG_Prodt;
 
 uses
-  FASTMM4,
   {$I LTab.Inc}
   {$I AtrL.Inc}
   WinTypes,

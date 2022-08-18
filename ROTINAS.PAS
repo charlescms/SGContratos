@@ -79,6 +79,9 @@ function RoundDec(valor : double ; decimais : integer ): double;
 function DT0112 : TDateTime ;
 
 //function PaisForn():integer ;
+// nova funcao
+
+function VNivelG: Boolean; { Libera acesso ao Módulo }
 
 implementation
 
@@ -1031,6 +1034,7 @@ end;
 function VNivel: Boolean; { Libera acesso ao Módulo }
 begin
   Result := True;
+
   if (Sistema.ControleAcesso) and (not Sistema.Master) then
   begin
     FormAcesso := TFormAcesso.Create(Application);
@@ -1046,6 +1050,15 @@ begin
       FormAcesso.Free;
     end;
   end;
+end;
+
+function VNivelG: Boolean; { Libera acesso ao Módulo }
+begin
+  Result := False;
+  if Sistema.grupo = '0001' then
+     Result := True;
+  
+
 end;
 
 function LFill(aString: string; aCaracter: Char; aTamanho: integer): string;

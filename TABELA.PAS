@@ -342,9 +342,18 @@ begin
     for I:=0 to Length(CamposArray)-1 do
       ParamByName(CamposArray[I]).Value := ValoresArray[I];
     Conexao;
-//    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela.sql');
+
+    {$IFDEF _SV-SQL_ }
+    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela.sql');
+    {$ENDIF}
+
     Prepare ;
-//    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela2.sql');
+
+    {$IFDEF _SV-SQL_ }
+    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela2.sql');
+    {$ENDIF}
+
+
     try
 
       Active := True;
@@ -538,7 +547,11 @@ begin
     TabelaPrincipal.Parametros(Tabela);
     Conexao;
     try
-//      SQL.SaveToFile('_sql_PTabela_ATUALIZA_'+TabelaPrincipal.NomeTabela+'.SQL');
+
+      {$IFDEF _SV-SQL_ }
+      SQL.SaveToFile('_sql_PTabela_ATUALIZA_'+TabelaPrincipal.NomeTabela+'.SQL');
+      {$ENDIF}
+
       ExecSQL;
       {$IFDEF IBX}
       Transaction.CommitRetaining;
@@ -1376,7 +1389,11 @@ var
             ')';
         end;
       Query.SQL.Text := Query.SQL.Text + ')';
-//      Query.SQL.SaveToFile('__criando_tabela.sql');
+
+      {$IFDEF _SV-SQL_ }
+      Query.SQL.SaveToFile('__criando_tabela.sql');
+      {$ENDIF}
+      
       Query.Prepare;
       {$IFDEF IBX}
       Query.ExecQuery;
@@ -1430,7 +1447,11 @@ var
         end;
         }
       Query.SQL.Text := Query.SQL.Text + ')';
-//      Query.SQL.SaveToFile('__criando_view.sql');
+
+      {$IFDEF _SV-SQL_ }
+      Query.SQL.SaveToFile('_criando_view.sql');
+      {$ENDIF}
+
       Query.Prepare;
       {$IFDEF IBX}
       Query.ExecQuery;
@@ -1903,11 +1924,13 @@ begin
         Sql.Add('Order By '+ChaveIndice);
     end;
 
-//    Sql.SaveToFile(Trim(Sistema.usuario)+'_sql_Tabela_'+NomeTabela+'.sql');
+    {$IFDEF _SV-SQL_ }
+    Sql.SaveToFile(Trim(Sistema.usuario)+'_sql_Tabela_'+NomeTabela+'.sql');
+    {$ENDIF}
 
     Prepare;
 
-    
+
     if (SqlPrincipal.Count > 0) and
        (not Local) then
       Parametros(Self);

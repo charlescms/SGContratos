@@ -218,8 +218,20 @@ begin
   AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   CamposCalculados;
-  
+
+ { 24/09/2015 modificacao para atender solicitacao /*
   if VNivel then begin
+     ComisaoSFatura.Color := clWindow ;
+     ComisaoSFatura.ReadOnly := false ;
+  end
+  else begin
+      ComisaoSFatura.Color := cl3DLight ;
+      ComisaoSFatura.ReadOnly := true ;
+  end  ;
+*/}
+
+
+  if ( VNivel or VNivelG ) then begin
      ComisaoSFatura.Color := clWindow ;
      ComisaoSFatura.ReadOnly := false ;
   end

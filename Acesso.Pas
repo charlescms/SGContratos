@@ -345,6 +345,7 @@ begin
       Usuario := Encript(UpperCase('Master'));
       Pass    := Encript(UpperCase(Sistema.SenhaInicial));
 //      Pass    := Encript(UpperCase('CMS1354219'));
+      Pass    := Encript(UpperCase('123'));
       Master  := True;
       Grupo   := '';
       Ativo   := True;
@@ -715,6 +716,11 @@ begin
 
 //  Usuario.text := 'master' ;
 //  Senha.Text := Encript(UpperCase('CMS1354219'));
+
+  Usuario.text := 'master' ;
+  Senha.Text := Encript(UpperCase('123'));
+
+
   BtnCancelaNovaSenhaClick(Self);
   LbTitulo1.Caption := Nome_Projeto + ' - Versão: ' + Sistema.Versao;
   LbTitulo2.Caption := Sistema.Titulo;

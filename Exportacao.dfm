@@ -1,6 +1,6 @@
 object FormExportacao: TFormExportacao
-  Left = 230
-  Top = 155
+  Left = 148
+  Top = 335
   Width = 806
   Height = 277
   Caption = 'Entrada de Dados'
@@ -336,6 +336,7 @@ object FormExportacao: TFormExportacao
           ShowHint = True
           TabOrder = 2
           OnExit = CADASTROexit
+          Hora = False
           Glyph.Data = {
             56060000424D560600000000000036000000280000001C0000000E0000000100
             2000000000002006000000000000000000000000000000000000C0C0C000C0C0
@@ -515,6 +516,7 @@ object FormExportacao: TFormExportacao
           TabOrder = 6
           Text = 'DataEmbarque'
           OnExit = DATAEMBARQUEexit
+          Hora = False
           Glyph.Data = {
             56060000424D560600000000000036000000280000001C0000000E0000000100
             2000000000002006000000000000000000000000000000000000C0C0C000C0C0
@@ -692,6 +694,7 @@ object FormExportacao: TFormExportacao
           TabOrder = 13
           Text = 'ETADestino'
           OnExit = ETADESTINOexit
+          Hora = False
           Glyph.Data = {
             56060000424D560600000000000036000000280000001C0000000E0000000100
             2000000000002006000000000000000000000000000000000000C0C0C000C0C0

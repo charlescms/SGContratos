@@ -1,7 +1,7 @@
 object FormRESUMEN: TFormRESUMEN
-  Left = 103
-  Top = 84
-  Width = 1064
+  Left = 113
+  Top = 648
+  Width = 1044
   Height = 729
   Caption = 'Relat'#243'rio'
   Color = clBtnFace
@@ -24,7 +24,7 @@ object FormRESUMEN: TFormRESUMEN
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 1056
+    Width = 1028
     Height = 20
     Align = alTop
     BevelOuter = bvNone
@@ -32,7 +32,7 @@ object FormRESUMEN: TFormRESUMEN
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 1056
+      Width = 1028
       Height = 20
       Align = alClient
       Brush.Color = 14743792
@@ -43,7 +43,7 @@ object FormRESUMEN: TFormRESUMEN
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 1056
+      Width = 1028
       Height = 20
       Align = alClient
       Alignment = taCenter
@@ -96,15 +96,15 @@ object FormRESUMEN: TFormRESUMEN
   object Selecao_1: TScrollBox
     Left = 0
     Top = 20
-    Width = 1056
-    Height = 626
+    Width = 1028
+    Height = 615
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
     object PRODUTO: TGroupBox
       Left = 0
       Top = 100
-      Width = 1056
+      Width = 1028
       Height = 100
       Cursor = crArrow
       Align = alTop
@@ -113,7 +113,7 @@ object FormRESUMEN: TFormRESUMEN
       object DBNav_PROD: TDBNavigator
         Left = 2
         Top = 15
-        Width = 1052
+        Width = 1024
         Height = 18
         Cursor = crArrow
         DataSource = ds_TOT_EX
@@ -124,7 +124,7 @@ object FormRESUMEN: TFormRESUMEN
       object DBGrid_PROD: TDBGrid
         Left = 2
         Top = 33
-        Width = 1052
+        Width = 1024
         Height = 65
         Cursor = crArrow
         Align = alClient
@@ -140,8 +140,8 @@ object FormRESUMEN: TFormRESUMEN
     object PAIS: TGroupBox
       Left = 0
       Top = 200
-      Width = 1056
-      Height = 186
+      Width = 1028
+      Height = 175
       Cursor = crArrow
       Align = alClient
       Caption = 'PAIS'
@@ -149,7 +149,7 @@ object FormRESUMEN: TFormRESUMEN
       object DBNav_PAIS: TDBNavigator
         Left = 2
         Top = 15
-        Width = 1052
+        Width = 1024
         Height = 18
         Cursor = crArrow
         DataSource = DS_PAIS
@@ -160,8 +160,8 @@ object FormRESUMEN: TFormRESUMEN
       object DBGrid_PAIS: TDBGrid
         Left = 2
         Top = 33
-        Width = 1052
-        Height = 151
+        Width = 1024
+        Height = 140
         Cursor = crArrow
         Align = alClient
         DataSource = DS_PAIS
@@ -175,8 +175,8 @@ object FormRESUMEN: TFormRESUMEN
     end
     object TOTAL: TGroupBox
       Left = 0
-      Top = 386
-      Width = 1056
+      Top = 375
+      Width = 1028
       Height = 80
       Cursor = crArrow
       Align = alBottom
@@ -185,7 +185,7 @@ object FormRESUMEN: TFormRESUMEN
       object DBGrid3: TDBGrid
         Left = 2
         Top = 15
-        Width = 1052
+        Width = 1024
         Height = 63
         Cursor = crArrow
         Align = alClient
@@ -200,8 +200,8 @@ object FormRESUMEN: TFormRESUMEN
     end
     object Panel2: TPanel
       Left = 0
-      Top = 546
-      Width = 1056
+      Top = 535
+      Width = 1028
       Height = 80
       Align = alBottom
       Caption = 'Panel2'
@@ -235,6 +235,7 @@ object FormRESUMEN: TFormRESUMEN
           Width = 137
           Height = 21
           Cursor = crArrow
+          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -298,6 +299,7 @@ object FormRESUMEN: TFormRESUMEN
           Width = 137
           Height = 21
           Cursor = crArrow
+          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -454,6 +456,7 @@ object FormRESUMEN: TFormRESUMEN
           Width = 137
           Height = 21
           Cursor = crArrow
+          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -518,6 +521,7 @@ object FormRESUMEN: TFormRESUMEN
           Width = 137
           Height = 21
           Cursor = crArrow
+          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -637,7 +641,7 @@ object FormRESUMEN: TFormRESUMEN
     object grp2: TGroupBox
       Left = 0
       Top = 0
-      Width = 1056
+      Width = 1028
       Height = 100
       Cursor = crArrow
       Align = alTop
@@ -646,7 +650,7 @@ object FormRESUMEN: TFormRESUMEN
       object dbnvgr1: TDBNavigator
         Left = 2
         Top = 15
-        Width = 1052
+        Width = 1024
         Height = 18
         Cursor = crArrow
         DataSource = DS_PROD
@@ -657,7 +661,7 @@ object FormRESUMEN: TFormRESUMEN
       object dbgrd1: TDBGrid
         Left = 2
         Top = 33
-        Width = 1052
+        Width = 1024
         Height = 65
         Cursor = crArrow
         Align = alClient
@@ -672,8 +676,8 @@ object FormRESUMEN: TFormRESUMEN
     end
     object grp3: TGroupBox
       Left = 0
-      Top = 466
-      Width = 1056
+      Top = 455
+      Width = 1028
       Height = 80
       Cursor = crArrow
       Align = alBottom
@@ -682,7 +686,7 @@ object FormRESUMEN: TFormRESUMEN
       object dbgrd2: TDBGrid
         Left = 2
         Top = 15
-        Width = 1052
+        Width = 1024
         Height = 63
         Cursor = crArrow
         Align = alClient
@@ -698,8 +702,8 @@ object FormRESUMEN: TFormRESUMEN
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 646
-    Width = 1056
+    Top = 635
+    Width = 1028
     Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -710,8 +714,8 @@ object FormRESUMEN: TFormRESUMEN
   end
   object Panel1: TPanel
     Left = 0
-    Top = 667
-    Width = 1056
+    Top = 656
+    Width = 1028
     Height = 35
     Align = alBottom
     BevelOuter = bvNone
@@ -837,8 +841,8 @@ object FormRESUMEN: TFormRESUMEN
   end
   object frDBDataSet: TfrDBDataSet
     CloseDataSource = True
-    Left = 289
-    Top = 277
+    Left = 281
+    Top = 181
   end
   object frDesigner: TfrDesigner
     Left = 224
@@ -849,8 +853,8 @@ object FormRESUMEN: TFormRESUMEN
     InitialZoom = pzDefault
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     StoreInDFM = True
-    Left = 433
-    Top = 309
+    Left = 505
+    Top = 269
     ReportForm = {
       17000000972B000017000000001200496D70726573736F72612044656661756C
       7400FF090000009A0B0000340800000000000000000000000000000000000001
@@ -1073,7 +1077,7 @@ object FormRESUMEN: TFormRESUMEN
       FFFF1F2C0204010E002323232C2323232C2323302E30300001003C005B5B5355
       4D285B44436F6E747261746F5472616E73706F7274652E2256414C4F525F5052
       45564953544F225D2C42414E44413130295D2F313030305D00000000FFFF0500
-      417269616C0008000000000000000000010000000000020000000000FFFFFF00
+      417269616C0005000000000000000000010000000000020000000000FFFFFF00
       000000000006004D656D6F343400B60100004001000064000000120000000300
       0F0001000000000000000000FFFFFF1F2C0204011100232C2323232C2323232C
       2323302E30303000010036005B53554D285B44436F6E747261746F5472616E73
@@ -1220,8 +1224,8 @@ object FormRESUMEN: TFormRESUMEN
       'FROM CONTRATOTRANSPORTE,TAB_PAIS'
       'WHERE CONTRATOTRANSPORTE.ID=TAB_PAIS.ID'
       'GROUP BY TAB_PAIS.NOME')
-    Left = 288
-    Top = 332
+    Left = 240
+    Top = 420
   end
   object IBQ_TOT: TIBQuery
     SQL.Strings = (
@@ -1242,25 +1246,25 @@ object FormRESUMEN: TFormRESUMEN
       '         '#39'TOTAL '#39
       'FROM CONTRATOTRANSPORTE')
     Left = 320
-    Top = 335
+    Top = 415
   end
   object DS_PAIS: TDataSource
     DataSet = IBQuery_pais
-    Left = 288
-    Top = 308
+    Left = 240
+    Top = 260
   end
   object DS_PROD: TDataSource
-    Left = 256
-    Top = 276
+    Left = 232
+    Top = 180
   end
   object DS_TOT: TDataSource
     DataSet = IBQ_TOT
-    Left = 320
-    Top = 308
+    Left = 304
+    Top = 276
   end
   object frDBDataSet1: TfrDBDataSet
-    Left = 320
-    Top = 276
+    Left = 328
+    Top = 188
   end
   object ibq_TOT_EX: TIBQuery
     SQL.Strings = (
@@ -1280,8 +1284,8 @@ object FormRESUMEN: TFormRESUMEN
         'AO,'
       '         '#39'TOTAL '#39
       'FROM CONTRATOTRANSPORTE')
-    Left = 352
-    Top = 335
+    Left = 376
+    Top = 407
   end
   object ibq_PROD_EX: TIBQuery
     SQL.Strings = (
@@ -1301,25 +1305,25 @@ object FormRESUMEN: TFormRESUMEN
         'AO,'
       '         '#39'TOTAL '#39
       'FROM CONTRATOTRANSPORTE')
-    Left = 384
-    Top = 335
+    Left = 464
+    Top = 399
   end
   object ds_TOT_EX: TDataSource
     DataSet = ibq_TOT_EX
     Left = 352
-    Top = 308
+    Top = 268
   end
   object ds_prod_ex: TDataSource
     DataSet = ibq_PROD_EX
-    Left = 384
-    Top = 308
+    Left = 408
+    Top = 276
   end
   object frdb_PROD_EX: TfrDBDataSet
-    Left = 384
-    Top = 276
+    Left = 416
+    Top = 188
   end
   object frdb_TOT_EX: TfrDBDataSet
-    Left = 344
-    Top = 276
+    Left = 368
+    Top = 180
   end
 end
