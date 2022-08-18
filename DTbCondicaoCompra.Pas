@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0013,
+     AtrL0021,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -21,6 +21,7 @@ type
   TDTbCondicaoCompra = class(TTabela)
   public
     C_C: TDTbCondicaoCompra_C_C;
+    Usuario: TDTbCondicaoCompra_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -76,21 +77,25 @@ begin
     // Inserção de Registro
     InsertSQL.Add('insert into TbCondicaoCompra');
     InsertSQL.Add('  (');
-    InsertSQL.Add('  C_C');
+    InsertSQL.Add('  C_C,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
-    InsertSQL.Add('  :C_C');
+    InsertSQL.Add('  :C_C,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbCondicaoCompra');
     ModifySQL.Add('set');
-    ModifySQL.Add('  C_C = :C_C');
+    ModifySQL.Add('  C_C = :C_C,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  C_C = :OLD_C_C');
     // Refresh de Registro
     RefreshSQL.Add('Select');
-    RefreshSQL.Add('  TbCondicaoCompra.C_C AS C_C');
+    RefreshSQL.Add('  TbCondicaoCompra.C_C AS C_C,');
+    RefreshSQL.Add('  TbCondicaoCompra.Usuario AS Usuario');
     RefreshSQL.Add('from TbCondicaoCompra');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbCondicaoCompra.C_C = :OLD_C_C');
@@ -98,20 +103,27 @@ begin
   UpdateObject     := UpdateSql;
     // Sql Principal
   SqlPrincipal.Add('Select');
-  SqlPrincipal.Add('  TbCondicaoCompra.C_C AS C_C');
+  SqlPrincipal.Add('  TbCondicaoCompra.C_C AS C_C,');
+  SqlPrincipal.Add('  TbCondicaoCompra.Usuario AS Usuario');
   SqlPrincipal.Add('from TbCondicaoCompra');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
   Sql.Add('order by TbCondicaoCompra.C_C');
   C_C := TDTbCondicaoCompra_C_C.Create(AOwner);
   C_C.Valor.DataSet := Self;
+  Usuario := TDTbCondicaoCompra_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(C_C);
+//CRIANDO CAMPOS 
   Campos.Add(C_C);
+  Campos.Add(Usuario);
   TituloIndices.Add('C/C');
   Indices.Add('TbCondicaoCompra.C_C');
   Crescente.Add('S');
   TituloPrimaria := 'C/C';
   ChPrimaria     := 'TbCondicaoCompra.C_C';
+//CRIANDO TituloIndices 
   TituloIndice   := 'C/C';
   ChaveIndice    := 'TbCondicaoCompra.C_C';
   AfterInsert    := AtribuiMestre;
@@ -121,6 +133,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbCondicaoCompra.CriaForeignKeys;
 var

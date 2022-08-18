@@ -3,6 +3,8 @@
    Copyright: Modular Software 2006
             : Todos os direitos reservados
    Site.....: http://www.xmaker.com.br
+       Versao         := '2.11'; 25/11/2011
+       Versao         := '2.36'; 25/11/2011
 }
 unit Publicas;
 
@@ -24,6 +26,7 @@ type
 
 procedure Inicializa;  // Inicializa variáveis públicas
 procedure InicializaAmbiente;  // Inicializa ambiente de trabalho
+
 
 Type
   TSistema = Record
@@ -69,6 +72,7 @@ Type
     OpcoesAcessoMn: TStringList;
     OpcoesAcessoBr: TStringList;
     OpcoesTabela  : TStringList;
+    ERRO_CMS      : TStringList;
     BancoDados    : String;
     ErroFatal     : Boolean;
     Conexao_i     : TDateTime;
@@ -78,6 +82,7 @@ end;
 
 Var
   Sistema : TSistema;
+//  ERRRO_CMS  : TStringList;
 
 implementation
 
@@ -91,14 +96,14 @@ Begin
   with Sistema Do
   Begin
     Titulo         := 'Gestor de Contrato';
-    Versao         := '1.0001';
+    Versao         := '3.26';
     Analista       := 'Charles';
     Programador    := 'Charles';
     Projetista     := 'CMS';
     EstiloData     := 'dd/mm/yyyy';
     ConfirmaSaida  := True;
     ControleAcesso := True;
-    SenhaInicial   := '';
+    SenhaInicial   := '1354';
     HintBalao      := True;
     MenuXP         := True;
     Pasta          := '';
@@ -126,7 +131,7 @@ Begin
     Integridade    := True;
     MenuVertical   := True;
     BarraF         := True;
-    BannerVertical := True;
+    BannerVertical := False;
     ErroFatal      := False;
     OpcoesAcesso   := TStringList.Create;
     OpcoesAcessoMn := TStringList.Create;
@@ -144,6 +149,7 @@ Begin
   finally
     ICQmsg.Free;
   end;
+
 End;
 
 procedure InicializaAmbiente;

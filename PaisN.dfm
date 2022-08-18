@@ -1,13 +1,13 @@
 object FormPaisN: TFormPaisN
-  Left = 182
-  Top = 160
+  Left = 332
+  Top = 148
   Width = 629
   Height = 271
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -21,13 +21,13 @@ object FormPaisN: TFormPaisN
   OnKeyPress = formkeypress
   OnResize = formresize
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 40
-    Width = 621
-    Height = 198
+    Top = 33
+    Width = 613
+    Height = 200
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -37,15 +37,15 @@ object FormPaisN: TFormPaisN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 129
-        Width = 613
-        Height = 38
+        Top = 141
+        Width = 605
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 348
-          Top = 12
+          Left = 283
+          Top = 10
           Width = 32
           Height = 16
           AutoSize = True
@@ -66,8 +66,8 @@ object FormPaisN: TFormPaisN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 398
-          Top = 11
+          Left = 323
+          Top = 9
           Width = 32
           Height = 16
           AutoSize = True
@@ -88,10 +88,10 @@ object FormPaisN: TFormPaisN
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -114,10 +114,10 @@ object FormPaisN: TFormPaisN
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 121
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 98
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -140,10 +140,10 @@ object FormPaisN: TFormPaisN
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 231
-          Top = 6
-          Width = 93
-          Height = 31
+          Left = 188
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -169,13 +169,13 @@ object FormPaisN: TFormPaisN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 103
-        Width = 613
-        Height = 26
+        Top = 120
+        Width = 605
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -186,8 +186,8 @@ object FormPaisN: TFormPaisN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 613
-        Height = 103
+        Width = 605
+        Height = 120
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -196,8 +196,8 @@ object FormPaisN: TFormPaisN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 613
-          Height = 103
+          Width = 605
+          Height = 120
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -207,33 +207,33 @@ object FormPaisN: TFormPaisN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 613
-              Height = 103
+              Width = 605
+              Height = 120
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcID: TLabel
-                Left = 12
+                Left = 10
                 Top = 1
-                Width = 13
-                Height = 16
+                Width = 11
+                Height = 13
                 Caption = 'ID'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNOME: TLabel
-                Left = 12
-                Top = 49
-                Width = 40
-                Height = 16
+                Left = 10
+                Top = 40
+                Width = 32
+                Height = 13
                 Caption = 'NOME'
                 ParentShowHint = False
                 ShowHint = True
               end
               object ID: TXDBEdit
-                Left = 12
-                Top = 18
-                Width = 61
+                Left = 10
+                Top = 15
+                Width = 49
                 Height = 21
                 ParentShowHint = False
                 ShowHint = True
@@ -288,9 +288,9 @@ object FormPaisN: TFormPaisN
                   0000}
               end
               object NOME: TXDBEdit
-                Left = 12
-                Top = 66
-                Width = 431
+                Left = 10
+                Top = 54
+                Width = 350
                 Height = 21
                 ParentShowHint = False
                 ShowHint = True
@@ -354,7 +354,7 @@ object FormPaisN: TFormPaisN
               Left = 0
               Top = 0
               Width = 613
-              Height = 103
+              Height = 124
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -413,17 +413,17 @@ object FormPaisN: TFormPaisN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 304
-        Width = 610
-        Height = 38
+        Top = 247
+        Width = 496
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -449,14 +449,14 @@ object FormPaisN: TFormPaisN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 610
-        Height = 278
+        Width = 496
+        Height = 226
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -473,13 +473,13 @@ object FormPaisN: TFormPaisN
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 278
-        Width = 610
-        Height = 26
+        Top = 226
+        Width = 496
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -492,16 +492,16 @@ object FormPaisN: TFormPaisN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 621
-    Height = 40
+    Width = 613
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object BtnIncluir: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -524,10 +524,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 79
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -550,10 +550,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -576,10 +576,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -602,10 +602,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 304
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -628,10 +628,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -653,10 +653,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 403
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -678,10 +678,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 427
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -703,10 +703,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -728,10 +728,10 @@ object FormPaisN: TFormPaisN
       OnClick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -754,8 +754,8 @@ object FormPaisN: TFormPaisN
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 37
-      Width = 621
+      Top = 30
+      Width = 613
       Height = 3
       Align = alBottom
       TabOrder = 0

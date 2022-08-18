@@ -1,32 +1,35 @@
 object FormTbCondicaoCompr: TFormTbCondicaoCompr
+  WindowState = wsNormal
+  BorderStyle = bsSizeable
+  Position = poScreenCenter
+  FormStyle = fsMDIChild
   Left = 5
   Top = 5
   Width = 635
   Height = 226
+  BorderIcons = [biSystemMenu,biMinimize,biMaximize]
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
-  Position = poScreenCenter
   Visible = True
-  OnActivate = formactivate
-  OnClose = formclose
-  OnCloseQuery = formclosequery
-  OnKeyPress = formkeypress
-  OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
+  Onactivate = formactivate
+  Onclose = formclose
+  Onclosequery = formclosequery
+  Onkeypress = formkeypress
+  Onshow = formshow
   object PageForm: TNotebook
     Left = 0
-    Top = 41
-    Width = 627
-    Height = 133
+    Top = 33
+    Width = 619
+    Height = 136
     Align = alClient
     TabOrder = 1
     object TPage
@@ -35,31 +38,31 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       Caption = 'Manutencao'
       object TabPaginas: TTabSet
         Left = 0
-        Top = 67
-        Width = 627
-        Height = 26
+        Top = 82
+        Width = 619
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        OnClick = TABPAGINASclick
+        Onclick = TABPAGINASclick
       end
       object PnInferior: TPanel
         Left = 0
-        Top = 93
-        Width = 627
-        Height = 40
+        Top = 104
+        Width = 619
+        Height = 32
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 542
-          Top = 9
+          Left = 440
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -80,8 +83,8 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
           Visible = False
         end
         object Img_Form: TImage
-          Left = 591
-          Top = 9
+          Left = 480
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -102,16 +105,15 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 5
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 4
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
-          OnClick = BTNSALVARclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -126,18 +128,18 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
             00066F6F66666666FFF660307777777703066F6F66666666F6F6600000000000
             00066FFFFFFFFFFFFFF666666666666666666666666666666666}
           NumGlyphs = 2
+          Onclick = BTNSALVARclick
         end
         object BtnDesistir: TBitBtn
-          Left = 106
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 86
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
-          OnClick = BTNDESISTIRclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -152,13 +154,14 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
             99933773FF777F3F777F339993707399999333773F373F77777F333999999999
             3393333777333777337333333999993333333333377777333333}
           NumGlyphs = 2
+          Onclick = BTNDESISTIRclick
         end
       end
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 627
-        Height = 64
+        Width = 619
+        Height = 80
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -167,8 +170,8 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 627
-          Height = 64
+          Width = 619
+          Height = 80
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -178,31 +181,40 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 627
-              Height = 64
+              Width = 619
+              Height = 80
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcC_C: TLabel
-                Left = 15
-                Top = 20
-                Width = 22
-                Height = 16
+                Left = 24
+                Top = 17
+                Width = 19
+                Height = 13
                 Alignment = taRightJustify
                 Caption = 'C/C'
                 ParentShowHint = False
                 ShowHint = True
               end
+              object LbcUsuario: TLabel
+                Left = 8
+                Top = 46
+                Width = 36
+                Height = 13
+                Alignment = taRightJustify
+                Caption = 'Usu'#225'rio'
+                ParentShowHint = False
+                ShowHint = True
+              end
               object C_C: TXDBEdit
-                Left = 41
-                Top = 16
-                Width = 153
-                Height = 21
+                Left = 48
+                Top = 14
+                Width = 125
+                Height = 24
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
                 Text = 'C_C'
-                OnExit = C_Cexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -249,6 +261,64 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = C_Cexit
+              end
+              object Usuario: TXDBEdit
+                Left = 47
+                Top = 42
+                Width = 154
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 1
+                Text = 'Usuario'
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
+                OnExit = USUARIOExit
               end
             end
           end
@@ -259,8 +329,8 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 627
-              Height = 64
+              Width = 619
+              Height = 80
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -315,9 +385,9 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       end
       object Divisao_inf: TPanel
         Left = 0
-        Top = 64
-        Width = 627
-        Height = 3
+        Top = 80
+        Width = 619
+        Height = 2
         Align = alBottom
         TabOrder = 3
         Visible = False
@@ -329,30 +399,30 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       Caption = 'Consulta'
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 357
-        Width = 631
-        Height = 26
+        Top = 290
+        Width = 513
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        OnClick = ABACONSULTAclick
+        Onclick = ABACONSULTAclick
       end
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 631
-        Height = 357
+        Width = 513
+        Height = 290
         Align = alClient
         BorderStyle = bsNone
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -365,23 +435,23 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
-        OnDblClick = GRIDCONSULTAdblclick
+        Ondblclick = GRIDCONSULTAdblclick
       end
     end
   end
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 627
-    Height = 41
+    Width = 619
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object BtnIncluir: TSpeedButton
-      Left = 94
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 76
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -401,13 +471,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNINCLUIRclick
+      Onclick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
       Left = -1
-      Top = 4
-      Width = 92
-      Height = 30
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -427,13 +497,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNMODIFICARclick
+      Onclick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -453,13 +523,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNEXCLUIRclick
+      Onclick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -479,13 +549,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNLOCALIZARclick
+      Onclick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 304
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -505,13 +575,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNTABELAclick
+      Onclick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -530,13 +600,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPRIMEIROclick
+      Onclick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 403
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -555,13 +625,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNANTERIORclick
+      Onclick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 427
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -580,13 +650,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPROXIMOclick
+      Onclick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -605,13 +675,13 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNULTIMOclick
+      Onclick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -630,21 +700,21 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNREFRESHclick
+      Onclick = BTNREFRESHclick
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 38
-      Width = 627
-      Height = 3
+      Top = 31
+      Width = 619
+      Height = 2
       Align = alBottom
       TabOrder = 0
     end
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 174
-    Width = 627
+    Top = 169
+    Width = 619
     Height = 19
     Panels = <
       item
@@ -666,17 +736,17 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
     object mnu_Filtrar: TMenuItem
       Caption = 'Filtrar Registros'
       Hint = 'Filtrar Registros'
-      OnClick = MNU_FILTRARclick
+      Onclick = MNU_FILTRARclick
     end
     object mnu_Ordenar: TMenuItem
       Caption = 'Ordenar Registros'
       Hint = 'Ordena registros, cria uma nova ordem'
-      OnClick = MNU_ORDENARclick
+      Onclick = MNU_ORDENARclick
     end
     object mnu_OrdenarComposto: TMenuItem
       Caption = 'Ordena'#231#227'o Composta'
       Hint = 'Cria ordena'#231#227'o composta, n'#227'o apaga ordena'#231#227'o j'#225' definida'
-      OnClick = MNU_ORDENARCOMPOSTOclick
+      Onclick = MNU_ORDENARCOMPOSTOclick
     end
     object N1: TMenuItem
       Caption = '-'
@@ -684,7 +754,7 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
     object mnu_ApagarColuna: TMenuItem
       Caption = 'Apagar Coluna Selecionada'
       Hint = 'Apaga coluna selecionada'
-      OnClick = MNU_APAGARCOLUNAclick
+      Onclick = MNU_APAGARCOLUNAclick
     end
     object N2: TMenuItem
       Caption = '-'
@@ -692,17 +762,17 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
     object mnu_Quantificar: TMenuItem
       Caption = 'Quantificar Registros'
       Hint = 'Quantificar registros apresentados'
-      OnClick = MNU_QUANTIFICARclick
+      Onclick = MNU_QUANTIFICARclick
     end
     object mnu_TotalizarColuna: TMenuItem
       Caption = 'Totalizar Coluna Selecionada'
       Hint = 'Totaliza coluna n'#250'merica selecionada'
-      OnClick = MNU_TOTALIZARCOLUNAclick
+      Onclick = MNU_TOTALIZARCOLUNAclick
     end
     object mnu_CalcularMedia: TMenuItem
       Caption = 'Calcular M'#233'dia da Coluna'
       Hint = 'Calcula a m'#233'dia da coluna selecionada'
-      OnClick = MNU_CALCULARMEDIAclick
+      Onclick = MNU_CALCULARMEDIAclick
     end
     object N3: TMenuItem
       Caption = '-'
@@ -710,45 +780,45 @@ object FormTbCondicaoCompr: TFormTbCondicaoCompr
     object mnu_Imprimir: TMenuItem
       Caption = 'Imprimir Consulta'
       Hint = 'Imprimir consulta'
-      OnClick = MNU_IMPRIMIRclick
+      Onclick = MNU_IMPRIMIRclick
     end
     object mnu_SalvarConsulta: TMenuItem
       Caption = 'Salvar Consulta'
       Hint = 'Salvar consulta'
-      OnClick = MNU_SALVARCONSULTAclick
+      Onclick = MNU_SALVARCONSULTAclick
     end
     object mnu_ExcluirConsulta: TMenuItem
       Caption = 'Excluir Consulta'
       Hint = 'Excluir consulta'
-      OnClick = MNU_EXCLUIRCONSULTAclick
+      Onclick = MNU_EXCLUIRCONSULTAclick
     end
   end
   object MenuImagem: TPopupMenu
     object CortarImagem: TMenuItem
       Caption = 'Cortar'
       ShortCut = 16472
-      OnClick = CORTARIMAGEMclick
+      Onclick = CORTARIMAGEMclick
     end
     object CopiarImagem: TMenuItem
       Caption = 'Copiar'
       ShortCut = 16451
-      OnClick = COPIARIMAGEMclick
+      Onclick = COPIARIMAGEMclick
     end
     object ColarImagem: TMenuItem
       Caption = 'Colar'
       ShortCut = 16470
-      OnClick = COLARIMAGEMclick
+      Onclick = COLARIMAGEMclick
     end
     object MnSep01: TMenuItem
       Caption = '-'
     end
     object AbrirImagem: TMenuItem
       Caption = 'Abrir...'
-      OnClick = ABRIRIMAGEMclick
+      Onclick = ABRIRIMAGEMclick
     end
     object SalvarImagem: TMenuItem
       Caption = 'Salvar como...'
-      OnClick = SALVARIMAGEMclick
+      Onclick = SALVARIMAGEMclick
     end
   end
   object DlgSalvarComoImagem: TSaveDialog

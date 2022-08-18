@@ -47,6 +47,7 @@ type
     Img_Form: TImage;
     Img_Tabela: TImage;
     LbcC_C: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     mnu_ApagarColuna: TMenuItem;
@@ -73,7 +74,9 @@ type
     SalvarImagem: TMenuItem;
     StatusBar: TStatusBar;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     procedure C_CExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
@@ -187,6 +190,7 @@ begin
   if not TabelaPrincipal.Active then
     TabelaPrincipal.AtualizaSql;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DTbCondicaoCompra, TabGlobal.DTbCondicaoCompra.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormTbCondicaoCompr, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DTbCondicaoCompra, TabGlobal.DTbCondicaoCompra.C_C, -1, C_CExit, Nil, ListaCamposEd, FormTbCondicaoCompr, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   TabPaginas.Visible  := TabPaginas.Tabs.Count > 1;
@@ -1027,6 +1031,17 @@ begin
     Exit;
   if not TabGlobal.DTbCondicaoCompra.C_C.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DTbCondicaoCompra.C_C);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormTbCondicaoCompr.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DTbCondicaoCompra.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DTbCondicaoCompra.Usuario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

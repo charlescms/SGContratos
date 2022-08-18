@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0020,
+     AtrL0028,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -173,6 +173,8 @@ begin
   Comando.Valor.DataSet := Self;
   Estacao := TDUSER_LOG_Estacao.Create(AOwner);
   Estacao.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
+//CRIANDO CAMPOS 
   Campos.Add(Usuario);
   Campos.Add(Data);
   Campos.Add(Hora);
@@ -182,6 +184,7 @@ begin
   Campos.Add(Estacao);
   TituloPrimaria := '';
   ChPrimaria     := '';
+//CRIANDO TituloIndices 
   TituloIndice   := '';
   ChaveIndice    := '';
   AfterInsert    := AtribuiMestre;
@@ -191,6 +194,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDUSER_LOG.CriaForeignKeys;
 var

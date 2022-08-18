@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0021,
+     AtrL0029,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -124,8 +124,10 @@ begin
   Grupo.Valor.DataSet := Self;
   PorSenha := TDUSER_MENU_LATERAL_PorSenha.Create(AOwner);
   PorSenha.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Opcao);
   ChavePrimaria.Add(Grupo);
+//CRIANDO CAMPOS 
   Campos.Add(Opcao);
   Campos.Add(Grupo);
   Campos.Add(PorSenha);
@@ -134,6 +136,7 @@ begin
   Crescente.Add('S');
   TituloPrimaria := 'Opção,Grupo';
   ChPrimaria     := 'USER_MENU_LATERAL.Opcao,USER_MENU_LATERAL.Grupo';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Opção,Grupo';
   ChaveIndice    := 'USER_MENU_LATERAL.Opcao,USER_MENU_LATERAL.Grupo';
   AfterInsert    := AtribuiMestre;
@@ -143,6 +146,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDUSER_MENU_LATERAL.CriaForeignKeys;
 var

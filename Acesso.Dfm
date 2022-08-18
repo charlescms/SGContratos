@@ -25,7 +25,7 @@ object FormAcesso: TFormAcesso
     Top = 81
     Width = 39
     Height = 13
-    Caption = '&Usuário:'
+    Caption = '&Usu'#225'rio:'
     FocusControl = Usuario
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack

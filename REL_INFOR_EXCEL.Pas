@@ -26,9 +26,6 @@ type
     BtnAjuda: TSpeedButton;
     BtnFechar: TSpeedButton;
     frDBDataSet: TfrDBDataSet;
-    {01-Início do Bloco Modular. Modificações não serão preservadas}
-    frDBDataSet_DPrudutoContratoT: TfrDBDataSet;
-    frDBDataSet_DExpotadoTransito: TfrDBDataSet;
     frDBDataSet_DBoocking: TfrDBDataSet;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     frDesigner: TfrDesigner;
@@ -38,6 +35,8 @@ type
     Panel1: TPanel;
     BtnVisualizar: TBitBtn;
     BtnCancelar: TBitBtn;
+    frDBDataSet_DProdutoContratoT: TfrDBDataSet;
+    frDBDataSet_DExportadoTransito: TfrDBDataSet;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -53,15 +52,15 @@ type
     QyRelatorio: TTabela;
     {02-Início do Bloco Modular. Modificações não serão preservadas}
     DContratoTransporte: TDContratoTransporte;
-    DPrudutoContratoT: TDPrudutoContratoT;
-    DExpotadoTransito: TDExpotadoTransito;
+    DProdutoContratoT: TDProdutoContratoT;
+    DExportadoTransito: TDExportadoTransito;
     DBoocking: TDBoocking;
     procedure CalculosDContratoTransporte(DataSet: TDataSet);
     procedure AtualizaDetalhe_DContratoTransporte(Sender: TObject; Field: TField);
-    procedure CalculosDPrudutoContratoT(DataSet: TDataSet);
-    procedure AtualizaDetalhe_DPrudutoContratoT(Sender: TObject; Field: TField);
-    procedure CalculosDExpotadoTransito(DataSet: TDataSet);
-    procedure AtualizaDetalhe_DExpotadoTransito(Sender: TObject; Field: TField);
+    procedure CalculosDProdutoContratoT(DataSet: TDataSet);
+    procedure AtualizaDetalhe_DProdutoContratoT(Sender: TObject; Field: TField);
+    procedure CalculosDExportadoTransito(DataSet: TDataSet);
+    procedure AtualizaDetalhe_DExportadoTransito(Sender: TObject; Field: TField);
     procedure CalculosDBoocking(DataSet: TDataSet);
     procedure AtualizaDetalhe_DBoocking(Sender: TObject; Field: TField);
     {99-Final do Bloco Modular. Modificações não serão preservadas}
@@ -93,8 +92,8 @@ begin
   Parametros(DContratoTransporte);
   DContratoTransporte.Open;
   frDBDataSet.DataSet := DContratoTransporte;
-  frDBDataSet_DPrudutoContratoT.DataSet := DPrudutoContratoT;
-  frDBDataSet_DExpotadoTransito.DataSet := DExpotadoTransito;
+  frDBDataSet_DProdutoContratoT.DataSet := DProdutoContratoT;
+  frDBDataSet_DExportadoTransito.DataSet := DExportadoTransito;
   frDBDataSet_DBoocking.DataSet := DBoocking;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
 end;
@@ -143,12 +142,12 @@ begin
   DContratoTransporte := TDContratoTransporte.Create(Self);
   DContratoTransporte.OnCalcFields := CalculosDContratoTransporte;
   DContratoTransporte.DataSource.OnDataChange := AtualizaDetalhe_DContratoTransporte;
-  DPrudutoContratoT := TDPrudutoContratoT.Create(Self);
-  DPrudutoContratoT.OnCalcFields := CalculosDPrudutoContratoT;
-  DPrudutoContratoT.DataSource.OnDataChange := AtualizaDetalhe_DPrudutoContratoT;
-  DExpotadoTransito := TDExpotadoTransito.Create(Self);
-  DExpotadoTransito.OnCalcFields := CalculosDExpotadoTransito;
-  DExpotadoTransito.DataSource.OnDataChange := AtualizaDetalhe_DExpotadoTransito;
+  DProdutoContratoT := TDProdutoContratoT.Create(Self);
+  DProdutoContratoT.OnCalcFields := CalculosDProdutoContratoT;
+  DProdutoContratoT.DataSource.OnDataChange := AtualizaDetalhe_DProdutoContratoT;
+  DExportadoTransito := TDExportadoTransito.Create(Self);
+  DExportadoTransito.OnCalcFields := CalculosDExportadoTransito;
+  DExportadoTransito.DataSource.OnDataChange := AtualizaDetalhe_DExportadoTransito;
   DBoocking := TDBoocking.Create(Self);
   DBoocking.OnCalcFields := CalculosDBoocking;
   DBoocking.DataSource.OnDataChange := AtualizaDetalhe_DBoocking;
@@ -229,8 +228,8 @@ procedure TFormREL_INFOR_EXCEL.FormClose(Sender: TObject;
 begin
   {07-Início do Bloco Modular. Modificações não serão preservadas}
   DContratoTransporte.Free;
-  DPrudutoContratoT.Free;
-  DExpotadoTransito.Free;
+  DProdutoContratoT.Free;
+  DExportadoTransito.Free;
   DBoocking.Free;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
 end;
@@ -240,11 +239,11 @@ procedure TFormREL_INFOR_EXCEL.CalculosDContratoTransporte(DataSet: TDataSet);
 begin
 end;
 
-procedure TFormREL_INFOR_EXCEL.CalculosDPrudutoContratoT(DataSet: TDataSet);
+procedure TFormREL_INFOR_EXCEL.CalculosDProdutoContratoT(DataSet: TDataSet);
 begin
 end;
 
-procedure TFormREL_INFOR_EXCEL.CalculosDExpotadoTransito(DataSet: TDataSet);
+procedure TFormREL_INFOR_EXCEL.CalculosDExportadoTransito(DataSet: TDataSet);
 begin
 end;
 
@@ -256,15 +255,15 @@ end;
 procedure TFormREL_INFOR_EXCEL.AtualizaDetalhe_DContratoTransporte(Sender: TObject;
   Field: TField);
 begin
-  DPrudutoContratoT.AtribuiFiltroMestre(True, False);
-  DPrudutoContratoT.AtualizaSql(False);
-  Parametros(DPrudutoContratoT);
-  DPrudutoContratoT.Open;
+  DProdutoContratoT.AtribuiFiltroMestre(True, False);
+  DProdutoContratoT.AtualizaSql(False);
+  Parametros(DProdutoContratoT);
+  DProdutoContratoT.Open;
 
-  DExpotadoTransito.AtribuiFiltroMestre(True, False);
-  DExpotadoTransito.AtualizaSql(False);
-  Parametros(DExpotadoTransito);
-  DExpotadoTransito.Open;
+  DExportadoTransito.AtribuiFiltroMestre(True, False);
+  DExportadoTransito.AtualizaSql(False);
+  Parametros(DExportadoTransito);
+  DExportadoTransito.Open;
 
   DBoocking.AtribuiFiltroMestre(True, False);
   DBoocking.AtualizaSql(False);
@@ -273,12 +272,12 @@ begin
 
 end;
 
-procedure TFormREL_INFOR_EXCEL.AtualizaDetalhe_DPrudutoContratoT(Sender: TObject;
+procedure TFormREL_INFOR_EXCEL.AtualizaDetalhe_DProdutoContratoT(Sender: TObject;
   Field: TField);
 begin
 end;
 
-procedure TFormREL_INFOR_EXCEL.AtualizaDetalhe_DExpotadoTransito(Sender: TObject;
+procedure TFormREL_INFOR_EXCEL.AtualizaDetalhe_DExportadoTransito(Sender: TObject;
   Field: TField);
 begin
 end;

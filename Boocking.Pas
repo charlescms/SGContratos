@@ -49,6 +49,7 @@ type
     LbcQuntTransp: TLabel;
     LbcSALDO: TLabel;
     LbcSeq: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     Navio: TXDBEdit;
@@ -63,6 +64,7 @@ type
     Seq: TXDBNumEdit;
     StatusBK: TDBRadioGroup;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     procedure ContratoExit(Sender: TObject);
     procedure SeqExit(Sender: TObject);
     procedure CadastroExit(Sender: TObject);
@@ -72,6 +74,7 @@ type
     procedure QuntTranspExit(Sender: TObject);
     procedure StatusBKExit(Sender: TObject);
     procedure SALDOExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -153,7 +156,7 @@ Var
 begin
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   TabelaPrincipal    := TabGlobal.DBoocking;
-  TituloModulo       := 'Boocking';
+  TituloModulo       := 'Booking';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   Navegando          := False;
@@ -164,6 +167,7 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DBoocking, TabGlobal.DBoocking.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormBoocking, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DBoocking, TabGlobal.DBoocking.SALDO, -2, SALDOExit, Nil, ListaCamposEd, FormBoocking, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DBoocking, TabGlobal.DBoocking.StatusBK, -2, StatusBKExit, Nil, ListaCamposEd, FormBoocking, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DBoocking, TabGlobal.DBoocking.QuntTransp, -2, QuntTranspExit, Nil, ListaCamposEd, FormBoocking, DataSource, ChamaGridPesquisa);
@@ -378,8 +382,12 @@ begin
           end;
         end;
       AntesdeSalvar;
-      if TabelaPrincipal.Salva then
-        Ok := True;
+      if TabelaPrincipal.Salva then BEGIN
+         TabelaPrincipal.Modifica ;
+         TabelaPrincipal.Salva;
+         Ok := True;
+      END;
+
     finally
       if Ok then
         if EInclusao then
@@ -849,6 +857,17 @@ begin
     Exit;
   if not TabGlobal.DBoocking.SALDO.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DBoocking.SALDO);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormBoocking.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DBoocking.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DBoocking.Usuario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

@@ -1,13 +1,13 @@
 object FormContratoN: TFormContratoN
-  Left = 134
-  Top = 59
+  Left = 498
+  Top = 582
   Width = 1081
-  Height = 780
+  Height = 623
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -22,13 +22,13 @@ object FormContratoN: TFormContratoN
   OnKeyPress = formkeypress
   OnResize = formresize
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 41
-    Width = 1073
-    Height = 706
+    Top = 33
+    Width = 1065
+    Height = 552
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,15 +38,15 @@ object FormContratoN: TFormContratoN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 637
-        Width = 1065
-        Height = 38
+        Top = 493
+        Width = 1057
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 345
-          Top = 9
+          Left = 392
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -67,8 +67,8 @@ object FormContratoN: TFormContratoN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 394
-          Top = 9
+          Left = 432
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -89,10 +89,10 @@ object FormContratoN: TFormContratoN
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -115,10 +115,10 @@ object FormContratoN: TFormContratoN
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 121
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 98
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -141,10 +141,10 @@ object FormContratoN: TFormContratoN
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 231
-          Top = 6
-          Width = 93
-          Height = 31
+          Left = 284
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -167,29 +167,46 @@ object FormContratoN: TFormContratoN
             0000FFFFFFFFFFFFFFFF77777777777777777777777777777777}
           NumGlyphs = 2
         end
+        object btn_Corrig: TBitBtn
+          Left = 192
+          Top = 5
+          Width = 75
+          Height = 25
+          Caption = 'Correcao'
+          TabOrder = 3
+          OnClick = btn_CorrigClick
+          Glyph.Data = {
+            F6000000424DF600000000000000760000002800000010000000100000000100
+            04000000000080000000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00999999999999
+            99999C4F0F44400004499CC0F040088880099CC0F008888000099CCF00888007
+            88099CCC0888077780499CC0FF80777880499CC0FF00877804499C0FF077F870
+            44499C0FF0777F8444499C0F077770F8F4499C0F07770CC084499C007700CCF8
+            F4499CC000CCCCCCCC499CCCCCCCCCCCCCC99999999999999999}
+        end
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 611
-        Width = 1065
-        Height = 26
+        Top = 472
+        Width = 1057
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
-          'Principal'
-          'Coment'#225'rio')
+          'Principal')
         TabIndex = 0
         OnClick = TABPAGINASclick
       end
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1065
-        Height = 611
+        Width = 1057
+        Height = 472
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -198,8 +215,8 @@ object FormContratoN: TFormContratoN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1065
-          Height = 611
+          Width = 1057
+          Height = 472
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -209,234 +226,177 @@ object FormContratoN: TFormContratoN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1065
-              Height = 611
+              Width = 1057
+              Height = 472
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object Panel1: TPanel
                 Left = 0
                 Top = 0
-                Width = 1065
-                Height = 238
+                Width = 1057
+                Height = 233
                 Align = alTop
                 TabOrder = 0
                 object LbcContrato: TLabel
-                  Left = 12
+                  Left = 10
                   Top = 1
-                  Width = 50
-                  Height = 16
+                  Width = 40
+                  Height = 13
                   Caption = 'Contrato'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object Lbcseq: TLabel
-                  Left = 11
-                  Top = 44
-                  Width = 46
-                  Height = 16
+                  Left = 9
+                  Top = 38
+                  Width = 35
+                  Height = 13
                   Caption = 'Divis'#227'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcNOME: TLabel
-                  Left = 71
-                  Top = 44
-                  Width = 37
-                  Height = 16
+                  Left = 58
+                  Top = 38
+                  Width = 28
+                  Height = 13
                   Caption = 'Nome'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCadastro: TLabel
-                  Left = 164
+                  Left = 133
                   Top = 1
-                  Width = 55
-                  Height = 16
+                  Width = 42
+                  Height = 13
                   Caption = 'Cadastro'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcStatusCT: TLabel
-                  Left = 276
+                  Left = 224
                   Top = 1
-                  Width = 37
-                  Height = 16
+                  Width = 30
+                  Height = 13
                   Caption = 'Status'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCLICOD: TLabel
-                  Left = 459
+                  Left = 373
                   Top = 1
-                  Width = 41
-                  Height = 16
+                  Width = 32
+                  Height = 13
                   Caption = 'Cliente'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcRAZAOEXPOSTADOR: TLabel
-                  Left = 460
-                  Top = 44
-                  Width = 66
-                  Height = 16
+                  Left = 374
+                  Top = 38
+                  Width = 51
+                  Height = 13
                   Caption = 'Exportador'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcID: TLabel
-                  Left = 10
-                  Top = 92
-                  Width = 27
-                  Height = 16
+                  Left = 8
+                  Top = 75
+                  Width = 20
+                  Height = 13
                   Caption = 'Pais'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcOBS: TLabel
-                  Left = 10
-                  Top = 135
-                  Width = 75
-                  Height = 16
+                  Left = 8
+                  Top = 113
+                  Width = 58
+                  Height = 13
                   Caption = 'Observa'#231#227'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcNomeMix: TLabel
-                  Left = 207
-                  Top = 135
-                  Width = 60
-                  Height = 16
+                  Left = 168
+                  Top = 113
+                  Width = 47
+                  Height = 13
                   Caption = 'Nome Mix'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcPrecoFOBTotal: TLabel
-                  Left = 786
-                  Top = 92
-                  Width = 69
-                  Height = 16
+                  Left = 639
+                  Top = 75
+                  Width = 55
+                  Height = 13
                   Caption = 'Pre'#231'o  FOB'
                   ParentShowHint = False
                   ShowHint = True
                   Visible = False
                 end
-                object LbcValorTotalComissao: TLabel
-                  Left = 324
-                  Top = 181
-                  Width = 130
-                  Height = 16
-                  Caption = 'Valor Total Comiss'#227'o'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
                 object LbcComissao: TLabel
-                  Left = 181
-                  Top = 181
-                  Width = 61
-                  Height = 16
+                  Left = 147
+                  Top = 155
+                  Width = 45
+                  Height = 13
                   Caption = 'Comiss'#227'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcFormComissao: TLabel
-                  Left = 11
-                  Top = 181
-                  Width = 103
-                  Height = 16
+                  Left = 9
+                  Top = 150
+                  Width = 77
+                  Height = 13
                   Caption = 'Forma Comiss'#227'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
-                object LbcValorSCCTotal: TLabel
-                  Left = 476
-                  Top = 144
-                  Width = 96
-                  Height = 16
-                  Caption = 'Valor SCC Total'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
-                object LbcQuantidadeTotal: TLabel
-                  Left = 758
-                  Top = 144
-                  Width = 103
-                  Height = 16
-                  Caption = 'Quant. Total (TM)'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
                 object LbcDataEmbarque: TLabel
-                  Left = 565
-                  Top = 92
-                  Width = 95
-                  Height = 16
+                  Left = 459
+                  Top = 75
+                  Width = 74
+                  Height = 13
                   Caption = 'Data Embarque'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcC_C: TLabel
-                  Left = 459
-                  Top = 92
-                  Width = 22
-                  Height = 16
+                  Left = 373
+                  Top = 75
+                  Width = 19
+                  Height = 13
                   Caption = 'C/C'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcDataAss: TLabel
-                  Left = 665
-                  Top = 92
-                  Width = 58
-                  Height = 16
+                  Left = 540
+                  Top = 75
+                  Width = 46
+                  Height = 13
                   Caption = 'Data Ass.'
                   ParentShowHint = False
                   ShowHint = True
                 end
-                object LbcQUANTTOTALEXP: TLabel
-                  Left = 761
-                  Top = 175
-                  Width = 82
-                  Height = 16
+                object LbcUsuario: TLabel
+                  Left = 769
+                  Top = 1
+                  Width = 36
+                  Height = 13
                   Alignment = taRightJustify
-                  Caption = 'Quant. T. Exp.'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
-                object LbcQuantadePendente: TLabel
-                  Left = 759
-                  Top = 206
-                  Width = 99
-                  Height = 16
-                  Alignment = taRightJustify
-                  Caption = 'Quant. Pendente'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
-                object LbcValorTotalPendente: TLabel
-                  Left = 475
-                  Top = 206
-                  Width = 107
-                  Height = 16
-                  Alignment = taRightJustify
-                  Caption = 'V. Total Pendente'
-                  ParentShowHint = False
-                  ShowHint = True
-                end
-                object LbcValorTotalExp: TLabel
-                  Left = 476
-                  Top = 175
-                  Width = 75
-                  Height = 16
-                  Alignment = taRightJustify
-                  Caption = 'V. Total Exp.'
+                  Caption = 'Usu'#225'rio'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object PrecoFOBTotal: TXDBNumEdit
-                  Left = 786
-                  Top = 107
-                  Width = 142
+                  Left = 639
+                  Top = 86
+                  Width = 115
                   Height = 21
                   AutoHideCalculator = False
                   Glyph.Data = {
@@ -489,14 +449,14 @@ object FormContratoN: TFormContratoN
                   ReadOnly = True
                   ShowHint = True
                   ShowButton = True
-                  TabOrder = 14
+                  TabOrder = 13
                   Visible = False
                   OnExit = PRECOFOBTOTALexit
                 end
                 object Contrato: TXDBEdit
-                  Left = 12
-                  Top = 18
-                  Width = 147
+                  Left = 9
+                  Top = 14
+                  Width = 119
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
@@ -551,9 +511,9 @@ object FormContratoN: TFormContratoN
                     0000}
                 end
                 object seq: TXDBNumEdit
-                  Left = 11
-                  Top = 62
-                  Width = 54
+                  Left = 9
+                  Top = 50
+                  Width = 44
                   Height = 21
                   AutoHideCalculator = False
                   Glyph.Data = {
@@ -608,9 +568,9 @@ object FormContratoN: TFormContratoN
                   OnExit = SEQexit
                 end
                 object NOME: TXDBEdit
-                  Left = 71
-                  Top = 62
-                  Width = 375
+                  Left = 58
+                  Top = 50
+                  Width = 304
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
@@ -665,9 +625,9 @@ object FormContratoN: TFormContratoN
                     0000}
                 end
                 object Cadastro: TXDBDateEdit
-                  Left = 164
-                  Top = 18
-                  Width = 107
+                  Left = 133
+                  Top = 14
+                  Width = 87
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
@@ -729,11 +689,12 @@ object FormContratoN: TFormContratoN
                   ShowButton = True
                 end
                 object StatusCT: TDBComboBox
-                  Left = 276
-                  Top = 18
-                  Width = 178
-                  Height = 24
-                  ItemHeight = 16
+                  Left = 224
+                  Top = 14
+                  Width = 145
+                  Height = 21
+                  Color = cl3DLight
+                  ItemHeight = 13
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 2
@@ -741,9 +702,9 @@ object FormContratoN: TFormContratoN
                   OnExit = STATUSCTexit
                 end
                 object CLICOD: TXDBNumEdit
-                  Left = 459
-                  Top = 18
-                  Width = 115
+                  Left = 373
+                  Top = 14
+                  Width = 93
                   Height = 21
                   AutoHideCalculator = False
                   Glyph.Data = {
@@ -795,12 +756,13 @@ object FormContratoN: TFormContratoN
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 3
+                  OnClick = CLICODclick
                   OnExit = CLICODexit
                 end
                 object RAZAO: TXDBEdit
-                  Left = 578
-                  Top = 18
-                  Width = 367
+                  Left = 470
+                  Top = 14
+                  Width = 298
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
@@ -855,9 +817,9 @@ object FormContratoN: TFormContratoN
                     0000}
                 end
                 object RAZAOEXPOSTADOR: TXDBEdit
-                  Left = 554
-                  Top = 62
-                  Width = 392
+                  Left = 450
+                  Top = 50
+                  Width = 319
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
@@ -912,9 +874,9 @@ object FormContratoN: TFormContratoN
                     0000}
                 end
                 object FORCOD: TXDBNumEdit
-                  Left = 459
-                  Top = 62
-                  Width = 89
+                  Left = 373
+                  Top = 50
+                  Width = 72
                   Height = 21
                   AutoHideCalculator = False
                   Glyph.Data = {
@@ -966,198 +928,28 @@ object FormContratoN: TFormContratoN
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 7
+                  OnChange = FORCODchange
                   OnExit = FORCODexit
                 end
-                object ID: TXDBEdit
-                  Left = 10
-                  Top = 107
-                  Width = 80
-                  Height = 21
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 9
-                  Text = 'ID'
-                  OnExit = IDexit
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000000000000000000000000000008000000080000000800000008000000080
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
-                    0000008000000080000000000000008000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
-                    8000008000000080000000800000808080000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
-                    0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000000000000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00000000000080000000000000000000000000000000000000008000000000
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
-                    0000008000000000000000000000000000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
-                    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
-                    0000000000000000000000000000000000000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000808080000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00008000000080000000000000000000000080000000800000008000000000
-                    0000000000000080000000800000008000000080000000800000008000000080
-                    000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
-                    FF00008000000080000000800000008000000000000000000000008000000080
-                    0000008000000000000000000000008000000080000000800000008000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
-                    0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
-                    0000008000000080000000800000000000000000000000800000008000000080
-                    00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
-                    00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000}
-                end
-                object NOME_PAIS: TXDBEdit
-                  Left = 95
-                  Top = 107
-                  Width = 349
-                  Height = 21
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 10
-                  Text = 'NOME_PAIS'
-                  OnExit = NOME_PAISexit
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000000000000000000000000000008000000080000000800000008000000080
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
-                    0000008000000080000000000000008000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
-                    8000008000000080000000800000808080000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
-                    0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000000000000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00000000000080000000000000000000000000000000000000008000000000
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
-                    0000008000000000000000000000000000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
-                    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
-                    0000000000000000000000000000000000000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000808080000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00008000000080000000000000000000000080000000800000008000000000
-                    0000000000000080000000800000008000000080000000800000008000000080
-                    000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
-                    FF00008000000080000000800000008000000000000000000000008000000080
-                    0000008000000000000000000000008000000080000000800000008000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
-                    0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
-                    0000008000000080000000800000000000000000000000800000008000000080
-                    00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
-                    00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000}
-                end
                 object C_C: TXDBLookUp
-                  Left = 459
-                  Top = 110
-                  Width = 91
-                  Height = 24
+                  Left = 373
+                  Top = 86
+                  Width = 74
+                  Height = 21
                   DropDownRows = 14
                   ParentShowHint = False
                   ShowHint = True
-                  TabOrder = 11
+                  TabOrder = 10
                   OnExit = C_Cexit
                 end
-                object DataEmbarque: TXDBEdit
-                  Left = 555
-                  Top = 107
-                  Width = 106
+                object DataAss: TXDBDateEdit
+                  Left = 540
+                  Top = 86
+                  Width = 93
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 12
-                  Text = 'DataEmbarque'
-                  OnExit = DATAEMBARQUEexit
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000000000000000000000000000008000000080000000800000008000000080
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
-                    0000008000000080000000000000008000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
-                    8000008000000080000000800000808080000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
-                    0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000000000000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00000000000080000000000000000000000000000000000000008000000000
-                    000000000000000000000000000000800000008000000080000000800000FFFF
-                    FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
-                    0000008000000000000000000000000000000000000000800000008000000080
-                    000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
-                    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
-                    0000000000000000000000000000000000000000000000000000000000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
-                    0000000000000000000000000000808080000000000000000000000000000000
-                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00008000000080000000000000000000000080000000800000008000000000
-                    0000000000000080000000800000008000000080000000800000008000000080
-                    000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
-                    FF00008000000080000000800000008000000000000000000000008000000080
-                    0000008000000000000000000000008000000080000000800000008000000080
-                    0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
-                    0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
-                    0000008000000080000000800000000000000000000000800000008000000080
-                    00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
-                    00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000008000000080000000800000008000000080000000800000008000000080
-                    0000}
-                end
-                object DataAss: TXDBDateEdit
-                  Left = 665
-                  Top = 107
-                  Width = 114
-                  Height = 21
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 13
                   Text = 'DataAss'
                   OnExit = DATAASSexit
                   Glyph.Data = {
@@ -1215,13 +1007,13 @@ object FormContratoN: TFormContratoN
                   ShowButton = True
                 end
                 object OBS: TXDBEdit
-                  Left = 10
-                  Top = 149
-                  Width = 189
+                  Left = 8
+                  Top = 125
+                  Width = 154
                   Height = 21
                   ParentShowHint = False
                   ShowHint = True
-                  TabOrder = 15
+                  TabOrder = 14
                   Text = 'OBS'
                   OnExit = OBSexit
                   Glyph.Data = {
@@ -1271,75 +1063,10 @@ object FormContratoN: TFormContratoN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
                 end
-                object ValorTotalComissao: TXDBNumEdit
-                  Left = 324
-                  Top = 198
-                  Width = 141
-                  Height = 21
-                  AutoHideCalculator = False
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clRed
-                  Font.Height = -15
-                  Font.Name = 'MS Sans Serif'
-                  Font.Style = [fsBold]
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C0008040400080404000804040008040400080404000804040008040
-                    4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
-                    8000808080008080800080808000808080008080800080808000808080008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
-                    0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
-                    FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
-                    0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
-                    0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
-                    000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C000808080008080800080808000808080008080800080808000FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
-                    0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000}
-                  ParentFont = False
-                  ParentShowHint = False
-                  ReadOnly = True
-                  ShowHint = True
-                  ShowButton = True
-                  TabOrder = 19
-                  OnExit = VALORTOTALCOMISSAOexit
-                end
                 object Comissao: TXDBNumEdit
-                  Left = 181
-                  Top = 198
-                  Width = 141
+                  Left = 147
+                  Top = 169
+                  Width = 115
                   Height = 21
                   AutoHideCalculator = False
                   Glyph.Data = {
@@ -1391,290 +1118,105 @@ object FormContratoN: TFormContratoN
                   ParentShowHint = False
                   ShowHint = True
                   ShowButton = True
-                  TabOrder = 18
+                  TabOrder = 17
                   OnExit = COMISSAOexit
                 end
                 object FormComissao: TDBComboBox
-                  Left = 11
-                  Top = 198
-                  Width = 158
-                  Height = 24
-                  ItemHeight = 16
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 17
-                  OnDrawItem = FORMCOMISSAOdrawitem
-                  OnExit = FORMCOMISSAOexit
-                end
-                object ValorSCCTotal: TXDBNumEdit
-                  Left = 586
-                  Top = 139
-                  Width = 141
+                  Left = 9
+                  Top = 169
+                  Width = 128
                   Height = 21
-                  AutoHideCalculator = False
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clRed
-                  Font.Height = -15
-                  Font.Name = 'MS Sans Serif'
-                  Font.Style = [fsBold]
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C0008040400080404000804040008040400080404000804040008040
-                    4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
-                    8000808080008080800080808000808080008080800080808000808080008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
-                    0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
-                    FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
-                    0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
-                    0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
-                    000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C000808080008080800080808000808080008080800080808000FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
-                    0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000}
-                  ParentFont = False
-                  ParentShowHint = False
-                  ReadOnly = True
-                  ShowHint = True
-                  ShowButton = True
-                  TabOrder = 21
-                  OnExit = VALORSCCTOTALexit
-                end
-                object QuantidadeTotal: TXDBNumEdit
-                  Left = 871
-                  Top = 139
-                  Width = 174
-                  Height = 21
-                  AutoHideCalculator = False
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clRed
-                  Font.Height = -15
-                  Font.Name = 'MS Sans Serif'
-                  Font.Style = [fsBold]
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C0008040400080404000804040008040400080404000804040008040
-                    4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
-                    8000808080008080800080808000808080008080800080808000808080008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
-                    0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
-                    FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
-                    0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
-                    0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
-                    000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C000808080008080800080808000808080008080800080808000FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
-                    0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000}
-                  ParentFont = False
-                  ParentShowHint = False
-                  ReadOnly = True
-                  ShowHint = True
-                  ShowButton = True
-                  TabOrder = 20
-                  OnExit = QUANTIDADETOTALexit
-                end
-                object NomeMix: TXDBLookUp
-                  Left = 204
-                  Top = 154
-                  Width = 240
-                  Height = 24
-                  DropDownRows = 14
+                  ItemHeight = 13
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 16
+                  OnDrawItem = FORMCOMISSAOdrawitem
+                  OnExit = FORMCOMISSAOexit
+                end
+                object NomeMix: TXDBLookUp
+                  Left = 166
+                  Top = 125
+                  Width = 195
+                  Height = 21
+                  DropDownRows = 14
+                  ParentShowHint = False
+                  ShowHint = True
+                  TabOrder = 15
                   OnExit = NOMEMIXexit
                 end
-                object QUANTTOTALEXP: TXDBNumEdit
-                  Left = 871
-                  Top = 170
-                  Width = 174
+                object ID_FORN: TXDBLookUp
+                  Left = 8
+                  Top = 86
+                  Width = 145
                   Height = 21
-                  AutoHideCalculator = False
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clNavy
-                  Font.Height = -15
-                  Font.Name = 'MS Sans Serif'
-                  Font.Style = [fsBold]
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C0008040400080404000804040008040400080404000804040008040
-                    4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
-                    8000808080008080800080808000808080008080800080808000808080008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
-                    0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
-                    FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
-                    0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
-                    0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
-                    000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C000808080008080800080808000808080008080800080808000FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
-                    0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000}
-                  ParentFont = False
+                  DropDownRows = 14
                   ParentShowHint = False
                   ShowHint = True
-                  ShowButton = True
-                  TabOrder = 22
-                  OnExit = QUANTTOTALEXPexit
+                  TabOrder = 9
+                  OnExit = ID_FORNexit
                 end
-                object QuantadePendente: TXDBNumEdit
-                  Left = 871
-                  Top = 201
-                  Width = 174
+                object SDataEmbarque: TXDBEdit
+                  Left = 459
+                  Top = 86
+                  Width = 63
                   Height = 21
-                  AutoHideCalculator = False
-                  Glyph.Data = {
-                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
-                    2000000000004805000000000000000000000000000000000000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C0008040400080404000804040008040400080404000804040008040
-                    4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
-                    8000808080008080800080808000808080008080800080808000808080008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
-                    0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
-                    FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
-                    0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
-                    0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
-                    0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
-                    600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
-                    C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
-                    000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
-                    C000808080008080800080808000808080008080800080808000FFC0C0008080
-                    8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
-                    6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
-                    C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
-                    0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
-                    C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
-                    C000}
                   ParentShowHint = False
                   ShowHint = True
-                  ShowButton = True
-                  TabOrder = 23
-                  OnExit = QUANTADEPENDENTEExit
+                  TabOrder = 11
+                  Text = 'SDataEmbarque'
+                  OnExit = SDATAEMBARQUEexit
+                  Glyph.Data = {
+                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                    2000000000004805000000000000000000000000000000000000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000000000000000000000000000008000000080000000800000008000000080
+                    000000000000000000000000000000800000008000000080000000800000FFFF
+                    FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                    FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                    0000008000000080000000000000008000000000000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                    8000008000000080000000800000808080000000000000000000000000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                    0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00000000000080000000000000000000000000000000000000008000000000
+                    000000000000000000000000000000800000008000000080000000800000FFFF
+                    FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                    0000008000000000000000000000000000000000000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                    0000000000000000000000000000808080000000000000000000000000000000
+                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00008000000080000000000000000000000080000000800000008000000000
+                    0000000000000080000000800000008000000080000000800000008000000080
+                    000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                    FF00008000000080000000800000008000000000000000000000008000000080
+                    0000008000000000000000000000008000000080000000800000008000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                    0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                    0000008000000080000000800000000000000000000000800000008000000080
+                    00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                    00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000}
                 end
-                object ValorTotalPendente: TXDBNumEdit
-                  Left = 586
-                  Top = 201
-                  Width = 141
+                object XNumEdit1: TXNumEdit
+                  Left = 810
+                  Top = 50
+                  Width = 121
                   Height = 21
-                  AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -1721,23 +1263,15 @@ object FormContratoN: TFormContratoN
                     C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
                     C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
                     C000}
-                  ParentShowHint = False
-                  ShowHint = True
-                  ShowButton = True
-                  TabOrder = 24
-                  OnExit = VALORTOTALPENDENTEExit
+                  TabOrder = 18
+                  ValueInt = 0
+                  Visible = False
                 end
-                object ValorTotalExp: TXDBNumEdit
-                  Left = 586
-                  Top = 170
-                  Width = 141
+                object XNumEdit2: TXNumEdit
+                  Left = 810
+                  Top = 86
+                  Width = 121
                   Height = 21
-                  AutoHideCalculator = False
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clNavy
-                  Font.Height = -15
-                  Font.Name = 'MS Sans Serif'
-                  Font.Style = [fsBold]
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -1784,31 +1318,694 @@ object FormContratoN: TFormContratoN
                     C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
                     C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
                     C000}
-                  ParentFont = False
+                  TabOrder = 19
+                  ValueInt = 0
+                  Visible = False
+                end
+                object Usuario: TXDBEdit
+                  Left = 771
+                  Top = 14
+                  Width = 154
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
-                  ShowButton = True
-                  TabOrder = 25
-                  OnExit = VALORTOTALEXPExit
+                  TabOrder = 20
+                  Text = 'Usuario'
+                  OnExit = USUARIOexit
+                  Glyph.Data = {
+                    7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                    2000000000004805000000000000000000000000000000000000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000000000000000000000000000008000000080000000800000008000000080
+                    000000000000000000000000000000800000008000000080000000800000FFFF
+                    FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                    FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                    0000008000000080000000000000008000000000000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                    8000008000000080000000800000808080000000000000000000000000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                    0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00000000000080000000000000000000000000000000000000008000000000
+                    000000000000000000000000000000800000008000000080000000800000FFFF
+                    FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                    0000008000000000000000000000000000000000000000800000008000000080
+                    000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                    0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                    0000000000000000000000000000808080000000000000000000000000000000
+                    00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                    FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                    FF00008000000080000000000000000000000080000000800000008000000000
+                    0000000000000080000000800000008000000080000000800000008000000080
+                    000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                    FF00008000000080000000800000008000000000000000000000008000000080
+                    0000008000000000000000000000008000000080000000800000008000000080
+                    0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                    0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                    0000008000000080000000800000000000000000000000800000008000000080
+                    00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                    00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000008000000080000000800000008000000080000000800000008000000080
+                    0000}
+                end
+                object GroupBox4: TGroupBox
+                  Left = 368
+                  Top = 112
+                  Width = 505
+                  Height = 113
+                  Color = clActiveBorder
+                  ParentColor = False
+                  TabOrder = 21
+                  object LbcQuantidadeTotal: TLabel
+                    Left = 248
+                    Top = 17
+                    Width = 84
+                    Height = 13
+                    Caption = 'Quant. Total (TM)'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcValorTotalPendente: TLabel
+                    Left = 13
+                    Top = 65
+                    Width = 86
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'V. Total Pendente'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcValorTotalExp: TLabel
+                    Left = 13
+                    Top = 41
+                    Width = 61
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'V. Total Exp.'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcValorSCCTotal: TLabel
+                    Left = 13
+                    Top = 17
+                    Width = 75
+                    Height = 13
+                    Caption = 'Valor SCC Total'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcQuantadePendente: TLabel
+                    Left = 248
+                    Top = 63
+                    Width = 81
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'Quant. Pendente'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcQUANTTOTALEXP: TLabel
+                    Left = 248
+                    Top = 40
+                    Width = 69
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'Quant. T. Exp.'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcValorTotalComissao: TLabel
+                    Left = 13
+                    Top = 86
+                    Width = 82
+                    Height = 13
+                    Caption = 'V.Total Comiss'#227'o'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcValorTotalComissaoExecutado: TLabel
+                    Left = 247
+                    Top = 86
+                    Width = 96
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'Vll. Tot. Com. Exect.'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object ValorTotalPendente: TXDBNumEdit
+                    Left = 101
+                    Top = 61
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 0
+                    OnExit = VALORTOTALPENDENTEexit
+                  end
+                  object ValorTotalExp: TXDBNumEdit
+                    Left = 101
+                    Top = 37
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clNavy
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 1
+                    OnChange = VALORTOTALEXPchange
+                    OnExit = VALORTOTALEXPexit
+                  end
+                  object ValorSCCTotal: TXDBNumEdit
+                    Left = 101
+                    Top = 13
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clRed
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 2
+                    OnExit = VALORSCCTOTALexit
+                  end
+                  object QuantidadeTotal: TXDBNumEdit
+                    Left = 348
+                    Top = 13
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clRed
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 3
+                    OnExit = QUANTIDADETOTALexit
+                  end
+                  object QUANTTOTALEXP: TXDBNumEdit
+                    Left = 348
+                    Top = 37
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clNavy
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 4
+                    OnExit = QUANTTOTALEXPexit
+                  end
+                  object QuantadePendente: TXDBNumEdit
+                    Left = 348
+                    Top = 61
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 5
+                    OnExit = QUANTADEPENDENTEexit
+                  end
+                  object ValorTotalComissaoExecutado: TXDBNumEdit
+                    Left = 349
+                    Top = 85
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Enabled = False
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentShowHint = False
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 6
+                    OnExit = VALORTOTALCOMISSAOEXECUTADOexit
+                  end
+                  object ValorTotalComissao: TXDBNumEdit
+                    Left = 101
+                    Top = 85
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Color = cl3DLight
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clRed
+                    Font.Height = -12
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentFont = False
+                    ParentShowHint = False
+                    ReadOnly = True
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 7
+                    OnExit = VALORTOTALCOMISSAOexit
+                  end
                 end
               end
               object GroupBox1: TGroupBox
                 Left = 0
-                Top = 238
-                Width = 1065
-                Height = 139
+                Top = 233
+                Width = 1057
+                Height = 120
                 Align = alTop
                 Caption = 'Produtos'
                 TabOrder = 1
                 object Grid_PrudutoContratoT: TDBGrid
                   Left = 2
-                  Top = 18
-                  Width = 1061
-                  Height = 119
+                  Top = 15
+                  Width = 1053
+                  Height = 103
                   Align = alClient
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
-                  Font.Height = -15
+                  Font.Height = -12
                   Font.Name = 'MS Sans Serif'
                   Font.Style = []
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -1829,28 +2026,28 @@ object FormContratoN: TFormContratoN
                 end
               end
               object Panel2: TPanel
-                Left = 39
-                Top = 404
-                Width = 760
-                Height = 158
+                Left = 32
+                Top = 328
+                Width = 617
+                Height = 129
                 TabOrder = 2
                 object GroupBox2: TGroupBox
                   Left = 1
                   Top = 1
-                  Width = 463
-                  Height = 156
+                  Width = 376
+                  Height = 127
                   Align = alLeft
-                  Caption = 'Boocking'
+                  Caption = 'Booking'
                   TabOrder = 0
                   object Grid_Boocking: TDBGrid
                     Left = 2
-                    Top = 18
-                    Width = 459
-                    Height = 136
+                    Top = 15
+                    Width = 372
+                    Height = 110
                     Align = alClient
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
-                    Font.Height = -15
+                    Font.Height = -12
                     Font.Name = 'MS Sans Serif'
                     Font.Style = []
                     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -1871,22 +2068,22 @@ object FormContratoN: TFormContratoN
                   end
                 end
                 object GroupBox3: TGroupBox
-                  Left = 464
+                  Left = 376
                   Top = 1
-                  Width = 295
-                  Height = 156
+                  Width = 240
+                  Height = 127
                   Align = alRight
                   Caption = 'Exportado'
                   TabOrder = 1
-                  object Grid_ExpotadoTransito: TDBGrid
+                  object Grid_ExportadoTransito: TDBGrid
                     Left = 2
-                    Top = 18
-                    Width = 291
-                    Height = 756
+                    Top = 15
+                    Width = 236
+                    Height = 614
                     Align = alTop
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
-                    Font.Height = -15
+                    Font.Height = -12
                     Font.Name = 'MS Sans Serif'
                     Font.Style = []
                     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -1900,10 +2097,10 @@ object FormContratoN: TFormContratoN
                     TitleFont.Height = -11
                     TitleFont.Name = 'MS Sans Serif'
                     TitleFont.Style = []
-                    OnColEnter = GRID_EXPOTADOTRANSITOcolenter
-                    OnDblClick = GRID_EXPOTADOTRANSITOdblclick
-                    OnEditButtonClick = GRID_EXPOTADOTRANSITOeditbuttonclick
-                    OnExit = GRID_EXPOTADOTRANSITOexit
+                    OnColEnter = GRID_EXPORTADOTRANSITOcolenter
+                    OnDblClick = GRID_EXPORTADOTRANSITOdblclick
+                    OnEditButtonClick = GRID_EXPORTADOTRANSITOeditbuttonclick
+                    OnExit = GRID_EXPORTADOTRANSITOexit
                   end
                 end
               end
@@ -1917,7 +2114,7 @@ object FormContratoN: TFormContratoN
               Left = 0
               Top = 0
               Width = 1065
-              Height = 611
+              Height = 639
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1925,7 +2122,7 @@ object FormContratoN: TFormContratoN
                 Left = 0
                 Top = 0
                 Width = 1065
-                Height = 611
+                Height = 639
                 Align = alClient
                 ParentShowHint = False
                 ScrollBars = ssVertical
@@ -1943,7 +2140,7 @@ object FormContratoN: TFormContratoN
               Left = 0
               Top = 0
               Width = 1065
-              Height = 611
+              Height = 639
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1957,7 +2154,7 @@ object FormContratoN: TFormContratoN
               Left = 0
               Top = 0
               Width = 1065
-              Height = 611
+              Height = 639
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1971,7 +2168,7 @@ object FormContratoN: TFormContratoN
               Left = 0
               Top = 0
               Width = 1065
-              Height = 611
+              Height = 639
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2015,17 +2212,17 @@ object FormContratoN: TFormContratoN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 304
-        Width = 687
-        Height = 38
+        Top = 533
+        Width = 1057
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -2051,14 +2248,14 @@ object FormContratoN: TFormContratoN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 687
-        Height = 278
+        Width = 1057
+        Height = 512
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -2071,17 +2268,18 @@ object FormContratoN: TFormContratoN
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnDrawColumnCell = GRIDCONSULTAdrawcolumncell
         OnDblClick = GRIDCONSULTAdblclick
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 278
-        Width = 687
-        Height = 26
+        Top = 512
+        Width = 1057
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -2094,16 +2292,16 @@ object FormContratoN: TFormContratoN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1073
-    Height = 41
+    Width = 1065
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object BtnIncluir: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -2126,10 +2324,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 79
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -2152,10 +2350,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -2178,10 +2376,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -2204,10 +2402,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 304
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -2230,10 +2428,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -2255,10 +2453,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 403
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -2280,10 +2478,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 427
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -2305,10 +2503,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -2330,10 +2528,10 @@ object FormContratoN: TFormContratoN
       OnClick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -2356,14 +2554,15 @@ object FormContratoN: TFormContratoN
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 36
-      Width = 1073
-      Height = 5
+      Top = 29
+      Width = 1065
+      Height = 4
       Align = alBottom
       TabOrder = 0
     end
   end
   object DataSource: TDataSource
+    OnDataChange = DATASOURCEdatachange
   end
   object PopConsulta: TPopupMenu
     object mnu_Filtrar: TMenuItem
@@ -2470,9 +2669,16 @@ object FormContratoN: TFormContratoN
   object PopRelacionados: TPopupMenu
   end
   object DataSource_Grid_PrudutoContratoT: TDataSource
+    OnDataChange = DataSource_Grid_PrudutoContratoTDataChange
+    Left = 80
+    Top = 64
   end
   object DataSource_Grid_Boocking: TDataSource
+    Left = 160
+    Top = 88
   end
-  object DataSource_Grid_ExpotadoTransito: TDataSource
+  object DataSource_Grid_ExportadoTransito: TDataSource
+    Left = 104
+    Top = 8
   end
 end

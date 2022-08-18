@@ -51,6 +51,7 @@ type
     Img_Tabela: TImage;
     LbcCATCLICOD: TLabel;
     LbcDESCRICAO: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     mnu_ApagarColuna: TMenuItem;
@@ -70,6 +71,7 @@ type
     PagePrincipal: TPageControl;
     Pagina0: TScrollBox;
     Pagina1: TScrollBox;
+    Pagina2: TScrollBox;
     PgPagina1: TScrollBox;
     PnInfConsulta: TPanel;
     PnSalva: TPanel;
@@ -80,10 +82,11 @@ type
     TabConsulta: TTabSheet;
     TabManutencao: TTabSheet;
     TabPaginas: TTabSet;
-    Pagina2: TScrollBox;
+    Usuario: TXDBEdit;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure CATCLICODExit(Sender: TObject);
     procedure DESCRICAOExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -205,6 +208,7 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DTbCategClientes, TabGlobal.DTbCategClientes.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormTbCategClienteN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DTbCategClientes, TabGlobal.DTbCategClientes.DESCRICAO, -2, DESCRICAOExit, Nil, ListaCamposEd, FormTbCategClienteN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DTbCategClientes, TabGlobal.DTbCategClientes.CATCLICOD, -1, CATCLICODExit, Nil, ListaCamposEd, FormTbCategClienteN, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
@@ -1270,6 +1274,17 @@ begin
     Exit;
   if not TabGlobal.DTbCategClientes.DESCRICAO.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DTbCategClientes.DESCRICAO);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormTbCategClienteN.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DTbCategClientes.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DTbCategClientes.Usuario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

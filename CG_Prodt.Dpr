@@ -2,8 +2,8 @@
  Empresa....: CMS
  Programa...: CG_Prodt.Dpr - Gerenciador dos Módulos do Projeto
  Sistema....: 
- Data.......: 26/10/2011
- Versão.....: 1.0001
+ Data.......: 20/02/2013
+ Versão.....: 3.25
  Analista...: Charles
  Programador: Charles
  Criação....: xMaker 5.1 Release: R05
@@ -75,15 +75,40 @@ uses
   Infome in 'Infome.PAS' {FormInfome},
   RESUMEN in 'RESUMEN.PAS' {FormRESUMEN},
   INFOMECOMERCIAL in 'INFOMECOMERCIAL.PAS' {FormINFOMECOMERCIAL},
-  REL_INFOR_EXCEL in 'REL_INFOR_EXCEL.PAS' {FormREL_INFOR_EXCEL},
+  RELINFCOMDIRETO in 'RELINFCOMDIRETO.PAS' {FormRELINFCOMDIRETO},
+  Informe in 'Informe.PAS' {FormInforme},
+  RESUMENCONTRATA in 'RESUMENCONTRATA.PAS' {FormRESUMENCONTRATA},
+  Rel_Diversos in 'Rel_Diversos.PAS' {FormRel_Diversos},
+  RelSitucaoCred in 'RelSitucaoCred.PAS' {FormRelSitucaoCred},
+  ResumenContForm in 'ResumenContForm.PAS' {FormResumenContForm},
+  REL_FATURATAB in 'REL_FATURATAB.PAS' {FormREL_FATURATAB},
+  OrdemCobranca in 'OrdemCobranca.PAS' {FormOrdemCobranca},
+  OrdCobrancaDesc in 'OrdCobrancaDesc.PAS' {FormOrdCobrancaDesc},
+  OrdCobrancaProd in 'OrdCobrancaProd.PAS' {FormOrdCobrancaProd},
+  Rel_Agente in 'Rel_Agente.PAS' {FormRel_Agente},
+  REL_NF in 'REL_NF.PAS' {FormREL_NF},
+  Rel_ValorFatura in 'Rel_ValorFatura.PAS' {FormRel_ValorFatura},
+  Rel_ValorRecebi in 'Rel_ValorRecebi.PAS' {FormRel_ValorRecebi},
+  TrocaContrato in 'TrocaContrato.PAS' {FormTrocaContrato},
+  RelOrdemCobranc in 'RelOrdemCobranc.PAS' {FormRelOrdemCobranc},
+  FRM_Previsao in 'FRM_Previsao.PAS' {FormFRM_Previsao},
   Abertura in 'Abertura.PAS' {TabGlobal: TTabGlobal},
   BaseD in 'BaseD.PAS' {BaseDados: TDataModule};
 
+var
+  Hwnd : THandle;
 
 begin
-  Application.Initialize;
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
-  Application.CreateForm(TBaseDados, BaseDados);
-  Application.CreateForm(TTabGlobal, TabGlobal);
-  Application.Run;
+  Hwnd := FindWindow('TApplication', 'Gestor de Contrato');
+  if Hwnd = 0 then
+  begin
+    Application.Initialize;
+    Application.Title := '';
+    Application.CreateForm(TFormPrincipal, FormPrincipal);
+    Application.CreateForm(TBaseDados, BaseDados);
+    Application.CreateForm(TTabGlobal, TabGlobal);
+    Application.Run;
+  end
+  else
+    SetForegroundWindow(Hwnd);
 end.

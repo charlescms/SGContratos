@@ -1,8 +1,8 @@
 object FormFiltragem: TFormFiltragem
-  Left = 242
-  Top = 166
+  Left = 619
+  Top = 210
   BorderStyle = bsDialog
-  Caption = 'Filtragem - [ Seleção de Registros ]'
+  Caption = 'Filtragem - [ Sele'#231#227'o de Registros ]'
   ClientHeight = 344
   ClientWidth = 408
   Color = clBtnFace
@@ -49,7 +49,7 @@ object FormFiltragem: TFormFiltragem
     Top = 16
     Width = 148
     Height = 185
-    Hint = 'Lista de campos disponíveis para filtragem'
+    Hint = 'Lista de campos dispon'#237'veis para filtragem'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -66,8 +66,8 @@ object FormFiltragem: TFormFiltragem
     Top = 11
     Width = 254
     Height = 79
-    Hint = 'Operadores de comparação'
-    Caption = ' O&peração '
+    Hint = 'Operadores de compara'#231#227'o'
+    Caption = ' O&pera'#231#227'o '
     Columns = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -82,7 +82,7 @@ object FormFiltragem: TFormFiltragem
       '<= Menor ou Igual'
       '>   Maior que'
       '>= Maior ou Igual'
-      '%  Contém'
+      '%  Cont'#233'm'
       '?   Vazio')
     ParentFont = False
     ParentShowHint = False
@@ -95,7 +95,7 @@ object FormFiltragem: TFormFiltragem
     Width = 408
     Height = 108
     Hint = 
-      'Expressão lógica de filtragem'#13#10'pode ser editada para filtragem m' +
+      'Express'#227'o l'#243'gica de filtragem'#13#10'pode ser editada para filtragem m' +
       'ais complexas'
     Align = alBottom
     ParentShowHint = False
@@ -140,7 +140,7 @@ object FormFiltragem: TFormFiltragem
       Top = 6
       Width = 75
       Height = 25
-      Hint = 'Cancela operação'
+      Hint = 'Cancela opera'#231#227'o'
       Cancel = True
       Caption = '&Cancelar'
       ModalResult = 2
@@ -156,8 +156,8 @@ object FormFiltragem: TFormFiltragem
     Width = 254
     Height = 21
     Hint = 
-      'Informe o valor de atribuição'#13#10'Campo Data: Digite a data com bar' +
-      'ras - Exemplo: 01/01/2002'#13#10'Campo Fracionário: Não digite '#39','#39' (Ví' +
+      'Informe o valor de atribui'#231#227'o'#13#10'Campo Data: Digite a data com bar' +
+      'ras - Exemplo: 01/01/2002'#13#10'Campo Fracion'#225'rio: N'#227'o digite '#39','#39' (V'#237 +
       'rgula) para o valor decimal'
     ParentShowHint = False
     ShowHint = True
@@ -169,11 +169,11 @@ object FormFiltragem: TFormFiltragem
     Width = 119
     Height = 33
     Hint = 
-      'Composição lógica'#13#10'Exemplo I:'#13#10'Filtrar clientes como nome de '#39'JO' +
+      'Composi'#231#227'o l'#243'gica'#13#10'Exemplo I:'#13#10'Filtrar clientes como nome de '#39'JO' +
       'AO'#39' e da cidade de '#39'UBERABA'#39#13#10'(NOME = '#39'JOAO*'#39')'#13#10'AND (CIDADE = '#39'U' +
       'BERABA*'#39')'#13#10'Exemplo II:'#13#10'Filtrar clientes como nome de '#39'JOAO'#39' ou ' +
       #39'MARIA'#39#13#10'(NOME = '#39'JOAO*'#39')'#13#10'OR (NOME = '#39'MARIA*'#39')'
-    Caption = ' Composição &Lógica '
+    Caption = ' Composi'#231#227'o &L'#243'gica '
     Columns = 2
     ItemIndex = 0
     Items.Strings = (
@@ -188,7 +188,7 @@ object FormFiltragem: TFormFiltragem
     Top = 175
     Width = 75
     Height = 25
-    Hint = 'Inserir expressão de filtro'
+    Hint = 'Inserir express'#227'o de filtro'
     Caption = 'Inserir'
     ParentShowHint = False
     ShowHint = True

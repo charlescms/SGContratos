@@ -107,6 +107,7 @@ type
     LbcTEL2: TLabel;
     LbcUF: TLabel;
     LbcUF_COB: TLabel;
+    LbcUsuario: TLabel;
     LIMCRE: TXDBNumEdit;
     LIMCREUSA: TXDBNumEdit;
     MenuImagem: TPopupMenu;
@@ -154,6 +155,7 @@ type
     TIPPESSOA: TDBRadioGroup;
     UF: TXDBEdit;
     UF_COB: TXDBEdit;
+    Usuario: TXDBEdit;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure CLICODExit(Sender: TObject);
     procedure RAZAOExit(Sender: TObject);
@@ -191,6 +193,7 @@ type
     procedure OBSExit(Sender: TObject);
     procedure CATCLICODExit(Sender: TObject);
     procedure IDExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -318,6 +321,7 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DClientes, TabGlobal.DClientes.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormClienteN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DClientes, TabGlobal.DClientes.ID, -2, IDExit, Nil, ListaCamposEd, FormClienteN, DataSource, ChamaGridPesquisa);
   DataSource_Grid_DIVISOES.DataSet := TabGlobal.DDIVISOES;
   Grid_DIVISOES.DataSource := DataSource_Grid_DIVISOES;
@@ -1901,6 +1905,17 @@ begin
     Exit;
   if not TabGlobal.DClientes.ID.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DClientes.ID);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormClienteN.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DClientes.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DClientes.Usuario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0014,
+     AtrL0022,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -21,6 +21,7 @@ type
   TDTbFormaPagamento = class(TTabela)
   public
     FormPago: TDTbFormaPagamento_FormPago;
+    Usuario: TDTbFormaPagamento_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -76,21 +77,25 @@ begin
     // Inserção de Registro
     InsertSQL.Add('insert into TbFormaPagamento');
     InsertSQL.Add('  (');
-    InsertSQL.Add('  FormPago');
+    InsertSQL.Add('  FormPago,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
-    InsertSQL.Add('  :FormPago');
+    InsertSQL.Add('  :FormPago,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbFormaPagamento');
     ModifySQL.Add('set');
-    ModifySQL.Add('  FormPago = :FormPago');
+    ModifySQL.Add('  FormPago = :FormPago,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  FormPago = :OLD_FormPago');
     // Refresh de Registro
     RefreshSQL.Add('Select');
-    RefreshSQL.Add('  TbFormaPagamento.FormPago AS FormPago');
+    RefreshSQL.Add('  TbFormaPagamento.FormPago AS FormPago,');
+    RefreshSQL.Add('  TbFormaPagamento.Usuario AS Usuario');
     RefreshSQL.Add('from TbFormaPagamento');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbFormaPagamento.FormPago = :OLD_FormPago');
@@ -98,20 +103,27 @@ begin
   UpdateObject     := UpdateSql;
     // Sql Principal
   SqlPrincipal.Add('Select');
-  SqlPrincipal.Add('  TbFormaPagamento.FormPago AS FormPago');
+  SqlPrincipal.Add('  TbFormaPagamento.FormPago AS FormPago,');
+  SqlPrincipal.Add('  TbFormaPagamento.Usuario AS Usuario');
   SqlPrincipal.Add('from TbFormaPagamento');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
   Sql.Add('order by TbFormaPagamento.FormPago');
   FormPago := TDTbFormaPagamento_FormPago.Create(AOwner);
   FormPago.Valor.DataSet := Self;
+  Usuario := TDTbFormaPagamento_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(FormPago);
+//CRIANDO CAMPOS 
   Campos.Add(FormPago);
+  Campos.Add(Usuario);
   TituloIndices.Add('Forma de Pago');
   Indices.Add('TbFormaPagamento.FormPago');
   Crescente.Add('S');
   TituloPrimaria := 'Forma de Pago';
   ChPrimaria     := 'TbFormaPagamento.FormPago';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Forma de Pago';
   ChaveIndice    := 'TbFormaPagamento.FormPago';
   AfterInsert    := AtribuiMestre;
@@ -121,6 +133,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbFormaPagamento.CriaForeignKeys;
 var

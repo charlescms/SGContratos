@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0004,
+     AtrL0005,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -348,8 +348,10 @@ begin
   Recebimento.Valor.DataSet := Self;
   Valor_NF := TDExpotadoTransito_Valor_NF.Create(AOwner);
   Valor_NF.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Contrato);
   ChavePrimaria.Add(Seq);
+//CRIANDO CAMPOS 
   Campos.Add(Contrato);
   Campos.Add(Seq);
   Campos.Add(Navio);
@@ -387,6 +389,7 @@ begin
   Crescente.Add('S');
   TituloPrimaria := 'Contrato,Seq.';
   ChPrimaria     := 'ExpotadoTransito.Contrato,ExpotadoTransito.Seq';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Contrato,Seq.';
   ChaveIndice    := 'ExpotadoTransito.Contrato,ExpotadoTransito.Seq';
   AfterInsert    := AtribuiMestre;
@@ -396,6 +399,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDExpotadoTransito.CriaForeignKeys;
 var

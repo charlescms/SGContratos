@@ -7,16 +7,117 @@
  Analista...: Charles
  Programador: Charles
  Criação....: xMaker 5.0 Release: R04
-}
+ 
+ // VERSAO 2.09
+ // correcao na data 18/11/2011
+ // erro so ocorre quando e seleciona so um registro correcao esta
+ // implementada em baixo
+ // MODIFICADO PARA INCLUIR REGRA QUE NAO FICOU CLARA NO ARQUIVO Rel_Agente
+ //  REL_NF.PAS
+ FOI MODIFICADO O FILTRO DE DATA DE CADASTRO PARA DATANF
+ // versao 2.10
+ // correcao no relatorio REL_FATURATAB.PAS
+ // campos numero de farura estava com o numero da ordem de cobranca
+ // o somatorio estava no local errado
+ // VERSAO 2.11   25/11/2011
+ // FOI REALIZADA MODIFICACOES NO RELATORIO ARQUIVO = Informe
+ // ERRO NO FILTRO FOI CORRIGIDO E O LEIALE FOI MODIFICADO POR SOLICITACAO DA KARINA
+ // INICIO 14:00 TERMINO AS 21:00
+ // VERSAO 2.12   25/11/2011
+ // correcao do relatorio de fatura e
+ // criacao do relatorio de ordem de compra
+ // modificacao da tela de ordem de cobrnacao com a criancao do  novo botao
+ // de relatorio de ordem de cobrnacao
+ // 06/12/2011
+ // foi transferido 2 relatorio e a estrutura o banco foi modificado
+ // foi criado um campo para colocacao do texto de desconto por solicitacao da elaine
+ // ------
+ // foi corrigido o erro do relatorio de con  sulta informe da Karina
+ // CORRECAO DO SISTEMA DE COR CO A INICIALIZACAO DA VARIAVEL C_RET NAO ERA INICIALIZADA
+ // 07/12/2011
+ // CORRECAO DO RELATORIO DE FATURA E ORDEM DE COMPRA O RELATORIO NAO ESTAVA EXIBINDO A FIGURA
+ // CORRECAO DO PROBLEMA DO CAMPO STATUScT  ESTA EM BRNACAO CASO ISTO OCORRA O SISTEMA IRA EXECUTA UM NA
+ // VERIFICACAO SE O CAMPO ESTA EM BRANCO E DETERNIMA O  STADO DESTE CAMPO
+ // modificado o relatorio rel_nf com erro de trunc e o layout do relatorio modificado para
+ // aparecer o periodo do filtro do relatorio
+ // // VERSAO 2.13   07/12/2011
+ // correcao de erro 05/01/2012
+ // correcao do relatorio de informe que esta gerendo com duplicidade
+ // arquivo modificado unit Informe;
+ // modificado 06/01/2012 correcao do problema contrato 7390  manutencao no arquivo unit Parametro;
+ // modificado 08/01/2012 correcao do problema contrato 7390  manutencao no arquivo unit Parametro;
+  // CONTRATO 08/01/2012
+  // ESTE FILTRO FOI INCLUIDO PARA FACILITAR O TRABALHO DE PESQUIZA DE PROBLEMA
+  // CORRECAO DO RELATORIO AGENTE  ERRO NO SQL
+  // ERRO NO RELATORIO REL_nf CORRECAO DE UM SOMATORIO QUE NAO ESTAVA APARECENDO
+  // A DATA
+  // MODIFICACAO 09/01/2012
+  // MODIFICAO O LAYOUT DO S RELATORIOS RETIRADO O NOME O PROJETISTA DO RELATORIO
+  // TODOS OS RELATORIO FORRAM TESTADOS E NAO APRESENTAO PROBLEMA
+
+  // MODIFICACAO 23/04/2012    '3.16';
+  // MODIFICADO O ARQUIVO Informe CORRECAO NO FILTRO E NO CALCULO DO RELATORIO O LYALT FOI MODIFICADO PARA CORRECAO
+  // AS QUERES FORAM MODIFCADA PARA ATENDER A REALIDADE QUE A KARINA EXPLICOU
+  // 
+  // MODIFICACAO 19/06/2012   '3.17';
+  // RESUMENCONTRATA
+  // RESUMEN
+  // Rel_Diversos
+  // MODIFICACAO 26/06/2012   '3.18';
+  // INFOMECOMERCIAL
+  // FORAM CRIADOS 2 CAOMPOS DE DATA PARA DELIMITAR O INICIO DE ANALIXE
+  // PARA ACUMULO DOS VALORES
+  // Rel_Diversos  CORRECAO DO FILTRO
+  
+  // MODIFICACAO 29/06/2012   '3.19';
+  //  INFOMECOMERCIAL
+  // 2906/2012 trocado o campo VALORCONVERTIDO pelo campo ComisaoSFatura
+
+  // MODIFICACAO 29/06/2012   '3.20';
+  //  CORRECAO DO PROBLEMA DO  unit Informe;
+  // OBJETO
+      RxMemoryData_Excel_DT1: TClientDataSet;
+    RxMemoryData_Excel1: TClientDataSet;
+  // MODIFICACAO  16/08/2012 3.201
+  // arquivo modificado OrdemCobranca incluida
+  // foi incluida uma consistencia no momento de excluir o processo que nao existia
+  //  Rel_Diversos; foi incluida um somatorio no relatorio 
+
+
+ 
+    // 28/08/2012  3.21
+    Rel_Diversos
+    mudado o criterio para este filtro solicitacao carina arquivo
+    modifiacao do titulo  do relatorio
+  // S_FILTRO3   := '' ;
+  // 28/08/2012  3.22
+  INFOMECOMERCIAL
+  24/10/2012
+  correcao no relatorio de
+  //  arquivo = Informe
+  mudanca no select principal do sistema
+  metodo modificado BitB_FiltroClick
+  25/10/2012 3.24
+  correcao de dados uma analizador e correto  foi criado no arquivo de parametros
+  continua o arquivo de   Informe
+  Karina encontrou um novo problema
+  20/02/2013 3.25
+  // errono relatorio INFOMECOMERCIAL problema na rotina   UltimoDiaDoMes
+  // arquivo modificado Rotinas
+}                 
 unit Princ;
 
 interface
+
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ToolWin, ComCtrls, Menus, Buttons, ExtCtrls, StdCtrls, Extras, Jpeg, ImgList,
   IniFiles, XPMenu, XBanner;
 
+const
+ TAM_MENU_LATERAL = 230 ;
+   
 type
   TFormPrincipal = class(TForm)
     Mnu_1: TMenuItem;
@@ -53,12 +154,28 @@ type
     Mnu_32: TMenuItem;
     Mnu_33: TMenuItem;
     Mnu_34: TMenuItem;
+    Mnu_35: TMenuItem;
+    Mnu_36: TMenuItem;
+    Mnu_37: TMenuItem;
+    Mnu_38: TMenuItem;
+    Mnu_39: TMenuItem;
+    Mnu_40: TMenuItem;
+    Mnu_41: TMenuItem;
+    Mnu_42: TMenuItem;
+    Mnu_43: TMenuItem;
+    Mnu_44: TMenuItem;
+    Mnu_45: TMenuItem;
+    Mnu_46: TMenuItem;
+    Mnu_47: TMenuItem;
+    Mnu_48: TMenuItem;
+    Mnu_49: TMenuItem;
+    Mnu_50: TMenuItem;
     Manutencao: TMenuItem;
     Localizar: TMenuItem;
     Incluir: TMenuItem;
     Modificar: TMenuItem;
     Excluir: TMenuItem;
-    Mnu_40: TMenuItem;
+    Mnu_56: TMenuItem;
     Primeiro: TMenuItem;
     Anterior: TMenuItem;
     Proximo: TMenuItem;
@@ -67,27 +184,27 @@ type
     Filtrar: TMenuItem;
     Ordenar: TMenuItem;
     OrdenarComposto: TMenuItem;
-    Mnu_49: TMenuItem;
+    Mnu_65: TMenuItem;
     ApagarColuna: TMenuItem;
-    Mnu_51: TMenuItem;
+    Mnu_67: TMenuItem;
     Quantificar: TMenuItem;
     TotalizarColuna: TMenuItem;
     CalcularMedia: TMenuItem;
-    Mnu_55: TMenuItem;
+    Mnu_71: TMenuItem;
     Imprimir: TMenuItem;
     SalvarConsulta: TMenuItem;
     ExcluirConsulta: TMenuItem;
     mnu_Janelas: TMenuItem;
-    Mnu_60: TMenuItem;
-    Mnu_61: TMenuItem;
-    Mnu_62: TMenuItem;
-    Mnu_63: TMenuItem;
-    Mnu_64: TMenuItem;
-    Mnu_65: TMenuItem;
-    Mnu_66: TMenuItem;
-    Mnu_67: TMenuItem;
-    Mnu_68: TMenuItem;
-    Mnu_69: TMenuItem;
+    Mnu_76: TMenuItem;
+    Mnu_77: TMenuItem;
+    Mnu_78: TMenuItem;
+    Mnu_79: TMenuItem;
+    Mnu_80: TMenuItem;
+    Mnu_81: TMenuItem;
+    Mnu_82: TMenuItem;
+    Mnu_83: TMenuItem;
+    Mnu_84: TMenuItem;
+    Mnu_85: TMenuItem;
     Bar_2: TToolButton;
     Bar_3: TToolButton;
     Bar_4: TToolButton;
@@ -96,6 +213,7 @@ type
     Bar_7: TToolButton;
     Bar_8: TToolButton;
     Bar_9: TToolButton;
+    Bar_10: TToolButton;
     BarraFerramentas: TToolBar;
     BarraPrincipal: TPanel;
     BtnAnterior: TSpeedButton;
@@ -141,9 +259,10 @@ type
     procedure Mnu_10Click(Sender: TObject);
     procedure Mnu_12Click(Sender: TObject);
     procedure Mnu_13Click(Sender: TObject);
-    procedure Mnu_15Click(Sender: TObject);
+    procedure Mnu_14Click(Sender: TObject);
     procedure Mnu_16Click(Sender: TObject);
     procedure Mnu_17Click(Sender: TObject);
+    procedure Mnu_18Click(Sender: TObject);
     procedure Mnu_19Click(Sender: TObject);
     procedure Mnu_20Click(Sender: TObject);
     procedure Mnu_21Click(Sender: TObject);
@@ -151,26 +270,40 @@ type
     procedure Mnu_24Click(Sender: TObject);
     procedure Mnu_25Click(Sender: TObject);
     procedure Mnu_26Click(Sender: TObject);
-    procedure Mnu_27Click(Sender: TObject);
+    procedure Mnu_28Click(Sender: TObject);
     procedure Mnu_29Click(Sender: TObject);
     procedure Mnu_30Click(Sender: TObject);
     procedure Mnu_31Click(Sender: TObject);
-    procedure Mnu_32Click(Sender: TObject);
+    procedure Mnu_33Click(Sender: TObject);
     procedure Mnu_34Click(Sender: TObject);
-    procedure Mnu_60Click(Sender: TObject);
-    procedure Mnu_61Click(Sender: TObject);
-    procedure Mnu_62Click(Sender: TObject);
-    procedure Mnu_63Click(Sender: TObject);
-    procedure Mnu_64Click(Sender: TObject);
-    procedure Mnu_66Click(Sender: TObject);
-    procedure Mnu_67Click(Sender: TObject);
-    procedure Mnu_69Click(Sender: TObject);
+    procedure Mnu_35Click(Sender: TObject);
+    procedure Mnu_36Click(Sender: TObject);
+    procedure Mnu_38Click(Sender: TObject);
+    procedure Mnu_39Click(Sender: TObject);
+    procedure Mnu_40Click(Sender: TObject);
+    procedure Mnu_41Click(Sender: TObject);
+    procedure Mnu_42Click(Sender: TObject);
+    procedure Mnu_43Click(Sender: TObject);
+    procedure Mnu_45Click(Sender: TObject);
+    procedure Mnu_46Click(Sender: TObject);
+    procedure Mnu_47Click(Sender: TObject);
+    procedure Mnu_48Click(Sender: TObject);
+    procedure Mnu_50Click(Sender: TObject);
+    procedure Mnu_76Click(Sender: TObject);
+    procedure Mnu_77Click(Sender: TObject);
+    procedure Mnu_78Click(Sender: TObject);
+    procedure Mnu_79Click(Sender: TObject);
+    procedure Mnu_80Click(Sender: TObject);
+    procedure Mnu_82Click(Sender: TObject);
+    procedure Mnu_83Click(Sender: TObject);
+    procedure Mnu_85Click(Sender: TObject);
     procedure Bar_2Click(Sender: TObject);
-    procedure Bar_4Click(Sender: TObject);
+    procedure Bar_3Click(Sender: TObject);
     procedure Bar_5Click(Sender: TObject);
     procedure Bar_6Click(Sender: TObject);
     procedure Bar_7Click(Sender: TObject);
-    procedure Bar_9Click(Sender: TObject);
+    procedure Bar_8Click(Sender: TObject);
+    procedure Bar_10Click(Sender: TObject);
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure GradientePaint(Sender: TObject);
     procedure BtnMinimizaClick(Sender: TObject);
@@ -179,25 +312,36 @@ type
     {10-Início do Bloco Modular. Modificações não serão preservadas}
     procedure Menu_3Click(Opcao: Integer);
     procedure Menu_4Click(Opcao: Integer);
-    procedure Menu_6Click(Opcao: Integer);
+    procedure Menu_5Click(Opcao: Integer);
     procedure Menu_7Click(Opcao: Integer);
     procedure Menu_8Click(Opcao: Integer);
+    procedure Menu_9Click(Opcao: Integer);
     procedure Menu_10Click(Opcao: Integer);
     procedure Menu_11Click(Opcao: Integer);
     procedure Menu_12Click(Opcao: Integer);
     procedure Menu_13Click(Opcao: Integer);
-    procedure Menu_14Click(Opcao: Integer);
     procedure Menu_15Click(Opcao: Integer);
     procedure Menu_16Click(Opcao: Integer);
     procedure Menu_17Click(Opcao: Integer);
-    procedure Menu_18Click(Opcao: Integer);
+    procedure Menu_19Click(Opcao: Integer);
     procedure Menu_20Click(Opcao: Integer);
     procedure Menu_21Click(Opcao: Integer);
     procedure Menu_22Click(Opcao: Integer);
     procedure Menu_23Click(Opcao: Integer);
+    procedure Menu_24Click(Opcao: Integer);
+    procedure Menu_25Click(Opcao: Integer);
+    procedure Menu_26Click(Opcao: Integer);
+    procedure Menu_27Click(Opcao: Integer);
+    procedure Menu_29Click(Opcao: Integer);
+    procedure Menu_30Click(Opcao: Integer);
+    procedure Menu_31Click(Opcao: Integer);
+    procedure Menu_32Click(Opcao: Integer);
+    procedure Menu_33Click(Opcao: Integer);
+    procedure Menu_34Click(Opcao: Integer);
     {99-Final do Bloco Modular. Modificações não serão preservadas}
   protected
     { Declarações Protegidas }
+
   public
     { Declarações Públicas }
     ErronoSistema: Boolean;
@@ -216,7 +360,7 @@ implementation
 {$R *.DFM}
 {$R *.RES}
 
-uses Rotinas, Publicas, Splash, Interno,
+uses Rotinas, Publicas, Splash, Interno,USEGURANCA,
      {20-Início do Bloco Modular. Modificações não serão preservadas}
      Exportacao,
      ProdutoContrato,
@@ -240,7 +384,23 @@ uses Rotinas, Publicas, Splash, Interno,
      Infome,
      RESUMEN,
      INFOMECOMERCIAL,
-     REL_INFOR_EXCEL,
+     RELINFCOMDIRETO,
+     Informe,
+     RESUMENCONTRATA,
+     Rel_Diversos,
+     RelSitucaoCred,
+     ResumenContForm,
+     REL_FATURATAB,
+     OrdemCobranca,
+     OrdCobrancaDesc,
+     OrdCobrancaProd,
+     Rel_Agente,
+     REL_NF,
+     Rel_ValorFatura,
+     Rel_ValorRecebi,
+     TrocaContrato,
+     RelOrdemCobranc,
+     FRM_Previsao,
      {99-Final do Bloco Modular. Modificações não serão preservadas}
      Acesso;
 
@@ -252,9 +412,35 @@ end;
 procedure TFormPrincipal.FormShow(Sender: TObject);
 Var
   ArqIni: TIniFile;
+  Seguranca :TSeguranca ;
+  op_ok : integer ;
+//  msg_pcha : pansichar ;
+  //msg : string ;
+  Msg: PAnsiChar;
 begin
   {
     Inicializa variáveis públicas e ambiente de trabalho
+  }
+  {
+  //
+  }
+
+  {
+  
+  Seguranca := TSeguranca.create ;
+  op_ok := Seguranca.dll_ok ;
+  if op_ok <> 0 then begin
+     msg:= PAnsiChar( Seguranca.MSG_Erro())  ;
+     FatalAppExit(0,msg );
+     Application.Terminate;
+  end;
+
+  if Seguranca.get_sEmpresa <> cont_empresa_surimpes then begin
+     msg:= PAnsiChar( const_MSG_ERRO_EMPRESA )  ;
+     FatalAppExit(0,msg );
+     Application.Terminate;
+  end;
+
   }
   DateSeparator       := '/';
   ShortDateFormat     := Sistema.EstiloData;
@@ -470,6 +656,7 @@ begin
   {
     Atualiza posicionamento dos componentes
   }
+  PnOpcoes.width := TAM_MENU_LATERAL ; // 230;
   PnOpcoesResize(Self);
 end;
 
@@ -534,39 +721,59 @@ begin
   if TreeOpcoes.Selected.AbsoluteIndex = 2 then
     Menu_3Click(3)
   else if TreeOpcoes.Selected.AbsoluteIndex = 3 then
-    Menu_4Click(21)
-  else if TreeOpcoes.Selected.AbsoluteIndex = 5 then
-    Menu_6Click(13)
+    Menu_4Click(31)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 4 then
+    Menu_5Click(41)
   else if TreeOpcoes.Selected.AbsoluteIndex = 6 then
-    Menu_7Click(14)
+    Menu_7Click(33)
   else if TreeOpcoes.Selected.AbsoluteIndex = 7 then
-    Menu_8Click(19)
+    Menu_8Click(35)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 8 then
+    Menu_9Click(36)
   else if TreeOpcoes.Selected.AbsoluteIndex = 9 then
-    Menu_10Click(9)
+    Menu_10Click(37)
   else if TreeOpcoes.Selected.AbsoluteIndex = 10 then
-    Menu_11Click(5)
+    Menu_11Click(38)
   else if TreeOpcoes.Selected.AbsoluteIndex = 11 then
-    Menu_12Click(6)
+    Menu_12Click(39)
   else if TreeOpcoes.Selected.AbsoluteIndex = 12 then
-    Menu_13Click(7)
-  else if TreeOpcoes.Selected.AbsoluteIndex = 13 then
-    Menu_14Click(18)
+    Menu_13Click(40)
   else if TreeOpcoes.Selected.AbsoluteIndex = 14 then
-    Menu_15Click(15)
+    Menu_15Click(13)
   else if TreeOpcoes.Selected.AbsoluteIndex = 15 then
-    Menu_16Click(16)
+    Menu_16Click(14)
   else if TreeOpcoes.Selected.AbsoluteIndex = 16 then
-    Menu_17Click(17)
-  else if TreeOpcoes.Selected.AbsoluteIndex = 17 then
-    Menu_18Click(20)
+    Menu_17Click(19)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 18 then
+    Menu_19Click(9)
   else if TreeOpcoes.Selected.AbsoluteIndex = 19 then
-    Menu_20Click(23)
+    Menu_20Click(5)
   else if TreeOpcoes.Selected.AbsoluteIndex = 20 then
-    Menu_21Click(24)
+    Menu_21Click(6)
   else if TreeOpcoes.Selected.AbsoluteIndex = 21 then
-    Menu_22Click(25)
+    Menu_22Click(7)
   else if TreeOpcoes.Selected.AbsoluteIndex = 22 then
-    Menu_23Click(26);
+    Menu_23Click(18)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 23 then
+    Menu_24Click(15)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 24 then
+    Menu_25Click(16)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 25 then
+    Menu_26Click(17)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 26 then
+    Menu_27Click(20)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 28 then
+    Menu_29Click(23)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 29 then
+    Menu_30Click(24)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 30 then
+    Menu_31Click(28)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 31 then
+    Menu_32Click(25)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 32 then
+    Menu_33Click(29)
+  else if TreeOpcoes.Selected.AbsoluteIndex = 33 then
+    Menu_34Click(30);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
 end;
 
@@ -640,7 +847,7 @@ end;
 procedure TFormPrincipal.BtnMinimizaClick(Sender: TObject);
 begin
   if BtnMinimiza.Caption = '>' then
-    PnOpcoes.Width := 141
+    PnOpcoes.Width := TAM_MENU_LATERAL // 141
   else
     PnOpcoes.Width := 30;
   PnOpcoesResize(Self);
@@ -658,94 +865,175 @@ procedure TFormPrincipal.Menu_4Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormFaturaN,FormFaturaN);
+  ExecutaForm(TFormInforme,FormInforme);
 end;
 
-procedure TFormPrincipal.Menu_6Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_5Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormClienteN,FormClienteN);
+  ExecutaForm(TFormTrocaContrato,FormTrocaContrato);
 end;
 
 procedure TFormPrincipal.Menu_7Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormExportadorN,FormExportadorN);
+  ExecutaForm(TFormFaturaN,FormFaturaN);
 end;
 
 procedure TFormPrincipal.Menu_8Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormProdutos,FormProdutos);
+  ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
+end;
+
+procedure TFormPrincipal.Menu_9Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  FormREL_FATURATAB := TFormREL_FATURATAB.Create(Application);
+  Try
+    FormREL_FATURATAB.ShowModal;
+  Finally
+    FormREL_FATURATAB.Free;
+  end;
 end;
 
 procedure TFormPrincipal.Menu_10Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormPaisN,FormPaisN);
+  FormRel_Agente := TFormRel_Agente.Create(Application);
+  Try
+    FormRel_Agente.ShowModal;
+  Finally
+    FormRel_Agente.Free;
+  end;
 end;
 
 procedure TFormPrincipal.Menu_11Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormTbPorto,FormTbPorto);
+  FormREL_NF := TFormREL_NF.Create(Application);
+  Try
+    FormREL_NF.ShowModal;
+  Finally
+    FormREL_NF.Free;
+  end;
 end;
 
 procedure TFormPrincipal.Menu_12Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormTbFormaPagament,FormTbFormaPagament);
+  FormRel_ValorRecebi := TFormRel_ValorRecebi.Create(Application);
+  Try
+    FormRel_ValorRecebi.ShowModal;
+  Finally
+    FormRel_ValorRecebi.Free;
+  end;
 end;
 
 procedure TFormPrincipal.Menu_13Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormTbCondicaoCompr,FormTbCondicaoCompr);
-end;
-
-procedure TFormPrincipal.Menu_14Click(Opcao: Integer);
-begin
-  if not LiberaAcesso(Opcao) then
-    Abort;
-
+  FormRel_ValorFatura := TFormRel_ValorFatura.Create(Application);
+  Try
+    FormRel_ValorFatura.ShowModal;
+  Finally
+    FormRel_ValorFatura.Free;
+  end;
 end;
 
 procedure TFormPrincipal.Menu_15Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormAtividades,FormAtividades);
+  ExecutaForm(TFormClienteN,FormClienteN);
 end;
 
 procedure TFormPrincipal.Menu_16Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  ExecutaForm(TFormTbCategClienteN,FormTbCategClienteN);
+  ExecutaForm(TFormExportadorN,FormExportadorN);
 end;
 
 procedure TFormPrincipal.Menu_17Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
+  ExecutaForm(TFormProdutos,FormProdutos);
+end;
+
+procedure TFormPrincipal.Menu_19Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormPaisN,FormPaisN);
+end;
+
+procedure TFormPrincipal.Menu_20Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormTbPorto,FormTbPorto);
+end;
+
+procedure TFormPrincipal.Menu_21Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormTbFormaPagament,FormTbFormaPagament);
+end;
+
+procedure TFormPrincipal.Menu_22Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormTbCondicaoCompr,FormTbCondicaoCompr);
+end;
+
+procedure TFormPrincipal.Menu_23Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+
+end;
+
+procedure TFormPrincipal.Menu_24Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormAtividades,FormAtividades);
+end;
+
+procedure TFormPrincipal.Menu_25Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  ExecutaForm(TFormTbCategClienteN,FormTbCategClienteN);
+end;
+
+procedure TFormPrincipal.Menu_26Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
   ExecutaForm(TFormTbSitClientesN,FormTbSitClientesN);
 end;
 
-procedure TFormPrincipal.Menu_18Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_27Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
   ExecutaForm(TFormParametro,FormParametro);
 end;
 
-procedure TFormPrincipal.Menu_20Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_29Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
@@ -757,7 +1045,7 @@ begin
   end;
 end;
 
-procedure TFormPrincipal.Menu_21Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_30Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
@@ -769,7 +1057,19 @@ begin
   end;
 end;
 
-procedure TFormPrincipal.Menu_22Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_31Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  FormRESUMENCONTRATA := TFormRESUMENCONTRATA.Create(Application);
+  Try
+    FormRESUMENCONTRATA.ShowModal;
+  Finally
+    FormRESUMENCONTRATA.Free;
+  end;
+end;
+
+procedure TFormPrincipal.Menu_32Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
@@ -781,15 +1081,27 @@ begin
   end;
 end;
 
-procedure TFormPrincipal.Menu_23Click(Opcao: Integer);
+procedure TFormPrincipal.Menu_33Click(Opcao: Integer);
 begin
   if not LiberaAcesso(Opcao) then
     Abort;
-  FormREL_INFOR_EXCEL := TFormREL_INFOR_EXCEL.Create(Application);
+  FormRel_Diversos := TFormRel_Diversos.Create(Application);
   Try
-    FormREL_INFOR_EXCEL.ShowModal;
+    FormRel_Diversos.ShowModal;
   Finally
-    FormREL_INFOR_EXCEL.Free;
+    FormRel_Diversos.Free;
+  end;
+end;
+
+procedure TFormPrincipal.Menu_34Click(Opcao: Integer);
+begin
+  if not LiberaAcesso(Opcao) then
+    Abort;
+  FormRelSitucaoCred := TFormRelSitucaoCred.Create(Application);
+  Try
+    FormRelSitucaoCred.ShowModal;
+  Finally
+    FormRelSitucaoCred.Free;
   end;
 end;
 
@@ -861,11 +1173,113 @@ begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   
-  //ExecutaForm(TFormFaturas,FormFaturas);
-  
-  //ExecutaForm(TFormFatura,FormFatura);
+  FormInfome := TFormInfome.Create(Application);
+  Try
+    FormInfome.ShowModal;
+  Finally
+    FormInfome.Free;
+  end;
 end;
-procedure TFormPrincipal.Mnu_15Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_14Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  ExecutaForm(TFormTrocaContrato,FormTrocaContrato);
+end;
+procedure TFormPrincipal.Mnu_16Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  ExecutaForm(TFormFaturaN,FormFaturaN);
+end;
+procedure TFormPrincipal.Mnu_17Click(Sender: TObject);
+// variáveis ...
+
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
+//  ExecutaForm(TFormFaturaTab,FormFaturaTab);
+end;
+procedure TFormPrincipal.Mnu_18Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormREL_FATURATAB := TFormREL_FATURATAB.Create(Application);
+  Try
+    FormREL_FATURATAB.ShowModal;
+  Finally
+    FormREL_FATURATAB.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_19Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRel_Agente := TFormRel_Agente.Create(Application);
+  Try
+    FormRel_Agente.ShowModal;
+  Finally
+    FormRel_Agente.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_20Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormREL_NF := TFormREL_NF.Create(Application);
+  Try
+    FormREL_NF.ShowModal;
+  Finally
+    FormREL_NF.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_21Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRel_ValorRecebi := TFormRel_ValorRecebi.Create(Application);
+  Try
+    FormRel_ValorRecebi.ShowModal;
+  Finally
+    FormRel_ValorRecebi.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_22Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRel_ValorFatura := TFormRel_ValorFatura.Create(Application);
+  Try
+    FormRel_ValorFatura.ShowModal;
+  Finally
+    FormRel_ValorFatura.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_24Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -877,7 +1291,7 @@ begin
   
 
 end;
-procedure TFormPrincipal.Mnu_16Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_25Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -891,7 +1305,7 @@ begin
     FormExportacao.Free;
   end;
 end;
-procedure TFormPrincipal.Mnu_17Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_26Click(Sender: TObject);
 // variáveis ...
 
 
@@ -902,7 +1316,7 @@ begin
 //  ExecutaForm(TFormProduto,FormProduto);
   ExecutaForm(TFormProdutos,FormProdutos);
 end;
-procedure TFormPrincipal.Mnu_19Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_28Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -911,7 +1325,7 @@ begin
   
   ExecutaForm(TFormPaisN,FormPaisN);
 end;
-procedure TFormPrincipal.Mnu_20Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_29Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -920,7 +1334,7 @@ begin
   
   ExecutaForm(TFormTbPorto,FormTbPorto);
 end;
-procedure TFormPrincipal.Mnu_21Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_30Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -929,7 +1343,7 @@ begin
   
   ExecutaForm(TFormTbFormaPagament,FormTbFormaPagament);
 end;
-procedure TFormPrincipal.Mnu_22Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_31Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -938,7 +1352,7 @@ begin
   
   ExecutaForm(TFormTbCondicaoCompr,FormTbCondicaoCompr);
 end;
-procedure TFormPrincipal.Mnu_24Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_33Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -947,7 +1361,7 @@ begin
   
   ExecutaForm(TFormAtividades,FormAtividades);
 end;
-procedure TFormPrincipal.Mnu_25Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_34Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -956,7 +1370,7 @@ begin
   
   ExecutaForm(TFormTbCategClienteN,FormTbCategClienteN);
 end;
-procedure TFormPrincipal.Mnu_26Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_35Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -965,7 +1379,7 @@ begin
   
   ExecutaForm(TFormTbSitClientesN,FormTbSitClientesN);
 end;
-procedure TFormPrincipal.Mnu_27Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_36Click(Sender: TObject);
 // variáveis ...
 
 begin
@@ -974,91 +1388,175 @@ begin
   
   ExecutaForm(TFormParametro,FormParametro);
 end;
-procedure TFormPrincipal.Mnu_29Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_38Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormINFOMECOMERCIAL := TFormINFOMECOMERCIAL.Create(Application);
+  Try
+    FormINFOMECOMERCIAL.ShowModal;
+  Finally
+    FormINFOMECOMERCIAL.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_39Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRESUMEN := TFormRESUMEN.Create(Application);
+  Try
+    FormRESUMEN.ShowModal;
+  Finally
+    FormRESUMEN.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_40Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRESUMENCONTRATA := TFormRESUMENCONTRATA.Create(Application);
+  Try
+    FormRESUMENCONTRATA.ShowModal;
+  Finally
+    FormRESUMENCONTRATA.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_41Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormInfome := TFormInfome.Create(Application);
+  Try
+    FormInfome.ShowModal;
+  Finally
+    FormInfome.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_42Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRel_Diversos := TFormRel_Diversos.Create(Application);
+  Try
+    FormRel_Diversos.ShowModal;
+  Finally
+    FormRel_Diversos.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_43Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  FormRelSitucaoCred := TFormRelSitucaoCred.Create(Application);
+  Try
+    FormRelSitucaoCred.ShowModal;
+  Finally
+    FormRelSitucaoCred.Free;
+  end;
+end;
+procedure TFormPrincipal.Mnu_45Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO120;
 end;
 
-procedure TFormPrincipal.Mnu_30Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_46Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO108;
 end;
 
-procedure TFormPrincipal.Mnu_31Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_47Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO109;
 end;
 
-procedure TFormPrincipal.Mnu_32Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_48Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO110;
 end;
 
-procedure TFormPrincipal.Mnu_34Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_50Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO121;
 end;
 
-procedure TFormPrincipal.Mnu_60Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_76Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO112;
 end;
 
-procedure TFormPrincipal.Mnu_61Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_77Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO113;
 end;
 
-procedure TFormPrincipal.Mnu_62Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_78Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO114;
 end;
 
-procedure TFormPrincipal.Mnu_63Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_79Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO115;
 end;
 
-procedure TFormPrincipal.Mnu_64Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_80Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO116;
 end;
 
-procedure TFormPrincipal.Mnu_66Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_82Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO117;
 end;
 
-procedure TFormPrincipal.Mnu_67Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_83Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO118;
 end;
 
-procedure TFormPrincipal.Mnu_69Click(Sender: TObject);
+procedure TFormPrincipal.Mnu_85Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
@@ -1072,35 +1570,46 @@ begin
   INTERNO106;
 end;
 
-procedure TFormPrincipal.Bar_4Click(Sender: TObject);
+procedure TFormPrincipal.Bar_3Click(Sender: TObject);
+// variáveis ...
+
+begin
+  if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
+    Abort;  // acesso negado, retorna ...
+  
+  // ExecutaForm(TFormFaturaTab,FormFaturaTab);
+  
+  ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
+end;
+procedure TFormPrincipal.Bar_5Click(Sender: TObject);
 begin
   if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO108;
 end;
 
-procedure TFormPrincipal.Bar_5Click(Sender: TObject);
+procedure TFormPrincipal.Bar_6Click(Sender: TObject);
 begin
   if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO109;
 end;
 
-procedure TFormPrincipal.Bar_6Click(Sender: TObject);
+procedure TFormPrincipal.Bar_7Click(Sender: TObject);
 begin
   if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO110;
 end;
 
-procedure TFormPrincipal.Bar_7Click(Sender: TObject);
+procedure TFormPrincipal.Bar_8Click(Sender: TObject);
 begin
   if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
   INTERNO121;
 end;
 
-procedure TFormPrincipal.Bar_9Click(Sender: TObject);
+procedure TFormPrincipal.Bar_10Click(Sender: TObject);
 begin
   if not LiberaAcesso(TToolButton(Sender).Tag, 2) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...

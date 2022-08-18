@@ -3,6 +3,9 @@
    Copyright: Modular Software 2006
             : Todos os direitos reservados
    Site.....: http://www.xmaker.com.br
+   08/06/2011 relatorio concluido
+   nome = folha rel6 relcompen
+   titulo relatorio de comissoes ou ordem de cobrancao
 }
 unit RELCOMPEN;
 
@@ -10,31 +13,42 @@ interface
 
 {$I Princ.inc}
 
+
+
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ExtCtrls, BaseD, Atributo, Tabela, Menus, Calculos, db,
   {$I LTab.pas}
   XLookUp, XDBDate, Mask, XDate, XEdit, XNum, FR_DSet, FR_DBSet, FR_Class, FR_Desgn,
   {$IFDEF DELPHI5}{$ELSE}Variants, MaskUtils,{$ENDIF}
-  Tabs, comctrls, XBanner, checklst;
+  Tabs, comctrls, XBanner, checklst, FR_E_TXT, FR_E_HTM, FR_E_RTF, FR_E_CSV;
+
+
+//CONST
+//  S_CONT_REL_COMISSAO = 'REL_COMISSAO';
+//  S_CONT_REL_ORCAMENT = 'REL_ORCAMENTO';
 
 type
   TFormRELCOMPEN = class(TForm)
-    PnSup: TPanel;
-    ShapeSup: TShape;
-    LbTituloForm: TLabel;
-    BtnAjuda: TSpeedButton;
-    BtnFechar: TSpeedButton;
-    frDBDataSet: TfrDBDataSet;
     {01-Início do Bloco Modular. Modificações não serão preservadas}
-    {99-Final do Bloco Modular. Modificações não serão preservadas}
+    BtnAjuda: TSpeedButton;
+    BtnCancelar: TBitBtn;
+    BtnFechar: TSpeedButton;
+    BtnVisualizar: TBitBtn;
+    Divisao: TTabSet;
+    frDBDataSet: TfrDBDataSet;
     frDesigner: TfrDesigner;
     frReport: TfrReport;
-    Selecao_1: TScrollBox;
-    Divisao: TTabSet;
+    LbTituloForm: TLabel;
     Panel1: TPanel;
-    BtnVisualizar: TBitBtn;
-    BtnCancelar: TBitBtn;
+    PnSup: TPanel;
+    Selecao_1: TScrollBox;
+    ShapeSup: TShape;
+    frCSVExport1: TfrCSVExport;
+    frRTFExport1: TfrRTFExport;
+    frHTMExport1: TfrHTMExport;
+    frTextExport1: TfrTextExport;
+    {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -45,8 +59,12 @@ type
       var Val: String);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
   private
+    S_TIPO_REL : STRING ;
     s_titulo : string ;
+    s_titulo2 : string ;
+    s_filtro : string;
     { Private declarations }
     QyRelatorio: TTabela;
     {02-Início do Bloco Modular. Modificações não serão preservadas}
@@ -57,11 +75,15 @@ type
     procedure ConstroiSql;
     procedure InicializaVariaveis;
     procedure Parametros(Tabela: TTabela);
+
   public
 
     { Public declarations }
-     procedure set_tabela(Tabela: TTabela);
+    // procedure set_tabela(Tabela: TTabela);
      procedure set_titulo(s_str: string ) ;
+     procedure set_titulo2(s_str: string ) ;
+     procedure set_filtro(s_str: string ) ;
+     procedure set_TIPO_REL(LS_TIPO_REL : STRING) ;
     {03-Início do Bloco Modular. Modificações não serão preservadas}
     {99-Final do Bloco Modular. Modificações não serão preservadas}
   end;
@@ -73,7 +95,13 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, Abertura, GridPesquisa, Interno;
+uses Publicas, Princ, Rotinas, Abertura, GridPesquisa, Interno, RotinaEd, UCMS_CONST;
+
+procedure TFormRELCOMPEN.set_TIPO_REL(LS_TIPO_REL : STRING) ;
+BEGIN
+S_TIPO_REL := LS_TIPO_REL ;
+
+END;
 
 procedure TFormRELCOMPEN.ConstroiSql;
 var
@@ -86,6 +114,13 @@ begin
   DFatura.Open;
   frDBDataSet.DataSet := DFatura;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
+
+  DFatura.Filtro.Clear;
+  DFatura.Filtro.add(s_filtro);
+  DFatura.AtualizaSql(False);
+  Parametros(DFatura);
+  DFatura.Open;
+  frDBDataSet.DataSet := DFatura;
 end;
 
 procedure TFormRELCOMPEN.Parametros(Tabela: TTabela);
@@ -125,18 +160,27 @@ procedure TFormRELCOMPEN.FormShow(Sender: TObject);
 Var
   I: Integer;
 begin
+
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   Caption := 'Relatório de Comissão Pendentes - Conosur';
   {99-Final do Bloco Modular. Modificações não serão preservadas}
+
+  // VERIFICA SE A TABELA RELATORIO NAO FOI INIICALIZADA
+  // IF  QyRelatorio = NIL THEN BEGIN
+
+  // DFatura := TDFatura.Create(Self);
   {06-Início do Bloco Modular. Modificações não serão preservadas}
-  DFatura := TDFatura.Create(Self);
+//  DFatura := TDFatura.Create(Self);
   DFatura.OnCalcFields := CalculosDFatura;
   DFatura.DataSource.OnDataChange := AtualizaDetalhe_DFatura;
   QyRelatorio := DFatura;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
+
+  // END;
+
   if s_titulo <> '' then
      Caption := s_titulo ;
-     
+
   BtnAjuda.Visible  := False;
   BtnFechar.Visible := False;
   FormResize(Self);
@@ -174,7 +218,7 @@ begin
   frVariables['FonesUsr']     := Sistema.FonesUsr;
   frVariables['LogoUsr']      := Sistema.LogoUsr;
   frVariables['Titulo_1']     := Caption;
-  frVariables['Titulo_2']     := '';
+  frVariables['Titulo_2']     := s_titulo2;
   if frReport.FindObject('Logomarca') <> nil then
     if FileExists(Sistema.LogoUsr) then
       TfrPictureView(frReport.FindObject('Logomarca')).Picture.LoadFromFile(Sistema.LogoUsr);
@@ -182,14 +226,86 @@ end;
 
 procedure TFormRELCOMPEN.BtnVisualizarClick(Sender: TObject);
 begin
+  //IF  DFatura <> NIL THEN
   ConstroiSql;
+
   InicializaVariaveis;
   if QyRelatorio.Eof then
     MessageDlg('Nenhum registro selecionado !',mtInformation,[mbOk],0)
-  else
+  else BEGIN
     frReport.ShowReport;  // DesignReport  ->  Permite ao usuário final editar o Layout do Relatório
+    TabGlobal.DFATURA.First;
+    WHILE NOT TabGlobal.DFATURA.Eof DO BEGIN
+
+//        IF S_CONT_REL_COMISSAO =S_TIPO_REL THEN
+//          Atualiza_ST(DFatura.Contrato.Conteudo,S_ST_CM)
+//        ELSE
+//          Atualiza_ST(DFatura.Contrato.Conteudo,S_ST_OC);
+        TabGlobal.DFATURA.Modifica;
+
+        // 03/05/2012
+        IF TabGlobal.DFatura.Selecionado.Conteudo = 'S' then
+        begin
+           IF S_CONT_REL_COMISSAO =S_TIPO_REL THEN
+              if ( TabGlobal.DFATURA.Status.Conteudo = s_ST_AB_F ) or
+                 ( TabGlobal.DFATURA.Status.Conteudo = s_ST_CM_F ) then
+                 TabGlobal.DFATURA.Status.Conteudo := s_ST_CM_F
+           ELSE
+              if ( TabGlobal.DFATURA.Status.Conteudo = s_ST_AB_F ) or
+                 ( TabGlobal.DFATURA.Status.Conteudo = s_ST_OC_F ) then
+                 TabGlobal.DFATURA.Status.Conteudo := s_ST_OC_F ;
+        end;
+
+        TabGlobal.DFATURA.Salva;
+
+        TabGlobal.DFATURA.Next
+    END;
+    TabGlobal.DFATURA.Refresh ;
+
+  END;
+
   QyRelatorio.Close;
 end;
+{
+procedure TFormRELCOMPEN.BtnVisualizarClick(Sender: TObject);
+begin
+  //IF  DFatura <> NIL THEN
+  ConstroiSql;
+
+  InicializaVariaveis;
+  if QyRelatorio.Eof then
+    MessageDlg('Nenhum registro selecionado !',mtInformation,[mbOk],0)
+  else BEGIN
+    frReport.ShowReport;  // DesignReport  ->  Permite ao usuário final editar o Layout do Relatório
+    DFatura.First;
+    WHILE NOT DFatura.Eof DO BEGIN
+
+//        IF S_CONT_REL_COMISSAO =S_TIPO_REL THEN
+//          Atualiza_ST(DFatura.Contrato.Conteudo,S_ST_CM)
+//        ELSE
+//          Atualiza_ST(DFatura.Contrato.Conteudo,S_ST_OC);
+        DFatura.Modifica;
+        IF S_CONT_REL_COMISSAO =S_TIPO_REL THEN
+           if ( DFatura.Status.Conteudo = s_ST_AB_F ) or
+              ( DFatura.Status.Conteudo = s_ST_CM_F ) then
+              DFatura.Status.Conteudo := s_ST_CM_F
+        ELSE
+           if ( DFatura.Status.Conteudo = s_ST_AB_F ) or
+              ( DFatura.Status.Conteudo = s_ST_OC_F ) then
+              DFatura.Status.Conteudo := s_ST_OC_F ;
+
+        DFatura.Salva;
+
+        DFatura.Next
+    END;
+    DFatura.Refresh ;
+
+  END;
+
+  QyRelatorio.Close;
+end;
+
+}
 
 procedure TFormRELCOMPEN.FormResize(Sender: TObject);
 begin
@@ -280,12 +396,35 @@ begin
     Interno110;
 end;
 
-procedure TFormRELCOMPEN.set_tabela(Tabela: TTabela);
-begin
- QyRelatorio := Tabela;
-end;
+//procedure TFormRELCOMPEN.set_tabela(Tabela: TTabela);
+//begin
+// DFatura := TDFatura (Tabela);
+//end;
+
 procedure TFormRELCOMPEN.set_titulo(s_str: string ) ;
 begin
   s_titulo :=  s_str ;
 end;
+
+procedure TFormRELCOMPEN.set_titulo2(s_str: string ) ;
+begin
+  s_titulo2 :=  s_str ;
+end;
+
+procedure TFormRELCOMPEN.set_filtro(s_str: string ) ;
+begin
+  s_filtro :=  s_str ;
+end;
+
+procedure TFormRELCOMPEN.FormCreate(Sender: TObject);
+begin
+  s_filtro := '' ;
+  DFatura := TDFatura.Create(Self);
+//  DFatura := TabGlobal.DFATURA ;
+//  DFatura.OnCalcFields := CalculosDFatura;
+//  DFatura.DataSource.OnDataChange := AtualizaDetalhe_DFatura;
+//  QyRelatorio := DFatura;
+
+end;
+
 end.

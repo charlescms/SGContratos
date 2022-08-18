@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0024,
+     AtrL0032,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -124,8 +124,10 @@ begin
   Grupo.Valor.DataSet := Self;
   Cerceado := TDUSER_TABELAS_Cerceado.Create(AOwner);
   Cerceado.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Tabela_Obj);
   ChavePrimaria.Add(Grupo);
+//CRIANDO CAMPOS 
   Campos.Add(Tabela_Obj);
   Campos.Add(Grupo);
   Campos.Add(Cerceado);
@@ -134,6 +136,7 @@ begin
   Crescente.Add('S');
   TituloPrimaria := 'Tabela,Grupo';
   ChPrimaria     := 'USER_TABELAS.Tabela_Obj,USER_TABELAS.Grupo';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Tabela,Grupo';
   ChaveIndice    := 'USER_TABELAS.Tabela_Obj,USER_TABELAS.Grupo';
   AfterInsert    := AtribuiMestre;
@@ -143,6 +146,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDUSER_TABELAS.CriaForeignKeys;
 var

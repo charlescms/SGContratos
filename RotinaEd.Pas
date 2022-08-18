@@ -1,10 +1,10 @@
 {
    Programa.: RotinaEd.PAS
-   Copyright: Modular Software 2006
+   CopyrightRotinaEd: Modular Software 2006
             : Todos os direitos reservados
    Site.....: http://www.xmaker.com.br
 }
-unit RotinaEd;
+unit RotinaEd ;
 
 interface
 
@@ -20,8 +20,14 @@ uses
   {$IFDEF XSQL}
   XSEngine,
   {$ENDIF}
+  IBQuery,  DateUtils,
   RXDBCtrl, ToolEdit, DBRichEd;
-
+  {
+  StdCtrls, Buttons, ExtCtrls, BaseD, Atributo, Tabela, Menus, Calculos, db,
+  XLookUp, XDBDate, Mask, XDate, XEdit, XNum, FR_DSet, FR_DBSet, FR_Class, FR_Desgn,
+  Tabs, comctrls, XBanner, checklst, Grids, DBGrids, DBCtrls,
+  IBCustomDataSet, IBQuery, RXDBCtrl;
+  }
 type
   TConsultasSalvas = class
     CsFiltro: String;
@@ -102,10 +108,25 @@ procedure ExecutaPreValidacoes(TabelaPrincipal: TTabela; Formulario: TForm; List
 procedure ExecutaPreValidacoesGrid(Tabela: TTabela);
 function LocalizaTabela(Nome: String): TTabela;
 procedure DBGridZebrado(DBGrid: TDBGrid; const Rect: TRect; Column: TColumn; State: TGridDrawState; Condicao: Boolean; CorLinha: TColor = $00DFDF00; CorSelecao: TColor = clNavy);
+// charles
+//procedure Cria_MSG(sMsg, sTexto,sGrupo          :STRING ;iNUMPED :INTEGER );
+//procedure Cria_MSG_FUNC(sMsg ,  sTexto,sGrupo :STRING   ;iFUNCOD,iNUMPED  :INTEGER );
+
+//
+//procedure atualiza_status(sMsg :STRING  );
+procedure Atualiza_ST(sContrato , sStatus :STRING  );
+
+function PaisForn():string ;
+
+procedure Carrega_CB(CBox1:TComboBox;CBox2:TComboBox;sql: string;campo: string;Self : Tcomponent);
+
+
+function  Get_Fatura( ) : string ;
+function  Get_NumOrdCobranca():string ;
 
 implementation
 
-uses Abertura, GridPesquisa, Pesquisa_Ed;
+uses Abertura, GridPesquisa, Pesquisa_Ed,  Estrutur;
 
 constructor TConsultasSalvas.Create(PFiltro, PTitulo, POrdenacao: String; ListCampos: String);
 begin
@@ -120,6 +141,8 @@ begin
   inherited Destroy;
 end;
 
+
+
 // Inicialização de Campos \\
 procedure AtribuiGridEdicao(Tabela: TTabela; Grid: TDBGrid; Editavel: Boolean; EventoValidacao: TFieldNotifyEvent);
 var
@@ -128,7 +151,9 @@ var
   I, Y: Integer;
   CampoED: TAtributo;
   TabelaP: TTabela;
+  s_nome : string ;
 begin
+  s_nome := '' ; 
   Opcoes := Grid.Options;
   exclude(Opcoes, dgTabs);
   if Editavel then
@@ -147,6 +172,8 @@ begin
         Grid.Columns[CampoED.Valor.Index].ButtonStyle := cbsEllipsis
       else if CampoED.ValorValido.Count > 0 then
       begin
+
+        s_nome := Grid.Columns[CampoED.Valor.Index].FieldName;
         Grid.Columns[CampoED.Valor.Index].PickList.Clear;
         Grid.Columns[CampoED.Valor.Index].PickList.AddStrings(CampoED.ValorValido);
       end;
@@ -2325,6 +2352,112 @@ begin
         DefaultDrawDataCell(Rect,Column.Field,State);
       end;
     end;
+end;
+
+//function Carrega_CB(CBox1,CBox2: TComboBox;sql,campo: string);
+procedure Carrega_CB(CBox1:TComboBox;CBox2:TComboBox;sql: string;campo: string;Self : Tcomponent);
+var
+  Tabela: TIBQuery;
+begin
+  Tabela := TIBQuery.Create(Self);
+//  Tabela.Database := BaseDados.BD_PlannerAdmin; //  .BD_Base_Dados;
+  Tabela.Database := BaseDados.BD_Base_Dados;
+  Tabela.SQL.Add(sql);
+  Tabela.Prepare ;
+  Tabela.Open;
+  WHILE NOT Tabela.Eof DO
+  BEGIN
+       IF CBox1 <> NIL THEN
+          if not Tabela.FieldByName(campo).IsNull  then
+             cBox1.items.add(Tabela.FieldByName(campo).Value) ;
+       IF CBox2 <> NIL THEN
+          if not Tabela.FieldByName(campo).IsNull then
+             CBox2.items.add(Tabela.FieldByName(campo).Value) ;
+       Tabela.Next;
+  END;
+  Tabela.Close ;
+  Tabela.Free;
+end;
+
+function PaisForn():string ;
+begin
+  if TabGlobal.DFornecedores.ID.Conteudo <> '' then
+     PaisForn := TabGlobal.DFornecedores.ID.Conteudo ;
+end;
+
+procedure Atualiza_ST(sContrato , sStatus :STRING  );
+begin
+ //  PTabela(TTabGlobal.DContratoTransporte,[Contrato],[sContrato], 'StatusCT =' AtribuiAspas(sStatus) );
+ //  PTabela(TabGlobal.DContratoTransporte, ['Contrato'],[sContrato], 'StatusCT ='+ AtribuiAspas(sStatus)) ;
+ if TabGlobal.DContratoTransporte.Contrato.Conteudo =  sContrato then begin
+    // verifica se nao esta editando
+    if not ((TabGlobal.DContratoTransporte.State = dsEdit) or ( TabGlobal.DContratoTransporte.State = dsInsert )) then begin
+       TabGlobal.DContratoTransporte.Modifica ;
+       TabGlobal.DContratoTransporte.StatusCT.Conteudo := sStatus ;
+       TabGlobal.DContratoTransporte.Salva ;
+    end
+    else
+       TabGlobal.DContratoTransporte.StatusCT.Conteudo := sStatus ;
+ end
+ else
+    PTabela(TabGlobal.DContratoTransporte, ['Contrato'],[sContrato], 'StatusCT ='+ AtribuiAspas(sStatus)) ;
+
+end;
+
+function  Get_Fatura():string ;
+var
+   i_ano, i_seq  : integer  ;
+   s_faturnaNova, s_faturnaGrava : string  ;
+begin
+ if TabGlobal.DPARAMETROS.FindField('NumFatura').IsNull  then begin
+    i_ano :=  YearOf(date) ;
+    i_seq := 0 ;
+ end
+ else begin
+    // recupera o ano
+   i_ano := strtoint (copy ( TabGlobal.DPARAMETROS.NumFatura.ValorString , 1, 4)) ;
+   // recupera a seq
+   i_seq := strtoint (copy ( TabGlobal.DPARAMETROS.NumFatura.ValorString , 5, 4)) + 1 ;
+   // determina mudanca de ano
+   if i_ano < YearOf(date) then
+      i_ano :=  YearOf(date) ;
+ end;
+ s_faturnaNova  := trim(StrZero( i_seq ,4 )) + trim(inttostr( i_ano ))  ;
+ s_faturnaGrava := trim(inttostr( i_ano )) + trim(StrZero( i_seq ,4 ))  ;
+ TabGlobal.DPARAMETROS.Modifica ;
+ TabGlobal.DPARAMETROS.NumFatura.Conteudo := strtoint (s_faturnaGrava );
+ TabGlobal.DPARAMETROS.Salva ;
+
+ Get_Fatura := s_faturnaNova ;
+
+end;
+
+function  Get_NumOrdCobranca():string ;
+var
+   i_ano, i_seq  : integer  ;
+   s_faturnaNova, s_faturnaGrava : string  ;
+begin
+ if TabGlobal.DPARAMETROS.FindField('NumOrdCobranca').IsNull  then begin
+    i_ano :=  YearOf(date) ;
+    i_seq := 0 ;
+ end
+ else begin
+    // recupera o ano
+   i_ano := strtoint (copy ( TabGlobal.DPARAMETROS.NumOrdCobranca.ValorString , 1, 4)) ;
+   // recupera a seq
+   i_seq := strtoint (copy ( TabGlobal.DPARAMETROS.NumOrdCobranca.ValorString , 5, 4)) + 1 ;
+   // determina mudanca de ano
+   if i_ano < YearOf(date) then
+      i_ano :=  YearOf(date) ;
+ end;
+ s_faturnaNova  := trim(StrZero( i_seq ,4 )) + trim(inttostr( i_ano ))  ;
+ s_faturnaGrava := trim(inttostr( i_ano )) + trim(StrZero( i_seq ,4 ))  ;
+ TabGlobal.DPARAMETROS.Modifica ;
+ TabGlobal.DPARAMETROS.NumOrdCobranca.Conteudo :=  (s_faturnaGrava );
+ TabGlobal.DPARAMETROS.Salva ;
+
+ Get_NumOrdCobranca := s_faturnaNova ;
+
 end;
 
 end.

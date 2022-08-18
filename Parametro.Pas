@@ -1,8 +1,8 @@
 {
    Programa.: Parametro.PAS
    Copyright: Modular Software 2006
-            : Todos os direitos reservados
-   Site.....: http://www.xmaker.com.br
+            : Todos os direitos reservados      RxDBGrid1
+   Site.....: htunit Parametro;tp://www.xmaker.com.br
 }
 unit Parametro;
 
@@ -10,39 +10,154 @@ interface
 
 {$I Princ.inc}
 
+
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ExtCtrls, ComCtrls, Tabs, BaseD, Db, Grids, DBGrids,
   {$IFDEF DELPHI5}{$ELSE}Variants, MaskUtils,{$ENDIF}
   Atributo, dbctrls, Clipbrd, Tabela, Menus, IniFiles, Printers, Calculos,
   {$I LTab.pas}
-  JPeg, XLookUp, XDBDate, Mask, XDBEdit, XDBNum, XEdit, XBanner, XDate, XNum;
+  JPeg, XLookUp, XDBDate, Mask, XDBEdit, XDBNum, XEdit, XBanner, XDate, XNum, ColorGrd, 
+  XLabel3D, RxCombos, IBQuery, RXDBCtrl, IBCustomDataSet , UCMS_CONST,
+  JvExButtons, JvBitBtn;
+
+const
+s_analise =
+'select * ' +   NOVA_LINHA +
+'from ( ' +     NOVA_LINHA +
+  'select ' +   NOVA_LINHA +
+  '  contratotransporte.contrato , ' +  NOVA_LINHA +
+  '  contratotransporte.ValorSCCTotal , ' + NOVA_LINHA +
+  '  (( select sum(produtocontratot.ValorSCC) from produtocontratot  where produtocontratot.contrato = contratotransporte.contrato )) as ValorSCC_TOTAL_PRODUTO, ' + NOVA_LINHA +
+  '  contratotransporte.ValorTotalExp ,' + NOVA_LINHA +
+  '  (( select sum(ExportadoTransito.Valor) from ExportadoTransito  where ExportadoTransito.contrato = contratotransporte.contrato )) as Valor_TOTAL_exportado,' + NOVA_LINHA +
+  '  contratotransporte.quantidadetotal as Qunat_Total_Contrato, ' + NOVA_LINHA +
+  '  (( select sum(produtocontratot.quantidade) from produtocontratot  where produtocontratot.contrato = contratotransporte.contrato )) as Qunat_Total_Produto, ' + NOVA_LINHA +
+  '  contratotransporte.QUANTTOTALEXP as Qunat_Total_Exp_Contrato, ' + NOVA_LINHA +
+  '  (( select sum(EXPORTADOTRANSITO.QUANTIDADEEXP)  from EXPORTADOTRANSITO  where EXPORTADOTRANSITO.contrato = contratotransporte.contrato  ))  as Qunat_Total_Ja_Exportada ' + NOVA_LINHA +
+  'from contratotransporte) as analise '+ NOVA_LINHA +
+  ' where ( Qunat_Total_Contrato < Qunat_Total_Produto ) OR '+ NOVA_LINHA +
+  '       ( ValorSCCTotal <  ValorSCC_TOTAL_PRODUTO )  OR  '+ NOVA_LINHA +
+  '       ( Qunat_Total_Exp_Contrato < 0  ) or '+ NOVA_LINHA +
+  '       ( Qunat_Total_Exp_Contrato < Qunat_Total_Ja_Exportada ) '+ NOVA_LINHA +
+  ' OR    (  ValorTotalExp <  Valor_TOTAL_exportado ) '+ NOVA_LINHA +
+  ' ORDER BY CONTRATO';
+
+sc_sql_recebimento =
+'select '+ NOVA_LINHA +
+'       tmp.contrato , '+ NOVA_LINHA +
+'       tmp.Fecha_de_Cobro ,'+ NOVA_LINHA +
+'       tmp.Fatura ,'+ NOVA_LINHA +
+'       tmp.Recebimento '+ NOVA_LINHA +
+'from (  '+ NOVA_LINHA +
+'SELECT  '+ NOVA_LINHA +
+'       ExportadoTransito.contrato as contrato , '+ NOVA_LINHA +
+'       ExportadoTransito.Recebimento  as   Fecha_de_Cobro , '+ NOVA_LINHA +
+'       ExportadoTransito.Fatura as Fatura ,  '+ NOVA_LINHA +
+'      ( select OrdemCobranca.Recebimento from OrdemCobranca where OrdemCobranca.NumOrdCobranca = ExportadoTransito.NumOrdCobranca ) as Recebimento'+ NOVA_LINHA +
+' from   ExportadoTransito) as tmp'+ NOVA_LINHA +
+' where  tmp.Recebimento is not null  and  tmp.Fatura     <> ''''  '+ NOVA_LINHA +
+//' where  tmp.Fecha_de_Cobro is null  and tmp.Recebimento is not null  and  tmp.Fatura     <> ''''  '+ NOVA_LINHA +
+
+' order by   tmp.Recebimento'+ NOVA_LINHA ;
+
+s_analise_FIN =
+   'select                                                                                       '+ NOVA_LINHA + 
+   'ordemcobrancaprodexp.NUMORDCOBRANCA,                                                         '+ NOVA_LINHA +
+   '/* OrdemCobranca.NUMORDCOBRANCA , */                                                         '+ NOVA_LINHA +
+   'exportadotransito.NUMORDCOBRANCA ,                                                           '+ NOVA_LINHA +
+   '/*ordemcobrancaprodexp.CONTRATO, */                                                          '+ NOVA_LINHA +
+   'exportadotransito.CONTRATO ,                                                                 '+ NOVA_LINHA +
+   '/* ordemcobrancaprodexp.SEQ, */                                                              '+ NOVA_LINHA +
+   'exportadotransito.SEQ ,                                                                      '+ NOVA_LINHA +
+   'ordemcobrancaprodexp.COMISAOSFATURA,                                                         '+ NOVA_LINHA +
+   'exportadotransito.COMISAOSFATURA ,                                                           '+ NOVA_LINHA +
+   'ordemcobrancaprodexp.VALORCONVERTIDO,                                                        '+ NOVA_LINHA +
+   'exportadotransito.VALORCONVERTIDO ,                                                          '+ NOVA_LINHA +
+   'OrdemCobranca.DATAFATURA,                                                                    '+ NOVA_LINHA +
+   'OrdemCobranca.STATUS,                                                                        '+ NOVA_LINHA +
+   'exportadotransito.STATUS ,                                                                   '+ NOVA_LINHA +
+   'OrdemCobranca.NUMNFEMIT,                                                                     '+ NOVA_LINHA +
+   'exportadotransito.NUMNFEMIT ,                                                                '+ NOVA_LINHA +
+   'OrdemCobranca.DATANF,                                                                        '+ NOVA_LINHA +
+   'exportadotransito.DATANF ,                                                                   '+ NOVA_LINHA +
+   'OrdemCobranca.COMENTARIO,                                                                    '+ NOVA_LINHA +
+   'exportadotransito.COMENTARIO ,                                                               '+ NOVA_LINHA +
+   'OrdemCobranca.VALOR_NF,                                                                      '+ NOVA_LINHA +
+   'exportadotransito.VALOR_NF ,                                                                 '+ NOVA_LINHA +
+   'OrdemCobranca.DATALIQ,                                                                       '+ NOVA_LINHA +
+   'exportadotransito.DATALIQ ,                                                                  '+ NOVA_LINHA +
+   'OrdemCobranca.RECEBIMENTO,                                                                   '+ NOVA_LINHA +
+   'exportadotransito.RECEBIMENTO                                                                '+ NOVA_LINHA +
+   'from                                                                                         '+ NOVA_LINHA +
+   '      ordemcobrancaprodexp , ordemcobranca , exportadotransito                               '+ NOVA_LINHA +
+   'where                                                                                        '+ NOVA_LINHA +
+   '    /* not ( ordemcobranca.NUMNFEMIT = exportadotransito.NUMNFEMIT = null )   and */         '+ NOVA_LINHA +
+   '    (( exportadotransito.NUMNFEMIT IS NULL AND  NOT ( ordemcobranca.NUMNFEMIT  IS NULL )) OR '+ NOVA_LINHA +
+   '    ( exportadotransito.DATANF IS NULL AND  NOT ( ordemcobranca.DATANF  IS NULL ))) AND      '+ NOVA_LINHA +
+   '    ( exportadotransito.contrato = ordemcobrancaprodexp.contrato and                         '+ NOVA_LINHA +
+   '     exportadotransito.seq = ordemcobrancaprodexp.seq    and                                 '+ NOVA_LINHA +
+   '     ordemcobranca.numordcobranca = ordemcobrancaprodexp.numordcobranca   )                  '+ NOVA_LINHA ;
+ //  '    /* AND ordemcobrancaprodexp.contrato = '7439'  ) */                                      '+ NOVA_LINHA ;
 
 type
   TFormParametro = class(TForm)
     AbaConsulta: TTabSet;
     AbrirImagem: TMenuItem;
+    BitBtn1: TBitBtn;
     BtnDesistir: TBitBtn;
     BtnModificar: TSpeedButton;
     BtnRefresh: TSpeedButton;
     BtnSalvar: TBitBtn;
     BtnTabela: TSpeedButton;
     ColarImagem: TMenuItem;
+    ColorDialog1: TColorDialog;
+    ColorGrid1: TColorGrid;
     CopiarImagem: TMenuItem;
     CortarImagem: TMenuItem;
     DataSource: TDataSource;
+    DS_analise: TDataSource;
     Divisao_inf: TPanel;
     Divisao_sup: TPanel;
     DlgAbrirImagem: TOpenDialog;
     DlgSalvarComoImagem: TSaveDialog;
     ENDERECOEMPRESA: TDBMemo;
     GridConsulta: TDBGrid;
+    IBQuery_Analise: TIBQuery;
     Img_Form: TImage;
     Img_Tabela: TImage;
+    IRRF: TXDBNumEdit;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label2: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     LbcENDERECOEMPRESA: TLabel;
+    LbcIRRF: TLabel;
     LbcNumFatura: TLabel;
     LbcNumNFEmit: TLabel;
+    LbcNumOrdCobranca: TLabel;
+    LbcPIS_COF_CSSL: TLabel;
+    LbcSeqPara: TLabel;
     LbcTEXTOFATURA: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     mnu_ApagarColuna: TMenuItem;
@@ -61,6 +176,7 @@ type
     NoManutencao: TNotebook;
     NumFatura: TXDBNumEdit;
     NumNFEmit: TXDBNumEdit;
+    NumOrdCobranca: TXDBEdit;
     PageForm: TNotebook;
     Pagina0: TScrollBox;
     Pagina1: TScrollBox;
@@ -74,17 +190,34 @@ type
     Pagina8: TScrollBox;
     Pagina9: TScrollBox;
     PgPagina1: TScrollBox;
+    PIS_COF_CSSL: TXDBNumEdit;
     PnInferior: TPanel;
     PnSuperior: TPanel;
     PopConsulta: TPopupMenu;
+    RxDBGrid1: TRxDBGrid;
     SalvarImagem: TMenuItem;
+    SeqPara: TXDBNumEdit;
     StatusBar: TStatusBar;
     TabPaginas: TTabSet;
     TEXTOFATURA: TDBMemo;
+    Usuario: TXDBEdit;
+    DBNavigator1: TDBNavigator;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    bitbtn_correcao: TJvBitBtn;
+    btn_correcao_exp: TButton;
+    btn_exib: TButton;
     procedure TEXTOFATURAExit(Sender: TObject);
     procedure NumNFEmitExit(Sender: TObject);
     procedure NumFaturaExit(Sender: TObject);
     procedure ENDERECOEMPRESAExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
+    procedure SeqParaExit(Sender: TObject);
+    procedure NumOrdCobrancaExit(Sender: TObject);
+    procedure IRRFExit(Sender: TObject);
+    procedure PIS_COF_CSSLExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
@@ -123,6 +256,10 @@ type
     procedure GridConsultaDblClick(Sender: TObject);
     procedure BtnRefreshClick(Sender: TObject);
     procedure TEXTOFATURAChange(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure bitbtn_correcaoClick(Sender: TObject);
+    procedure btn_correcao_expClick(Sender: TObject);
+    procedure btn_exibClick(Sender: TObject);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -159,6 +296,8 @@ type
     procedure CamposCalculados;
     procedure BotoesManutencao(Habilita: Boolean);
     procedure HabilitaEdicao(Habilita: Boolean = true);
+    procedure Correcao_dados;
+    procedure Correcao_dados_FATURA ;
   public
     { Public declarations }
     {03-Início do Bloco Modular. Modificações não serão preservadas}
@@ -176,7 +315,7 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa;
+uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa ;
 
 procedure TFormParametro.Inicializa;
 begin
@@ -199,6 +338,11 @@ begin
   if not TabelaPrincipal.Active then
     TabelaPrincipal.AtualizaSql;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DParametros, TabGlobal.DParametros.PIS_COF_CSSL, -2, PIS_COF_CSSLExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DParametros, TabGlobal.DParametros.IRRF, -2, IRRFExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DParametros, TabGlobal.DParametros.NumOrdCobranca, -2, NumOrdCobrancaExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DParametros, TabGlobal.DParametros.SeqPara, -1, SeqParaExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DParametros, TabGlobal.DParametros.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DPARAMETROS, TabGlobal.DPARAMETROS.ENDERECOEMPRESA, -2, ENDERECOEMPRESAExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DPARAMETROS, TabGlobal.DPARAMETROS.NumFatura, -2, NumFaturaExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DPARAMETROS, TabGlobal.DPARAMETROS.NumNFEmit, -2, NumNFEmitExit, Nil, ListaCamposEd, FormParametro, DataSource, ChamaGridPesquisa);
@@ -232,6 +376,16 @@ begin
   HabilitaBotoesEdicao(False);
   if PageForm.PageIndex = 0 then
     TelaManutencao;
+
+  IBQuery_Analise.Database  := TabGlobal.DPARAMETROS.DataBase ;
+  IBQuery_Analise.transaction := TabGlobal.DPARAMETROS.Transaction ;
+
+  IBQuery_Analise.SQL.Clear ;
+  IBQuery_Analise.SQL.Add(s_analise) ;
+  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise.SQL');
+  IBQuery_Analise.Prepare ;
+  IBQuery_Analise.Open ;
+
 end;
 
 procedure TFormParametro.HabilitaBotoesEdicao(Valor: Boolean = True);
@@ -956,6 +1110,378 @@ begin
     ErroValidacaoCampo(MsgErro, TabGlobal.DPARAMETROS.ENDERECOEMPRESA);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DParametros.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DParametros.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.SeqParaExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DParametros.SeqPara.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DParametros.SeqPara);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.NumOrdCobrancaExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DParametros.NumOrdCobranca.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DParametros.NumOrdCobranca);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.IRRFExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DParametros.IRRF.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DParametros.IRRF);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.PIS_COF_CSSLExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DParametros.PIS_COF_CSSL.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DParametros.PIS_COF_CSSL);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormParametro.BitBtn1Click(Sender: TObject);
+{utilize o "var" para declarar variáveis}
+var
+  n_reg : integer ;
+begin
+  Screen.Cursor := crHourGlass;
+  Refresh ;
+  {codificação...}
+  n_reg :=  IBQuery_Analise.RecordCount;
+  if VNivel then begin
+     if n_reg > 0 then
+        correcao_dados;
+  end;
+  IBQuery_Analise.close;
+  IBQuery_Analise.Open ;
+  Screen.Cursor := crDefault;
+end;
+
+procedure TFormParametro.correcao_dados;
+var
+  s_tab : boolean ;
+  s_filtro , n_filtro  : string ;
+begin
+  Screen.Cursor := crHourGlass;
+  try
+  s_tab := TabGlobal.DContratoTransporte.Active;
+  s_filtro := TabGlobal.DContratoTransporte.Filtro.Text ;
+  while not IBQuery_Analise.Eof do begin
+      TabGlobal.DContratoTransporte.Active := false ;
+      n_filtro := 'contrato = '+ AtribuiAspas (IBQuery_Analise.FieldValues['contrato'])  ;
+
+      TabGlobal.DContratoTransporte.Filtro.Clear ;
+      TabGlobal.DContratoTransporte.Filtro.Add(n_filtro);
+      TabGlobal.DContratoTransporte.AtualizaSql;
+      TabGlobal.DContratoTransporte.AtribuiRelacionamentos;
+      //contratotransporte.quantidadetotal
+      TabGlobal.DContratoTransporte.Modifica ;
+      if IBQuery_Analise.FieldValues['Qunat_Total_Produto'] > IBQuery_Analise.FieldValues['Qunat_Total_Contrato'] then
+         TabGlobal.DContratoTransporte.QuantidadeTotal.Conteudo := IBQuery_Analise.FieldValues['Qunat_Total_Produto'];
+      if IBQuery_Analise.FieldValues['Qunat_Total_Ja_Exportada'] > IBQuery_Analise.FieldValues['Qunat_Total_Exp_Contrato'] then
+         TabGlobal.DContratoTransporte.QUANTTOTALEXP.Conteudo := IBQuery_Analise.FieldValues['Qunat_Total_Produto'];
+
+      // modificado 06/01/2012 correcao do problema contrato 7390
+      if  IBQuery_Analise.FieldValues['Qunat_Total_Exp_Contrato'] < 0 then
+          TabGlobal.DContratoTransporte.QUANTTOTALEXP.Conteudo := 0 ; //IBQuery_Analise.FieldValues['Qunat_Total_Ja_Exportada'];
+
+      // modificado 08/01/2012 correcao do problema contrato 7390
+      if ( IBQuery_Analise.FieldValues['Qunat_Total_Exp_Contrato'] < IBQuery_Analise.FieldValues['Qunat_Total_Ja_Exportada'] ) then
+          TabGlobal.DContratoTransporte.QUANTTOTALEXP.Conteudo := IBQuery_Analise.FieldValues['Qunat_Total_Ja_Exportada'];
+
+//  '  contratotransporte.ValorSCCTotal , ' +
+//  ' (( select sum(produtocontratot.ValorSCC) from produtocontratot  where produtocontratot.contrato = contratotransporte.contrato )) as ValorSCC_TOTAL_PRODUTO, ' +
+
+      if IBQuery_Analise.FieldValues['ValorSCC_TOTAL_PRODUTO'] > IBQuery_Analise.FieldValues['ValorSCCTotal'] then
+         TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo := IBQuery_Analise.FieldValues['ValorSCC_TOTAL_PRODUTO'];
+// 20/02/2013 correcao carrina atualizar com a versao 20/02/2013 3.25
+      if IBQuery_Analise.FieldValues['Valor_TOTAL_exportado'] > IBQuery_Analise.FieldValues['ValorTotalExp'] then
+         TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo := IBQuery_Analise.FieldValues['Valor_TOTAL_exportado'];
+
+
+      TabGlobal.DContratoTransporte.Salva ;
+
+      TabGlobal.DProdutoContratoT.First ;
+      while not TabGlobal.DProdutoContratoT.Eof do begin
+         TabGlobal.DProdutoContratoT.Modifica;
+         TabGlobal.DProdutoContratoT.Salva ;
+         TabGlobal.DProdutoContratoT.Next ;
+      end;
+
+      TabGlobal.DEXPORTADOTRANSITO.First ;
+      while not TabGlobal.DEXPORTADOTRANSITO.Eof do begin
+         TabGlobal.DEXPORTADOTRANSITO.Modifica;
+         TabGlobal.DEXPORTADOTRANSITO.Salva ;
+         TabGlobal.DEXPORTADOTRANSITO.Next ;
+      end;
+
+      IBQuery_Analise.Next ;
+  end;
+  // retorna a condicao anterior
+  TabGlobal.DContratoTransporte.Active := false;
+  TabGlobal.DContratoTransporte.Filtro.Clear ;
+  TabGlobal.DContratoTransporte.Filtro.add(s_filtro) ;
+  if not s_tab then
+     TabGlobal.DContratoTransporte.AtualizaSql(false)
+  else begin
+     TabGlobal.DContratoTransporte.AtualizaSql();
+     TabGlobal.DContratoTransporte.AtribuiRelacionamentos();
+  end;
+  finally
+  Screen.Cursor := crDefault;
+  end;
+end;
+// 01/05/2012
+procedure TFormParametro.bitbtn_correcaoClick(Sender: TObject);
+var
+   t_tabela : TTabela ;
+   s_contrato , s_fatura , s_filtro , s_tmp : string ;
+   n_ind , n_reg : Integer ;
+begin
+   n_ind := 0;
+   n_reg := 0  ;
+   Screen.Cursor := crHourGlass;
+   t_tabela := TTabela.Create(Self) ;
+   t_tabela.DataBase:= TabGlobal.DParametros.DataBase;
+   t_tabela.Transaction := TabGlobal.DParametros.Transaction;
+   t_tabela.SQL.Clear ;
+   t_tabela.SQL.Add(sc_sql_recebimento) ;
+   t_tabela.SQL.SaveToFile('sc_sql_recebimento.sql') ;
+   t_tabela.Prepare ;
+   t_tabela.Open ;
+
+   t_tabela.Last ;
+   n_reg := t_tabela.RecNo ;
+   t_tabela.First ;
+   s_tmp := bitbtn_correcao.Caption ;
+   while not t_tabela.Eof do
+   begin
+     n_ind := n_ind + 1 ;
+     bitbtn_correcao.Caption := 'Num:= '+   formatfloat ( '00.00 %',( n_ind/ n_reg * 100) ) ; // + '%' ;
+     bitbtn_correcao.Refresh ;
+
+     s_contrato := AtribuiAspas(t_tabela.FieldByName('contrato').Value) ;
+     s_Fatura   := AtribuiAspas(t_tabela.FieldByName('Fatura').Value );
+     s_filtro := ' Fatura.contrato = '+s_contrato + ' and Fatura.fatura = '  +  s_Fatura ;
+     TabGlobal.DFatura.close ;
+     TabGlobal.DFatura.Filtro.Clear ;
+     TabGlobal.DFatura.Filtro.Add(s_filtro)   ;
+     TabGlobal.DFatura.AtualizaSql;
+     TabGlobal.DFatura.SQL.SaveToFile('l_fatura.sql');
+    // l_fatura.Prepare ;
+    // l_fatura.Open  ;
+     while not TabGlobal.DFatura.Eof do begin
+        TabGlobal.DFatura.Modifica ;
+        // TabGlobal.DFatura.ComisaoSFatura.Conteudo := 0 ;
+        TabGlobal.DFatura.Recebimento.Conteudo :=  t_tabela.FieldByName('Recebimento').Value ;
+        TabGlobal.DFatura.Salva ;
+        TabGlobal.DFatura.Next ;
+     end;
+     TabGlobal.DFatura.Close ;
+
+     t_tabela.Next ;
+
+   end;
+
+   TabGlobal.DFatura.Filtro.Clear ;
+   TabGlobal.DFatura.AtualizaSql;
+   t_tabela.Close ;
+   t_tabela.Free ;
+   bitbtn_correcao.Caption := s_tmp  ;
+   Screen.Cursor := crDefault ;
+end;
+{
+procedure TFormParametro.bitbtn_correcaoClick(Sender: TObject);
+var
+   t_tabela : TTabela ;
+   s_contrato , s_fatura , s_filtro , s_tmp : string ;
+//   l_fatura : TDExportadoTransito ;
+   n_ind , n_reg : Integer ;
+begin
+   n_ind := 0;
+   n_reg := 0  ;
+   Screen.Cursor := crHourGlass;
+//   l_fatura := TDExportadoTransito.Create(Self) ;
+//   l_fatura.DataBase:= TabGlobal.DParametros.DataBase;
+//   l_fatura.Transaction := TabGlobal.DParametros.Transaction;
+   t_tabela := TTabela.Create(Self) ;
+   t_tabela.DataBase:= TabGlobal.DParametros.DataBase;
+   t_tabela.Transaction := TabGlobal.DParametros.Transaction;
+   t_tabela.SQL.Clear ;
+   t_tabela.SQL.Add(sc_sql_recebimento) ;
+   t_tabela.SQL.SaveToFile('sc_sql_recebimento.sql') ;
+   t_tabela.Prepare ;
+   t_tabela.Open ;
+ //  n_reg := t_tabela.RecNo ;
+ //  n_reg := t_tabela.RecordCount ;
+
+   t_tabela.Last ;
+   n_reg := t_tabela.RecNo ;
+   //n_reg := t_tabela.RecordCount ;
+   t_tabela.First ;
+   s_tmp := bitbtn_correcao.Caption ;
+   while not t_tabela.Eof do
+   begin
+     n_ind := n_ind + 1 ;
+    // s_texto := 'Numero := '+ trim (floattostr( n_ind/ n_reg * 100) ) + '%' ;
+     bitbtn_correcao.Caption := 'Numero := '+ trim (floattostr( n_ind/ n_reg * 100) ) + '%' ;
+     bitbtn_correcao.Refresh ;
+
+     s_contrato := AtribuiAspas(t_tabela.FieldByName('contrato').Value) ;
+     s_Fatura   := AtribuiAspas(t_tabela.FieldByName('Fatura').Value );
+     s_filtro := ' Fatura.contrato = '+s_contrato + ' and Fatura.fatura = '  +  s_Fatura ;
+     l_fatura.Filtro.Clear ;
+     l_fatura.Filtro.Add(s_filtro)   ;
+     l_fatura.AtualizaSql;
+     l_fatura.SQL.SaveToFile('l_fatura.sql');
+    // l_fatura.Prepare ;
+    // l_fatura.Open  ;
+     while not l_fatura.Eof do begin
+        l_fatura.Modifica ;
+        TabGlobal.DFatura.ComisaoSFatura.Conteudo = 0
+        l_fatura.Recebimento.Conteudo :=  t_tabela.FieldByName('Recebimento').Value ;
+        l_fatura.Salva ;
+        l_fatura.Next ;
+     end;
+     l_fatura.Close ;
+     t_tabela.Next ;
+
+   end;
+   l_fatura.Free;
+   t_tabela.Close ;
+   t_tabela.Free ;
+   bitbtn_correcao.Caption := s_tmp  ;
+   Screen.Cursor := crDefault ;
+end;
+
+}
+
+
+procedure TFormParametro.Correcao_dados_FATURA;
+var
+  s_tab : boolean ;
+  s_filtro , n_filtro  : string ;
+begin
+  Screen.Cursor := crHourGlass;
+  try
+  IBQuery_Analise.CLOSE ;
+  IBQuery_Analise.SQL.Clear ;
+  IBQuery_Analise.SQL.Add(s_analise_FIN) ;
+  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise_2.SQL');
+  IBQuery_Analise.Prepare ;
+  IBQuery_Analise.Open ;
+
+  s_tab := TabGlobal.DExportadoTransito.Active;
+  s_filtro := TabGlobal.DExportadoTransito.Filtro.Text ;
+
+  while not IBQuery_Analise.Eof do begin
+
+      n_filtro := 'ExportadoTransito.contrato = '+ AtribuiAspas (IBQuery_Analise.FieldByName('contrato').AsString )  ;
+      n_filtro := n_filtro + ' AND  ExportadoTransito.SEQ = '+ AtribuiAspas (IBQuery_Analise.FieldByName('SEQ').AsString )  ;
+
+      TabGlobal.DExportadoTransito.Close ;
+      TabGlobal.DExportadoTransito.Filtro.Clear ;
+      TabGlobal.DExportadoTransito.Filtro.Add(n_filtro);
+      TabGlobal.DExportadoTransito.AtualizaSql;
+
+      //contratotransporte.quantidadetotal
+      TabGlobal.DExportadoTransito.Modifica ;
+      // ANALISE DA INFORMACAO
+      // NUMORDCOBRANCA
+      IF TabGlobal.DExportadoTransito.FieldByName('NUMORDCOBRANCA').IsNull then
+         TabGlobal.DExportadoTransito.NUMORDCOBRANCA.Conteudo := IBQuery_Analise.FieldByName('NUMORDCOBRANCA').Value ;
+
+         
+      // VALORCONVERTIDO
+
+
+      IF TabGlobal.DExportadoTransito.FieldByName('VALORCONVERTIDO').IsNull then
+         TabGlobal.DExportadoTransito.VALORCONVERTIDO.Conteudo := IBQuery_Analise.FieldByName('VALORCONVERTIDO').Value
+      else
+         IF TabGlobal.DExportadoTransito.FieldByName('VALORCONVERTIDO').Value = 0 then
+            TabGlobal.DExportadoTransito.VALORCONVERTIDO.Conteudo := IBQuery_Analise.FieldByName('VALORCONVERTIDO').Value ;
+
+      //NUMNFEMIT
+      IF TabGlobal.DExportadoTransito.FieldByName('NUMNFEMIT').IsNull then
+         TabGlobal.DExportadoTransito.NUMNFEMIT.Conteudo := IBQuery_Analise.FieldByName('NUMNFEMIT').Value ;
+      // DATANF
+      IF TabGlobal.DExportadoTransito.FieldByName('DATANF').IsNull then
+         TabGlobal.DExportadoTransito.DATANF.Conteudo := IBQuery_Analise.FieldByName('DATANF').Value ;
+      // VALOR_NF
+      IF TabGlobal.DExportadoTransito.FieldByName('VALOR_NF').IsNull then
+         TabGlobal.DExportadoTransito.VALOR_NF.Conteudo := IBQuery_Analise.FieldByName('VALOR_NF').Value ;
+      // DATALIQ
+      IF TabGlobal.DExportadoTransito.FieldByName('DATALIQ').IsNull then
+         TabGlobal.DExportadoTransito.DATALIQ.Conteudo := IBQuery_Analise.FieldByName('DATALIQ').Value ;
+      // STATUS
+      IF not IBQuery_Analise.FieldByName('NUMNFEMIT').IsNull then
+         TabGlobal.DExportadoTransito.STATUS.Conteudo := '2';
+      // RECEBIMENTO
+      IF TabGlobal.DExportadoTransito.FieldByName('RECEBIMENTO').IsNull then
+         TabGlobal.DExportadoTransito.RECEBIMENTO.Conteudo := IBQuery_Analise.FieldByName('RECEBIMENTO').Value ;
+
+      TabGlobal.DExportadoTransito.Salva ;
+      IBQuery_Analise.Next ;
+  end;
+
+
+  // retorna a condicao anterior
+
+  TabGlobal.DExportadoTransito.Active := false;
+  TabGlobal.DExportadoTransito.Filtro.Clear ;
+  TabGlobal.DExportadoTransito.Filtro.add(s_filtro) ;
+  if not s_tab then
+     TabGlobal.DExportadoTransito.AtualizaSql(false)
+  else begin
+     TabGlobal.DExportadoTransito.AtualizaSql();
+     TabGlobal.DExportadoTransito.AtribuiRelacionamentos();
+  end;
+  finally
+  Screen.Cursor := crDefault;
+  end;
+end;
+
+procedure TFormParametro.btn_correcao_expClick(Sender: TObject);
+begin
+  Correcao_dados_FATURA ;
+end;
+
+procedure TFormParametro.btn_exibClick(Sender: TObject);
+begin
+  IBQuery_Analise.CLOSE ;
+  IBQuery_Analise.SQL.Clear ;
+  IBQuery_Analise.SQL.Add(s_analise_FIN) ;
+  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise_2.SQL');
+  IBQuery_Analise.Prepare ;
+  IBQuery_Analise.Open ;
 end;
 
 end.

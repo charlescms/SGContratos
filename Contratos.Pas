@@ -40,7 +40,7 @@ type
     DataEmbarque: TXDBEdit;
     DataSource: TDataSource;
     DataSource_Grid_Boocking: TDataSource;
-    DataSource_Grid_ExpotadoTransito: TDataSource;
+    DataSource_Grid_ExportadoTransito: TDataSource;
     DataSource_Grid_PrudutoContratoT: TDataSource;
     DlgAbrirImagem: TOpenDialog;
     DlgSalvarComoImagem: TSaveDialog;
@@ -48,7 +48,7 @@ type
     FORCOD: TXDBNumEdit;
     FormComissao: TDBComboBox;
     Grid_Boocking: TDBGrid;
-    Grid_ExpotadoTransito: TDBGrid;
+    Grid_ExportadoTransito: TDBGrid;
     Grid_PrudutoContratoT: TDBGrid;
     GridConsulta: TDBGrid;
     ID: TXDBEdit;
@@ -189,10 +189,10 @@ type
     procedure Grid_BoockingColEnter(Sender: TObject);
     procedure Grid_BoockingExit(Sender: TObject);
     procedure Grid_BoockingEditButtonClick(Sender: TObject);
-    procedure Grid_ExpotadoTransitoDblClick(Sender: TObject);
-    procedure Grid_ExpotadoTransitoColEnter(Sender: TObject);
-    procedure Grid_ExpotadoTransitoExit(Sender: TObject);
-    procedure Grid_ExpotadoTransitoEditButtonClick(Sender: TObject);
+    procedure Grid_ExportadoTransitoDblClick(Sender: TObject);
+    procedure Grid_ExportadoTransitoColEnter(Sender: TObject);
+    procedure Grid_ExportadoTransitoExit(Sender: TObject);
+    procedure Grid_ExportadoTransitoEditButtonClick(Sender: TObject);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -273,15 +273,15 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
-  DataSource_Grid_ExpotadoTransito.DataSet := TabGlobal.DExpotadoTransito;
-  Grid_ExpotadoTransito.DataSource := DataSource_Grid_ExpotadoTransito;
-  AtribuiGridEdicao(TabGlobal.DExpotadoTransito, Grid_ExpotadoTransito, True, ValidaColunaGrid);
+  DataSource_Grid_ExportadoTransito.DataSet := TabGlobal.DExportadoTransito;
+  Grid_ExportadoTransito.DataSource := DataSource_Grid_ExportadoTransito;
+  AtribuiGridEdicao(TabGlobal.DExportadoTransito, Grid_ExportadoTransito, True, ValidaColunaGrid);
   DataSource_Grid_Boocking.DataSet := TabGlobal.DBoocking;
   Grid_Boocking.DataSource := DataSource_Grid_Boocking;
   AtribuiGridEdicao(TabGlobal.DBoocking, Grid_Boocking, True, ValidaColunaGrid);
-  DataSource_Grid_PrudutoContratoT.DataSet := TabGlobal.DPrudutoContratoT;
+  DataSource_Grid_PrudutoContratoT.DataSet := TabGlobal.DProdutoContratoT;
   Grid_PrudutoContratoT.DataSource := DataSource_Grid_PrudutoContratoT;
-  AtribuiGridEdicao(TabGlobal.DPrudutoContratoT, Grid_PrudutoContratoT, True, ValidaColunaGrid);
+  AtribuiGridEdicao(TabGlobal.DProdutoContratoT, Grid_PrudutoContratoT, True, ValidaColunaGrid);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.StatusCT, -2, StatusCTExit, Nil, ListaCamposEd, FormContratos, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.OBS, -2, OBSExit, Nil, ListaCamposEd, FormContratos, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ValorTotalComissao, -2, ValorTotalComissaoExit, Nil, ListaCamposEd, FormContratos, DataSource, ChamaGridPesquisa);
@@ -1367,7 +1367,7 @@ end;
 
 procedure TFormContratos.Grid_PrudutoContratoTColEnter(Sender: TObject);
 begin
-  if (TabGlobal.DPrudutoContratoT.State = dsInsert) and
+  if (TabGlobal.DProdutoContratoT.State = dsInsert) and
      (TabelaPrincipal.Inclusao) then
   begin
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
@@ -1375,30 +1375,30 @@ begin
     begin
       MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
       begin
-        TabGlobal.DPrudutoContratoT.Cancel;
+        TabGlobal.DProdutoContratoT.Cancel;
         exit;
       end;
     end;
     if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
     begin
-      TabGlobal.DPrudutoContratoT.Cancel;
+      TabGlobal.DProdutoContratoT.Cancel;
       exit;
     end;
     if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
     begin
-      TabGlobal.DPrudutoContratoT.Cancel;
+      TabGlobal.DProdutoContratoT.Cancel;
       exit;
     end
     else
       if not TabelaPrincipal.Modifica then
       begin
-        TabGlobal.DPrudutoContratoT.Cancel;
+        TabGlobal.DProdutoContratoT.Cancel;
         exit;
       end
       else
-        TabGlobal.DPrudutoContratoT.AtribuiMestre(TabGlobal.DPrudutoContratoT);
+        TabGlobal.DProdutoContratoT.AtribuiMestre(TabGlobal.DProdutoContratoT);
   end;
-  ExecutaPreValidacoesGrid(TabGlobal.DPrudutoContratoT);
+  ExecutaPreValidacoesGrid(TabGlobal.DProdutoContratoT);
   KeyPreview := False;
 end;
 
@@ -1415,9 +1415,9 @@ Var
 begin
   CampoGrid := Grid_PrudutoContratoT.SelectedField;
   if CampoGrid = Nil then exit;
-  for I:=0 to TabGlobal.DPrudutoContratoT.Campos.Count-1 do
+  for I:=0 to TabGlobal.DProdutoContratoT.Campos.Count-1 do
   begin
-    Campo := TAtributo(TabGlobal.DPrudutoContratoT.Campos[I]);
+    Campo := TAtributo(TabGlobal.DProdutoContratoT.Campos[I]);
     if Campo.Valor.FieldName = CampoGrid.FieldName then
       Break;
   end;
@@ -1427,7 +1427,7 @@ begin
     FormGridPesquisa.Atalho := VK_F8;
     FormGridPesquisa.Campo  := Campo;
     if FormGridPesquisa.ShowModal = mrOk then
-      ExecutaPreValidacoesGrid(TabGlobal.DPrudutoContratoT);
+      ExecutaPreValidacoesGrid(TabGlobal.DProdutoContratoT);
   Finally
     FormGridPesquisa.Free;
   end;
@@ -1527,7 +1527,7 @@ begin
   end;
 end;
 
-procedure TFormContratos.Grid_ExpotadoTransitoDblClick(Sender: TObject);
+procedure TFormContratos.Grid_ExportadoTransitoDblClick(Sender: TObject);
 begin
   if TabelaPrincipal.Inclusao then  // Garante integridade do uso em rede
   begin                             // salva o registro PAI para depois incluir os registros FILHO
@@ -1553,9 +1553,9 @@ begin
   end;
 end;
 
-procedure TFormContratos.Grid_ExpotadoTransitoColEnter(Sender: TObject);
+procedure TFormContratos.Grid_ExportadoTransitoColEnter(Sender: TObject);
 begin
-  if (TabGlobal.DExpotadoTransito.State = dsInsert) and
+  if (TabGlobal.DExportadoTransito.State = dsInsert) and
      (TabelaPrincipal.Inclusao) then
   begin
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
@@ -1563,49 +1563,49 @@ begin
     begin
       MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
       begin
-        TabGlobal.DExpotadoTransito.Cancel;
+        TabGlobal.DExportadoTransito.Cancel;
         exit;
       end;
     end;
     if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
     begin
-      TabGlobal.DExpotadoTransito.Cancel;
+      TabGlobal.DExportadoTransito.Cancel;
       exit;
     end;
     if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
     begin
-      TabGlobal.DExpotadoTransito.Cancel;
+      TabGlobal.DExportadoTransito.Cancel;
       exit;
     end
     else
       if not TabelaPrincipal.Modifica then
       begin
-        TabGlobal.DExpotadoTransito.Cancel;
+        TabGlobal.DExportadoTransito.Cancel;
         exit;
       end
       else
-        TabGlobal.DExpotadoTransito.AtribuiMestre(TabGlobal.DExpotadoTransito);
+        TabGlobal.DExportadoTransito.AtribuiMestre(TabGlobal.DExportadoTransito);
   end;
-  ExecutaPreValidacoesGrid(TabGlobal.DExpotadoTransito);
+  ExecutaPreValidacoesGrid(TabGlobal.DExportadoTransito);
   KeyPreview := False;
 end;
 
-procedure TFormContratos.Grid_ExpotadoTransitoExit(Sender: TObject);
+procedure TFormContratos.Grid_ExportadoTransitoExit(Sender: TObject);
 begin
   KeyPreview := True;
 end;
 
-procedure TFormContratos.Grid_ExpotadoTransitoEditButtonClick(Sender: TObject);
+procedure TFormContratos.Grid_ExportadoTransitoEditButtonClick(Sender: TObject);
 Var
   I: Integer;
   Campo: TAtributo;
   CampoGrid: TField;
 begin
-  CampoGrid := Grid_ExpotadoTransito.SelectedField;
+  CampoGrid := Grid_ExportadoTransito.SelectedField;
   if CampoGrid = Nil then exit;
-  for I:=0 to TabGlobal.DExpotadoTransito.Campos.Count-1 do
+  for I:=0 to TabGlobal.DExportadoTransito.Campos.Count-1 do
   begin
-    Campo := TAtributo(TabGlobal.DExpotadoTransito.Campos[I]);
+    Campo := TAtributo(TabGlobal.DExportadoTransito.Campos[I]);
     if Campo.Valor.FieldName = CampoGrid.FieldName then
       Break;
   end;
@@ -1615,7 +1615,7 @@ begin
     FormGridPesquisa.Atalho := VK_F8;
     FormGridPesquisa.Campo  := Campo;
     if FormGridPesquisa.ShowModal = mrOk then
-      ExecutaPreValidacoesGrid(TabGlobal.DExpotadoTransito);
+      ExecutaPreValidacoesGrid(TabGlobal.DExportadoTransito);
   Finally
     FormGridPesquisa.Free;
   end;

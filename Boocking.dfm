@@ -1,13 +1,13 @@
 object FormBoocking: TFormBoocking
-  Left = 218
-  Top = 278
+  Left = 269
+  Top = 144
   Width = 628
   Height = 272
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -19,20 +19,20 @@ object FormBoocking: TFormBoocking
   OnKeyPress = formkeypress
   OnKeyUp = formkeyup
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object Label2: TLabel
-    Left = 545
-    Top = 137
-    Width = 41
-    Height = 16
+    Left = 443
+    Top = 111
+    Width = 32
+    Height = 13
     Caption = 'Label2'
   end
   object NoManutencao: TNotebook
     Left = 0
     Top = 0
-    Width = 620
-    Height = 167
+    Width = 612
+    Height = 176
     Align = alClient
     TabOrder = 0
     object PgPrincipal: TPage
@@ -42,96 +42,108 @@ object FormBoocking: TFormBoocking
       object Pagina0: TScrollBox
         Left = 0
         Top = 0
-        Width = 620
-        Height = 167
+        Width = 612
+        Height = 176
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
         object LbcContrato: TLabel
-          Left = 12
-          Top = 5
-          Width = 50
-          Height = 16
+          Left = 10
+          Top = 4
+          Width = 40
+          Height = 13
           Caption = 'Contrato'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcSeq: TLabel
-          Left = 164
-          Top = 5
-          Width = 28
-          Height = 16
+          Left = 133
+          Top = 4
+          Width = 22
+          Height = 13
           Caption = 'Seq.'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcCadastro: TLabel
-          Left = 203
-          Top = 5
-          Width = 55
-          Height = 16
+          Left = 165
+          Top = 4
+          Width = 42
+          Height = 13
           Caption = 'Cadastro'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcNavio: TLabel
-          Left = 315
-          Top = 5
-          Width = 36
-          Height = 16
+          Left = 256
+          Top = 4
+          Width = 28
+          Height = 13
           Caption = 'Navio'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcQuantidade: TLabel
-          Left = 466
-          Top = 5
-          Width = 38
-          Height = 16
+          Left = 379
+          Top = 4
+          Width = 32
+          Height = 13
           Caption = 'Quant.'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcDataPrevista: TLabel
-          Left = 11
-          Top = 52
-          Width = 81
-          Height = 16
+          Left = 9
+          Top = 42
+          Width = 64
+          Height = 13
           Caption = 'Data Prevista'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcQuntTransp: TLabel
-          Left = 468
-          Top = 50
-          Width = 102
-          Height = 16
+          Left = 380
+          Top = 41
+          Width = 81
+          Height = 13
           Caption = 'Qt  TransPortada'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcSALDO: TLabel
-          Left = -7
-          Top = 6
-          Width = 45
-          Height = 16
+          Left = -5
+          Top = 5
+          Width = 36
+          Height = 13
           Alignment = taRightJustify
           Caption = 'SALDO'
           ParentShowHint = False
           ShowHint = True
         end
         object Label1: TLabel
-          Left = 473
-          Top = 100
-          Width = 85
-          Height = 16
+          Left = 384
+          Top = 81
+          Width = 69
+          Height = 13
           Caption = 'Qtd. Pendente'
         end
+        object LbcUsuario: TLabel
+          Left = 8
+          Top = 153
+          Width = 36
+          Height = 13
+          Alignment = taRightJustify
+          Caption = 'Usu'#225'rio'
+          ParentShowHint = False
+          ShowHint = True
+        end
         object Contrato: TXDBEdit
-          Left = 12
-          Top = 21
-          Width = 147
+          Left = 10
+          Top = 17
+          Width = 119
           Height = 21
+          Color = cl3DLight
+          Enabled = False
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
@@ -185,11 +197,13 @@ object FormBoocking: TFormBoocking
             0000}
         end
         object Seq: TXDBNumEdit
-          Left = 164
-          Top = 22
-          Width = 34
+          Left = 133
+          Top = 18
+          Width = 28
           Height = 21
           AutoHideCalculator = False
+          Color = cl3DLight
+          Enabled = False
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
             2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -242,9 +256,9 @@ object FormBoocking: TFormBoocking
           OnExit = SEQexit
         end
         object Cadastro: TXDBDateEdit
-          Left = 203
-          Top = 22
-          Width = 107
+          Left = 165
+          Top = 18
+          Width = 87
           Height = 21
           ParentShowHint = False
           ShowHint = True
@@ -306,9 +320,9 @@ object FormBoocking: TFormBoocking
           ShowButton = True
         end
         object Navio: TXDBEdit
-          Left = 315
-          Top = 22
-          Width = 147
+          Left = 256
+          Top = 18
+          Width = 119
           Height = 21
           ParentShowHint = False
           ShowHint = True
@@ -363,9 +377,9 @@ object FormBoocking: TFormBoocking
             0000}
         end
         object Quantidade: TXDBNumEdit
-          Left = 466
-          Top = 22
-          Width = 142
+          Left = 379
+          Top = 18
+          Width = 115
           Height = 21
           AutoHideCalculator = False
           Glyph.Data = {
@@ -421,9 +435,9 @@ object FormBoocking: TFormBoocking
           OnExit = QUANTIDADEexit
         end
         object DataPrevista: TXDBDateEdit
-          Left = 11
-          Top = 69
-          Width = 107
+          Left = 9
+          Top = 56
+          Width = 87
           Height = 21
           ParentShowHint = False
           ShowHint = True
@@ -485,11 +499,13 @@ object FormBoocking: TFormBoocking
           ShowButton = True
         end
         object QuntTransp: TXDBNumEdit
-          Left = 468
-          Top = 68
-          Width = 141
+          Left = 380
+          Top = 55
+          Width = 115
           Height = 21
           AutoHideCalculator = False
+          Color = cl3DLight
+          Enabled = False
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
             2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -544,10 +560,10 @@ object FormBoocking: TFormBoocking
           OnExit = QUNTTRANSPexit
         end
         object StatusBK: TDBRadioGroup
-          Left = 124
-          Top = 55
-          Width = 318
-          Height = 43
+          Left = 101
+          Top = 45
+          Width = 258
+          Height = 35
           Caption = 'Status'
           Columns = 3
           ParentShowHint = False
@@ -556,11 +572,13 @@ object FormBoocking: TFormBoocking
           OnExit = STATUSBKexit
         end
         object SALDO: TXDBNumEdit
-          Left = 470
-          Top = 118
-          Width = 142
+          Left = 382
+          Top = 96
+          Width = 115
           Height = 21
           AutoHideCalculator = False
+          Color = cl3DLight
+          Enabled = False
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
             2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -614,6 +632,63 @@ object FormBoocking: TFormBoocking
           TabOrder = 8
           OnExit = SALDOexit
         end
+        object Usuario: TXDBEdit
+          Left = 47
+          Top = 149
+          Width = 154
+          Height = 21
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 9
+          Text = 'Usuario'
+          OnExit = USUARIOExit
+          Glyph.Data = {
+            7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+            2000000000004805000000000000000000000000000000000000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000000000000000000000000000008000000080000000800000008000000080
+            000000000000000000000000000000800000008000000080000000800000FFFF
+            FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+            FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+            0000008000000080000000000000008000000000000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+            8000008000000080000000800000808080000000000000000000000000000080
+            0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+            0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00000000000080000000000000000000000000000000000000008000000000
+            000000000000000000000000000000800000008000000080000000800000FFFF
+            FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+            0000008000000000000000000000000000000000000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+            0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000080
+            0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+            0000000000000000000000000000808080000000000000000000000000000000
+            00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00008000000080000000000000000000000080000000800000008000000000
+            0000000000000080000000800000008000000080000000800000008000000080
+            000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+            FF00008000000080000000800000008000000000000000000000008000000080
+            0000008000000000000000000000008000000080000000800000008000000080
+            0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+            0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+            0000008000000080000000800000000000000000000000800000008000000080
+            00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+            00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000}
+        end
       end
     end
     object PgComplemento1: TPage
@@ -624,7 +699,7 @@ object FormBoocking: TFormBoocking
         Left = 0
         Top = 0
         Width = 620
-        Height = 167
+        Height = 180
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -678,17 +753,17 @@ object FormBoocking: TFormBoocking
   end
   object PnSalva: TPanel
     Left = 0
-    Top = 193
-    Width = 620
-    Height = 46
+    Top = 197
+    Width = 612
+    Height = 37
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object BtnPrimeiro: TSpeedButton
-      Left = 511
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 415
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -710,10 +785,10 @@ object FormBoocking: TFormBoocking
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 539
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 438
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Registro anterior'
       Flat = True
       Glyph.Data = {
@@ -735,10 +810,10 @@ object FormBoocking: TFormBoocking
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 567
-      Top = 10
-      Width = 29
-      Height = 31
+      Left = 461
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -760,10 +835,10 @@ object FormBoocking: TFormBoocking
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 596
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 484
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = #250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -785,15 +860,15 @@ object FormBoocking: TFormBoocking
       OnClick = BTNULTIMOclick
     end
     object BtnIncluir: TBitBtn
-      Left = 212
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 172
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Incluir registro'
       Caption = 'Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -817,15 +892,15 @@ object FormBoocking: TFormBoocking
       NumGlyphs = 2
     end
     object BtnModificar: TBitBtn
-      Left = 313
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 254
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = 'Modificar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -849,15 +924,15 @@ object FormBoocking: TFormBoocking
       NumGlyphs = 2
     end
     object BtnExcluir: TBitBtn
-      Left = 414
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 336
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -881,10 +956,10 @@ object FormBoocking: TFormBoocking
       NumGlyphs = 2
     end
     object BtnSalvar: TBitBtn
-      Left = 10
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 8
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Salvar registro'
       Caption = '&Salvar'
       ParentShowHint = False
@@ -907,10 +982,10 @@ object FormBoocking: TFormBoocking
       NumGlyphs = 2
     end
     object BtnDesistir: TBitBtn
-      Left = 111
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 90
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
       Caption = '&Desistir'
       ParentShowHint = False
@@ -935,13 +1010,13 @@ object FormBoocking: TFormBoocking
   end
   object TabPaginas: TTabSet
     Left = 0
-    Top = 167
-    Width = 620
-    Height = 26
+    Top = 176
+    Width = 612
+    Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     Tabs.Strings = (

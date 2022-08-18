@@ -1,13 +1,8 @@
 object FormTBSTATUS: TFormTBSTATUS
-  WindowState = wsMaximized
-  BorderStyle = bsSizeable
-  Position = poScreenCenter
-  FormStyle = fsMDIChild
-  Left = 5
-  Top = 5
+  Left = 687
+  Top = 102
   Width = 574
   Height = 393
-  BorderIcons = [biSystemMenu,biMinimize,biMaximize]
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,33 +10,36 @@ object FormTBSTATUS: TFormTBSTATUS
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poScreenCenter
   Visible = True
+  WindowState = wsMaximized
+  OnActivate = formactivate
+  OnClose = formclose
+  OnCloseQuery = formclosequery
+  OnKeyPress = formkeypress
+  OnResize = formresize
+  OnShow = formshow
   PixelsPerInch = 96
   TextHeight = 13
-  Onactivate = formactivate
-  Onclose = formclose
-  Onclosequery = formclosequery
-  Onkeypress = formkeypress
-  Onresize = formresize
-  Onshow = formshow
   object PagePrincipal: TPageControl
     Left = 0
     Top = 20
-    Width = 566
-    Height = 339
+    Width = 558
+    Height = 335
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
     TabOrder = 0
-    Onchange = PAGEPRINCIPALchange
+    OnChange = PAGEPRINCIPALchange
     object TabManutencao: TTabSheet
-      Caption = '( &1 ) Manutenção'
+      Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 280
-        Width = 558
+        Top = 276
+        Width = 550
         Height = 31
         Align = alBottom
         BevelOuter = bvNone
@@ -56,6 +54,7 @@ object FormTBSTATUS: TFormTBSTATUS
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
+          OnClick = BTNSALVARclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -70,18 +69,18 @@ object FormTBSTATUS: TFormTBSTATUS
             00066F6F66666666FFF660307777777703066F6F66666666F6F6600000000000
             00066FFFFFFFFFFFFFF666666666666666666666666666666666}
           NumGlyphs = 2
-          Onclick = BTNSALVARclick
         end
         object BtnDesistir: TBitBtn
           Left = 98
           Top = 5
           Width = 75
           Height = 25
-          Hint = 'Desistir da inclusão/modificação'
+          Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
+          OnClick = BTNDESISTIRclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -96,7 +95,6 @@ object FormTBSTATUS: TFormTBSTATUS
             99933773FF777F3F777F339993707399999333773F373F77777F333999999999
             3393333777333777337333333999993333333333377777333333}
           NumGlyphs = 2
-          Onclick = BTNDESISTIRclick
         end
         object BtnRelac_1: TBitBtn
           Left = 188
@@ -109,6 +107,7 @@ object FormTBSTATUS: TFormTBSTATUS
           ShowHint = True
           TabOrder = 2
           Visible = False
+          OnClick = BTNRELAC_1click
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -123,13 +122,12 @@ object FormTBSTATUS: TFormTBSTATUS
             AAA0FAAAAAAAAAAAAAAF0AAAAAAAAAAAAAA0FAAAAAAAAAAAAAAF000000000000
             0000FFFFFFFFFFFFFFFF77777777777777777777777777777777}
           NumGlyphs = 2
-          Onclick = BTNRELAC_1click
         end
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 259
-        Width = 558
+        Top = 255
+        Width = 550
         Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -140,13 +138,13 @@ object FormTBSTATUS: TFormTBSTATUS
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        Onclick = TABPAGINASclick
+        OnClick = TABPAGINASclick
       end
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 558
-        Height = 259
+        Width = 550
+        Height = 255
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -155,8 +153,8 @@ object FormTBSTATUS: TFormTBSTATUS
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 558
-          Height = 259
+          Width = 550
+          Height = 255
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -166,8 +164,8 @@ object FormTBSTATUS: TFormTBSTATUS
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 558
-              Height = 259
+              Width = 550
+              Height = 255
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -185,7 +183,7 @@ object FormTBSTATUS: TFormTBSTATUS
                 Top = 40
                 Width = 48
                 Height = 13
-                Caption = 'Descrição'
+                Caption = 'Descri'#231#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -198,6 +196,7 @@ object FormTBSTATUS: TFormTBSTATUS
                 ShowHint = True
                 TabOrder = 0
                 Text = 'StatusCT'
+                OnExit = STATUSCTExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -244,7 +243,6 @@ object FormTBSTATUS: TFormTBSTATUS
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = STATUSCTExit
               end
               object Descricao: TXDBEdit
                 Left = 10
@@ -255,6 +253,7 @@ object FormTBSTATUS: TFormTBSTATUS
                 ShowHint = True
                 TabOrder = 1
                 Text = 'Descricao'
+                OnExit = DESCRICAOExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -301,7 +300,6 @@ object FormTBSTATUS: TFormTBSTATUS
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = DESCRICAOExit
               end
             end
           end
@@ -509,7 +507,7 @@ object FormTBSTATUS: TFormTBSTATUS
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
-        Ondblclick = GRIDCONSULTAdblclick
+        OnDblClick = GRIDCONSULTAdblclick
       end
       object AbaConsulta: TTabSet
         Left = 0
@@ -525,14 +523,14 @@ object FormTBSTATUS: TFormTBSTATUS
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        Onclick = ABACONSULTAclick
+        OnClick = ABACONSULTAclick
       end
     end
   end
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 566
+    Width = 558
     Height = 20
     Align = alTop
     BevelOuter = bvNone
@@ -540,7 +538,7 @@ object FormTBSTATUS: TFormTBSTATUS
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 566
+      Width = 558
       Height = 20
       Align = alClient
       Brush.Color = 14743792
@@ -551,7 +549,7 @@ object FormTBSTATUS: TFormTBSTATUS
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 566
+      Width = 558
       Height = 20
       Align = alClient
       Alignment = taCenter
@@ -581,7 +579,7 @@ object FormTBSTATUS: TFormTBSTATUS
       ParentShowHint = False
       ShowHint = True
       Transparent = False
-      Onclick = BTNAJUDAclick
+      OnClick = BTNAJUDAclick
     end
     object BtnFechar: TSpeedButton
       Left = 547
@@ -599,7 +597,7 @@ object FormTBSTATUS: TFormTBSTATUS
       ParentShowHint = False
       ShowHint = True
       Transparent = False
-      Onclick = BTNFECHARclick
+      OnClick = BTNFECHARclick
     end
   end
   object DataSource: TDataSource
@@ -608,17 +606,17 @@ object FormTBSTATUS: TFormTBSTATUS
     object mnu_Filtrar: TMenuItem
       Caption = 'Filtrar Registros'
       Hint = 'Filtrar Registros'
-      Onclick = MNU_FILTRARclick
+      OnClick = MNU_FILTRARclick
     end
     object mnu_Ordenar: TMenuItem
       Caption = 'Ordenar Registros'
       Hint = 'Ordena registros, cria uma nova ordem'
-      Onclick = MNU_ORDENARclick
+      OnClick = MNU_ORDENARclick
     end
     object mnu_OrdenarComposto: TMenuItem
-      Caption = 'Ordenação Composta'
-      Hint = 'Cria ordenação composta, não apaga ordenação já definida'
-      Onclick = MNU_ORDENARCOMPOSTOclick
+      Caption = 'Ordena'#231#227'o Composta'
+      Hint = 'Cria ordena'#231#227'o composta, n'#227'o apaga ordena'#231#227'o j'#225' definida'
+      OnClick = MNU_ORDENARCOMPOSTOclick
     end
     object N1: TMenuItem
       Caption = '-'
@@ -626,7 +624,7 @@ object FormTBSTATUS: TFormTBSTATUS
     object mnu_ApagarColuna: TMenuItem
       Caption = 'Apagar Coluna Selecionada'
       Hint = 'Apaga coluna selecionada'
-      Onclick = MNU_APAGARCOLUNAclick
+      OnClick = MNU_APAGARCOLUNAclick
     end
     object N2: TMenuItem
       Caption = '-'
@@ -634,17 +632,17 @@ object FormTBSTATUS: TFormTBSTATUS
     object mnu_Quantificar: TMenuItem
       Caption = 'Quantificar Registros'
       Hint = 'Quantificar registros apresentados'
-      Onclick = MNU_QUANTIFICARclick
+      OnClick = MNU_QUANTIFICARclick
     end
     object mnu_TotalizarColuna: TMenuItem
       Caption = 'Totalizar Coluna Selecionada'
-      Hint = 'Totaliza coluna númerica selecionada'
-      Onclick = MNU_TOTALIZARCOLUNAclick
+      Hint = 'Totaliza coluna n'#250'merica selecionada'
+      OnClick = MNU_TOTALIZARCOLUNAclick
     end
     object mnu_CalcularMedia: TMenuItem
-      Caption = 'Calcular Média da Coluna'
-      Hint = 'Calcula a média da coluna selecionada'
-      Onclick = MNU_CALCULARMEDIAclick
+      Caption = 'Calcular M'#233'dia da Coluna'
+      Hint = 'Calcula a m'#233'dia da coluna selecionada'
+      OnClick = MNU_CALCULARMEDIAclick
     end
     object N3: TMenuItem
       Caption = '-'
@@ -652,50 +650,50 @@ object FormTBSTATUS: TFormTBSTATUS
     object mnu_Imprimir: TMenuItem
       Caption = 'Imprimir Consulta'
       Hint = 'Imprimir consulta'
-      Onclick = MNU_IMPRIMIRclick
+      OnClick = MNU_IMPRIMIRclick
     end
     object mnu_SalvarConsulta: TMenuItem
       Caption = 'Salvar Consulta'
       Hint = 'Salvar consulta'
-      Onclick = MNU_SALVARCONSULTAclick
+      OnClick = MNU_SALVARCONSULTAclick
     end
     object mnu_ExcluirConsulta: TMenuItem
       Caption = 'Excluir Consulta'
       Hint = 'Excluir consulta'
-      Onclick = MNU_EXCLUIRCONSULTAclick
+      OnClick = MNU_EXCLUIRCONSULTAclick
     end
   end
   object MenuImagem: TPopupMenu
     object CortarImagem: TMenuItem
       Caption = 'Cortar'
       ShortCut = 16472
-      Onclick = CORTARIMAGEMclick
+      OnClick = CORTARIMAGEMclick
     end
     object CopiarImagem: TMenuItem
       Caption = 'Copiar'
       ShortCut = 16451
-      Onclick = COPIARIMAGEMclick
+      OnClick = COPIARIMAGEMclick
     end
     object ColarImagem: TMenuItem
       Caption = 'Colar'
       ShortCut = 16470
-      Onclick = COLARIMAGEMclick
+      OnClick = COLARIMAGEMclick
     end
     object MnSep01: TMenuItem
       Caption = '-'
     end
     object AbrirImagem: TMenuItem
       Caption = 'Abrir...'
-      Onclick = ABRIRIMAGEMclick
+      OnClick = ABRIRIMAGEMclick
     end
     object SalvarImagem: TMenuItem
       Caption = 'Salvar como...'
-      Onclick = SALVARIMAGEMclick
+      OnClick = SALVARIMAGEMclick
     end
   end
   object DlgSalvarComoImagem: TSaveDialog
     DefaultExt = 'bmp'
-    Filter = 'Bitmap (*.bmp)|*.bmp|ícone (*.ico)|*.ico|Metafile (*.wmf)|*.wmf'
+    Filter = 'Bitmap (*.bmp)|*.bmp|'#237'cone (*.ico)|*.ico|Metafile (*.wmf)|*.wmf'
     Title = 'Salvar Imagem Como'
   end
   object DlgAbrirImagem: TOpenDialog

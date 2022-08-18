@@ -1,13 +1,8 @@
 object FormContratos: TFormContratos
-  WindowState = wsMaximized
-  BorderStyle = bsSizeable
-  Position = poScreenCenter
-  FormStyle = fsMDIChild
-  Left = 5
-  Top = 5
+  Left = 480
+  Top = 174
   Width = 813
   Height = 551
-  BorderIcons = [biSystemMenu,biMinimize,biMaximize]
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,17 +10,20 @@ object FormContratos: TFormContratos
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poScreenCenter
   Visible = True
+  WindowState = wsMaximized
+  OnActivate = formactivate
+  OnClose = formclose
+  OnCloseQuery = formclosequery
+  OnKeyPress = formkeypress
+  OnResize = formresize
+  OnShow = formshow
   PixelsPerInch = 96
   TextHeight = 13
-  Onactivate = formactivate
-  Onclose = formclose
-  Onclosequery = formclosequery
-  Onkeypress = formkeypress
-  Onresize = formresize
-  Onshow = formshow
   object PagePrincipal: TPageControl
     Left = 0
     Top = 20
@@ -35,9 +33,9 @@ object FormContratos: TFormContratos
     Align = alClient
     HotTrack = True
     TabOrder = 0
-    Onchange = PAGEPRINCIPALchange
+    OnChange = PAGEPRINCIPALchange
     object TabManutencao: TTabSheet
-      Caption = '( &1 ) Manutenção'
+      Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
         Top = 438
@@ -56,6 +54,7 @@ object FormContratos: TFormContratos
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
+          OnClick = BTNSALVARclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -70,18 +69,18 @@ object FormContratos: TFormContratos
             00066F6F66666666FFF660307777777703066F6F66666666F6F6600000000000
             00066FFFFFFFFFFFFFF666666666666666666666666666666666}
           NumGlyphs = 2
-          Onclick = BTNSALVARclick
         end
         object BtnDesistir: TBitBtn
           Left = 98
           Top = 5
           Width = 75
           Height = 25
-          Hint = 'Desistir da inclusão/modificação'
+          Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
+          OnClick = BTNDESISTIRclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -96,7 +95,6 @@ object FormContratos: TFormContratos
             99933773FF777F3F777F339993707399999333773F373F77777F333999999999
             3393333777333777337333333999993333333333377777333333}
           NumGlyphs = 2
-          Onclick = BTNDESISTIRclick
         end
         object BtnRelac_1: TBitBtn
           Left = 188
@@ -109,6 +107,7 @@ object FormContratos: TFormContratos
           ShowHint = True
           TabOrder = 2
           Visible = False
+          OnClick = BTNRELAC_1click
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -123,7 +122,6 @@ object FormContratos: TFormContratos
             AAA0FAAAAAAAAAAAAAAF0AAAAAAAAAAAAAA0FAAAAAAAAAAAAAAF000000000000
             0000FFFFFFFFFFFFFFFF77777777777777777777777777777777}
           NumGlyphs = 2
-          Onclick = BTNRELAC_1click
         end
       end
       object TabPaginas: TTabSet
@@ -142,7 +140,7 @@ object FormContratos: TFormContratos
           'Boocking'
           'Exportado')
         TabIndex = 2
-        Onclick = TABPAGINASclick
+        OnClick = TABPAGINASclick
       end
       object PgPagina1: TScrollBox
         Left = 0
@@ -206,7 +204,7 @@ object FormContratos: TFormContratos
                 Top = 2
                 Width = 63
                 Height = 13
-                Caption = 'Razão Social'
+                Caption = 'Raz'#227'o Social'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -215,7 +213,7 @@ object FormContratos: TFormContratos
                 Top = 39
                 Width = 35
                 Height = 13
-                Caption = 'Divisão'
+                Caption = 'Divis'#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -224,7 +222,7 @@ object FormContratos: TFormContratos
                 Top = 79
                 Width = 33
                 Height = 13
-                Caption = 'Código'
+                Caption = 'C'#243'digo'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -296,7 +294,7 @@ object FormContratos: TFormContratos
                 Top = 154
                 Width = 79
                 Height = 13
-                Caption = 'Preço SCC Total'
+                Caption = 'Pre'#231'o SCC Total'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -323,7 +321,7 @@ object FormContratos: TFormContratos
                 Top = 154
                 Width = 45
                 Height = 13
-                Caption = 'Comissão'
+                Caption = 'Comiss'#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -332,7 +330,7 @@ object FormContratos: TFormContratos
                 Top = 118
                 Width = 77
                 Height = 13
-                Caption = 'Forma Comissão'
+                Caption = 'Forma Comiss'#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -341,7 +339,7 @@ object FormContratos: TFormContratos
                 Top = 152
                 Width = 99
                 Height = 13
-                Caption = 'Valor Total Comissão'
+                Caption = 'Valor Total Comiss'#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -350,7 +348,7 @@ object FormContratos: TFormContratos
                 Top = 45
                 Width = 58
                 Height = 13
-                Caption = 'Observação'
+                Caption = 'Observa'#231#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
@@ -372,6 +370,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 0
                 Text = 'Contrato'
+                OnExit = CONTRATOExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -418,7 +417,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = CONTRATOExit
               end
               object Cadastro: TXDBDateEdit
                 Left = 133
@@ -429,6 +427,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 1
                 Text = 'Cadastro'
+                OnExit = CADASTROExit
                 Glyph.Data = {
                   56060000424D560600000000000036000000280000001C0000000E0000000100
                   2000000000002006000000000000000000000000000000000000C0C0C000C0C0
@@ -482,7 +481,6 @@ object FormContratos: TFormContratos
                   C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
                   C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
                 ShowButton = True
-                OnExit = CADASTROExit
               end
               object CLICOD: TXDBNumEdit
                 Left = 224
@@ -550,6 +548,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 3
                 Text = 'RAZAO'
+                OnExit = RAZAOExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -596,7 +595,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = RAZAOExit
               end
               object seq: TXDBNumEdit
                 Left = 10
@@ -721,6 +719,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 6
                 Text = 'RAZAOEXPOSTADOR'
+                OnExit = RAZAOEXPOSTADORExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -767,7 +766,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = RAZAOEXPOSTADORExit
               end
               object Exportador: TXDBEdit
                 Left = 454
@@ -778,6 +776,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 7
                 Text = 'Exportador'
+                OnExit = EXPORTADORExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -824,7 +823,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = EXPORTADORExit
               end
               object ID: TXDBEdit
                 Left = 9
@@ -835,6 +833,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 8
                 Text = 'ID'
+                OnExit = IDExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -881,7 +880,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = IDExit
               end
               object Pais: TXDBEdit
                 Left = 84
@@ -892,6 +890,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 9
                 Text = 'Pais'
+                OnExit = PAISExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -938,7 +937,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = PAISExit
               end
               object C_C: TXDBEdit
                 Left = 243
@@ -949,6 +947,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 10
                 Text = 'C_C'
+                OnExit = C_CExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -995,7 +994,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = C_CExit
               end
               object DataEmbarque: TXDBEdit
                 Left = 416
@@ -1006,6 +1004,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 11
                 Text = 'DataEmbarque'
+                OnExit = DATAEMBARQUEExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1052,7 +1051,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = DATAEMBARQUEExit
               end
               object PrecoFOBTotal: TXDBNumEdit
                 Left = 6
@@ -1353,8 +1351,8 @@ object FormContratos: TFormContratos
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 17
-                OnExit = FORMCOMISSAOExit
                 OnDrawItem = FORMCOMISSAODrawItem
+                OnExit = FORMCOMISSAOExit
               end
               object ValorTotalComissao: TXDBNumEdit
                 Left = 597
@@ -1423,6 +1421,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 19
                 Text = 'OBS'
+                OnExit = OBSExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1469,7 +1468,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = OBSExit
               end
               object StatusCT: TXDBEdit
                 Left = 645
@@ -1480,6 +1478,7 @@ object FormContratos: TFormContratos
                 ShowHint = True
                 TabOrder = 20
                 Text = 'StatusCT'
+                OnExit = STATUSCTExit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1526,7 +1525,6 @@ object FormContratos: TFormContratos
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
-                OnExit = STATUSCTExit
               end
               object Grid_PrudutoContratoT: TDBGrid
                 Left = 7
@@ -1549,10 +1547,10 @@ object FormContratos: TFormContratos
                 TitleFont.Height = -11
                 TitleFont.Name = 'MS Sans Serif'
                 TitleFont.Style = []
-                OnDblClick = GRID_PRUDUTOCONTRATOTDblClick
                 OnColEnter = GRID_PRUDUTOCONTRATOTColEnter
-                OnExit = GRID_PRUDUTOCONTRATOTExit
+                OnDblClick = GRID_PRUDUTOCONTRATOTDblClick
                 OnEditButtonClick = GRID_PRUDUTOCONTRATOTEditButtonClick
+                OnExit = GRID_PRUDUTOCONTRATOTExit
               end
             end
           end
@@ -1590,10 +1588,10 @@ object FormContratos: TFormContratos
                 TitleFont.Height = -11
                 TitleFont.Name = 'MS Sans Serif'
                 TitleFont.Style = []
-                OnDblClick = GRID_BOOCKINGDblClick
                 OnColEnter = GRID_BOOCKINGColEnter
-                OnExit = GRID_BOOCKINGExit
+                OnDblClick = GRID_BOOCKINGDblClick
                 OnEditButtonClick = GRID_BOOCKINGEditButtonClick
+                OnExit = GRID_BOOCKINGExit
               end
             end
           end
@@ -1609,7 +1607,7 @@ object FormContratos: TFormContratos
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
-              object Grid_ExpotadoTransito: TDBGrid
+              object Grid_ExportadoTransito: TDBGrid
                 Left = 0
                 Top = 0
                 Width = 797
@@ -1631,10 +1629,10 @@ object FormContratos: TFormContratos
                 TitleFont.Height = -11
                 TitleFont.Name = 'MS Sans Serif'
                 TitleFont.Style = []
-                OnDblClick = GRID_EXPOTADOTRANSITODblClick
-                OnColEnter = GRID_EXPOTADOTRANSITOColEnter
-                OnExit = GRID_EXPOTADOTRANSITOExit
-                OnEditButtonClick = GRID_EXPOTADOTRANSITOEditButtonClick
+                OnColEnter = Grid_ExportadoTransitoColEnter
+                OnDblClick = Grid_ExportadoTransitoDblClick
+                OnEditButtonClick = Grid_ExportadoTransitoEditButtonClick
+                OnExit = Grid_ExportadoTransitoExit
               end
             end
           end
@@ -1814,7 +1812,7 @@ object FormContratos: TFormContratos
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
-        Ondblclick = GRIDCONSULTAdblclick
+        OnDblClick = GRIDCONSULTAdblclick
       end
       object AbaConsulta: TTabSet
         Left = 0
@@ -1830,7 +1828,7 @@ object FormContratos: TFormContratos
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        Onclick = ABACONSULTAclick
+        OnClick = ABACONSULTAclick
       end
     end
   end
@@ -1886,7 +1884,7 @@ object FormContratos: TFormContratos
       ParentShowHint = False
       ShowHint = True
       Transparent = False
-      Onclick = BTNAJUDAclick
+      OnClick = BTNAJUDAclick
     end
     object BtnFechar: TSpeedButton
       Left = 547
@@ -1904,7 +1902,7 @@ object FormContratos: TFormContratos
       ParentShowHint = False
       ShowHint = True
       Transparent = False
-      Onclick = BTNFECHARclick
+      OnClick = BTNFECHARclick
     end
   end
   object DataSource: TDataSource
@@ -1913,17 +1911,17 @@ object FormContratos: TFormContratos
     object mnu_Filtrar: TMenuItem
       Caption = 'Filtrar Registros'
       Hint = 'Filtrar Registros'
-      Onclick = MNU_FILTRARclick
+      OnClick = MNU_FILTRARclick
     end
     object mnu_Ordenar: TMenuItem
       Caption = 'Ordenar Registros'
       Hint = 'Ordena registros, cria uma nova ordem'
-      Onclick = MNU_ORDENARclick
+      OnClick = MNU_ORDENARclick
     end
     object mnu_OrdenarComposto: TMenuItem
-      Caption = 'Ordenação Composta'
-      Hint = 'Cria ordenação composta, não apaga ordenação já definida'
-      Onclick = MNU_ORDENARCOMPOSTOclick
+      Caption = 'Ordena'#231#227'o Composta'
+      Hint = 'Cria ordena'#231#227'o composta, n'#227'o apaga ordena'#231#227'o j'#225' definida'
+      OnClick = MNU_ORDENARCOMPOSTOclick
     end
     object N1: TMenuItem
       Caption = '-'
@@ -1931,7 +1929,7 @@ object FormContratos: TFormContratos
     object mnu_ApagarColuna: TMenuItem
       Caption = 'Apagar Coluna Selecionada'
       Hint = 'Apaga coluna selecionada'
-      Onclick = MNU_APAGARCOLUNAclick
+      OnClick = MNU_APAGARCOLUNAclick
     end
     object N2: TMenuItem
       Caption = '-'
@@ -1939,17 +1937,17 @@ object FormContratos: TFormContratos
     object mnu_Quantificar: TMenuItem
       Caption = 'Quantificar Registros'
       Hint = 'Quantificar registros apresentados'
-      Onclick = MNU_QUANTIFICARclick
+      OnClick = MNU_QUANTIFICARclick
     end
     object mnu_TotalizarColuna: TMenuItem
       Caption = 'Totalizar Coluna Selecionada'
-      Hint = 'Totaliza coluna númerica selecionada'
-      Onclick = MNU_TOTALIZARCOLUNAclick
+      Hint = 'Totaliza coluna n'#250'merica selecionada'
+      OnClick = MNU_TOTALIZARCOLUNAclick
     end
     object mnu_CalcularMedia: TMenuItem
-      Caption = 'Calcular Média da Coluna'
-      Hint = 'Calcula a média da coluna selecionada'
-      Onclick = MNU_CALCULARMEDIAclick
+      Caption = 'Calcular M'#233'dia da Coluna'
+      Hint = 'Calcula a m'#233'dia da coluna selecionada'
+      OnClick = MNU_CALCULARMEDIAclick
     end
     object N3: TMenuItem
       Caption = '-'
@@ -1957,50 +1955,50 @@ object FormContratos: TFormContratos
     object mnu_Imprimir: TMenuItem
       Caption = 'Imprimir Consulta'
       Hint = 'Imprimir consulta'
-      Onclick = MNU_IMPRIMIRclick
+      OnClick = MNU_IMPRIMIRclick
     end
     object mnu_SalvarConsulta: TMenuItem
       Caption = 'Salvar Consulta'
       Hint = 'Salvar consulta'
-      Onclick = MNU_SALVARCONSULTAclick
+      OnClick = MNU_SALVARCONSULTAclick
     end
     object mnu_ExcluirConsulta: TMenuItem
       Caption = 'Excluir Consulta'
       Hint = 'Excluir consulta'
-      Onclick = MNU_EXCLUIRCONSULTAclick
+      OnClick = MNU_EXCLUIRCONSULTAclick
     end
   end
   object MenuImagem: TPopupMenu
     object CortarImagem: TMenuItem
       Caption = 'Cortar'
       ShortCut = 16472
-      Onclick = CORTARIMAGEMclick
+      OnClick = CORTARIMAGEMclick
     end
     object CopiarImagem: TMenuItem
       Caption = 'Copiar'
       ShortCut = 16451
-      Onclick = COPIARIMAGEMclick
+      OnClick = COPIARIMAGEMclick
     end
     object ColarImagem: TMenuItem
       Caption = 'Colar'
       ShortCut = 16470
-      Onclick = COLARIMAGEMclick
+      OnClick = COLARIMAGEMclick
     end
     object MnSep01: TMenuItem
       Caption = '-'
     end
     object AbrirImagem: TMenuItem
       Caption = 'Abrir...'
-      Onclick = ABRIRIMAGEMclick
+      OnClick = ABRIRIMAGEMclick
     end
     object SalvarImagem: TMenuItem
       Caption = 'Salvar como...'
-      Onclick = SALVARIMAGEMclick
+      OnClick = SALVARIMAGEMclick
     end
   end
   object DlgSalvarComoImagem: TSaveDialog
     DefaultExt = 'bmp'
-    Filter = 'Bitmap (*.bmp)|*.bmp|ícone (*.ico)|*.ico|Metafile (*.wmf)|*.wmf'
+    Filter = 'Bitmap (*.bmp)|*.bmp|'#237'cone (*.ico)|*.ico|Metafile (*.wmf)|*.wmf'
     Title = 'Salvar Imagem Como'
   end
   object DlgAbrirImagem: TOpenDialog
@@ -2017,6 +2015,6 @@ object FormContratos: TFormContratos
   end
   object DataSource_Grid_Boocking: TDataSource
   end
-  object DataSource_Grid_ExpotadoTransito: TDataSource
+  object DataSource_Grid_ExportadoTransito: TDataSource
   end
 end

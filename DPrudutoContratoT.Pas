@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0009,
+     AtrL0011,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -32,6 +32,7 @@ type
     ValorSCC: TDPrudutoContratoT_ValorSCC;
     OBS: TDPrudutoContratoT_OBS;
     Complemento: TDPrudutoContratoT_Complemento;
+    Cadastro: TDPrudutoContratoT_Cadastro;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -98,7 +99,8 @@ begin
     InsertSQL.Add('  Quantidade,');
     InsertSQL.Add('  ValorSCC,');
     InsertSQL.Add('  OBS,');
-    InsertSQL.Add('  Complemento');
+    InsertSQL.Add('  Complemento,');
+    InsertSQL.Add('  Cadastro');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -112,7 +114,8 @@ begin
     InsertSQL.Add('  :Quantidade,');
     InsertSQL.Add('  :ValorSCC,');
     InsertSQL.Add('  :OBS,');
-    InsertSQL.Add('  :Complemento');
+    InsertSQL.Add('  :Complemento,');
+    InsertSQL.Add('  :Cadastro');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update PrudutoContratoT');
@@ -127,7 +130,8 @@ begin
     ModifySQL.Add('  Quantidade = :Quantidade,');
     ModifySQL.Add('  ValorSCC = :ValorSCC,');
     ModifySQL.Add('  OBS = :OBS,');
-    ModifySQL.Add('  Complemento = :Complemento');
+    ModifySQL.Add('  Complemento = :Complemento,');
+    ModifySQL.Add('  Cadastro = :Cadastro');
     ModifySQL.Add('where');
     ModifySQL.Add('  Contrato = :OLD_Contrato');
     ModifySQL.Add('  and Sequencia = :OLD_Sequencia');
@@ -144,7 +148,8 @@ begin
     RefreshSQL.Add('  PrudutoContratoT.Quantidade AS Quantidade,');
     RefreshSQL.Add('  PrudutoContratoT.ValorSCC AS ValorSCC,');
     RefreshSQL.Add('  PrudutoContratoT.OBS AS OBS,');
-    RefreshSQL.Add('  PrudutoContratoT.Complemento AS Complemento');
+    RefreshSQL.Add('  PrudutoContratoT.Complemento AS Complemento,');
+    RefreshSQL.Add('  PrudutoContratoT.Cadastro AS Cadastro');
     RefreshSQL.Add('from PrudutoContratoT');
     RefreshSQL.Add('Left Outer Join ContratoTransporte on');
     RefreshSQL.Add('  PrudutoContratoT.Contrato = ContratoTransporte.Contrato');
@@ -176,7 +181,8 @@ begin
   SqlPrincipal.Add('  PrudutoContratoT.Quantidade AS Quantidade,');
   SqlPrincipal.Add('  PrudutoContratoT.ValorSCC AS ValorSCC,');
   SqlPrincipal.Add('  PrudutoContratoT.OBS AS OBS,');
-  SqlPrincipal.Add('  PrudutoContratoT.Complemento AS Complemento');
+  SqlPrincipal.Add('  PrudutoContratoT.Complemento AS Complemento,');
+  SqlPrincipal.Add('  PrudutoContratoT.Cadastro AS Cadastro');
   SqlPrincipal.Add('from PrudutoContratoT');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -213,8 +219,12 @@ begin
   NomePorto.Valor.DataSet := Self;
   Complemento := TDPrudutoContratoT_Complemento.Create(AOwner);
   Complemento.Valor.DataSet := Self;
+  Cadastro := TDPrudutoContratoT_Cadastro.Create(AOwner);
+  Cadastro.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Contrato);
   ChavePrimaria.Add(Sequencia);
+//CRIANDO CAMPOS 
   Campos.Add(Contrato);
   Campos.Add(Sequencia);
   Campos.Add(Produto);
@@ -227,11 +237,13 @@ begin
   Campos.Add(ValorSCC);
   Campos.Add(OBS);
   Campos.Add(Complemento);
+  Campos.Add(Cadastro);
   TituloIndices.Add('Contrato,Seq.');
   Indices.Add('PrudutoContratoT.Contrato,PrudutoContratoT.Sequencia');
   Crescente.Add('S');
   TituloPrimaria := 'Contrato,Seq.';
   ChPrimaria     := 'PrudutoContratoT.Contrato,PrudutoContratoT.Sequencia';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Contrato,Seq.';
   ChaveIndice    := 'PrudutoContratoT.Contrato,PrudutoContratoT.Sequencia';
   AfterInsert    := AtribuiMestre;
@@ -241,6 +253,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDPrudutoContratoT.CriaForeignKeys;
 var

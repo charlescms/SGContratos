@@ -21,6 +21,7 @@ uses
 type
   TFormExportacao = class(TForm)
     AbrirImagem: TMenuItem;
+    BitB_BLOQUEIO: TBitBtn;
     BtnAnterior: TSpeedButton;
     BtnDesistir: TBitBtn;
     BtnExcluir: TBitBtn;
@@ -63,6 +64,7 @@ type
     LbcPrecoFOB: TLabel;
     LbcQuantidade: TLabel;
     LbcSeq: TLabel;
+    LbcUsuario: TLabel;
     LbcValor: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
@@ -78,6 +80,7 @@ type
     Seq: TXDBNumEdit;
     StDocumento: TDBRadioGroup;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     Valor: TXDBNumEdit;
     procedure ContratoExit(Sender: TObject);
     procedure SeqExit(Sender: TObject);
@@ -87,7 +90,6 @@ type
     procedure DataEmbarqueExit(Sender: TObject);
     procedure FaturaExit(Sender: TObject);
     procedure OBSExit(Sender: TObject);
-    procedure ComisaoSFaturaExit(Sender: TObject);
     procedure ETADestinoExit(Sender: TObject);
     procedure StDocumentoExit(Sender: TObject);
     procedure ComentarioExit(Sender: TObject);
@@ -98,6 +100,8 @@ type
     procedure ComissaoExit(Sender: TObject);
     procedure FormPagoExit(Sender: TObject);
     procedure QuantidadeExpExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
+    procedure ComisaoSFaturaExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -123,6 +127,8 @@ type
     procedure BtnAnteriorClick(Sender: TObject);
     procedure BtnProximoClick(Sender: TObject);
     procedure BtnUltimoClick(Sender: TObject);
+    procedure BitB_BLOQUEIOClick(Sender: TObject);
+    procedure DataSourceDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -154,6 +160,7 @@ type
     function ConfirmaGravacao: Boolean;
     procedure CamposCalculados;
     procedure HabilitaEdicao(Valor: Boolean = true);
+    procedure atualiza_contrato();
   public
     { Public declarations }
     {03-Início do Bloco Modular. Modificações não serão preservadas}
@@ -172,14 +179,14 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, Interno  ;
+uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, Interno, UCMS_CONST  ;
 
 procedure TFormExportacao.FormShow(Sender: TObject);
 Var
   I: Integer;
 begin
   {05-Início do Bloco Modular. Modificações não serão preservadas}
-  TabelaPrincipal    := TabGlobal.DExpotadoTransito;
+  TabelaPrincipal    := TabGlobal.DExportadoTransito;
   TituloModulo       := 'Exportação';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
@@ -191,25 +198,36 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.QuantidadeExp, -2, QuantidadeExpExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.FormPago, -2, FormPagoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Comissao, -2, ComissaoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.FormComissao, -2, FormComissaoExit, FormComissaoDrawItem, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.PrecoFOB, -2, PrecoFOBExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Comentario, -2, ComentarioExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.StDocumento, -2, StDocumentoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.ETADestino, -2, ETADestinoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.ComisaoSFatura, -2, ComisaoSFaturaExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.OBS, -2, OBSExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Fatura, -2, FaturaExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.DataEmbarque, -2, DataEmbarqueExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Valor, -2, ValorExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Navio, -2, NavioExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Cadastro, -2, CadastroExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Seq, -1, SeqExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DExpotadoTransito, TabGlobal.DExpotadoTransito.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.ComisaoSFatura, -2, ComisaoSFaturaExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.QuantidadeExp, -2, QuantidadeExpExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.FormPago, -2, FormPagoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Comissao, -2, ComissaoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.FormComissao, -2, FormComissaoExit, FormComissaoDrawItem, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.PrecoFOB, -2, PrecoFOBExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Comentario, -2, ComentarioExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.StDocumento, -2, StDocumentoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.ETADestino, -2, ETADestinoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.OBS, -2, OBSExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Fatura, -2, FaturaExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.DataEmbarque, -2, DataEmbarqueExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Valor, -2, ValorExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Navio, -2, NavioExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Cadastro, -2, CadastroExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Seq, -1, SeqExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DExportadoTransito, TabGlobal.DExportadoTransito.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormExportacao, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   CamposCalculados;
+  
+  if VNivel then begin
+     ComisaoSFatura.Color := clWindow ;
+     ComisaoSFatura.ReadOnly := false ;
+  end
+  else begin
+      ComisaoSFatura.Color := cl3DLight ;
+      ComisaoSFatura.ReadOnly := true ;
+  end  ;
+
   if not AbreTabelas then exit;
   AjustaColunasConsulta(TabelaPrincipal);
   BtnSalvar.Enabled   := False;
@@ -295,8 +313,13 @@ begin
   TabelaPrincipal.AtribuiRelacionamentos;
 
   //
-  TabGlobal.DExpotadoTransito.Comissao.CONTEUDO := TabGlobal.DContratoTransporte.Comissao.CONTEUDO ;
-  TabGlobal.DExpotadoTransito.FORMCOMISSAO.CONTEUDO := TabGlobal.DContratoTransporte.FORMCOMISSAO.CONTEUDO ;
+  TabGlobal.DExportadoTransito.Comissao.CONTEUDO     := TabGlobal.DContratoTransporte.Comissao.CONTEUDO ;
+  TabGlobal.DExportadoTransito.FORMCOMISSAO.CONTEUDO := TabGlobal.DContratoTransporte.FORMCOMISSAO.CONTEUDO ;
+  TabGlobal.DExportadoTransito.PrecoFOB.Conteudo     := TabGlobal.DProdutoContratoT.PrecoFOB.Conteudo ;
+  TabGlobal.DExportadoTransito.Status.AtribuiValorPadrao ;
+  TabGlobal.DExportadoTransito.Status.Conteudo       := s_ST_AB_F ;
+  // MOEDA PADRAO PARA COMISSAO A SER ALTERADA PELA PESSO QUE ESTA APLICANDO O RATE (TAXA )
+  TabGlobal.DExportadoTransito.MOEDACOMISSAOTAXA.Conteudo := TabGlobal.DFornecedores.MOEDACOMISSAO.Conteudo ;
 
 end;
 
@@ -312,27 +335,28 @@ end;
 
 procedure TFormExportacao.AntesdeIncluir;
 begin
-
 end;
 
 procedure TFormExportacao.AntesdeModificar;
 begin
-  atualizar_boock('S',TabGlobal.DExpotadoTransito.Contrato.Conteudo , TabGlobal.DExpotadoTransito.QuantidadeExp.Conteudo);
+  atualizar_boock('S',TabGlobal.DExportadoTransito.Contrato.Conteudo , TabGlobal.DExportadoTransito.QuantidadeExp.Conteudo);
 end;
 
 procedure TFormExportacao.AntesdeExcluir;
 begin
-  atualizar_boock('S',TabGlobal.DExpotadoTransito.Contrato.Conteudo , TabGlobal.DExpotadoTransito.QuantidadeExp.Conteudo);
+  atualizar_boock('S',TabGlobal.DExportadoTransito.Contrato.Conteudo , TabGlobal.DExportadoTransito.QuantidadeExp.Conteudo);
 end;
 
 procedure TFormExportacao.DepoisdeIncluir;
 begin
-  atualizar_boock('A',TabGlobal.DExpotadoTransito.Contrato.Conteudo , TabGlobal.DExpotadoTransito.QuantidadeExp.Conteudo);
+  atualizar_boock('A',TabGlobal.DExportadoTransito.Contrato.Conteudo , TabGlobal.DExportadoTransito.QuantidadeExp.Conteudo);
+  atualiza_contrato();
 end;
 
 procedure TFormExportacao.DepoisdeModificar;
 begin
-  atualizar_boock('A',TabGlobal.DExpotadoTransito.Contrato.Conteudo , TabGlobal.DExpotadoTransito.QuantidadeExp.Conteudo);
+  atualizar_boock('A',TabGlobal.DExportadoTransito.Contrato.Conteudo , TabGlobal.DExportadoTransito.QuantidadeExp.Conteudo);
+  atualiza_contrato();
 end;
 
 procedure TFormExportacao.DepoisdeExcluir;
@@ -417,8 +441,9 @@ begin
           end;
         end;
       AntesdeSalvar;
-      if TabelaPrincipal.Salva then
+      if TabelaPrincipal.Salva then BEGIN
         Ok := True;
+      END;
     finally
       if Ok then
         if EInclusao then
@@ -441,6 +466,11 @@ begin
   end;
   SalvarRegistro := False;
   BtnIncluir.SetFocus;
+
+  if TabGlobal.DExportadoTransito.StDocumento.Conteudo  = 'N' then
+     Atualiza_ST(TabGlobal.DExportadoTransito.Contrato.Conteudo,S_ST_PR)
+  else
+     Atualiza_ST(TabGlobal.DExportadoTransito.Contrato.Conteudo,S_ST_EM);
 end;
 
 procedure TFormExportacao.BtnDesistirClick(Sender: TObject);
@@ -798,8 +828,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Contrato.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Contrato);
+  if not TabGlobal.DExportadoTransito.Contrato.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Contrato);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -809,8 +839,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Seq.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Seq);
+  if not TabGlobal.DExportadoTransito.Seq.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Seq);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -820,8 +850,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Cadastro.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Cadastro);
+  if not TabGlobal.DExportadoTransito.Cadastro.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Cadastro);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -831,8 +861,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Navio.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Navio);
+  if not TabGlobal.DExportadoTransito.Navio.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Navio);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -842,8 +872,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Valor.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Valor);
+  if not TabGlobal.DExportadoTransito.Valor.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Valor);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -853,8 +883,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.DataEmbarque.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.DataEmbarque);
+  if not TabGlobal.DExportadoTransito.DataEmbarque.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.DataEmbarque);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -864,8 +894,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Fatura.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Fatura);
+  if not TabGlobal.DExportadoTransito.Fatura.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Fatura);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -875,19 +905,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.OBS.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.OBS);
-  if not SalvarRegistro then
-    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
-end;
-
-procedure TFormExportacao.ComisaoSFaturaExit(Sender: TObject);
-var MsgErro : string;
-begin
-  if AbandonandoEdicao then
-    Exit;
-  if not TabGlobal.DExpotadoTransito.ComisaoSFatura.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.ComisaoSFatura);
+  if not TabGlobal.DExportadoTransito.OBS.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.OBS);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -897,8 +916,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.ETADestino.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.ETADestino);
+  if not TabGlobal.DExportadoTransito.ETADestino.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.ETADestino);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -908,8 +927,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.StDocumento.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.StDocumento);
+  if not TabGlobal.DExportadoTransito.StDocumento.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.StDocumento);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -919,8 +938,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Comentario.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Comentario);
+  if not TabGlobal.DExportadoTransito.Comentario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Comentario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -935,7 +954,8 @@ BEGIN
   //TMP_Tabela.;
   N_BOOCK := 0 ;
   TabGlobal.DBoocking.Refresh ;
-  TabGlobal.DBoocking.Prior ;
+//  TabGlobal.DBoocking.Prior ;
+  TabGlobal.DBoocking.First ;
   WHILE NOT TabGlobal.DBoocking.Eof DO BEGIN
        IF TabGlobal.DBoocking.Contrato.Conteudo = Contrato THEN
           N_BOOCK := N_BOOCK + 1 ;
@@ -943,7 +963,8 @@ BEGIN
   END;
 
   TabGlobal.DBoocking.Refresh ;
-  TabGlobal.DBoocking.Prior ;
+//  TabGlobal.DBoocking.Prior ;
+  TabGlobal.DBoocking.First ;
 
   IF OP = 'A' THEN BEGIN
 
@@ -965,22 +986,38 @@ BEGIN
 
              END
           ELSE BEGIN
-             N_BOOCK := N_BOOCK - 1 ;
-             IF TabGlobal.DBoocking.Quantidade.Conteudo < Quantidade THEN BEGIN
+
+             IF(TabGlobal.DBoocking.Quantidade.Conteudo < Quantidade)  and
+               (TabGlobal.DBoocking.QuntTransp.Conteudo = 0 )THEN BEGIN
                 TabGlobal.DBoocking.StatusBK.Conteudo := 'RE';
                 TabGlobal.DBoocking.QuntTransp.Conteudo := TabGlobal.DBoocking.Quantidade.Conteudo ;
                 Quantidade := Quantidade - TabGlobal.DBoocking.Quantidade.Conteudo ;
                 END
              ELSE BEGIN
                 TabGlobal.DBoocking.QuntTransp.Conteudo := TabGlobal.DBoocking.QuntTransp.Conteudo  + Quantidade;
-                IF (( TabGlobal.DBoocking.Quantidade.Conteudo - TabGlobal.DBoocking.QuntTransp.Conteudo) = 0 ) THEN
-                   TabGlobal.DBoocking.StatusBK.Conteudo := 'RE';
+                // if N_BOOCK = 1 and
+                IF (( TabGlobal.DBoocking.Quantidade.Conteudo - TabGlobal.DBoocking.QuntTransp.Conteudo) = 0 ) THEN begin
+                   TabGlobal.DBoocking.StatusBK.Conteudo := 'RE';      // concluido
+                   Quantidade := 0 ;
+                end;
                 IF ((TabGlobal.DBoocking.Quantidade.Conteudo - TabGlobal.DBoocking.QuntTransp.Conteudo) < 0) THEN
-                   TabGlobal.DBoocking.StatusBK.Conteudo := 'PR';
-                IF ((TabGlobal.DBoocking.Quantidade.Conteudo - TabGlobal.DBoocking.QuntTransp.Conteudo) > 0) THEN
-                   TabGlobal.DBoocking.StatusBK.Conteudo := 'NA';
+                   if N_BOOCK = 1 then begin
+                      TabGlobal.DBoocking.StatusBK.Conteudo := 'PR'  ;   // problema
+                      break ;
+                   end
+                   else begin
+                      Quantidade := TabGlobal.DBoocking.QuntTransp.Conteudo - TabGlobal.DBoocking.Quantidade.Conteudo ;
+                      TabGlobal.DBoocking.QuntTransp.Conteudo := TabGlobal.DBoocking.Quantidade.Conteudo ;
+
+                      TabGlobal.DBoocking.StatusBK.Conteudo := 'RE';      // concluido
+                   end;
+                IF ((TabGlobal.DBoocking.Quantidade.Conteudo - TabGlobal.DBoocking.QuntTransp.Conteudo) > 0) THEN begin
+                   TabGlobal.DBoocking.StatusBK.Conteudo := 'NA';      // nao concluido
+                   Quantidade := 0 ;
+                end;
 
              END;
+             N_BOOCK := N_BOOCK - 1 ;
           END;
 
          TabGlobal.DBoocking.POST;
@@ -1016,8 +1053,17 @@ BEGIN
              END;
 
           END;
-          TabGlobal.DBoocking.POST;
-       END;
+          TabGlobal.DBoocking.Post;
+       END
+       else begin
+          IF N_BOOCK = 1 THEN BEGIN
+             TabGlobal.DBoocking.Edit ;
+             TabGlobal.DBoocking.QuntTransp.Conteudo := TabGlobal.DBoocking.QuntTransp.Conteudo  - Quantidade ;
+             TabGlobal.DBoocking.StatusBK.Conteudo := 'NA';
+             TabGlobal.DBoocking.Post;
+             
+          END;
+       end;
        TabGlobal.DBoocking.Next   ;
      END;
   END;
@@ -1029,8 +1075,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.PrecoFOB.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.PrecoFOB);
+  if not TabGlobal.DExportadoTransito.PrecoFOB.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.PrecoFOB);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -1040,8 +1086,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.FormComissao.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.FormComissao);
+  if not TabGlobal.DExportadoTransito.FormComissao.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.FormComissao);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -1057,10 +1103,10 @@ begin
   else
     Canvas  := (Control as TComboBox).Canvas;
   Canvas.FillRect(Rect);
-  if TabGlobal.DExpotadoTransito.FormComissao.DescValorValido[Index] = '' then
-    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DExpotadoTransito.FormComissao.ValorValido[Index]))
+  if TabGlobal.DExportadoTransito.FormComissao.DescValorValido[Index] = '' then
+    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DExportadoTransito.FormComissao.ValorValido[Index]))
   else
-    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DExpotadoTransito.FormComissao.DescValorValido[Index]));
+    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DExportadoTransito.FormComissao.DescValorValido[Index]));
 end;
 
 procedure TFormExportacao.ComissaoExit(Sender: TObject);
@@ -1068,8 +1114,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.Comissao.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.Comissao);
+  if not TabGlobal.DExportadoTransito.Comissao.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Comissao);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -1079,8 +1125,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.FormPago.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.FormPago);
+  if not TabGlobal.DExportadoTransito.FormPago.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.FormPago);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -1090,8 +1136,76 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DExpotadoTransito.QuantidadeExp.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DExpotadoTransito.QuantidadeExp);
+  if not TabGlobal.DExportadoTransito.QuantidadeExp.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.QuantidadeExp);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormExportacao.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DExportadoTransito.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+// rotina atualiza status do contrato quando a quantidade exportado
+// e igual a o contrato  atribuindo o status de exportacao concluida
+procedure TFormExportacao.atualiza_contrato();
+begin
+  if TabGlobal.DContratoTransporte.QuantidadeTotal.Conteudo =  TabGlobal.DContratoTransporte.QUANTTOTALEXP.Conteudo then
+     if ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = s_ST_BO )
+     or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = s_ST_EM ) then
+        Atualiza_ST(TabGlobal.DExportadoTransito.Contrato.Conteudo,S_ST_EX);
+end  ;
+procedure TFormExportacao.BitB_BLOQUEIOClick(Sender: TObject);
+{utilize o "var" para declarar variáveis}
+begin
+  {codificação...}
+  if TabGlobal.DExportadoTransito.Status.Conteudo =  s_ST_EX_F   then  BEGIN
+     TabGlobal.DExportadoTransito.Status.Conteudo :=  s_ST_BL_F   ;
+     BitB_BLOQUEIO.Caption := 'Desbloquear'    ;
+     BitB_BLOQUEIO.Refresh ;
+     END
+  else
+     if TabGlobal.DExportadoTransito.Status.Conteudo =  s_ST_BL_F THEN  begin
+        TabGlobal.DExportadoTransito.Status.Conteudo :=  s_ST_EX_F   ;
+        // charlesz
+        BitB_BLOQUEIO.Caption := 'Bloquear'    ;
+        BitB_BLOQUEIO.Refresh ;
+     end
+     else
+        MessageDlg(MSG_Exportacaonaopodeserbloqueada,mtWarning,[mbOk],0);
+
+
+
+end;
+
+procedure TFormExportacao.DataSourceDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if TabGlobal.DExportadoTransito.Status.Conteudo =  s_ST_EX_F   then  BEGIN
+     BitB_BLOQUEIO.Caption := 'Bloquear'    ;
+     BitB_BLOQUEIO.Refresh ;
+     END
+  else
+     if TabGlobal.DExportadoTransito.Status.Conteudo =  s_ST_BL_F THEN  begin
+        BitB_BLOQUEIO.Caption := 'Desbloquear'    ;
+        BitB_BLOQUEIO.Refresh ;
+     end  ;
+
+end;
+
+procedure TFormExportacao.ComisaoSFaturaExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DExportadoTransito.ComisaoSFatura.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DExportadoTransito.ComisaoSFatura);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

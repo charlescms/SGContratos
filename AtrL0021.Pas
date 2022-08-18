@@ -6,21 +6,19 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_MENU_LATERAL_Opcao = class(TTipoInteiro)
+  TDTbCondicaoCompra_C_C = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_MENU_LATERAL_Grupo = class(TTipoAlfanumerico)
+  TDTbCondicaoCompra_Usuario = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
-  end;
-
-Type
-  TDUSER_MENU_LATERAL_PorSenha = class(TTipoAlfanumerico)
-  public
-    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
   end;
 
 
@@ -28,18 +26,18 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_MENU_LATERAL_Opcao.Create(AOwner: TComponent);
+constructor TDTbCondicaoCompra_C_C.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Opcao';
-  Tipo              := tpInteiro;
-  Tamanho           := 9;
+  Nome              := 'C_C';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Opção';
-  Mascara           := '';
+  Titulo            := 'C/C';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -58,12 +56,12 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_MENU_LATERAL';
-  NomeOriginal      := 'Opcao';
+  NomeTabela        := 'TbCondicaoCompra';
+  NomeOriginal      := 'C_C';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -72,17 +70,17 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_MENU_LATERAL_Grupo.Create(AOwner: TComponent);
+constructor TDTbCondicaoCompra_Usuario.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Grupo';
+  Nome              := 'Usuario';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 4;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Grupo';
+  Titulo            := 'Usuário';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -93,21 +91,21 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 1;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := True;
+  Valor.Visible     := False;
+  Visible_Default   := False;
+  Chave             := False;
   Index             := 1;
   Index_Default     := 1;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_MENU_LATERAL';
-  NomeOriginal      := 'Grupo';
+  NomeTabela        := 'TbCondicaoCompra';
+  NomeOriginal      := 'Usuario';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -116,48 +114,14 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_MENU_LATERAL_PorSenha.Create(AOwner: TComponent);
+function TDTbCondicaoCompra_Usuario.ValorPadrao: String;
 begin
-  inherited Create(AOwner);
-  Nome              := 'PorSenha';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
-  TipoEdicao        := tpEdit;
-  TipoSQL           := '';
-  SQL_Extra         := '';
-  Titulo            := 'Por Senha';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
-  Calculado         := False;
-  Calculado_F       := False;
-  Valor.FieldName   := Nome;
-  Valor.Size        := TamanhoDado;
-  Valor.DisplayLabel:= Titulo;
-  Valor.Calculated  := Calculado;
-  Valor.Index       := 2;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := False;
-  Index             := 2;
-  Index_Default     := 2;
-  AutoIncremento    := 0;
-  Incremento_Auto   := False;
-  SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
-  LimparCampo       := False;
-  MensagemErro      := '';
-  Extra             := False;
-  NomeTabela        := 'USER_MENU_LATERAL';
-  NomeOriginal      := 'PorSenha';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
-  EstiloPesquisa    := 0;
-  AcaoPesquisa      := 0;
-  FiltroFixo.Clear;
+  Result := Sistema.Usuario;
+end;
+
+function TDTbCondicaoCompra_Usuario.PreValidacao: Boolean;
+begin
+  Result := Sistema.Master;
 end;
 
 end.

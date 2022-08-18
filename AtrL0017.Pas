@@ -6,39 +6,125 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_AGENDA_Sequencia = class(TTipoInteiro)
+  TDSituacao_Contrato = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Validação }
+    function Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean; override;
+  end;
+
+Type
+  TDSituacao_NomeMix = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_AGENDA_Usuario = class(TTipoAlfanumerico)
+  TDSituacao_FORCOD = class(TTipoInteiro)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Validação }
+    function Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean; override;
+  end;
+
+Type
+  TDSituacao_RAZAO = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_AGENDA_Nome = class(TTipoAlfanumerico)
+  TDSituacao_C_C = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Validação }
+    function Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean; override;
+  end;
+
+Type
+  TDSituacao_QuantidadeTotal = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: Double; override;
+  end;
+
+Type
+  TDSituacao_PrecoFOBTotal = class(TTipoFracionario)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_AGENDA_Telefone = class(TTipoAlfanumerico)
+  TDSituacao_ValorSCCTotal = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: Double; override;
+  end;
+
+Type
+  TDSituacao_QUANTTOTALEXP = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: Double; override;
+  end;
+
+Type
+  TDSituacao_ValorTotalExp = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: Double; override;
+  end;
+
+Type
+  TDSituacao_Navio = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_AGENDA_Complemento = class(TTipoMemo)
+  TDSituacao_DataEmbarque = class(TTipoData)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_AGENDA_Compartilhado = class(TTipoInteiro)
+  TDSituacao_QuantidadeExp = class(TTipoFracionario)
   public
     constructor Create(AOwner: TComponent); override;
+  end;
+
+Type
+  TDSituacao_Valor = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+Type
+  TDSituacao_ID = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Validação }
+    function Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean; override;
+  end;
+
+Type
+  TDSituacao_NOME = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+Type
+  TDSituacao_StatusCT = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Valores válidos }
+    procedure IncluiValoresValidos; override;
   end;
 
 
@@ -46,18 +132,18 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_AGENDA_Sequencia.Create(AOwner: TComponent);
+constructor TDSituacao_Contrato.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Sequencia';
-  Tipo              := tpInteiro;
-  Tamanho           := 5;
+  Nome              := 'Contrato';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 15;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Sequência';
-  Mascara           := '';
+  Titulo            := 'Ctto.';
+  Mascara           := 'XXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -72,16 +158,16 @@ begin
   Chave             := True;
   Index             := 0;
   Index_Default     := 0;
-  AutoIncremento    := 1;
+  AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Sequencia';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'Contrato';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -90,18 +176,38 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_AGENDA_Usuario.Create(AOwner: TComponent);
+function TDSituacao_Contrato.Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean;
+begin
+  if EmSaida then
+  begin
+    Result := True;
+    exit;
+  end;
+  if not VALORNULO(ValorString) then
+  begin
+    Result := False;
+    if Trim(MensagemErro) = '' then
+      MsgErro := Format('Ctto. inválido !',[Titulo])
+    else
+      MsgErro := Format(MensagemErro,[Titulo]);
+    exit;
+  end;
+  Result  := True;
+  MsgErro := '';
+end;
+
+constructor TDSituacao_NomeMix.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Usuario';
+  Nome              := 'NomeMix';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 20;
+  Tamanho           := 30;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Usuário';
-  Mascara           := '';
+  Titulo            := 'Producto';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -120,34 +226,34 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 2;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Usuario';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'NomeMix';
+  TabEstrangeira    := 'Produtos';
+  ChaveEstrangeira  := 'Produto';
+  CamposVisuais     := 'Produto';
   EstiloPesquisa    := 0;
   AcaoPesquisa      := 0;
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_AGENDA_Nome.Create(AOwner: TComponent);
+constructor TDSituacao_FORCOD.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Nome';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 50;
+  Nome              := 'FORCOD';
+  Tipo              := tpInteiro;
+  Tamanho           := 6;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Nome';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
+  Titulo            := 'Exportador';
+  Mascara           := '999999';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Código do Exportador';
   Calculado         := False;
   Calculado_F       := False;
   Valor.FieldName   := Nome;
@@ -164,12 +270,77 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 2;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Nome';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'FORCOD';
+  TabEstrangeira    := 'Fornecedores';
+  ChaveEstrangeira  := 'FORCOD';
+  CamposVisuais     := 'RAZAO;NOMCON;FORCOD';
+  EstiloPesquisa    := 1;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_FORCOD.Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean;
+begin
+  if EmSaida then
+  begin
+    Result := True;
+    exit;
+  end;
+  if not VALORNULO(ValorString) then
+  begin
+    Result := False;
+    if Trim(MensagemErro) = '' then
+      MsgErro := Format('Exportador inválido !',[Titulo])
+    else
+      MsgErro := Format(MensagemErro,[Titulo]);
+    exit;
+  end;
+  Result  := True;
+  MsgErro := '';
+end;
+
+constructor TDSituacao_RAZAO.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'RAZAO';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 50;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Razão Social';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+  CaractereEdicao   := ' ';
+  Ajuda             := 'Razão Social';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 7;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 7;
+  Index_Default     := 7;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'Fornecedores';
+  NomeOriginal      := 'RAZAO';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -178,18 +349,18 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_AGENDA_Telefone.Create(AOwner: TComponent);
+constructor TDSituacao_C_C.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Telefone';
+  Nome              := 'C_C';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 50;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Telefone';
-  Mascara           := '';
+  Titulo            := 'C/C';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -208,12 +379,76 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 2;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Telefone';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'C_C';
+  TabEstrangeira    := 'TbCondicaoCompra';
+  ChaveEstrangeira  := 'C_C';
+  CamposVisuais     := 'C_C';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_C_C.Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean;
+begin
+  if EmSaida then
+  begin
+    Result := True;
+    exit;
+  end;
+  if not VALORNULO(ValorString) then
+  begin
+    Result := False;
+    if Trim(MensagemErro) = '' then
+      MsgErro := Format('C/C inválido !',[Titulo])
+    else
+      MsgErro := Format(MensagemErro,[Titulo]);
+    exit;
+  end;
+  Result  := True;
+  MsgErro := '';
+end;
+
+constructor TDSituacao_QuantidadeTotal.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'QuantidadeTotal';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 3;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Cant. TM';
+  Mascara           := 'ZZZ.ZZZ.ZZ9,999';
+  CaractereEdicao   := '_';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 12;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 12;
+  Index_Default     := 12;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 2;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'QuantidadeTotal';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -222,19 +457,24 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_AGENDA_Complemento.Create(AOwner: TComponent);
+function TDSituacao_QuantidadeTotal.ValorPadrao: Double;
+begin
+  Result := 0;
+end;
+
+constructor TDSituacao_PrecoFOBTotal.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Complemento';
-  Tipo              := tpMemo;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
+  Nome              := 'PrecoFOBTotal';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 2;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Tabela';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
+  Titulo            := 'Precio/TM S/C/C USD';
+  Mascara           := 'Z.ZZZ.ZZZ.ZZ9,99';
+  CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
   Calculado_F       := False;
@@ -252,12 +492,12 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 2;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Complemento';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'PrecoFOBTotal';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -266,19 +506,19 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_AGENDA_Compartilhado.Create(AOwner: TComponent);
+constructor TDSituacao_ValorSCCTotal.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Compartilhado';
-  Tipo              := tpInteiro;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
+  Nome              := 'ValorSCCTotal';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 3;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Compartilhado';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
+  Titulo            := 'Valor S/C/C USO';
+  Mascara           := 'ZZZ.ZZZ.ZZ9,999';
+  CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
   Calculado_F       := False;
@@ -296,18 +536,475 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 2;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_AGENDA';
-  NomeOriginal      := 'Compartilhado';
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'ValorSCCTotal';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
   EstiloPesquisa    := 0;
   AcaoPesquisa      := 0;
   FiltroFixo.Clear;
+end;
+
+function TDSituacao_ValorSCCTotal.ValorPadrao: Double;
+begin
+  Result := 0;
+end;
+
+constructor TDSituacao_QUANTTOTALEXP.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'QUANTTOTALEXP';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 3;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Cant. TM';
+  Mascara           := 'ZZZ.ZZZ.ZZ9,999';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Qunatidade Tota Exportada';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 6;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 6;
+  Index_Default     := 6;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 2;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'QUANTTOTALEXP';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_QUANTTOTALEXP.ValorPadrao: Double;
+begin
+  Result := 0;
+end;
+
+constructor TDSituacao_ValorTotalExp.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'ValorTotalExp';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 2;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Valor  USD';
+  Mascara           := 'Z.ZZZ.ZZZ.ZZ9,99';
+  CaractereEdicao   := '_';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 8;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 8;
+  Index_Default     := 8;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 2;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'ValorTotalExp';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_ValorTotalExp.ValorPadrao: Double;
+begin
+  Result := 0;
+end;
+
+constructor TDSituacao_Navio.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'Navio';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 15;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Navio';
+  Mascara           := 'XXXXXXXXXXXXXXX';
+  CaractereEdicao   := ' ';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 9;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 9;
+  Index_Default     := 9;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'ExportadoTransito';
+  NomeOriginal      := 'Navio';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+constructor TDSituacao_DataEmbarque.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'DataEmbarque';
+  Tipo              := tpData;
+  Tamanho           := 8;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Data Embarque';
+  Mascara           := '99/99/9999';
+  CaractereEdicao   := '_';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 10;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 10;
+  Index_Default     := 10;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'ExportadoTransito';
+  NomeOriginal      := 'DataEmbarque';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+constructor TDSituacao_QuantidadeExp.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'QuantidadeExp';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 3;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Quantidade';
+  Mascara           := 'ZZZ.ZZZ.ZZ9,999';
+  CaractereEdicao   := '_';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 11;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 11;
+  Index_Default     := 11;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'ExportadoTransito';
+  NomeOriginal      := 'QuantidadeExp';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+constructor TDSituacao_Valor.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'Valor';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 3;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Valor Fatura Exp.';
+  Mascara           := 'ZZZ.ZZZ.ZZ9,999';
+  CaractereEdicao   := '_';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 13;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 13;
+  Index_Default     := 13;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'ExportadoTransito';
+  NomeOriginal      := 'Valor';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+constructor TDSituacao_ID.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'ID';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 5;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Pais';
+  Mascara           := '999999999';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Pais';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 14;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 14;
+  Index_Default     := 14;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'ID';
+  TabEstrangeira    := 'TAB_PAIS';
+  ChaveEstrangeira  := 'ID';
+  CamposVisuais     := 'NOME;ID';
+  EstiloPesquisa    := 1;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_ID.Valido(var MsgErro : String; EmSaida: Boolean = True): Boolean;
+begin
+  if EmSaida then
+  begin
+    Result := True;
+    exit;
+  end;
+  if not VALORNULO(ValorString) then
+  begin
+    Result := False;
+    if Trim(MensagemErro) = '' then
+      MsgErro := Format('Pais inválido !',[Titulo])
+    else
+      MsgErro := Format(MensagemErro,[Titulo]);
+    exit;
+  end;
+  Result  := True;
+  MsgErro := '';
+end;
+
+constructor TDSituacao_NOME.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'NOME';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 48;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Nome Pais';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+  CaractereEdicao   := ' ';
+  Ajuda             := 'Data do Compromisso / Lembrete';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 15;
+  Valor.ReadOnly    := True;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 15;
+  Index_Default     := 15;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := False;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := True;
+  NomeTabela        := 'Tab_pais';
+  NomeOriginal      := 'NOME';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+constructor TDSituacao_StatusCT.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'StatusCT';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 2;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Status';
+  Mascara           := 'XX';
+  CaractereEdicao   := ' ';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 16;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 16;
+  Index_Default     := 16;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Situacao';
+  NomeOriginal      := 'StatusCT';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDSituacao_StatusCT.ValorPadrao: String;
+begin
+  Result := 'AB';
+end;
+
+procedure TDSituacao_StatusCT.IncluiValoresValidos;
+begin
+  inherited IncluiValoresValidos;
+  IncluiValorValido('AB', 'Aberto');
+  IncluiValorValido('BO', 'Boocking');
+  IncluiValorValido('EM', 'Em Execução ( Exportação )');
+  IncluiValorValido('EX', 'Execução ( Exportação Concluida )');
+  IncluiValorValido('CM', 'Comissões Pendentes');
+  IncluiValorValido('OC', 'Ordem Cobrança');
+  IncluiValorValido('FA', 'Fatura Emitida');
+  IncluiValorValido('NF', 'Nota Fiscal');
+  IncluiValorValido('OK', 'Concluido');
+  IncluiValorValido('PR', 'Problema');
+  Valor.OnGetText := GetText;
 end;
 
 end.

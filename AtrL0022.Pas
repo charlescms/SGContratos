@@ -6,27 +6,19 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_MENU_SUPERIOR_Opcao = class(TTipoInteiro)
+  TDTbFormaPagamento_FormPago = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_MENU_SUPERIOR_Grupo = class(TTipoAlfanumerico)
+  TDTbFormaPagamento_Usuario = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
-  end;
-
-Type
-  TDUSER_MENU_SUPERIOR_PorSenha = class(TTipoAlfanumerico)
-  public
-    constructor Create(AOwner: TComponent); override;
-  end;
-
-Type
-  TDUSER_MENU_SUPERIOR_Invisivel = class(TTipoAlfanumerico)
-  public
-    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
   end;
 
 
@@ -34,18 +26,18 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_MENU_SUPERIOR_Opcao.Create(AOwner: TComponent);
+constructor TDTbFormaPagamento_FormPago.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Opcao';
-  Tipo              := tpInteiro;
-  Tamanho           := 9;
+  Nome              := 'FormPago';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 10;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Opção';
-  Mascara           := '';
+  Titulo            := 'Forma de Pago';
+  Mascara           := 'XXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -64,12 +56,12 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_MENU_SUPERIOR';
-  NomeOriginal      := 'Opcao';
+  NomeTabela        := 'TbFormaPagamento';
+  NomeOriginal      := 'FormPago';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -78,17 +70,17 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_MENU_SUPERIOR_Grupo.Create(AOwner: TComponent);
+constructor TDTbFormaPagamento_Usuario.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Grupo';
+  Nome              := 'Usuario';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 4;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Grupo';
+  Titulo            := 'Usuário';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -99,21 +91,21 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 1;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := True;
+  Valor.Visible     := False;
+  Visible_Default   := False;
+  Chave             := False;
   Index             := 1;
   Index_Default     := 1;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_MENU_SUPERIOR';
-  NomeOriginal      := 'Grupo';
+  NomeTabela        := 'TbFormaPagamento';
+  NomeOriginal      := 'Usuario';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -122,92 +114,14 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_MENU_SUPERIOR_PorSenha.Create(AOwner: TComponent);
+function TDTbFormaPagamento_Usuario.ValorPadrao: String;
 begin
-  inherited Create(AOwner);
-  Nome              := 'PorSenha';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
-  TipoEdicao        := tpEdit;
-  TipoSQL           := '';
-  SQL_Extra         := '';
-  Titulo            := 'Por Senha';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
-  Calculado         := False;
-  Calculado_F       := False;
-  Valor.FieldName   := Nome;
-  Valor.Size        := TamanhoDado;
-  Valor.DisplayLabel:= Titulo;
-  Valor.Calculated  := Calculado;
-  Valor.Index       := 2;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := False;
-  Index             := 2;
-  Index_Default     := 2;
-  AutoIncremento    := 0;
-  Incremento_Auto   := False;
-  SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
-  LimparCampo       := False;
-  MensagemErro      := '';
-  Extra             := False;
-  NomeTabela        := 'USER_MENU_SUPERIOR';
-  NomeOriginal      := 'PorSenha';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
-  EstiloPesquisa    := 0;
-  AcaoPesquisa      := 0;
-  FiltroFixo.Clear;
+  Result := Sistema.Usuario;
 end;
 
-constructor TDUSER_MENU_SUPERIOR_Invisivel.Create(AOwner: TComponent);
+function TDTbFormaPagamento_Usuario.PreValidacao: Boolean;
 begin
-  inherited Create(AOwner);
-  Nome              := 'Invisivel';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
-  TipoEdicao        := tpEdit;
-  TipoSQL           := '';
-  SQL_Extra         := '';
-  Titulo            := 'Invisivel';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
-  Calculado         := False;
-  Calculado_F       := False;
-  Valor.FieldName   := Nome;
-  Valor.Size        := TamanhoDado;
-  Valor.DisplayLabel:= Titulo;
-  Valor.Calculated  := Calculado;
-  Valor.Index       := 3;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := False;
-  Index             := 3;
-  Index_Default     := 3;
-  AutoIncremento    := 0;
-  Incremento_Auto   := False;
-  SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
-  LimparCampo       := False;
-  MensagemErro      := '';
-  Extra             := False;
-  NomeTabela        := 'USER_MENU_SUPERIOR';
-  NomeOriginal      := 'Invisivel';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
-  EstiloPesquisa    := 0;
-  AcaoPesquisa      := 0;
-  FiltroFixo.Clear;
+  Result := Sistema.Master;
 end;
 
 end.

@@ -6,27 +6,27 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_BARRA_F_Opcao = class(TTipoInteiro)
+  TDTab_pais_ID = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_BARRA_F_Grupo = class(TTipoAlfanumerico)
+  TDTab_pais_NOME = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
   end;
 
 Type
-  TDUSER_BARRA_F_PorSenha = class(TTipoAlfanumerico)
+  TDTab_pais_Usuario = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
-  end;
-
-Type
-  TDUSER_BARRA_F_Invisivel = class(TTipoAlfanumerico)
-  public
-    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
   end;
 
 
@@ -34,20 +34,20 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_BARRA_F_Opcao.Create(AOwner: TComponent);
+constructor TDTab_pais_ID.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Opcao';
-  Tipo              := tpInteiro;
-  Tamanho           := 9;
+  Nome              := 'ID';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 5;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Opção';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
+  Titulo            := 'Cód. Pais';
+  Mascara           := '999999999';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Código do Compromisso';
   Calculado         := False;
   Calculado_F       := False;
   Valor.FieldName   := Nome;
@@ -62,14 +62,14 @@ begin
   Index_Default     := 0;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
-  SempreAtribui     := True;
+  SempreAtribui     := False;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_BARRA_F';
-  NomeOriginal      := 'Opcao';
+  NomeTabela        := 'Tab_pais';
+  NomeOriginal      := 'ID';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -78,20 +78,20 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_BARRA_F_Grupo.Create(AOwner: TComponent);
+constructor TDTab_pais_NOME.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Grupo';
+  Nome              := 'NOME';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 4;
+  Tamanho           := 48;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Grupo';
-  Mascara           := '';
+  Titulo            := 'Nome Pais';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
-  Ajuda             := '';
+  Ajuda             := 'Data do Compromisso / Lembrete';
   Calculado         := False;
   Calculado_F       := False;
   Valor.FieldName   := Nome;
@@ -101,19 +101,19 @@ begin
   Valor.Index       := 1;
   Valor.Visible     := True;
   Visible_Default   := True;
-  Chave             := True;
+  Chave             := False;
   Index             := 1;
   Index_Default     := 1;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
-  SempreAtribui     := True;
+  SempreAtribui     := False;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_BARRA_F';
-  NomeOriginal      := 'Grupo';
+  NomeTabela        := 'Tab_pais';
+  NomeOriginal      := 'NOME';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -122,17 +122,22 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_BARRA_F_PorSenha.Create(AOwner: TComponent);
+function TDTab_pais_NOME.ValorPadrao: String;
+begin
+  Result := 'DataAtual';
+end;
+
+constructor TDTab_pais_Usuario.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'PorSenha';
+  Nome              := 'Usuario';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Por Senha';
+  Titulo            := 'Usuário';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -143,21 +148,21 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 2;
-  Valor.Visible     := True;
-  Visible_Default   := True;
+  Valor.Visible     := False;
+  Visible_Default   := False;
   Chave             := False;
   Index             := 2;
   Index_Default     := 2;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_BARRA_F';
-  NomeOriginal      := 'PorSenha';
+  NomeTabela        := 'Tab_pais';
+  NomeOriginal      := 'Usuario';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -166,48 +171,14 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_BARRA_F_Invisivel.Create(AOwner: TComponent);
+function TDTab_pais_Usuario.ValorPadrao: String;
 begin
-  inherited Create(AOwner);
-  Nome              := 'Invisivel';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
-  CasasDecimais     := 0;
-  TipoEdicao        := tpEdit;
-  TipoSQL           := '';
-  SQL_Extra         := '';
-  Titulo            := 'Invisivel';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
-  Calculado         := False;
-  Calculado_F       := False;
-  Valor.FieldName   := Nome;
-  Valor.Size        := TamanhoDado;
-  Valor.DisplayLabel:= Titulo;
-  Valor.Calculated  := Calculado;
-  Valor.Index       := 3;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := False;
-  Index             := 3;
-  Index_Default     := 3;
-  AutoIncremento    := 0;
-  Incremento_Auto   := False;
-  SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
-  LimparCampo       := False;
-  MensagemErro      := '';
-  Extra             := False;
-  NomeTabela        := 'USER_BARRA_F';
-  NomeOriginal      := 'Invisivel';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
-  EstiloPesquisa    := 0;
-  AcaoPesquisa      := 0;
-  FiltroFixo.Clear;
+  Result := Sistema.Usuario;
+end;
+
+function TDTab_pais_Usuario.PreValidacao: Boolean;
+begin
+  Result := Sistema.Master;
 end;
 
 end.

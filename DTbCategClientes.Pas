@@ -1,5 +1,5 @@
 {
- Classe da tabela: TbCategClientes - TbCategClientes
+ Classe da tabela: TbCategClientes - Categoria Clientes
 }
 
 unit DTbCategClientes;
@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0012,
+     AtrL0020,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -22,6 +22,7 @@ type
   public
     CATCLICOD: TDTbCategClientes_CATCLICOD;
     DESCRICAO: TDTbCategClientes_DESCRICAO;
+    Usuario: TDTbCategClientes_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -48,7 +49,7 @@ constructor TDTbCategClientes.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   NomeTabela       := 'TbCategClientes';
-  Titulo           := 'TbCategClientes';
+  Titulo           := 'Categoria Clientes';
   Name             := 'DTbCategClientes';
   Database         := BaseDados.BD_Base_Dados;
   {$IFDEF IBX}
@@ -78,24 +79,28 @@ begin
     InsertSQL.Add('insert into TbCategClientes');
     InsertSQL.Add('  (');
     InsertSQL.Add('  CATCLICOD,');
-    InsertSQL.Add('  DESCRICAO');
+    InsertSQL.Add('  DESCRICAO,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :CATCLICOD,');
-    InsertSQL.Add('  :DESCRICAO');
+    InsertSQL.Add('  :DESCRICAO,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbCategClientes');
     ModifySQL.Add('set');
     ModifySQL.Add('  CATCLICOD = :CATCLICOD,');
-    ModifySQL.Add('  DESCRICAO = :DESCRICAO');
+    ModifySQL.Add('  DESCRICAO = :DESCRICAO,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  CATCLICOD = :OLD_CATCLICOD');
     // Refresh de Registro
     RefreshSQL.Add('Select');
     RefreshSQL.Add('  TbCategClientes.CATCLICOD AS CATCLICOD,');
-    RefreshSQL.Add('  TbCategClientes.DESCRICAO AS DESCRICAO');
+    RefreshSQL.Add('  TbCategClientes.DESCRICAO AS DESCRICAO,');
+    RefreshSQL.Add('  TbCategClientes.Usuario AS Usuario');
     RefreshSQL.Add('from TbCategClientes');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbCategClientes.CATCLICOD = :OLD_CATCLICOD');
@@ -104,7 +109,8 @@ begin
     // Sql Principal
   SqlPrincipal.Add('Select');
   SqlPrincipal.Add('  TbCategClientes.CATCLICOD AS CATCLICOD,');
-  SqlPrincipal.Add('  TbCategClientes.DESCRICAO AS DESCRICAO');
+  SqlPrincipal.Add('  TbCategClientes.DESCRICAO AS DESCRICAO,');
+  SqlPrincipal.Add('  TbCategClientes.Usuario AS Usuario');
   SqlPrincipal.Add('from TbCategClientes');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -113,14 +119,20 @@ begin
   DESCRICAO.Valor.DataSet := Self;
   CATCLICOD := TDTbCategClientes_CATCLICOD.Create(AOwner);
   CATCLICOD.Valor.DataSet := Self;
+  Usuario := TDTbCategClientes_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(CATCLICOD);
+//CRIANDO CAMPOS 
   Campos.Add(CATCLICOD);
   Campos.Add(DESCRICAO);
+  Campos.Add(Usuario);
   TituloIndices.Add('Cód Categoria');
   Indices.Add('TbCategClientes.CATCLICOD');
   Crescente.Add('S');
   TituloPrimaria := 'Cód Categoria';
   ChPrimaria     := 'TbCategClientes.CATCLICOD';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Cód Categoria';
   ChaveIndice    := 'TbCategClientes.CATCLICOD';
   AfterInsert    := AtribuiMestre;
@@ -130,6 +142,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbCategClientes.CriaForeignKeys;
 var

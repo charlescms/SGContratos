@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0011,
+     AtrL0019,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -22,6 +22,7 @@ type
   public
     TBATIVCOD: TDTbAtividades_TBATIVCOD;
     DESCRICAO: TDTbAtividades_DESCRICAO;
+    Usuario: TDTbAtividades_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -78,24 +79,28 @@ begin
     InsertSQL.Add('insert into TbAtividades');
     InsertSQL.Add('  (');
     InsertSQL.Add('  TBATIVCOD,');
-    InsertSQL.Add('  DESCRICAO');
+    InsertSQL.Add('  DESCRICAO,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :TBATIVCOD,');
-    InsertSQL.Add('  :DESCRICAO');
+    InsertSQL.Add('  :DESCRICAO,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbAtividades');
     ModifySQL.Add('set');
     ModifySQL.Add('  TBATIVCOD = :TBATIVCOD,');
-    ModifySQL.Add('  DESCRICAO = :DESCRICAO');
+    ModifySQL.Add('  DESCRICAO = :DESCRICAO,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  TBATIVCOD = :OLD_TBATIVCOD');
     // Refresh de Registro
     RefreshSQL.Add('Select');
     RefreshSQL.Add('  TbAtividades.TBATIVCOD AS TBATIVCOD,');
-    RefreshSQL.Add('  TbAtividades.DESCRICAO AS DESCRICAO');
+    RefreshSQL.Add('  TbAtividades.DESCRICAO AS DESCRICAO,');
+    RefreshSQL.Add('  TbAtividades.Usuario AS Usuario');
     RefreshSQL.Add('from TbAtividades');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbAtividades.TBATIVCOD = :OLD_TBATIVCOD');
@@ -104,7 +109,8 @@ begin
     // Sql Principal
   SqlPrincipal.Add('Select');
   SqlPrincipal.Add('  TbAtividades.TBATIVCOD AS TBATIVCOD,');
-  SqlPrincipal.Add('  TbAtividades.DESCRICAO AS DESCRICAO');
+  SqlPrincipal.Add('  TbAtividades.DESCRICAO AS DESCRICAO,');
+  SqlPrincipal.Add('  TbAtividades.Usuario AS Usuario');
   SqlPrincipal.Add('from TbAtividades');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -113,14 +119,20 @@ begin
   TBATIVCOD.Valor.DataSet := Self;
   DESCRICAO := TDTbAtividades_DESCRICAO.Create(AOwner);
   DESCRICAO.Valor.DataSet := Self;
+  Usuario := TDTbAtividades_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(TBATIVCOD);
+//CRIANDO CAMPOS 
   Campos.Add(TBATIVCOD);
   Campos.Add(DESCRICAO);
+  Campos.Add(Usuario);
   TituloIndices.Add('Código');
   Indices.Add('TbAtividades.TBATIVCOD');
   Crescente.Add('S');
   TituloPrimaria := 'Código';
   ChPrimaria     := 'TbAtividades.TBATIVCOD';
+//CRIANDO TituloIndices 
   TituloIndices.Add('Por Descrição');
   Indices.Add('DESCRICAO');
   Crescente.Add('S');
@@ -133,6 +145,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbAtividades.CriaForeignKeys;
 var

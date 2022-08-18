@@ -1,15 +1,15 @@
 {
- Classe da tabela: TAB_PAIS - TAB_PAIS
+ Classe da tabela: Tab_pais - Pais
 }
 
-unit DTAB_PAIS;
+unit DTab_pais;
 
 interface
 
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0010,
+     AtrL0018,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -18,10 +18,11 @@ uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
      DB, Dialogs;
 
 type
-  TDTAB_PAIS = class(TTabela)
+  TDTab_pais = class(TTabela)
   public
-    ID: TDTAB_PAIS_ID;
-    NOME: TDTAB_PAIS_NOME;
+    ID: TDTab_pais_ID;
+    NOME: TDTab_pais_NOME;
+    Usuario: TDTab_pais_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -44,12 +45,12 @@ implementation
 
 uses Publicas, Validar, Rotinas, Abertura, Calculos, RotinaEd;
 
-constructor TDTAB_PAIS.Create(AOwner: TComponent);
+constructor TDTab_pais.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  NomeTabela       := 'TAB_PAIS';
-  Titulo           := 'TAB_PAIS';
-  Name             := 'DTAB_PAIS';
+  NomeTabela       := 'Tab_pais';
+  Titulo           := 'Pais';
+  Name             := 'DTab_pais';
   Database         := BaseDados.BD_Base_Dados;
   {$IFDEF IBX}
   Transaction      := BaseDados.TRS_BD_Base_Dados;
@@ -66,61 +67,72 @@ begin
   Versao           := 6;
   UsarGenerator    := True;
   TableType        := ttTable;
-  DataSource.Name  := 'DsTAB_PAIS';
+  DataSource.Name  := 'DsTab_pais';
   with UpdateSql do
   begin
-    Name           := 'UpdSql_TAB_PAIS';
+    Name           := 'UpdSql_Tab_pais';
     // Exclusão de Registro
-    DeleteSQL.Add('delete from TAB_PAIS');
+    DeleteSQL.Add('delete from Tab_pais');
     DeleteSQL.Add('where');
     DeleteSQL.Add('  ID = :OLD_ID');
     // Inserção de Registro
-    InsertSQL.Add('insert into TAB_PAIS');
+    InsertSQL.Add('insert into Tab_pais');
     InsertSQL.Add('  (');
     InsertSQL.Add('  ID,');
-    InsertSQL.Add('  NOME');
+    InsertSQL.Add('  NOME,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :ID,');
-    InsertSQL.Add('  :NOME');
+    InsertSQL.Add('  :NOME,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
-    ModifySQL.Add('update TAB_PAIS');
+    ModifySQL.Add('update Tab_pais');
     ModifySQL.Add('set');
     ModifySQL.Add('  ID = :ID,');
-    ModifySQL.Add('  NOME = :NOME');
+    ModifySQL.Add('  NOME = :NOME,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  ID = :OLD_ID');
     // Refresh de Registro
     RefreshSQL.Add('Select');
-    RefreshSQL.Add('  TAB_PAIS.ID AS ID,');
-    RefreshSQL.Add('  TAB_PAIS.NOME AS NOME');
-    RefreshSQL.Add('from TAB_PAIS');
+    RefreshSQL.Add('  Tab_pais.ID AS ID,');
+    RefreshSQL.Add('  Tab_pais.NOME AS NOME,');
+    RefreshSQL.Add('  Tab_pais.Usuario AS Usuario');
+    RefreshSQL.Add('from Tab_pais');
     RefreshSQL.Add('where');
-    RefreshSQL.Add('  TAB_PAIS.ID = :OLD_ID');
+    RefreshSQL.Add('  Tab_pais.ID = :OLD_ID');
   end;
   UpdateObject     := UpdateSql;
     // Sql Principal
   SqlPrincipal.Add('Select');
-  SqlPrincipal.Add('  TAB_PAIS.ID AS ID,');
-  SqlPrincipal.Add('  TAB_PAIS.NOME AS NOME');
-  SqlPrincipal.Add('from TAB_PAIS');
+  SqlPrincipal.Add('  Tab_pais.ID AS ID,');
+  SqlPrincipal.Add('  Tab_pais.NOME AS NOME,');
+  SqlPrincipal.Add('  Tab_pais.Usuario AS Usuario');
+  SqlPrincipal.Add('from Tab_pais');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
   Sql.Add('order by TAB_PAIS.NOME');
-  ID := TDTAB_PAIS_ID.Create(AOwner);
+  ID := TDTab_pais_ID.Create(AOwner);
   ID.Valor.DataSet := Self;
-  NOME := TDTAB_PAIS_NOME.Create(AOwner);
+  NOME := TDTab_pais_NOME.Create(AOwner);
   NOME.Valor.DataSet := Self;
+  Usuario := TDTab_pais_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(ID);
+//CRIANDO CAMPOS 
   Campos.Add(ID);
   Campos.Add(NOME);
+  Campos.Add(Usuario);
   TituloIndices.Add('Cód. Pais');
-  Indices.Add('TAB_PAIS.ID');
+  Indices.Add('Tab_pais.ID');
   Crescente.Add('S');
   TituloPrimaria := 'Cód. Pais';
-  ChPrimaria     := 'TAB_PAIS.ID';
+  ChPrimaria     := 'Tab_pais.ID';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Nome Pais';
   ChaveIndice    := 'TAB_PAIS.NOME';
   AfterInsert    := AtribuiMestre;
@@ -130,8 +142,11 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
-procedure TDTAB_PAIS.CriaForeignKeys;
+procedure TDTab_pais.CriaForeignKeys;
 var
   Script_ForeignKeys: TSQLScript;
 begin
@@ -155,39 +170,39 @@ begin
   end;
 end;
 
-function TDTAB_PAIS.PodeExcluir: Boolean;
+function TDTab_pais.PodeExcluir: Boolean;
 begin
   PodeExcluir := True;
   if not Sistema.Integridade then
     exit;
 end;
 
-procedure TDTAB_PAIS.ExclusaoCascata;
+procedure TDTab_pais.ExclusaoCascata;
 begin
 end;
 
-function TDTAB_PAIS.PesquisaRelacionados(Tabela, Campo: String; var Retorno: Variant; CampoFoco: String = ''): Boolean;
+function TDTab_pais.PesquisaRelacionados(Tabela, Campo: String; var Retorno: Variant; CampoFoco: String = ''): Boolean;
 begin
   Result := False;
 end;
 
-function TDTAB_PAIS.PesquisaRelacionados(Tabela: String): Boolean;
+function TDTab_pais.PesquisaRelacionados(Tabela: String): Boolean;
 begin
   Result := False;
-  if UpperCase(Tabela) = UpperCase('TAB_PAIS') then
-    if PTabela(TabGlobal.DTAB_PAIS, ['ID'], [ID.Valor.Value]) then
+  if UpperCase(Tabela) = UpperCase('Tab_pais') then
+    if PTabela(TabGlobal.DTab_pais, ['ID'], [ID.Valor.Value]) then
       Result := True;
 end;
 
-procedure TDTAB_PAIS.CalculaCampos;
+procedure TDTab_pais.CalculaCampos;
 begin
 end;
 
-procedure TDTAB_PAIS.AtribuiRelacionamentos(Atribui: Boolean = True);
+procedure TDTab_pais.AtribuiRelacionamentos(Atribui: Boolean = True);
 begin
 end;
 
-procedure TDTAB_PAIS.AtribuiFiltroMestre(Atribui: Boolean = True; Atualiza: Boolean = True);
+procedure TDTab_pais.AtribuiFiltroMestre(Atribui: Boolean = True; Atualiza: Boolean = True);
 var
   I: Integer;
 begin
@@ -203,11 +218,11 @@ begin
     AtualizaSql;
 end;
 
-procedure TDTAB_PAIS.AtribuiMestre(DataSet: TDataSet);
+procedure TDTab_pais.AtribuiMestre(DataSet: TDataSet);
 begin
 end;
 
-procedure TDTAB_PAIS.ProcessoDireto1(DataSet: TDataSet);
+procedure TDTab_pais.ProcessoDireto1(DataSet: TDataSet);
 var
   QueryLc: TTabela;
   EmEdicao: Boolean;
@@ -220,7 +235,7 @@ begin
   Modificacao := False;
 end;
 
-procedure TDTAB_PAIS.ProcessoDireto2(DataSet: TDataSet);
+procedure TDTab_pais.ProcessoDireto2(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
@@ -232,7 +247,7 @@ begin
   Modificacao := False;
 end;
 
-procedure TDTAB_PAIS.AtualizaCalculados(DataSet: TDataSet);
+procedure TDTab_pais.AtualizaCalculados(DataSet: TDataSet);
 begin
   CalculaCampos;
   if Inclusao then
@@ -240,13 +255,13 @@ begin
       AutoIncremento('ID', True, ID.AutoIncremento);
 end;
 
-procedure TDTAB_PAIS.ProcessoInverso1(DataSet: TDataSet);
+procedure TDTab_pais.ProcessoInverso1(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
 end;
 
-procedure TDTAB_PAIS.ProcessoInverso2(DataSet: TDataSet);
+procedure TDTab_pais.ProcessoInverso2(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
@@ -254,7 +269,7 @@ begin
   ExclusaoCascata;
 end;
 
-procedure TDTAB_PAIS.Parametros(Tabela: TTabela);
+procedure TDTab_pais.Parametros(Tabela: TTabela);
 begin
   Parametros_Padrao(Tabela);
 end;

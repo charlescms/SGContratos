@@ -60,7 +60,7 @@ object FormGridPesquisa: TFormGridPesquisa
     Left = 0
     Top = 20
     Width = 642
-    Height = 205
+    Height = 212
     Align = alClient
     DataSource = DataSource
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
@@ -76,7 +76,7 @@ object FormGridPesquisa: TFormGridPesquisa
   end
   object PnRodape: TPanel
     Left = 0
-    Top = 225
+    Top = 232
     Width = 642
     Height = 55
     Align = alBottom
@@ -101,14 +101,14 @@ object FormGridPesquisa: TFormGridPesquisa
       Top = 16
       Width = 75
       Height = 13
-      Caption = 'Pesquisar ap'#243's:'
+      Caption = 'Pesquisar após:'
     end
     object BtnOrdem: TSpeedButton
       Left = 378
       Top = 31
       Width = 16
       Height = 18
-      Hint = 'Alterar ordena'#231#227'o'
+      Hint = 'Alterar ordenação'
       Glyph.Data = {
         96000000424D960000000000000076000000280000000A000000040000000100
         0400000000002000000000000000000000001000000000000000000000000000
@@ -161,7 +161,7 @@ object FormGridPesquisa: TFormGridPesquisa
         '<= Menor ou Igual'
         '>   Maior que'
         '>= Maior ou Igual'
-        '%  Cont'#233'm'
+        '%  Contém'
         '?   Vazio')
     end
     object EdEstilo: TComboBox

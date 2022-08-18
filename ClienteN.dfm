@@ -1,51 +1,54 @@
 object FormClienteN: TFormClienteN
-  Left = 663
-  Top = 44
+  WindowState = wsNormal
+  BorderStyle = bsSizeable
+  Position = poScreenCenter
+  FormStyle = fsMDIChild
+  Left = 5
+  Top = 5
   Width = 1093
   Height = 713
+  BorderIcons = [biSystemMenu,biMinimize,biMaximize]
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
-  Position = poScreenCenter
   Visible = True
-  OnActivate = formactivate
-  OnClose = formclose
-  OnCloseQuery = formclosequery
-  OnKeyPress = formkeypress
-  OnResize = formresize
-  OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
+  Onactivate = formactivate
+  Onclose = formclose
+  Onclosequery = formclosequery
+  Onkeypress = formkeypress
+  Onresize = formresize
+  Onshow = formshow
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 41
-    Width = 1085
-    Height = 639
+    Top = 33
+    Width = 1077
+    Height = 642
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
     TabOrder = 0
-    OnChange = PAGEPRINCIPALchange
+    Onchange = PAGEPRINCIPALchange
     object TabManutencao: TTabSheet
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 570
-        Width = 1077
-        Height = 38
+        Top = 584
+        Width = 1069
+        Height = 30
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 542
-          Top = 9
+          Left = 440
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -66,8 +69,8 @@ object FormClienteN: TFormClienteN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 591
-          Top = 9
+          Left = 480
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -88,16 +91,15 @@ object FormClienteN: TFormClienteN
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
-          OnClick = BTNSALVARclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -112,18 +114,18 @@ object FormClienteN: TFormClienteN
             00066F6F66666666FFF660307777777703066F6F66666666F6F6600000000000
             00066FFFFFFFFFFFFFF666666666666666666666666666666666}
           NumGlyphs = 2
+          Onclick = BTNSALVARclick
         end
         object BtnDesistir: TBitBtn
-          Left = 121
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 98
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
-          OnClick = BTNDESISTIRclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -138,19 +140,19 @@ object FormClienteN: TFormClienteN
             99933773FF777F3F777F339993707399999333773F373F77777F333999999999
             3393333777333777337333333999993333333333377777333333}
           NumGlyphs = 2
+          Onclick = BTNDESISTIRclick
         end
         object BtnRelac_1: TBitBtn
-          Left = 231
-          Top = 6
-          Width = 93
-          Height = 31
+          Left = 188
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
           ShowHint = True
           TabOrder = 2
           Visible = False
-          OnClick = BTNRELAC_1click
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             0400000000000001000000000000000000001000000010000000000000000000
@@ -165,30 +167,31 @@ object FormClienteN: TFormClienteN
             AAA0FAAAAAAAAAAAAAAF0AAAAAAAAAAAAAA0FAAAAAAAAAAAAAAF000000000000
             0000FFFFFFFFFFFFFFFF77777777777777777777777777777777}
           NumGlyphs = 2
+          Onclick = BTNRELAC_1click
         end
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 544
-        Width = 1077
-        Height = 26
+        Top = 562
+        Width = 1069
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
           'Principal'
           'OBS')
         TabIndex = 0
-        OnClick = TABPAGINASclick
+        Onclick = TABPAGINASclick
       end
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1077
-        Height = 544
+        Width = 1069
+        Height = 562
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -197,8 +200,8 @@ object FormClienteN: TFormClienteN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1077
-          Height = 544
+          Width = 1069
+          Height = 562
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -208,233 +211,242 @@ object FormClienteN: TFormClienteN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1077
-              Height = 544
+              Width = 1069
+              Height = 562
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcCLICOD: TLabel
-                Left = 12
+                Left = 10
                 Top = 1
-                Width = 41
-                Height = 16
+                Width = 32
+                Height = 13
                 Caption = 'Cliente'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcRAZAO: TLabel
-                Left = 112
+                Left = 91
                 Top = 1
-                Width = 81
-                Height = 16
+                Width = 63
+                Height = 13
                 Caption = 'Raz'#227'o Social'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNOMFAN: TLabel
-                Left = 12
-                Top = 49
-                Width = 92
-                Height = 16
+                Left = 10
+                Top = 40
+                Width = 71
+                Height = 13
                 Caption = 'Nome Fantasia'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNOMRES: TLabel
-                Left = 465
-                Top = 49
-                Width = 81
-                Height = 16
+                Left = 378
+                Top = 40
+                Width = 62
+                Height = 13
                 Caption = 'Respons'#225'vel'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCONTATO: TLabel
-                Left = 12
-                Top = 97
-                Width = 46
-                Height = 16
+                Left = 10
+                Top = 79
+                Width = 37
+                Height = 13
                 Caption = 'Contato'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCPF: TLabel
-                Left = 465
-                Top = 94
-                Width = 26
-                Height = 16
+                Left = 378
+                Top = 76
+                Width = 20
+                Height = 13
                 Caption = 'CPF'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcRG: TLabel
-                Left = 582
-                Top = 94
-                Width = 20
-                Height = 16
+                Left = 473
+                Top = 76
+                Width = 16
+                Height = 13
                 Caption = 'RG'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCNPJ: TLabel
-                Left = 464
-                Top = 94
-                Width = 35
-                Height = 16
+                Left = 377
+                Top = 76
+                Width = 27
+                Height = 13
                 Caption = 'CNPJ'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcIEST: TLabel
-                Left = 607
-                Top = 94
-                Width = 83
-                Height = 16
+                Left = 493
+                Top = 76
+                Width = 67
+                Height = 13
                 Caption = 'Insc. Estadual'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcIMUN: TLabel
-                Left = 758
-                Top = 94
-                Width = 87
-                Height = 16
+                Left = 616
+                Top = 76
+                Width = 71
+                Height = 13
                 Caption = 'Insc. Municipal'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcDDD: TLabel
-                Left = 10
-                Top = 143
-                Width = 30
-                Height = 16
+                Left = 8
+                Top = 116
+                Width = 24
+                Height = 13
                 Caption = 'DDD'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTEL1: TLabel
-                Left = 49
-                Top = 143
-                Width = 69
-                Height = 16
+                Left = 40
+                Top = 116
+                Width = 55
+                Height = 13
                 Caption = '1'#186' Telefone'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTEL2: TLabel
-                Left = 140
-                Top = 143
-                Width = 69
-                Height = 16
+                Left = 114
+                Top = 116
+                Width = 55
+                Height = 13
                 Caption = '2'#186' Telefone'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcFAX: TLabel
-                Left = 231
-                Top = 143
-                Width = 22
-                Height = 16
+                Left = 188
+                Top = 116
+                Width = 17
+                Height = 13
                 Caption = 'Fax'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcDATCAD: TLabel
-                Left = 822
+                Left = 668
                 Top = 2
-                Width = 55
-                Height = 16
+                Width = 42
+                Height = 13
                 Caption = 'Cadastro'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcEMAIL1: TLabel
-                Left = 12
-                Top = 198
-                Width = 49
-                Height = 16
+                Left = 10
+                Top = 161
+                Width = 38
+                Height = 13
                 Caption = '1'#186' Email'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcEMAIL2: TLabel
-                Left = 12
-                Top = 247
-                Width = 49
-                Height = 16
+                Left = 10
+                Top = 201
+                Width = 38
+                Height = 13
                 Caption = '2'#186' Email'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcSITE: TLabel
-                Left = 12
-                Top = 295
-                Width = 23
-                Height = 16
+                Left = 10
+                Top = 240
+                Width = 18
+                Height = 13
                 Caption = 'Site'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcLIMCREUSA: TLabel
-                Left = 612
-                Top = 247
-                Width = 125
-                Height = 16
+                Left = 497
+                Top = 201
+                Width = 97
+                Height = 13
                 Caption = 'Limite Cr'#233'dito Usado'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcLIMCRE: TLabel
-                Left = 465
-                Top = 247
-                Width = 81
-                Height = 16
+                Left = 378
+                Top = 201
+                Width = 63
+                Height = 13
                 Caption = 'Limite Cr'#233'dito'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTBATIVCOD: TLabel
-                Left = 326
-                Top = 143
-                Width = 85
-                Height = 16
+                Left = 265
+                Top = 116
+                Width = 66
+                Height = 13
                 Caption = 'C'#243'd Atividade'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCATCLICOD: TLabel
-                Left = 514
-                Top = 143
-                Width = 87
-                Height = 16
+                Left = 418
+                Top = 116
+                Width = 67
+                Height = 13
                 Caption = 'C'#243'd Categoria'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcSITCLICOD: TLabel
-                Left = 694
-                Top = 142
-                Width = 81
-                Height = 16
+                Left = 564
+                Top = 115
+                Width = 64
+                Height = 13
                 Caption = 'C'#243'd Situa'#231#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcID: TLabel
-                Left = 867
-                Top = 95
-                Width = 27
-                Height = 16
+                Left = 706
+                Top = 77
+                Width = 20
+                Height = 13
                 Alignment = taRightJustify
                 Caption = 'Pais'
                 ParentShowHint = False
                 ShowHint = True
               end
+              object LbcUsuario: TLabel
+                Left = 760
+                Top = 1
+                Width = 36
+                Height = 13
+                Caption = 'Usu'#225'rio'
+                ParentShowHint = False
+                ShowHint = True
+              end
               object CLICOD: TXDBNumEdit
-                Left = 18
-                Top = 20
-                Width = 95
-                Height = 24
+                Left = 15
+                Top = 16
+                Width = 77
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -485,18 +497,17 @@ object FormClienteN: TFormClienteN
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
-                OnExit = CLICODexit
+                Onexit = CLICODexit
               end
               object RAZAO: TXDBEdit
-                Left = 112
-                Top = 18
-                Width = 448
-                Height = 24
+                Left = 91
+                Top = 15
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 1
                 Text = 'RAZAO'
-                OnExit = RAZAOexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -543,17 +554,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = RAZAOexit
               end
               object NOMFAN: TXDBEdit
-                Left = 12
-                Top = 69
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 56
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 4
                 Text = 'NOMFAN'
-                OnExit = NOMFANexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -600,17 +611,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = NOMFANexit
               end
               object NOMRES: TXDBEdit
-                Left = 465
-                Top = 66
-                Width = 448
-                Height = 24
+                Left = 378
+                Top = 54
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 5
                 Text = 'NOMRES'
-                OnExit = NOMRESexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -657,17 +668,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = NOMRESexit
               end
               object CONTATO: TXDBEdit
-                Left = 12
-                Top = 114
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 93
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 6
                 Text = 'CONTATO'
-                OnExit = CONTATOexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -714,29 +725,29 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = CONTATOexit
               end
               object TIPPESSOA: TDBRadioGroup
-                Left = 564
-                Top = 7
-                Width = 254
-                Height = 52
+                Left = 458
+                Top = 6
+                Width = 207
+                Height = 42
                 Caption = 'Tipo de Pessoa'
                 Columns = 2
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 2
-                OnExit = TIPPESSOAexit
+                Onexit = TIPPESSOAexit
               end
               object CPF: TXDBEdit
-                Left = 465
-                Top = 111
-                Width = 112
-                Height = 24
+                Left = 378
+                Top = 90
+                Width = 91
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 10
                 Text = 'CPF'
-                OnExit = CPFexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -783,17 +794,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = CPFexit
               end
               object RG: TXDBEdit
-                Left = 582
-                Top = 111
-                Width = 104
-                Height = 24
+                Left = 473
+                Top = 90
+                Width = 84
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 11
                 Text = 'RG'
-                OnExit = RGexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -840,17 +851,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = RGexit
               end
               object CNPJ: TXDBEdit
-                Left = 464
-                Top = 111
-                Width = 138
-                Height = 24
+                Left = 377
+                Top = 90
+                Width = 112
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 7
                 Text = 'CNPJ'
-                OnExit = CNPJexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -897,17 +908,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = CNPJexit
               end
               object IEST: TXDBEdit
-                Left = 607
-                Top = 111
-                Width = 146
-                Height = 24
+                Left = 493
+                Top = 90
+                Width = 119
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 8
                 Text = 'IEST'
-                OnExit = IESTexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -954,17 +965,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = IESTexit
               end
               object IMUN: TXDBEdit
-                Left = 758
-                Top = 111
-                Width = 104
-                Height = 24
+                Left = 616
+                Top = 90
+                Width = 84
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 9
                 Text = 'IMUN'
-                OnExit = IMUNexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1011,17 +1022,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = IMUNexit
               end
               object DDD: TXDBEdit
-                Left = 10
-                Top = 159
-                Width = 34
-                Height = 24
+                Left = 8
+                Top = 129
+                Width = 28
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 12
                 Text = 'DDD'
-                OnExit = DDDexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1068,17 +1079,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = DDDexit
               end
               object TEL1: TXDBEdit
-                Left = 49
-                Top = 159
-                Width = 86
-                Height = 24
+                Left = 40
+                Top = 129
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 13
                 Text = 'TEL1'
-                OnExit = TEL1exit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1125,17 +1136,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = TEL1exit
               end
               object TEL2: TXDBEdit
-                Left = 140
-                Top = 159
-                Width = 86
-                Height = 24
+                Left = 114
+                Top = 129
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 14
                 Text = 'TEL2'
-                OnExit = TEL2exit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1182,17 +1193,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = TEL2exit
               end
               object FAX: TXDBEdit
-                Left = 231
-                Top = 159
-                Width = 87
-                Height = 24
+                Left = 188
+                Top = 129
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 15
                 Text = 'FAX'
-                OnExit = FAXexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1239,17 +1250,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = FAXexit
               end
               object DATCAD: TXDBDateEdit
-                Left = 822
-                Top = 20
-                Width = 107
-                Height = 24
+                Left = 668
+                Top = 16
+                Width = 87
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 3
                 Text = 'DATCAD'
-                OnExit = DATCADexit
                 Glyph.Data = {
                   56060000424D560600000000000036000000280000001C0000000E0000000100
                   2000000000002006000000000000000000000000000000000000C0C0C000C0C0
@@ -1303,17 +1314,17 @@ object FormClienteN: TFormClienteN
                   C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
                   C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
                 ShowButton = True
+                Onexit = DATCADexit
               end
               object EMAIL1: TXDBEdit
-                Left = 12
-                Top = 215
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 175
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 19
                 Text = 'EMAIL1'
-                OnExit = EMAIL1exit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1360,17 +1371,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = EMAIL1exit
               end
               object EMAIL2: TXDBEdit
-                Left = 12
-                Top = 265
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 215
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 20
                 Text = 'EMAIL2'
-                OnExit = EMAIL2exit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1417,17 +1428,17 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = EMAIL2exit
               end
               object SITE: TXDBEdit
-                Left = 12
-                Top = 313
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 254
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 21
                 Text = 'SITE'
-                OnExit = SITEexit
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                   2000000000004805000000000000000000000000000000000000008000000080
@@ -1474,12 +1485,13 @@ object FormClienteN: TFormClienteN
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000008000000080000000800000008000000080000000800000008000000080
                   0000}
+                Onexit = SITEexit
               end
               object LIMCRE: TXDBNumEdit
-                Left = 465
-                Top = 265
-                Width = 142
-                Height = 24
+                Left = 378
+                Top = 215
+                Width = 115
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1532,13 +1544,13 @@ object FormClienteN: TFormClienteN
                 ShowButton = True
                 TabOrder = 22
                 Visible = False
-                OnExit = LIMCREexit
+                Onexit = LIMCREexit
               end
               object LIMCREUSA: TXDBNumEdit
-                Left = 612
-                Top = 265
-                Width = 141
-                Height = 24
+                Left = 497
+                Top = 215
+                Width = 115
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1591,104 +1603,103 @@ object FormClienteN: TFormClienteN
                 ShowButton = True
                 TabOrder = 23
                 Visible = False
-                OnExit = LIMCREUSAexit
+                Onexit = LIMCREUSAexit
               end
               object CATCLICOD: TXDBLookUp
-                Left = 508
-                Top = 159
-                Width = 179
-                Height = 24
+                Left = 413
+                Top = 129
+                Width = 145
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 17
-                OnExit = CATCLICODexit
+                Onexit = CATCLICODexit
               end
               object TBATIVCOD: TXDBLookUp
-                Left = 326
-                Top = 159
-                Width = 179
-                Height = 24
+                Left = 265
+                Top = 129
+                Width = 145
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 16
-                OnExit = TBATIVCODexit
+                Onexit = TBATIVCODexit
               end
               object SITCLICOD: TXDBLookUp
-                Left = 694
-                Top = 159
-                Width = 179
-                Height = 24
+                Left = 564
+                Top = 129
+                Width = 145
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 18
-                OnExit = SITCLICODexit
+                Onexit = SITCLICODexit
               end
               object GroupBox1: TGroupBox
                 Left = 0
-                Top = 464
-                Width = 1057
-                Height = 119
+                Top = 465
+                Width = 1069
+                Height = 97
                 Align = alBottom
                 Caption = 'Cobran'#231'a'
                 TabOrder = 25
                 object LbcBAI_COB: TLabel
-                  Left = 12
-                  Top = 63
-                  Width = 36
-                  Height = 16
+                  Left = 10
+                  Top = 51
+                  Width = 27
+                  Height = 13
                   Caption = 'Bairro'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcENDERECO_COB: TLabel
-                  Left = 12
-                  Top = 15
-                  Width = 59
-                  Height = 16
+                  Left = 10
+                  Top = 12
+                  Width = 46
+                  Height = 13
                   Caption = 'Endere'#231'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCEP_COB: TLabel
-                  Left = 293
-                  Top = 63
-                  Width = 27
-                  Height = 16
+                  Left = 238
+                  Top = 51
+                  Width = 21
+                  Height = 13
                   Caption = 'CEP'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCID_COB: TLabel
-                  Left = 384
-                  Top = 63
-                  Width = 44
-                  Height = 16
+                  Left = 312
+                  Top = 51
+                  Width = 33
+                  Height = 13
                   Caption = 'Cidade'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcUF_COB: TLabel
-                  Left = 665
-                  Top = 63
-                  Width = 18
-                  Height = 16
+                  Left = 540
+                  Top = 51
+                  Width = 14
+                  Height = 13
                   Caption = 'UF'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object ENDERECO_COB: TXDBEdit
-                  Left = 12
-                  Top = 32
-                  Width = 879
-                  Height = 24
+                  Left = 10
+                  Top = 26
+                  Width = 714
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 0
                   Text = 'ENDERECO_COB'
-                  OnExit = ENDERECO_COBexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -1735,17 +1746,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = ENDERECO_COBexit
                 end
                 object BAI_COB: TXDBEdit
-                  Left = 12
-                  Top = 80
-                  Width = 276
-                  Height = 24
+                  Left = 10
+                  Top = 65
+                  Width = 224
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 1
                   Text = 'BAI_COB'
-                  OnExit = BAI_COBexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -1792,17 +1803,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = BAI_COBexit
                 end
                 object CEP_COB: TXDBEdit
-                  Left = 293
-                  Top = 80
-                  Width = 86
-                  Height = 24
+                  Left = 238
+                  Top = 65
+                  Width = 70
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 2
                   Text = 'CEP_COB'
-                  OnExit = CEP_COBexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -1849,17 +1860,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = CEP_COBexit
                 end
                 object CID_COB: TXDBEdit
-                  Left = 384
-                  Top = 80
-                  Width = 276
-                  Height = 24
+                  Left = 312
+                  Top = 65
+                  Width = 224
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 3
                   Text = 'CID_COB'
-                  OnExit = CID_COBexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -1906,17 +1917,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = CID_COBexit
                 end
                 object UF_COB: TXDBEdit
-                  Left = 665
-                  Top = 80
-                  Width = 34
-                  Height = 24
+                  Left = 540
+                  Top = 65
+                  Width = 28
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 4
                   Text = 'UF_COB'
-                  OnExit = UF_COBexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -1963,70 +1974,70 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = UF_COBexit
                 end
               end
               object GroupBox2: TGroupBox
                 Left = 0
-                Top = 346
-                Width = 1057
-                Height = 118
+                Top = 369
+                Width = 1069
+                Height = 96
                 Align = alBottom
                 TabOrder = 24
                 object LbcUF: TLabel
-                  Left = 665
-                  Top = 62
-                  Width = 18
-                  Height = 16
+                  Left = 540
+                  Top = 50
+                  Width = 14
+                  Height = 13
                   Caption = 'UF'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCID: TLabel
-                  Left = 384
-                  Top = 62
-                  Width = 44
-                  Height = 16
+                  Left = 312
+                  Top = 50
+                  Width = 33
+                  Height = 13
                   Caption = 'Cidade'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCEP: TLabel
-                  Left = 293
-                  Top = 62
-                  Width = 27
-                  Height = 16
+                  Left = 238
+                  Top = 50
+                  Width = 21
+                  Height = 13
                   Caption = 'CEP'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcBAI: TLabel
-                  Left = 12
-                  Top = 62
-                  Width = 36
-                  Height = 16
+                  Left = 10
+                  Top = 50
+                  Width = 27
+                  Height = 13
                   Caption = 'Bairro'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcENDERECO: TLabel
-                  Left = 12
-                  Top = 14
-                  Width = 59
-                  Height = 16
+                  Left = 10
+                  Top = 11
+                  Width = 46
+                  Height = 13
                   Caption = 'Endere'#231'o'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object ENDERECO: TXDBEdit
-                  Left = 12
-                  Top = 31
-                  Width = 879
-                  Height = 24
+                  Left = 10
+                  Top = 25
+                  Width = 714
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 0
                   Text = 'ENDERECO'
-                  OnExit = ENDERECOexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -2073,17 +2084,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = ENDERECOexit
                 end
                 object BAI: TXDBEdit
-                  Left = 12
-                  Top = 79
-                  Width = 276
-                  Height = 24
+                  Left = 10
+                  Top = 64
+                  Width = 224
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 1
                   Text = 'BAI'
-                  OnExit = BAIexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -2130,17 +2141,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = BAIexit
                 end
                 object CEP: TXDBEdit
-                  Left = 293
-                  Top = 79
-                  Width = 86
-                  Height = 24
+                  Left = 238
+                  Top = 64
+                  Width = 70
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 2
                   Text = 'CEP'
-                  OnExit = CEPexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -2187,17 +2198,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = CEPexit
                 end
                 object CID: TXDBEdit
-                  Left = 384
-                  Top = 79
-                  Width = 276
-                  Height = 24
+                  Left = 312
+                  Top = 64
+                  Width = 224
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 3
                   Text = 'CID'
-                  OnExit = CIDexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -2244,17 +2255,17 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = CIDexit
                 end
                 object UF: TXDBEdit
-                  Left = 665
-                  Top = 79
-                  Width = 34
-                  Height = 24
+                  Left = 540
+                  Top = 64
+                  Width = 28
+                  Height = 21
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 4
                   Text = 'UF'
-                  OnExit = UFexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -2301,24 +2312,25 @@ object FormClienteN: TFormClienteN
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000008000000080000000800000008000000080000000800000008000000080
                     0000}
+                  Onexit = UFexit
                 end
               end
               object GroupBox3: TGroupBox
-                Left = 463
-                Top = 197
-                Width = 483
-                Height = 149
+                Left = 376
+                Top = 160
+                Width = 393
+                Height = 121
                 Caption = 'Divis'#245'es'
                 TabOrder = 26
                 object Grid_DIVISOES: TDBGrid
                   Left = 2
-                  Top = 18
-                  Width = 479
-                  Height = 208
+                  Top = 15
+                  Width = 389
+                  Height = 169
                   Align = alTop
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
-                  Font.Height = -15
+                  Font.Height = -12
                   Font.Name = 'MS Sans Serif'
                   Font.Style = []
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -2332,22 +2344,79 @@ object FormClienteN: TFormClienteN
                   TitleFont.Height = -11
                   TitleFont.Name = 'MS Sans Serif'
                   TitleFont.Style = []
-                  OnColEnter = GRID_DIVISOEScolenter
-                  OnDblClick = GRID_DIVISOESdblclick
-                  OnEditButtonClick = GRID_DIVISOESeditbuttonclick
-                  OnExit = GRID_DIVISOESexit
+                  Oncolenter = GRID_DIVISOEScolenter
+                  Ondblclick = GRID_DIVISOESdblclick
+                  Oneditbuttonclick = GRID_DIVISOESeditbuttonclick
+                  Onexit = GRID_DIVISOESexit
                 end
               end
               object ID: TXDBLookUp
-                Left = 866
-                Top = 111
-                Width = 145
-                Height = 24
+                Left = 704
+                Top = 90
+                Width = 117
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 27
-                OnExit = IDexit
+                Onexit = IDexit
+              end
+              object Usuario: TXDBEdit
+                Left = 760
+                Top = 15
+                Width = 154
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 28
+                Text = 'Usuario'
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
+                OnExit = USUARIOExit
               end
             end
           end
@@ -2358,22 +2427,22 @@ object FormClienteN: TFormClienteN
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 1001
-              Height = 448
+              Width = 1069
+              Height = 562
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object OBS: TDBMemo
                 Left = 0
                 Top = 0
-                Width = 1001
-                Height = 448
+                Width = 1069
+                Height = 562
                 Align = alClient
                 ParentShowHint = False
                 ScrollBars = ssVertical
                 ShowHint = True
                 TabOrder = 0
-                OnExit = OBSexit
+                Onexit = OBSexit
               end
             end
           end
@@ -2384,8 +2453,8 @@ object FormClienteN: TFormClienteN
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 1077
-              Height = 544
+              Width = 1069
+              Height = 562
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2398,8 +2467,8 @@ object FormClienteN: TFormClienteN
             object Pagina3: TScrollBox
               Left = 0
               Top = 0
-              Width = 1001
-              Height = 448
+              Width = 1069
+              Height = 562
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2412,8 +2481,8 @@ object FormClienteN: TFormClienteN
             object Pagina4: TScrollBox
               Left = 0
               Top = 0
-              Width = 1001
-              Height = 448
+              Width = 1069
+              Height = 562
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2457,17 +2526,17 @@ object FormClienteN: TFormClienteN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 304
-        Width = 687
-        Height = 38
+        Top = 583
+        Width = 1069
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -2493,14 +2562,14 @@ object FormClienteN: TFormClienteN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 687
-        Height = 278
+        Width = 1069
+        Height = 562
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -2513,39 +2582,38 @@ object FormClienteN: TFormClienteN
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
-        OnDblClick = GRIDCONSULTAdblclick
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 278
-        Width = 687
-        Height = 26
+        Top = 562
+        Width = 1069
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
           'Principal')
         TabIndex = 0
-        OnClick = ABACONSULTAclick
+        Onclick = ABACONSULTAclick
       end
     end
   end
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1085
-    Height = 41
+    Width = 1077
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object BtnIncluir: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -2565,13 +2633,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNINCLUIRclick
+      Onclick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 79
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -2591,13 +2659,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNMODIFICARclick
+      Onclick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -2617,13 +2685,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNEXCLUIRclick
+      Onclick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -2643,13 +2711,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNLOCALIZARclick
+      Onclick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 304
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -2669,13 +2737,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNTABELAclick
+      Onclick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -2694,13 +2762,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPRIMEIROclick
+      Onclick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 403
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -2719,13 +2787,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNANTERIORclick
+      Onclick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 427
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -2744,13 +2812,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPROXIMOclick
+      Onclick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -2769,13 +2837,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNULTIMOclick
+      Onclick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -2794,13 +2862,13 @@ object FormClienteN: TFormClienteN
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNREFRESHclick
+      Onclick = BTNREFRESHclick
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 38
-      Width = 1085
-      Height = 3
+      Top = 31
+      Width = 1077
+      Height = 2
       Align = alBottom
       TabOrder = 0
     end
@@ -2811,17 +2879,17 @@ object FormClienteN: TFormClienteN
     object mnu_Filtrar: TMenuItem
       Caption = 'Filtrar Registros'
       Hint = 'Filtrar Registros'
-      OnClick = MNU_FILTRARclick
+      Onclick = MNU_FILTRARclick
     end
     object mnu_Ordenar: TMenuItem
       Caption = 'Ordenar Registros'
       Hint = 'Ordena registros, cria uma nova ordem'
-      OnClick = MNU_ORDENARclick
+      Onclick = MNU_ORDENARclick
     end
     object mnu_OrdenarComposto: TMenuItem
       Caption = 'Ordena'#231#227'o Composta'
       Hint = 'Cria ordena'#231#227'o composta, n'#227'o apaga ordena'#231#227'o j'#225' definida'
-      OnClick = MNU_ORDENARCOMPOSTOclick
+      Onclick = MNU_ORDENARCOMPOSTOclick
     end
     object N1: TMenuItem
       Caption = '-'
@@ -2829,7 +2897,7 @@ object FormClienteN: TFormClienteN
     object mnu_ApagarColuna: TMenuItem
       Caption = 'Apagar Coluna Selecionada'
       Hint = 'Apaga coluna selecionada'
-      OnClick = MNU_APAGARCOLUNAclick
+      Onclick = MNU_APAGARCOLUNAclick
     end
     object N2: TMenuItem
       Caption = '-'
@@ -2837,17 +2905,17 @@ object FormClienteN: TFormClienteN
     object mnu_Quantificar: TMenuItem
       Caption = 'Quantificar Registros'
       Hint = 'Quantificar registros apresentados'
-      OnClick = MNU_QUANTIFICARclick
+      Onclick = MNU_QUANTIFICARclick
     end
     object mnu_TotalizarColuna: TMenuItem
       Caption = 'Totalizar Coluna Selecionada'
       Hint = 'Totaliza coluna n'#250'merica selecionada'
-      OnClick = MNU_TOTALIZARCOLUNAclick
+      Onclick = MNU_TOTALIZARCOLUNAclick
     end
     object mnu_CalcularMedia: TMenuItem
       Caption = 'Calcular M'#233'dia da Coluna'
       Hint = 'Calcula a m'#233'dia da coluna selecionada'
-      OnClick = MNU_CALCULARMEDIAclick
+      Onclick = MNU_CALCULARMEDIAclick
     end
     object N3: TMenuItem
       Caption = '-'
@@ -2855,45 +2923,45 @@ object FormClienteN: TFormClienteN
     object mnu_Imprimir: TMenuItem
       Caption = 'Imprimir Consulta'
       Hint = 'Imprimir consulta'
-      OnClick = MNU_IMPRIMIRclick
+      Onclick = MNU_IMPRIMIRclick
     end
     object mnu_SalvarConsulta: TMenuItem
       Caption = 'Salvar Consulta'
       Hint = 'Salvar consulta'
-      OnClick = MNU_SALVARCONSULTAclick
+      Onclick = MNU_SALVARCONSULTAclick
     end
     object mnu_ExcluirConsulta: TMenuItem
       Caption = 'Excluir Consulta'
       Hint = 'Excluir consulta'
-      OnClick = MNU_EXCLUIRCONSULTAclick
+      Onclick = MNU_EXCLUIRCONSULTAclick
     end
   end
   object MenuImagem: TPopupMenu
     object CortarImagem: TMenuItem
       Caption = 'Cortar'
       ShortCut = 16472
-      OnClick = CORTARIMAGEMclick
+      Onclick = CORTARIMAGEMclick
     end
     object CopiarImagem: TMenuItem
       Caption = 'Copiar'
       ShortCut = 16451
-      OnClick = COPIARIMAGEMclick
+      Onclick = COPIARIMAGEMclick
     end
     object ColarImagem: TMenuItem
       Caption = 'Colar'
       ShortCut = 16470
-      OnClick = COLARIMAGEMclick
+      Onclick = COLARIMAGEMclick
     end
     object MnSep01: TMenuItem
       Caption = '-'
     end
     object AbrirImagem: TMenuItem
       Caption = 'Abrir...'
-      OnClick = ABRIRIMAGEMclick
+      Onclick = ABRIRIMAGEMclick
     end
     object SalvarImagem: TMenuItem
       Caption = 'Salvar como...'
-      OnClick = SALVARIMAGEMclick
+      Onclick = SALVARIMAGEMclick
     end
   end
   object DlgSalvarComoImagem: TSaveDialog

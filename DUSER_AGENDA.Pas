@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0017,
+     AtrL0025,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -150,7 +150,9 @@ begin
   Complemento.Valor.DataSet := Self;
   Compartilhado := TDUSER_AGENDA_Compartilhado.Create(AOwner);
   Compartilhado.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Sequencia);
+//CRIANDO CAMPOS 
   Campos.Add(Sequencia);
   Campos.Add(Usuario);
   Campos.Add(Nome);
@@ -162,6 +164,7 @@ begin
   Crescente.Add('S');
   TituloPrimaria := 'Sequência';
   ChPrimaria     := 'USER_AGENDA.Sequencia';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Sequência';
   ChaveIndice    := 'USER_AGENDA.Sequencia';
   AfterInsert    := AtribuiMestre;
@@ -171,6 +174,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDUSER_AGENDA.CriaForeignKeys;
 var

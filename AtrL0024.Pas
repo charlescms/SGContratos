@@ -6,21 +6,25 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_TABELAS_Tabela_Obj = class(TTipoAlfanumerico)
+  TDTbSitClientes_SITCLICOD = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_TABELAS_Grupo = class(TTipoAlfanumerico)
+  TDTbSitClientes_DESCRICAO = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_TABELAS_Cerceado = class(TTipoAlfanumerico)
+  TDTbSitClientes_Usuario = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
   end;
 
 
@@ -28,20 +32,20 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_TABELAS_Tabela_Obj.Create(AOwner: TComponent);
+constructor TDTbSitClientes_SITCLICOD.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Tabela_Obj';
+  Nome              := 'SITCLICOD';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 40;
+  Tamanho           := 3;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Tabela';
-  Mascara           := '';
+  Titulo            := 'Código';
+  Mascara           := 'AAA';
   CaractereEdicao   := ' ';
-  Ajuda             := '';
+  Ajuda             := 'Código da Situação de Clientes';
   Calculado         := False;
   Calculado_F       := False;
   Valor.FieldName   := Nome;
@@ -56,14 +60,14 @@ begin
   Index_Default     := 0;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
-  SempreAtribui     := True;
+  SempreAtribui     := False;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_TABELAS';
-  NomeOriginal      := 'Tabela_Obj';
+  NomeTabela        := 'TbSitClientes';
+  NomeOriginal      := 'SITCLICOD';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -72,20 +76,20 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_TABELAS_Grupo.Create(AOwner: TComponent);
+constructor TDTbSitClientes_DESCRICAO.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Grupo';
+  Nome              := 'DESCRICAO';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 4;
+  Tamanho           := 30;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Grupo';
+  Titulo            := 'Descrição';
   Mascara           := '';
   CaractereEdicao   := ' ';
-  Ajuda             := '';
+  Ajuda             := 'Descrição da Situação de Clientes';
   Calculado         := False;
   Calculado_F       := False;
   Valor.FieldName   := Nome;
@@ -95,19 +99,19 @@ begin
   Valor.Index       := 1;
   Valor.Visible     := True;
   Visible_Default   := True;
-  Chave             := True;
+  Chave             := False;
   Index             := 1;
   Index_Default     := 1;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
-  SempreAtribui     := True;
+  SempreAtribui     := False;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_TABELAS';
-  NomeOriginal      := 'Grupo';
+  NomeTabela        := 'TbSitClientes';
+  NomeOriginal      := 'DESCRICAO';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -116,17 +120,17 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_TABELAS_Cerceado.Create(AOwner: TComponent);
+constructor TDTbSitClientes_Usuario.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Cerceado';
+  Nome              := 'Usuario';
   Tipo              := tpAlfanumerico;
   Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Cerceado';
+  Titulo            := 'Usuário';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -137,27 +141,37 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 2;
-  Valor.Visible     := True;
-  Visible_Default   := True;
+  Valor.Visible     := False;
+  Visible_Default   := False;
   Chave             := False;
   Index             := 2;
   Index_Default     := 2;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_TABELAS';
-  NomeOriginal      := 'Cerceado';
+  NomeTabela        := 'TbSitClientes';
+  NomeOriginal      := 'Usuario';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
   EstiloPesquisa    := 0;
   AcaoPesquisa      := 0;
   FiltroFixo.Clear;
+end;
+
+function TDTbSitClientes_Usuario.ValorPadrao: String;
+begin
+  Result := Sistema.Usuario;
+end;
+
+function TDTbSitClientes_Usuario.PreValidacao: Boolean;
+begin
+  Result := Sistema.Master;
 end;
 
 end.

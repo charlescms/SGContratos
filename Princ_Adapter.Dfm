@@ -151,7 +151,7 @@ object FormAdapter: TFormAdapter
   object ControlBarMenu: TControlBar
     Left = 0
     Top = 0
-    Width = 613
+    Width = 605
     Height = 30
     Align = alTop
     AutoSize = True
@@ -164,7 +164,7 @@ object FormAdapter: TFormAdapter
     object ToolBarArquivo: TToolBar
       Left = 11
       Top = 2
-      Width = 596
+      Width = 588
       Height = 22
       Align = alNone
       ButtonWidth = 24
@@ -206,8 +206,8 @@ object FormAdapter: TFormAdapter
   object PageControl: TPageControl
     Left = 0
     Top = 30
-    Width = 613
-    Height = 404
+    Width = 605
+    Height = 392
     ActivePage = TabPrincipal
     Align = alClient
     TabOrder = 1
@@ -218,21 +218,20 @@ object FormAdapter: TFormAdapter
         Left = 300
         Top = 0
         Width = 4
-        Height = 335
-        Cursor = crHSplit
+        Height = 323
       end
       object PnEstrutura_1: TPanel
         Left = 0
         Top = 0
         Width = 300
-        Height = 335
+        Height = 323
         Align = alLeft
         TabOrder = 0
         object Estruturas_1: TTreeView
           Left = 1
           Top = 21
           Width = 298
-          Height = 313
+          Height = 301
           Align = alClient
           BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
@@ -269,14 +268,14 @@ object FormAdapter: TFormAdapter
         Left = 304
         Top = 0
         Width = 300
-        Height = 335
+        Height = 323
         Align = alLeft
         TabOrder = 1
         object Estruturas_2: TTreeView
           Left = 1
           Top = 21
           Width = 298
-          Height = 313
+          Height = 301
           Align = alClient
           BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
@@ -311,8 +310,8 @@ object FormAdapter: TFormAdapter
       end
       object Panel1: TPanel
         Left = 0
-        Top = 335
-        Width = 605
+        Top = 323
+        Width = 597
         Height = 41
         Align = alBottom
         TabOrder = 2
@@ -359,7 +358,7 @@ object FormAdapter: TFormAdapter
           ParentFont = False
         end
         object Panel3: TPanel
-          Left = 429
+          Left = 421
           Top = 1
           Width = 175
           Height = 39
@@ -400,8 +399,8 @@ object FormAdapter: TFormAdapter
       ImageIndex = 1
       object Panel5: TPanel
         Left = 0
-        Top = 335
-        Width = 605
+        Top = 323
+        Width = 597
         Height = 41
         Align = alBottom
         TabOrder = 1
@@ -463,8 +462,8 @@ object FormAdapter: TFormAdapter
             Top = 8
             Width = 75
             Height = 25
-            Hint = 'Próxima tabela'
-            Caption = 'P&róxima'
+            Hint = 'Pr'#243'xima tabela'
+            Caption = 'P&r'#243'xima'
             ParentShowHint = False
             ShowHint = True
             TabOrder = 1
@@ -489,7 +488,7 @@ object FormAdapter: TFormAdapter
           Width = 172
           Height = 17
           Hint = 
-            'Essa opção quando marcada garante a importação de todos os regis' +
+            'Essa op'#231#227'o quando marcada garante a importa'#231#227'o de todos os regis' +
             'tros'#13#10'para a nova estrutura'
           Caption = 'Preservar os registros da tabela'
           Checked = True
@@ -503,7 +502,7 @@ object FormAdapter: TFormAdapter
         Left = 0
         Top = 0
         Width = 401
-        Height = 335
+        Height = 323
         Align = alLeft
         TabOrder = 0
         object PnTabela: TPanel
@@ -563,7 +562,7 @@ object FormAdapter: TFormAdapter
             Width = 349
             Height = 21
             Style = csDropDownList
-            ItemHeight = 13
+            ItemHeight = 0
             TabOrder = 0
             OnClick = EdLocalizarClick
           end
@@ -572,15 +571,15 @@ object FormAdapter: TFormAdapter
       object PnInfo: TPanel
         Left = 401
         Top = 0
-        Width = 204
-        Height = 335
+        Width = 196
+        Height = 323
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 2
         object Panel7: TPanel
           Left = 0
           Top = 0
-          Width = 204
+          Width = 196
           Height = 20
           Align = alTop
           Caption = 'Tabelas Atualizadas'
@@ -596,7 +595,7 @@ object FormAdapter: TFormAdapter
         object ListaTabAt: TListBox
           Left = 0
           Top = 20
-          Width = 204
+          Width = 196
           Height = 205
           Align = alTop
           ItemHeight = 13
@@ -605,8 +604,8 @@ object FormAdapter: TFormAdapter
         object Instrucoes: TMemo
           Left = 0
           Top = 225
-          Width = 204
-          Height = 110
+          Width = 196
+          Height = 98
           TabStop = False
           Align = alClient
           Alignment = taCenter
@@ -617,11 +616,11 @@ object FormAdapter: TFormAdapter
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           Lines.Strings = (
-            'Faça uma cópia de segurança (Backup)'
+            'Fa'#231'a uma c'#243'pia de seguran'#231'a (Backup)'
             'antes de prosseguir com o processo'
-            'de atualização.'
+            'de atualiza'#231#227'o.'
             ''
-            'Para modificar o conteúdo de '
+            'Para modificar o conte'#250'do de '
             'preenchimento do campo clique  '
             'duas vezes sobre o campo desejado, '
             'ou tecle F2.')
@@ -666,7 +665,7 @@ object FormAdapter: TFormAdapter
             Top = 8
             Width = 75
             Height = 25
-            Hint = 'Fechar consulta / edição'
+            Hint = 'Fechar consulta / edi'#231#227'o'
             Caption = '&Cancelar'
             ParentShowHint = False
             ShowHint = True
@@ -878,8 +877,6 @@ object FormAdapter: TFormAdapter
           Top = 13
           Width = 241
           Height = 16
-          Min = 0
-          Max = 100
           TabOrder = 1
           Visible = False
         end

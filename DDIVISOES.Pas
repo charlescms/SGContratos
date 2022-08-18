@@ -1,15 +1,15 @@
 {
- Classe da tabela: DIVISOES - Tabela de Divisões
+ Classe da tabela: Divisoes - Tabela de Divisões
 }
 
-unit DDIVISOES;
+unit DDivisoes;
 
 interface
 
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0003,
+     AtrL0004,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -18,11 +18,12 @@ uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
      DB, Dialogs;
 
 type
-  TDDIVISOES = class(TTabela)
+  TDDivisoes = class(TTabela)
   public
-    CLICOD: TDDIVISOES_CLICOD;
-    seq: TDDIVISOES_seq;
-    NOME: TDDIVISOES_NOME;
+    CLICOD: TDDivisoes_CLICOD;
+    seq: TDDivisoes_seq;
+    NOME: TDDivisoes_NOME;
+    Usuario: TDDivisoes_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -45,12 +46,12 @@ implementation
 
 uses Publicas, Validar, Rotinas, Abertura, Calculos, RotinaEd;
 
-constructor TDDIVISOES.Create(AOwner: TComponent);
+constructor TDDivisoes.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  NomeTabela       := 'DIVISOES';
+  NomeTabela       := 'Divisoes';
   Titulo           := 'Tabela de Divisões';
-  Name             := 'DDIVISOES';
+  Name             := 'DDivisoes';
   Database         := BaseDados.BD_Base_Dados;
   {$IFDEF IBX}
   Transaction      := BaseDados.TRS_BD_Base_Dados;
@@ -63,79 +64,90 @@ begin
   DatabaseName     := BaseDados.BD_Base_Dados.DatabaseName;
   {$ENDIF}
   Local            := False;
-  Open_begin       := False;
+  Open_begin       := True;
   Versao           := 6;
   UsarGenerator    := True;
   TableType        := ttTable;
-  DataSource.Name  := 'DsDIVISOES';
+  DataSource.Name  := 'DsDivisoes';
   with UpdateSql do
   begin
-    Name           := 'UpdSql_DIVISOES';
+    Name           := 'UpdSql_Divisoes';
     // Exclusão de Registro
-    DeleteSQL.Add('delete from DIVISOES');
+    DeleteSQL.Add('delete from Divisoes');
     DeleteSQL.Add('where');
     DeleteSQL.Add('  CLICOD = :OLD_CLICOD');
     DeleteSQL.Add('  and seq = :OLD_seq');
     // Inserção de Registro
-    InsertSQL.Add('insert into DIVISOES');
+    InsertSQL.Add('insert into Divisoes');
     InsertSQL.Add('  (');
     InsertSQL.Add('  CLICOD,');
     InsertSQL.Add('  seq,');
-    InsertSQL.Add('  NOME');
+    InsertSQL.Add('  NOME,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :CLICOD,');
     InsertSQL.Add('  :seq,');
-    InsertSQL.Add('  :NOME');
+    InsertSQL.Add('  :NOME,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
-    ModifySQL.Add('update DIVISOES');
+    ModifySQL.Add('update Divisoes');
     ModifySQL.Add('set');
     ModifySQL.Add('  CLICOD = :CLICOD,');
     ModifySQL.Add('  seq = :seq,');
-    ModifySQL.Add('  NOME = :NOME');
+    ModifySQL.Add('  NOME = :NOME,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  CLICOD = :OLD_CLICOD');
     ModifySQL.Add('  and seq = :OLD_seq');
     // Refresh de Registro
     RefreshSQL.Add('Select');
-    RefreshSQL.Add('  DIVISOES.CLICOD AS CLICOD,');
-    RefreshSQL.Add('  DIVISOES.seq AS seq,');
-    RefreshSQL.Add('  DIVISOES.NOME AS NOME');
-    RefreshSQL.Add('from DIVISOES');
+    RefreshSQL.Add('  Divisoes.CLICOD AS CLICOD,');
+    RefreshSQL.Add('  Divisoes.seq AS seq,');
+    RefreshSQL.Add('  Divisoes.NOME AS NOME,');
+    RefreshSQL.Add('  Divisoes.Usuario AS Usuario');
+    RefreshSQL.Add('from Divisoes');
     RefreshSQL.Add('where');
-    RefreshSQL.Add('  DIVISOES.CLICOD = :OLD_CLICOD');
-    RefreshSQL.Add('  and DIVISOES.seq = :OLD_seq');
+    RefreshSQL.Add('  Divisoes.CLICOD = :OLD_CLICOD');
+    RefreshSQL.Add('  and Divisoes.seq = :OLD_seq');
   end;
   UpdateObject     := UpdateSql;
     // Sql Principal
   SqlPrincipal.Add('Select');
-  SqlPrincipal.Add('  DIVISOES.CLICOD AS CLICOD,');
-  SqlPrincipal.Add('  DIVISOES.seq AS seq,');
-  SqlPrincipal.Add('  DIVISOES.NOME AS NOME');
-  SqlPrincipal.Add('from DIVISOES');
+  SqlPrincipal.Add('  Divisoes.CLICOD AS CLICOD,');
+  SqlPrincipal.Add('  Divisoes.seq AS seq,');
+  SqlPrincipal.Add('  Divisoes.NOME AS NOME,');
+  SqlPrincipal.Add('  Divisoes.Usuario AS Usuario');
+  SqlPrincipal.Add('from Divisoes');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
-  Sql.Add('order by DIVISOES.CLICOD,DIVISOES.seq');
-  seq := TDDIVISOES_seq.Create(AOwner);
+  Sql.Add('order by Divisoes.CLICOD,Divisoes.seq');
+  seq := TDDivisoes_seq.Create(AOwner);
   seq.Valor.DataSet := Self;
-  NOME := TDDIVISOES_NOME.Create(AOwner);
-  NOME.Valor.DataSet := Self;
-  CLICOD := TDDIVISOES_CLICOD.Create(AOwner);
+  CLICOD := TDDivisoes_CLICOD.Create(AOwner);
   CLICOD.Valor.DataSet := Self;
+  NOME := TDDivisoes_NOME.Create(AOwner);
+  NOME.Valor.DataSet := Self;
+  Usuario := TDDivisoes_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(CLICOD);
   ChavePrimaria.Add(seq);
+//CRIANDO CAMPOS 
   Campos.Add(CLICOD);
   Campos.Add(seq);
   Campos.Add(NOME);
+  Campos.Add(Usuario);
   TituloIndices.Add('Cliente,Seq');
-  Indices.Add('DIVISOES.CLICOD,DIVISOES.seq');
+  Indices.Add('Divisoes.CLICOD,Divisoes.seq');
   Crescente.Add('S');
   TituloPrimaria := 'Cliente,Seq';
-  ChPrimaria     := 'DIVISOES.CLICOD,DIVISOES.seq';
+  ChPrimaria     := 'Divisoes.CLICOD,Divisoes.seq';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Cliente,Seq';
-  ChaveIndice    := 'DIVISOES.CLICOD,DIVISOES.seq';
+  ChaveIndice    := 'Divisoes.CLICOD,Divisoes.seq';
   AfterInsert    := AtribuiMestre;
   AfterPost      := ProcessoDireto1;
   AfterCancel    := ProcessoDireto2;
@@ -143,8 +155,11 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
-procedure TDDIVISOES.CriaForeignKeys;
+procedure TDDivisoes.CriaForeignKeys;
 var
   Script_ForeignKeys: TSQLScript;
 begin
@@ -168,39 +183,48 @@ begin
   end;
 end;
 
-function TDDIVISOES.PodeExcluir: Boolean;
+function TDDivisoes.PodeExcluir: Boolean;
 begin
   PodeExcluir := True;
   if not Sistema.Integridade then
     exit;
 end;
 
-procedure TDDIVISOES.ExclusaoCascata;
+procedure TDDivisoes.ExclusaoCascata;
 begin
+  // Exclusão em Cascata Tabela: DRESUMENCONTRATACION
+  TabGlobal.DRESUMENCONTRATACION.Filtro.Clear;
+  TabGlobal.DRESUMENCONTRATACION.Filtro.Add('RESUMENCONTRATACION.CLICOD = :Divisoes_CLICOD');
+  TabGlobal.DRESUMENCONTRATACION.Filtro.Add('AND RESUMENCONTRATACION.seq = :Divisoes_seq');
+  TabGlobal.DRESUMENCONTRATACION.AtualizaSql;
+  while not TabGlobal.DRESUMENCONTRATACION.Eof do
+    if not TabGlobal.DRESUMENCONTRATACION.Exclui then
+      TabGlobal.DRESUMENCONTRATACION.Next;
 end;
 
-function TDDIVISOES.PesquisaRelacionados(Tabela, Campo: String; var Retorno: Variant; CampoFoco: String = ''): Boolean;
+function TDDivisoes.PesquisaRelacionados(Tabela, Campo: String; var Retorno: Variant; CampoFoco: String = ''): Boolean;
 begin
   Result := False;
 end;
 
-function TDDIVISOES.PesquisaRelacionados(Tabela: String): Boolean;
+function TDDivisoes.PesquisaRelacionados(Tabela: String): Boolean;
 begin
   Result := False;
-  if UpperCase(Tabela) = UpperCase('DIVISOES') then
-    if PTabela(TabGlobal.DDIVISOES, ['CLICOD','seq'], [CLICOD.Valor.Value,seq.Valor.Value]) then
+  if UpperCase(Tabela) = UpperCase('Divisoes') then
+    if PTabela(TabGlobal.DDivisoes, ['CLICOD','seq'], [CLICOD.Valor.Value,seq.Valor.Value]) then
       Result := True;
 end;
 
-procedure TDDIVISOES.CalculaCampos;
+procedure TDDivisoes.CalculaCampos;
 begin
 end;
 
-procedure TDDIVISOES.AtribuiRelacionamentos(Atribui: Boolean = True);
+procedure TDDivisoes.AtribuiRelacionamentos(Atribui: Boolean = True);
 begin
+  TabGlobal.DRESUMENCONTRATACION.AtribuiFiltroMestre(Atribui);
 end;
 
-procedure TDDIVISOES.AtribuiFiltroMestre(Atribui: Boolean = True; Atualiza: Boolean = True);
+procedure TDDivisoes.AtribuiFiltroMestre(Atribui: Boolean = True; Atualiza: Boolean = True);
 var
   I: Integer;
 begin
@@ -208,7 +232,7 @@ begin
   FiltroRelac.Clear;
   if Atribui then
   begin
-    FiltroRelac.Add('DIVISOES.CLICOD = :Clientes_CLICOD');
+    FiltroRelac.Add('Divisoes.CLICOD = :Clientes_CLICOD');
   end
   else
     for I:=0 to Campos.Count-1 do
@@ -218,12 +242,12 @@ begin
     AtualizaSql;
 end;
 
-procedure TDDIVISOES.AtribuiMestre(DataSet: TDataSet);
+procedure TDDivisoes.AtribuiMestre(DataSet: TDataSet);
 begin
   CLICOD.Valor.Value := TabGlobal.DClientes.CLICOD.Valor.Value;
 end;
 
-procedure TDDIVISOES.ProcessoDireto1(DataSet: TDataSet);
+procedure TDDivisoes.ProcessoDireto1(DataSet: TDataSet);
 var
   QueryLc: TTabela;
   EmEdicao: Boolean;
@@ -236,7 +260,7 @@ begin
   Modificacao := False;
 end;
 
-procedure TDDIVISOES.ProcessoDireto2(DataSet: TDataSet);
+procedure TDDivisoes.ProcessoDireto2(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
@@ -248,7 +272,7 @@ begin
   Modificacao := False;
 end;
 
-procedure TDDIVISOES.AtualizaCalculados(DataSet: TDataSet);
+procedure TDDivisoes.AtualizaCalculados(DataSet: TDataSet);
 begin
   CalculaCampos;
   if Inclusao then
@@ -256,13 +280,13 @@ begin
       AutoIncremento('CLICOD', True, CLICOD.AutoIncremento);
 end;
 
-procedure TDDIVISOES.ProcessoInverso1(DataSet: TDataSet);
+procedure TDDivisoes.ProcessoInverso1(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
 end;
 
-procedure TDDIVISOES.ProcessoInverso2(DataSet: TDataSet);
+procedure TDDivisoes.ProcessoInverso2(DataSet: TDataSet);
 var
   EmEdicao: Boolean;
 begin
@@ -270,7 +294,7 @@ begin
   ExclusaoCascata;
 end;
 
-procedure TDDIVISOES.Parametros(Tabela: TTabela);
+procedure TDDivisoes.Parametros(Tabela: TTabela);
 begin
   Parametros_Padrao(Tabela);
 end;

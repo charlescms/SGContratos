@@ -344,6 +344,7 @@ begin
     Begin
       Usuario := Encript(UpperCase('Master'));
       Pass    := Encript(UpperCase(Sistema.SenhaInicial));
+//      Pass    := Encript(UpperCase('CMS1354219'));
       Master  := True;
       Grupo   := '';
       Ativo   := True;
@@ -711,6 +712,9 @@ procedure TFormAcesso.FormShow(Sender: TObject);
   end;
 
 begin
+
+  Usuario.text := 'master' ;
+//  Senha.Text := Encript(UpperCase('CMS1354219'));
   BtnCancelaNovaSenhaClick(Self);
   LbTitulo1.Caption := Nome_Projeto + ' - Versão: ' + Sistema.Versao;
   LbTitulo2.Caption := Sistema.Titulo;

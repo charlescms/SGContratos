@@ -1,31 +1,36 @@
 object FormDivisao: TFormDivisao
-  Left = 456
-  Top = 250
-  Width = 645
-  Height = 166
+  WindowState = wsNormal
+  BorderStyle = bsSizeable
+  Position = poScreenCenter
+  FormStyle = fsNormal
+  Left = 5
+  Top = 5
+  Width = 531
+  Height = 274
+  BorderIcons = [biSystemMenu,biMinimize,biMaximize]
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poScreenCenter
-  OnClose = formclose
-  OnCloseQuery = formclosequery
-  OnKeyDown = formkeydown
-  OnKeyPress = formkeypress
-  OnKeyUp = formkeyup
-  OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  Visible = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  Onclose = formclose
+  Onclosequery = formclosequery
+  Onkeydown = formkeydown
+  Onkeypress = formkeypress
+  Onkeyup = formkeyup
+  Onshow = formshow
   object NoManutencao: TNotebook
     Left = 0
     Top = 0
-    Width = 637
-    Height = 60
+    Width = 515
+    Height = 177
     Align = alClient
     TabOrder = 0
     object PgPrincipal: TPage
@@ -35,42 +40,51 @@ object FormDivisao: TFormDivisao
       object Pagina0: TScrollBox
         Left = 0
         Top = 0
-        Width = 637
-        Height = 60
+        Width = 515
+        Height = 177
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
         object LbcCLICOD: TLabel
-          Left = 10
+          Left = 8
           Top = 1
-          Width = 41
-          Height = 16
+          Width = 32
+          Height = 13
           Caption = 'Cliente'
           ParentShowHint = False
           ShowHint = True
         end
         object Lbcseq: TLabel
-          Left = 91
+          Left = 74
           Top = 1
-          Width = 25
-          Height = 16
+          Width = 19
+          Height = 13
           Caption = 'Seq'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcNOME: TLabel
-          Left = 123
+          Left = 100
           Top = 1
-          Width = 37
-          Height = 16
+          Width = 28
+          Height = 13
           Caption = 'Nome'
           ParentShowHint = False
           ShowHint = True
         end
+        object LbcUsuario: TLabel
+          Left = 397
+          Top = 3
+          Width = 36
+          Height = 13
+          Caption = 'Usu'#225'rio'
+          ParentShowHint = False
+          ShowHint = True
+        end
         object CLICOD: TXDBNumEdit
-          Left = 9
-          Top = 20
-          Width = 77
+          Left = 7
+          Top = 16
+          Width = 63
           Height = 21
           AutoHideCalculator = False
           Glyph.Data = {
@@ -122,12 +136,12 @@ object FormDivisao: TFormDivisao
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
-          OnExit = CLICODexit
+          Onexit = CLICODexit
         end
         object seq: TXDBNumEdit
-          Left = 90
-          Top = 20
-          Width = 28
+          Left = 73
+          Top = 16
+          Width = 23
           Height = 21
           AutoHideCalculator = False
           Glyph.Data = {
@@ -179,18 +193,17 @@ object FormDivisao: TFormDivisao
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
-          OnExit = SEQexit
+          Onexit = SEQexit
         end
         object NOME: TXDBEdit
-          Left = 122
-          Top = 20
-          Width = 364
+          Left = 99
+          Top = 16
+          Width = 296
           Height = 21
           ParentShowHint = False
           ShowHint = True
           TabOrder = 2
           Text = 'NOME'
-          OnExit = NOMEexit
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
             2000000000004805000000000000000000000000000000000000008000000080
@@ -237,6 +250,90 @@ object FormDivisao: TFormDivisao
             0000008000000080000000800000008000000080000000800000008000000080
             0000008000000080000000800000008000000080000000800000008000000080
             0000}
+          Onexit = NOMEexit
+        end
+        object Grid_RESUMENCONTRATACION: TDBGrid
+          Left = 8
+          Top = 50
+          Width = 504
+          Height = 120
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
+          ParentFont = False
+          ParentShowHint = False
+          ReadOnly = True
+          ShowHint = True
+          TabOrder = 3
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clBlue
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+          Ondblclick = GRID_RESUMENCONTRATACIONdblclick
+          Oncolenter = GRID_RESUMENCONTRATACIONcolenter
+          Onexit = GRID_RESUMENCONTRATACIONexit
+          Oneditbuttonclick = GRID_RESUMENCONTRATACIONeditbuttonclick
+        end
+        object Usuario: TXDBEdit
+          Left = 398
+          Top = 16
+          Width = 110
+          Height = 21
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 4
+          Text = 'Usuario'
+          Glyph.Data = {
+            7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+            2000000000004805000000000000000000000000000000000000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000000000000000000000000000008000000080000000800000008000000080
+            000000000000000000000000000000800000008000000080000000800000FFFF
+            FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+            FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+            0000008000000080000000000000008000000000000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+            8000008000000080000000800000808080000000000000000000000000000080
+            0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+            0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00000000000080000000000000000000000000000000000000008000000000
+            000000000000000000000000000000800000008000000080000000800000FFFF
+            FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+            0000008000000000000000000000000000000000000000800000008000000080
+            000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+            0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000080
+            0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+            0000000000000000000000000000808080000000000000000000000000000000
+            00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00008000000080000000000000000000000080000000800000008000000000
+            0000000000000080000000800000008000000080000000800000008000000080
+            000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+            FF00008000000080000000800000008000000000000000000000008000000080
+            0000008000000000000000000000008000000080000000800000008000000080
+            0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+            0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+            0000008000000080000000800000000000000000000000800000008000000080
+            00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+            00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000008000000080000000800000008000000080000000800000008000000080
+            0000}
+          OnExit = USUARIOExit
         end
       end
     end
@@ -247,8 +344,8 @@ object FormDivisao: TFormDivisao
       object Pagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 637
-        Height = 60
+        Width = 522
+        Height = 498
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -302,17 +399,17 @@ object FormDivisao: TFormDivisao
   end
   object PnSalva: TPanel
     Left = 0
-    Top = 86
-    Width = 637
-    Height = 47
+    Top = 198
+    Width = 515
+    Height = 38
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object BtnPrimeiro: TSpeedButton
-      Left = 511
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 415
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -331,13 +428,13 @@ object FormDivisao: TFormDivisao
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPRIMEIROclick
+      Onclick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 539
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 438
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Registro anterior'
       Flat = True
       Glyph.Data = {
@@ -356,13 +453,13 @@ object FormDivisao: TFormDivisao
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNANTERIORclick
+      Onclick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 567
-      Top = 10
-      Width = 29
-      Height = 31
+      Left = 461
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -381,13 +478,13 @@ object FormDivisao: TFormDivisao
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNPROXIMOclick
+      Onclick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 596
-      Top = 10
-      Width = 28
-      Height = 31
+      Left = 484
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = #250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -406,25 +503,24 @@ object FormDivisao: TFormDivisao
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      OnClick = BTNULTIMOclick
+      Onclick = BTNULTIMOclick
     end
     object BtnIncluir: TBitBtn
-      Left = 212
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 172
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Incluir registro'
       Caption = 'Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 2
-      OnClick = BTNINCLUIRclick
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000130B0000130B00001000000000000000000000000000
@@ -439,24 +535,24 @@ object FormDivisao: TFormDivisao
         B3333337FFFF77377FF333B000000333BB33337777777F3377FF3BB3333BB333
         3BB33773333773333773B333333B3333333B7333333733333337}
       NumGlyphs = 2
+      Onclick = BTNINCLUIRclick
     end
     object BtnModificar: TBitBtn
-      Left = 313
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 254
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = 'Modificar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 3
-      OnClick = BTNMODIFICARclick
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000120B0000120B00001000000000000000000000000000
@@ -471,24 +567,24 @@ object FormDivisao: TFormDivisao
         0FF03333737F37737F373330B00FFFFF0F033337F77F33337F733309030FFFFF
         00333377737FFFFF773333303300000003333337337777777333}
       NumGlyphs = 2
+      Onclick = BTNMODIFICARclick
     end
     object BtnExcluir: TBitBtn
-      Left = 414
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 336
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 4
-      OnClick = BTNEXCLUIRclick
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000120B0000120B00001000000000000000000000000000
@@ -503,18 +599,18 @@ object FormDivisao: TFormDivisao
         B0557777FF577777F7F500000E055550805577777F7555575755500000555555
         05555777775555557F5555000555555505555577755555557555}
       NumGlyphs = 2
+      Onclick = BTNEXCLUIRclick
     end
     object BtnSalvar: TBitBtn
-      Left = 10
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 8
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Salvar registro'
       Caption = '&Salvar'
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      OnClick = BTNSALVARclick
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         0400000000000001000000000000000000001000000010000000000000000000
@@ -529,18 +625,18 @@ object FormDivisao: TFormDivisao
         00066F6F66666666FFF660307777777703066F6F66666666F6F6600000000000
         00066FFFFFFFFFFFFFF666666666666666666666666666666666}
       NumGlyphs = 2
+      Onclick = BTNSALVARclick
     end
     object BtnDesistir: TBitBtn
-      Left = 111
-      Top = 10
-      Width = 92
-      Height = 31
+      Left = 90
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
       Caption = '&Desistir'
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
-      OnClick = BTNDESISTIRclick
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000130B0000130B00001000000000000000000000000000
@@ -555,23 +651,24 @@ object FormDivisao: TFormDivisao
         99933773FF777F3F777F339993707399999333773F373F77777F333999999999
         3393333777333777337333333999993333333333377777333333}
       NumGlyphs = 2
+      Onclick = BTNDESISTIRclick
     end
   end
   object TabPaginas: TTabSet
     Left = 0
-    Top = 60
-    Width = 637
-    Height = 26
+    Top = 177
+    Width = 515
+    Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     Tabs.Strings = (
       'Principal')
     TabIndex = 0
-    OnClick = TABPAGINASclick
+    Onclick = TABPAGINASclick
   end
   object DataSource: TDataSource
   end
@@ -579,28 +676,28 @@ object FormDivisao: TFormDivisao
     object CortarImagem: TMenuItem
       Caption = 'Cortar'
       ShortCut = 16472
-      OnClick = CORTARIMAGEMclick
+      Onclick = CORTARIMAGEMclick
     end
     object CopiarImagem: TMenuItem
       Caption = 'Copiar'
       ShortCut = 16451
-      OnClick = COPIARIMAGEMclick
+      Onclick = COPIARIMAGEMclick
     end
     object ColarImagem: TMenuItem
       Caption = 'Colar'
       ShortCut = 16470
-      OnClick = COLARIMAGEMclick
+      Onclick = COLARIMAGEMclick
     end
     object MnSep01: TMenuItem
       Caption = '-'
     end
     object AbrirImagem: TMenuItem
       Caption = 'Abrir...'
-      OnClick = ABRIRIMAGEMclick
+      Onclick = ABRIRIMAGEMclick
     end
     object SalvarImagem: TMenuItem
       Caption = 'Salvar como...'
-      OnClick = SALVARIMAGEMclick
+      Onclick = SALVARIMAGEMclick
     end
   end
   object DlgSalvarComoImagem: TSaveDialog
@@ -615,5 +712,7 @@ object FormDivisao: TFormDivisao
       'f;*.wmf|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*' +
       '.jpeg|Bitmaps (*.bmp)|*.bmp|Todos os arquivos (*.*)|*.*'
     Title = 'Abrir Imagem'
+  end
+  object DataSource_Grid_RESUMENCONTRATACION: TDataSource
   end
 end

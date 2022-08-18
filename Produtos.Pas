@@ -23,6 +23,9 @@ type
     {01-Início do Bloco Modular. Modificações não serão preservadas}
     AbaConsulta: TTabSet;
     AbrirImagem: TMenuItem;
+    btn1: TBitBtn;
+    btn2: TBitBtn;
+    btn3: TBitBtn;
     BtnAnterior: TSpeedButton;
     BtnDesistir: TBitBtn;
     BtnExcluir: TSpeedButton;
@@ -41,15 +44,25 @@ type
     CopiarImagem: TMenuItem;
     CortarImagem: TMenuItem;
     DataSource: TDataSource;
+    DataSource_Grid_PREVISAO: TDataSource;
     Divisao_sup: TPanel;
     DlgAbrirImagem: TOpenDialog;
     DlgSalvarComoImagem: TSaveDialog;
+    edt_ano: TXNumEdit;
+    edt_fator: TXNumEdit;
+    Grid_PREVISAO: TDBGrid;
     GridConsulta: TDBGrid;
+    grp_carrega: TGroupBox;
     Img_Form: TImage;
     Img_Tabela: TImage;
+    LbcObservacoes: TLabel;
     LbcProduto: TLabel;
     LbcQUANT_PREVISTA: TLabel;
+    LbcUsuario: TLabel;
     LbcVALOR_PREVISTO: TLabel;
+    lbl1: TLabel;
+    lbl2: TLabel;
+    lbl3: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     mnu_ApagarColuna: TMenuItem;
@@ -66,11 +79,13 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     NoManutencao: TNotebook;
+    Observacoes: TXDBEdit;
     PagePrincipal: TPageControl;
     Pagina0: TScrollBox;
     Pagina1: TScrollBox;
     PgPagina1: TScrollBox;
     PnInfConsulta: TPanel;
+    pnl1: TPanel;
     PnSalva: TPanel;
     PnSuperior: TPanel;
     PopConsulta: TPopupMenu;
@@ -81,11 +96,14 @@ type
     TabConsulta: TTabSheet;
     TabManutencao: TTabSheet;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     VALOR_PREVISTO: TXDBNumEdit;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ProdutoExit(Sender: TObject);
     procedure QUANT_PREVISTAExit(Sender: TObject);
     procedure VALOR_PREVISTOExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
+    procedure ObservacoesExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -127,6 +145,13 @@ type
     procedure BtnProximoClick(Sender: TObject);
     procedure BtnUltimoClick(Sender: TObject);
     procedure BtnRefreshClick(Sender: TObject);
+    procedure Grid_PREVISAODblClick(Sender: TObject);
+    procedure Grid_PREVISAOColEnter(Sender: TObject);
+    procedure Grid_PREVISAOExit(Sender: TObject);
+    procedure Grid_PREVISAOEditButtonClick(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -184,11 +209,12 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa;
+uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, FRM_PREVISAO,
+  IBCustomDataSet;
 
 procedure TFormProdutos.FormShow(Sender: TObject);
-Var
-  I: Integer;
+//Var
+//  I: Integer;
 begin
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   TabelaPrincipal    := TabGlobal.DProdutos;
@@ -207,6 +233,11 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DProdutos, TabGlobal.DProdutos.Observacoes, -2, ObservacoesExit, Nil, ListaCamposEd, FormProdutos, DataSource, ChamaGridPesquisa);
+  DataSource_Grid_PREVISAO.DataSet := TabGlobal.DPREVISAO;
+  Grid_PREVISAO.DataSource := DataSource_Grid_PREVISAO;
+  AtribuiGridEdicao(TabGlobal.DPREVISAO, Grid_PREVISAO, True, ValidaColunaGrid);
+  AtribuiCampoEdicao(TabGlobal.DProdutos, TabGlobal.DProdutos.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormProdutos, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DProdutos, TabGlobal.DProdutos.VALOR_PREVISTO, -2, VALOR_PREVISTOExit, Nil, ListaCamposEd, FormProdutos, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DProdutos, TabGlobal.DProdutos.QUANT_PREVISTA, -2, QUANT_PREVISTAExit, Nil, ListaCamposEd, FormProdutos, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DProdutos, TabGlobal.DProdutos.Produto, -1, ProdutoExit, Nil, ListaCamposEd, FormProdutos, DataSource, ChamaGridPesquisa);
@@ -1284,6 +1315,211 @@ begin
     Exit;
   if not TabGlobal.DProdutos.VALOR_PREVISTO.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DProdutos.VALOR_PREVISTO);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutos.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutos.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutos.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutos.Grid_PREVISAODblClick(Sender: TObject);
+begin
+  if TabelaPrincipal.Inclusao then  // Garante integridade do uso em rede
+  begin                             // salva o registro PAI para depois incluir os registros FILHO
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+    if TabelaPrincipal.PesquisaRelacionados(TabelaPrincipal.NomeTabela) then
+    begin
+      MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
+      exit;
+    end;
+    if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
+      exit;
+    if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
+      exit
+    else
+      if not TabelaPrincipal.Modifica then
+        exit;
+  end;
+  FormFRM_PREVISAO := TFormFRM_PREVISAO.Create(Application);
+  Try
+    FormFRM_PREVISAO.ShowModal;
+  Finally
+    FormFRM_PREVISAO.Free;
+  end;
+end;
+
+procedure TFormProdutos.Grid_PREVISAOColEnter(Sender: TObject);
+begin
+  if (TabGlobal.DPREVISAO.State = dsInsert) and
+     (TabelaPrincipal.Inclusao) then
+  begin
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+    if TabelaPrincipal.PesquisaRelacionados(TabelaPrincipal.NomeTabela) then
+    begin
+      MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
+      begin
+        TabGlobal.DPREVISAO.Cancel;
+        exit;
+      end;
+    end;
+    if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
+    begin
+      TabGlobal.DPREVISAO.Cancel;
+      exit;
+    end;
+    if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
+    begin
+      TabGlobal.DPREVISAO.Cancel;
+      exit;
+    end
+    else
+      if not TabelaPrincipal.Modifica then
+      begin
+        TabGlobal.DPREVISAO.Cancel;
+        exit;
+      end
+      else
+        TabGlobal.DPREVISAO.AtribuiMestre(TabGlobal.DPREVISAO);
+  end;
+  ExecutaPreValidacoesGrid(TabGlobal.DPREVISAO);
+  KeyPreview := False;
+end;
+
+procedure TFormProdutos.Grid_PREVISAOExit(Sender: TObject);
+begin
+  KeyPreview := True;
+end;
+
+procedure TFormProdutos.Grid_PREVISAOEditButtonClick(Sender: TObject);
+Var
+  I: Integer;
+  Campo: TAtributo;
+  CampoGrid: TField;
+begin
+  CampoGrid := Grid_PREVISAO.SelectedField;
+  if CampoGrid = Nil then exit;
+  for I:=0 to TabGlobal.DPREVISAO.Campos.Count-1 do
+  begin
+    Campo := TAtributo(TabGlobal.DPREVISAO.Campos[I]);
+    if Campo.Valor.FieldName = CampoGrid.FieldName then
+      Break;
+  end;
+  if (Campo = nil) or (Campo.Valor.ReadOnly) then exit;
+  FormGridPesquisa := TFormGridPesquisa.Create(Application);
+  Try
+    FormGridPesquisa.Atalho := VK_F8;
+    FormGridPesquisa.Campo  := Campo;
+    if FormGridPesquisa.ShowModal = mrOk then
+      ExecutaPreValidacoesGrid(TabGlobal.DPREVISAO);
+  Finally
+    FormGridPesquisa.Free;
+  end;
+end;
+
+procedure TFormProdutos.btn2Click(Sender: TObject);
+var
+  tmp_Tabela: TTabela;
+  cria_previsao : string ;
+  i_quant : integer ;
+begin
+
+if  edt_ano.Value = 0 then
+begin
+    MessageDlg('O ano é obrigatório !',mtError,[mbOk],0);
+    exit;
+end;
+
+if  edt_fator.Value = 0 then
+begin
+
+    MessageDlg('O Fator é obrigatório !',mtError,[mbOk],0);
+    exit;
+end;
+
+Screen.Cursor := crHourGlass;
+tmp_Tabela:= TTabela.Create(Self) ;
+tmp_Tabela.DataBase := TabelaPrincipal.DataBase ;
+tmp_Tabela.Transaction := TabelaPrincipal.Transaction ;
+tmp_Tabela.Close;
+tmp_Tabela.SQL.Clear ;
+tmp_Tabela.SQL.Add( ' SELECT count ( ano_previsao ) as  quantidade FROM previsao  where   ano_previsao  = '+ IntToStr(edt_ano.ValueInt) );
+tmp_Tabela.Prepare ;
+tmp_Tabela.Open ;
+
+cria_previsao := 'S' ;
+i_quant := tmp_Tabela.Fieldbyname('quantidade').AsInteger ;
+if i_quant  > 0 then
+begin
+   if MessageDlg('A previsao para este ano já foi carregada. Excluir e criar outra ?',mtConfirmation,[mbYes,mbNo],0) = mrYes then
+   begin
+     tmp_Tabela.Close;
+     tmp_Tabela.SQL.Clear ;
+     tmp_Tabela.SQL.Add('delete FROM previsao  where   ano_previsao = '+ IntToStr(edt_ano.ValueInt) );
+     tmp_Tabela.ExecSQL ;
+
+   end
+   else
+     cria_previsao := 'N' ;
+
+end;
+
+if cria_previsao  = 'S' then
+begin
+  tmp_Tabela.Close;
+  tmp_Tabela.SQL.Clear ;
+  tmp_Tabela.SQL.Add( 'SELECT PRODUTOCONTRATOT.PRODUTO,Sum(PRODUTOCONTRATOT.QUANTIDADE) AS QUANTIDADE ,Sum(PRODUTOCONTRATOT.VALORSCC) AS VALOR '+
+                    '  FROM PRODUTOCONTRATOT ' +
+                    '  GROUP BY PRODUTOCONTRATOT.PRODUTO ORDER BY PRODUTOCONTRATOT.PRODUTO ');
+  tmp_Tabela.Prepare ;
+  tmp_Tabela.Open ;
+  while not tmp_Tabela.Eof do
+  begin
+      TabGlobal.DPREVISAO.Inclui(nil);
+      TabGlobal.DPREVISAO.Produto.Conteudo := tmp_Tabela.Fieldbyname('PRODUTO').AsString ;
+      TabGlobal.DPREVISAO.ANO_PREVISAO.Conteudo := edt_ano.ValueInt ;
+      TabGlobal.DPREVISAO.QUANT_PREVISTA.Conteudo :=  tmp_Tabela.Fieldbyname('QUANTIDADE').AsFloat + ( tmp_Tabela.Fieldbyname('QUANTIDADE').AsFloat * edt_fator.Value /100 ) ;
+      TabGlobal.DPREVISAO.VALOR_PREVISTO.Conteudo := tmp_Tabela.Fieldbyname('VALOR').AsCurrency + ( tmp_Tabela.Fieldbyname('VALOR').AsFloat * edt_fator.Value /100 )     ;
+      TabGlobal.DPREVISAO.Usuario.Conteudo := Sistema.Usuario ;
+      TabGlobal.DPREVISAO.Salva ;
+
+      tmp_Tabela.Next ;
+  end;
+end;
+
+tmp_Tabela.Close ;
+tmp_Tabela.Free ;
+TabelaPrincipal.Refresh ;
+TabGlobal.DPREVISAO.Refresh ;
+grp_carrega.Visible := False ;
+Screen.Cursor := crDefault;
+
+end;
+
+procedure TFormProdutos.btn3Click(Sender: TObject);
+begin
+grp_carrega.Visible := False;
+end;
+
+procedure TFormProdutos.btn1Click(Sender: TObject);
+begin
+grp_carrega.Visible := True ;
+end;
+
+procedure TFormProdutos.ObservacoesExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutos.Observacoes.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutos.Observacoes);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

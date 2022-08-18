@@ -6,27 +6,25 @@ uses SysUtils, Classes, Graphics, DB, DBTables, Publicas,
   Rotinas, Validar, Atributo, Estrutur, Controls;
 
 Type
-  TDUSER_NOMES_Usuario = class(TTipoAlfanumerico)
+  TDTbPorto_CodTbPorto = class(TTipoInteiro)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_NOMES_Senha = class(TTipoAlfanumerico)
+  TDTbPorto_NomePorto = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
   end;
 
 Type
-  TDUSER_NOMES_Master = class(TTipoAlfanumerico)
+  TDTbPorto_Usuario = class(TTipoAlfanumerico)
   public
     constructor Create(AOwner: TComponent); override;
-  end;
-
-Type
-  TDUSER_NOMES_Grupo = class(TTipoAlfanumerico)
-  public
-    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
   end;
 
 
@@ -34,17 +32,17 @@ implementation
 
 uses Abertura;
 
-constructor TDUSER_NOMES_Usuario.Create(AOwner: TComponent);
+constructor TDTbPorto_CodTbPorto.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Usuario';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 20;
+  Nome              := 'CodTbPorto';
+  Tipo              := tpInteiro;
+  Tamanho           := 2;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Usuário';
+  Titulo            := 'Código';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -64,12 +62,12 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_NOMES';
-  NomeOriginal      := 'Usuario';
+  NomeTabela        := 'TbPorto';
+  NomeOriginal      := 'CodTbPorto';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -78,18 +76,18 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_NOMES_Senha.Create(AOwner: TComponent);
+constructor TDTbPorto_NomePorto.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Senha';
+  Nome              := 'NomePorto';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 20;
+  Tamanho           := 30;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Senha';
-  Mascara           := '';
+  Titulo            := 'Nome';
+  Mascara           := 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
   CaractereEdicao   := ' ';
   Ajuda             := '';
   Calculado         := False;
@@ -108,12 +106,12 @@ begin
   Incremento_Auto   := False;
   SempreAtribui     := True;
   PreValidacao_ativa:= False;
-  Acao              := 0;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_NOMES';
-  NomeOriginal      := 'Senha';
+  NomeTabela        := 'TbPorto';
+  NomeOriginal      := 'NomePorto';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -122,17 +120,17 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_NOMES_Master.Create(AOwner: TComponent);
+constructor TDTbPorto_Usuario.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Nome              := 'Master';
+  Nome              := 'Usuario';
   Tipo              := tpAlfanumerico;
-  Tamanho           := 1;
+  Tamanho           := 20;
   CasasDecimais     := 0;
   TipoEdicao        := tpEdit;
   TipoSQL           := '';
   SQL_Extra         := '';
-  Titulo            := 'Master';
+  Titulo            := 'Usuário';
   Mascara           := '';
   CaractereEdicao   := ' ';
   Ajuda             := '';
@@ -143,21 +141,21 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 2;
-  Valor.Visible     := True;
-  Visible_Default   := True;
+  Valor.Visible     := False;
+  Visible_Default   := False;
   Chave             := False;
   Index             := 2;
   Index_Default     := 2;
   AutoIncremento    := 0;
   Incremento_Auto   := False;
   SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
   LimparCampo       := False;
   MensagemErro      := '';
   Extra             := False;
-  NomeTabela        := 'USER_NOMES';
-  NomeOriginal      := 'Master';
+  NomeTabela        := 'TbPorto';
+  NomeOriginal      := 'Usuario';
   TabEstrangeira    := '';
   ChaveEstrangeira  := '';
   CamposVisuais     := '';
@@ -166,48 +164,14 @@ begin
   FiltroFixo.Clear;
 end;
 
-constructor TDUSER_NOMES_Grupo.Create(AOwner: TComponent);
+function TDTbPorto_Usuario.ValorPadrao: String;
 begin
-  inherited Create(AOwner);
-  Nome              := 'Grupo';
-  Tipo              := tpAlfanumerico;
-  Tamanho           := 4;
-  CasasDecimais     := 0;
-  TipoEdicao        := tpEdit;
-  TipoSQL           := '';
-  SQL_Extra         := '';
-  Titulo            := 'Grupo';
-  Mascara           := '';
-  CaractereEdicao   := ' ';
-  Ajuda             := '';
-  Calculado         := False;
-  Calculado_F       := False;
-  Valor.FieldName   := Nome;
-  Valor.Size        := TamanhoDado;
-  Valor.DisplayLabel:= Titulo;
-  Valor.Calculated  := Calculado;
-  Valor.Index       := 3;
-  Valor.Visible     := True;
-  Visible_Default   := True;
-  Chave             := False;
-  Index             := 3;
-  Index_Default     := 3;
-  AutoIncremento    := 0;
-  Incremento_Auto   := False;
-  SempreAtribui     := True;
-  PreValidacao_ativa:= False;
-  Acao              := 0;
-  LimparCampo       := False;
-  MensagemErro      := '';
-  Extra             := False;
-  NomeTabela        := 'USER_NOMES';
-  NomeOriginal      := 'Grupo';
-  TabEstrangeira    := '';
-  ChaveEstrangeira  := '';
-  CamposVisuais     := '';
-  EstiloPesquisa    := 0;
-  AcaoPesquisa      := 0;
-  FiltroFixo.Clear;
+  Result := Sistema.Usuario;
+end;
+
+function TDTbPorto_Usuario.PreValidacao: Boolean;
+begin
+  Result := Sistema.Master;
 end;
 
 end.

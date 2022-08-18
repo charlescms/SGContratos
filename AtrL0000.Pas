@@ -65,6 +65,16 @@ Type
     constructor Create(AOwner: TComponent); override;
   end;
 
+Type
+  TDBoocking_Usuario = class(TTipoAlfanumerico)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: String; override;
+    { Pre-Validação }
+    function PreValidacao: Boolean; override;
+  end;
+
 
 implementation
 
@@ -91,8 +101,8 @@ begin
   Valor.DisplayLabel:= Titulo;
   Valor.Calculated  := Calculado;
   Valor.Index       := 0;
-  Valor.Visible     := False;
-  Visible_Default   := False;
+  Valor.Visible     := True;
+  Visible_Default   := True;
   Chave             := True;
   Index             := 0;
   Index_Default     := 0;
@@ -483,6 +493,60 @@ begin
   EstiloPesquisa    := 0;
   AcaoPesquisa      := 0;
   FiltroFixo.Clear;
+end;
+
+constructor TDBoocking_Usuario.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'Usuario';
+  Tipo              := tpAlfanumerico;
+  Tamanho           := 20;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Usuário';
+  Mascara           := '';
+  CaractereEdicao   := ' ';
+  Ajuda             := '';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 9;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 9;
+  Index_Default     := 9;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= True;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'Boocking';
+  NomeOriginal      := 'Usuario';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDBoocking_Usuario.ValorPadrao: String;
+begin
+  Result := Sistema.Usuario;
+end;
+
+function TDBoocking_Usuario.PreValidacao: Boolean;
+begin
+  Result := Sistema.Master;
 end;
 
 end.

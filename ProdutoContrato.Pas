@@ -1,6 +1,6 @@
 {
    Programa.: ProdutoContrato.PAS
-   Copyright: Modular Software 2006
+   Copyright: Modular Software 2006 FORMCOMISSAO
             : Todos os direitos reservados
    Site.....: http://www.xmaker.com.br
 }
@@ -30,8 +30,11 @@ type
     BtnProximo: TSpeedButton;
     BtnSalvar: TBitBtn;
     BtnUltimo: TSpeedButton;
+    Cadastro: TXDBDateEdit;
     CodTbPorto: TXDBNumEdit;
     ColarImagem: TMenuItem;
+    ComisaoSFatura: TXDBNumEdit;
+    Comissao: TXDBNumEdit;
     Complemento: TDBMemo;
     Contrato: TXDBEdit;
     CopiarImagem: TMenuItem;
@@ -39,13 +42,18 @@ type
     DataSource: TDataSource;
     DlgAbrirImagem: TOpenDialog;
     DlgSalvarComoImagem: TSaveDialog;
+    FormComissao: TDBComboBox;
     FormPago: TXDBLookUp;
     Label1: TLabel;
     Label2: TLabel;
+    LbcCadastro: TLabel;
     LbcCodTbPorto: TLabel;
+    LbcComisaoSFatura: TLabel;
+    LbcComissao: TLabel;
     LbcComplemento: TLabel;
     LbcContrato: TLabel;
     LbcDataEmbarque: TLabel;
+    LbcFormComissao: TLabel;
     LbcFormPago: TLabel;
     LbcNomePorto: TLabel;
     LbcOBS: TLabel;
@@ -55,6 +63,7 @@ type
     LbcProduto: TLabel;
     LbcQuantidade: TLabel;
     LbcSequencia: TLabel;
+    LbcUsuario: TLabel;
     LbcValorSCC: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
@@ -71,6 +80,7 @@ type
     SalvarImagem: TMenuItem;
     Sequencia: TXDBNumEdit;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     ValorSCC: TXDBNumEdit;
     procedure ContratoExit(Sender: TObject);
     procedure SequenciaExit(Sender: TObject);
@@ -84,6 +94,13 @@ type
     procedure ComplementoExit(Sender: TObject);
     procedure ProdutoExit(Sender: TObject);
     procedure FormPagoExit(Sender: TObject);
+    procedure CadastroExit(Sender: TObject);
+    procedure ComissaoExit(Sender: TObject);
+    procedure FormComissaoExit(Sender: TObject);
+    procedure FormComissaoDrawItem(Control: TWinControl; Index: Integer;
+                              Rect: TRect; State: TOwnerDrawState);
+    procedure UsuarioExit(Sender: TObject);
+    procedure ComisaoSFaturaExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -164,7 +181,7 @@ Var
   I: Integer;
 begin
   {05-Início do Bloco Modular. Modificações não serão preservadas}
-  TabelaPrincipal    := TabGlobal.DPrudutoContratoT;
+  TabelaPrincipal    := TabGlobal.DProdutoContratoT;
   TituloModulo       := 'Produto Contrato';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
@@ -175,21 +192,38 @@ begin
   PaginaIni          := 0;
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
+  // modificado para deixar o campo editavel
+  TabGlobal.DProdutoContratoT.ValorSCC.Calculado_F := false ;
+
   {06-Início do Bloco Modular. Modificações não serão preservadas}
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.FormPago, -2, FormPagoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.Produto, -2, ProdutoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.Complemento, -2, ComplementoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.NomePorto, -2, NomePortoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.OBS, -2, OBSExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.ValorSCC, -2, ValorSCCExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.Quantidade, -2, QuantidadeExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.PrecoSCC, -2, PrecoSCCExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.PrecoFOB, -2, PrecoFOBExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.CodTbPorto, -2, CodTbPortoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.Sequencia, -1, SequenciaExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DPrudutoContratoT, TabGlobal.DPrudutoContratoT.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.ComisaoSFatura, -2, ComisaoSFaturaExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.FormComissao, -2, FormComissaoExit, FormComissaoDrawItem, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Comissao, -2, ComissaoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Cadastro, -2, CadastroExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.FormPago, -2, FormPagoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Produto, -2, ProdutoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Complemento, -2, ComplementoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.NomePorto, -2, NomePortoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.OBS, -2, OBSExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.ValorSCC, -2, ValorSCCExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Quantidade, -2, QuantidadeExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.PrecoSCC, -2, PrecoSCCExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.PrecoFOB, -2, PrecoFOBExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.CodTbPorto, -2, CodTbPortoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Sequencia, -1, SequenciaExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DProdutoContratoT, TabGlobal.DProdutoContratoT.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormProdutoContrato, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
   CamposCalculados;
+  if VNivel then begin
+     ComisaoSFatura.Color := clWindow ;
+     ComisaoSFatura.ReadOnly := false ;
+  end
+  else begin
+      ComisaoSFatura.Color := cl3DLight ;
+      ComisaoSFatura.ReadOnly := true ;
+  end  ;
+
   if not AbreTabelas then exit;
   AjustaColunasConsulta(TabelaPrincipal);
   BtnSalvar.Enabled   := False;
@@ -273,6 +307,10 @@ procedure TFormProdutoContrato.AtribuiValoresPadrao;
 begin
   ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd, True);
   TabelaPrincipal.AtribuiRelacionamentos;
+
+  TabGlobal.DProdutoContratoT.Comissao.CONTEUDO     := TabGlobal.DContratoTransporte.Comissao.CONTEUDO ;
+  TabGlobal.DProdutoContratoT.FORMCOMISSAO.CONTEUDO := TabGlobal.DContratoTransporte.FORMCOMISSAO.CONTEUDO ;
+
 
 end;
 
@@ -774,8 +812,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.Contrato.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.Contrato);
+  if not TabGlobal.DProdutoContratoT.Contrato.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Contrato);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -785,8 +823,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.Sequencia.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.Sequencia);
+  if not TabGlobal.DProdutoContratoT.Sequencia.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Sequencia);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -796,8 +834,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.CodTbPorto.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.CodTbPorto);
+  if not TabGlobal.DProdutoContratoT.CodTbPorto.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.CodTbPorto);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -807,8 +845,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.PrecoFOB.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.PrecoFOB);
+  if not TabGlobal.DProdutoContratoT.PrecoFOB.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.PrecoFOB);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -818,8 +856,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.PrecoSCC.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.PrecoSCC);
+  if not TabGlobal.DProdutoContratoT.PrecoSCC.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.PrecoSCC);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -829,8 +867,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.Quantidade.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.Quantidade);
+  if not TabGlobal.DProdutoContratoT.Quantidade.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Quantidade);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -840,8 +878,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.ValorSCC.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.ValorSCC);
+  if not TabGlobal.DProdutoContratoT.ValorSCC.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.ValorSCC);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -851,8 +889,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.OBS.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.OBS);
+  if not TabGlobal.DProdutoContratoT.OBS.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.OBS);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -862,8 +900,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.NomePorto.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.NomePorto);
+  if not TabGlobal.DProdutoContratoT.NomePorto.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.NomePorto);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -873,8 +911,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.Complemento.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.Complemento);
+  if not TabGlobal.DProdutoContratoT.Complemento.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Complemento);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -884,8 +922,8 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.Produto.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.Produto);
+  if not TabGlobal.DProdutoContratoT.Produto.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Produto);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -895,8 +933,80 @@ var MsgErro : string;
 begin
   if AbandonandoEdicao then
     Exit;
-  if not TabGlobal.DPrudutoContratoT.FormPago.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DPrudutoContratoT.FormPago);
+  if not TabGlobal.DProdutoContratoT.FormPago.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.FormPago);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutoContrato.CadastroExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutoContratoT.Cadastro.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Cadastro);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutoContrato.ComissaoExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutoContratoT.Comissao.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Comissao);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutoContrato.FormComissaoExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutoContratoT.FormComissao.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.FormComissao);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutoContrato.FormComissaoDrawItem(Control: TWinControl; Index: Integer;
+                                        Rect: TRect; State: TOwnerDrawState);
+var Canvas : TCanvas;
+begin
+  if Control is TDBListBox then
+    Canvas  := (Control as TDBListBox).Canvas
+  else if Control is TDBComboBox then
+    Canvas  := (Control as TDBComboBox).Canvas
+  else
+    Canvas  := (Control as TComboBox).Canvas;
+  Canvas.FillRect(Rect);
+  if TabGlobal.DProdutoContratoT.FormComissao.DescValorValido[Index] = '' then
+    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DProdutoContratoT.FormComissao.ValorValido[Index]))
+  else
+    Canvas.TextOut(Rect.Left + 2, Rect.Top, RetiraHK(TabGlobal.DProdutoContratoT.FormComissao.DescValorValido[Index]));
+end;
+
+procedure TFormProdutoContrato.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutoContratoT.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormProdutoContrato.ComisaoSFaturaExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DProdutoContratoT.ComisaoSFatura.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DProdutoContratoT.ComisaoSFatura);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

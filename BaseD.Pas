@@ -137,16 +137,24 @@ begin
 
     ListaBaseDados.AddObject('BD_Base_Dados', BD_Base_Dados);
     ListaNomeTabelas.Add('DBoocking');
+    ListaNomeTabelas.Add('DCERBO');
     ListaNomeTabelas.Add('DClientes');
     ListaNomeTabelas.Add('DContratoTransporte');
-    ListaNomeTabelas.Add('DDIVISOES');
-    ListaNomeTabelas.Add('DExpotadoTransito');
+    ListaNomeTabelas.Add('DDivisoes');
+    ListaNomeTabelas.Add('DExportadoTransito');
     ListaNomeTabelas.Add('DFatura');
     ListaNomeTabelas.Add('DFornecedores');
-    ListaNomeTabelas.Add('DPARAMETROS');
+    ListaNomeTabelas.Add('DInforme');
+    ListaNomeTabelas.Add('DOrdemCobranca');
+    ListaNomeTabelas.Add('DOrdemCobrancaDescont');
+    ListaNomeTabelas.Add('DOrdemCobrancaProdExp');
+    ListaNomeTabelas.Add('DPREVISAO');
+    ListaNomeTabelas.Add('DParametros');
+    ListaNomeTabelas.Add('DProdutoContratoT');
     ListaNomeTabelas.Add('DProdutos');
-    ListaNomeTabelas.Add('DPrudutoContratoT');
-    ListaNomeTabelas.Add('DTAB_PAIS');
+    ListaNomeTabelas.Add('DRESUMENCONTRATACION');
+    ListaNomeTabelas.Add('DSituacao');
+    ListaNomeTabelas.Add('DTab_pais');
     ListaNomeTabelas.Add('DTbAtividades');
     ListaNomeTabelas.Add('DTbCategClientes');
     ListaNomeTabelas.Add('DTbCondicaoCompra');
@@ -161,7 +169,7 @@ begin
     ListaNomeTabelas.Add('DUSER_MENU_SUPERIOR');
     ListaNomeTabelas.Add('DUSER_NOMES');
     ListaNomeTabelas.Add('DUSER_TABELAS');
-    ListaNomeTabelas.Add('CSCNS_Infome');
+    ListaNomeTabelas.Add('CSInfome');
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     ArqIni.Free;
   except

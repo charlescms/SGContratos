@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0015,
+     AtrL0023,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -22,6 +22,7 @@ type
   public
     CodTbPorto: TDTbPorto_CodTbPorto;
     NomePorto: TDTbPorto_NomePorto;
+    Usuario: TDTbPorto_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -78,24 +79,28 @@ begin
     InsertSQL.Add('insert into TbPorto');
     InsertSQL.Add('  (');
     InsertSQL.Add('  CodTbPorto,');
-    InsertSQL.Add('  NomePorto');
+    InsertSQL.Add('  NomePorto,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :CodTbPorto,');
-    InsertSQL.Add('  :NomePorto');
+    InsertSQL.Add('  :NomePorto,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbPorto');
     ModifySQL.Add('set');
     ModifySQL.Add('  CodTbPorto = :CodTbPorto,');
-    ModifySQL.Add('  NomePorto = :NomePorto');
+    ModifySQL.Add('  NomePorto = :NomePorto,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  CodTbPorto = :OLD_CodTbPorto');
     // Refresh de Registro
     RefreshSQL.Add('Select');
     RefreshSQL.Add('  TbPorto.CodTbPorto AS CodTbPorto,');
-    RefreshSQL.Add('  TbPorto.NomePorto AS NomePorto');
+    RefreshSQL.Add('  TbPorto.NomePorto AS NomePorto,');
+    RefreshSQL.Add('  TbPorto.Usuario AS Usuario');
     RefreshSQL.Add('from TbPorto');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbPorto.CodTbPorto = :OLD_CodTbPorto');
@@ -104,7 +109,8 @@ begin
     // Sql Principal
   SqlPrincipal.Add('Select');
   SqlPrincipal.Add('  TbPorto.CodTbPorto AS CodTbPorto,');
-  SqlPrincipal.Add('  TbPorto.NomePorto AS NomePorto');
+  SqlPrincipal.Add('  TbPorto.NomePorto AS NomePorto,');
+  SqlPrincipal.Add('  TbPorto.Usuario AS Usuario');
   SqlPrincipal.Add('from TbPorto');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -113,14 +119,20 @@ begin
   CodTbPorto.Valor.DataSet := Self;
   NomePorto := TDTbPorto_NomePorto.Create(AOwner);
   NomePorto.Valor.DataSet := Self;
+  Usuario := TDTbPorto_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(CodTbPorto);
+//CRIANDO CAMPOS 
   Campos.Add(CodTbPorto);
   Campos.Add(NomePorto);
+  Campos.Add(Usuario);
   TituloIndices.Add('Código');
   Indices.Add('TbPorto.CodTbPorto');
   Crescente.Add('S');
   TituloPrimaria := 'Código';
   ChPrimaria     := 'TbPorto.CodTbPorto';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Código';
   ChaveIndice    := 'TbPorto.CodTbPorto';
   AfterInsert    := AtribuiMestre;
@@ -130,6 +142,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbPorto.CriaForeignKeys;
 var

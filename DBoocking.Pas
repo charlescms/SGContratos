@@ -29,6 +29,7 @@ type
     Quantidade: TDBoocking_Quantidade;
     QuntTransp: TDBoocking_QuntTransp;
     SALDO: TDBoocking_SALDO;
+    Usuario: TDBoocking_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -92,7 +93,8 @@ begin
     InsertSQL.Add('  DataPrevista,');
     InsertSQL.Add('  StatusBK,');
     InsertSQL.Add('  Quantidade,');
-    InsertSQL.Add('  QuntTransp');
+    InsertSQL.Add('  QuntTransp,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -103,7 +105,8 @@ begin
     InsertSQL.Add('  :DataPrevista,');
     InsertSQL.Add('  :StatusBK,');
     InsertSQL.Add('  :Quantidade,');
-    InsertSQL.Add('  :QuntTransp');
+    InsertSQL.Add('  :QuntTransp,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update Boocking');
@@ -115,7 +118,8 @@ begin
     ModifySQL.Add('  DataPrevista = :DataPrevista,');
     ModifySQL.Add('  StatusBK = :StatusBK,');
     ModifySQL.Add('  Quantidade = :Quantidade,');
-    ModifySQL.Add('  QuntTransp = :QuntTransp');
+    ModifySQL.Add('  QuntTransp = :QuntTransp,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  Contrato = :OLD_Contrato');
     ModifySQL.Add('  and Seq = :OLD_Seq');
@@ -128,7 +132,8 @@ begin
     RefreshSQL.Add('  Boocking.DataPrevista AS DataPrevista,');
     RefreshSQL.Add('  Boocking.StatusBK AS StatusBK,');
     RefreshSQL.Add('  Boocking.Quantidade AS Quantidade,');
-    RefreshSQL.Add('  Boocking.QuntTransp AS QuntTransp');
+    RefreshSQL.Add('  Boocking.QuntTransp AS QuntTransp,');
+    RefreshSQL.Add('  Boocking.Usuario AS Usuario');
     RefreshSQL.Add('from Boocking');
     RefreshSQL.Add('Left Outer Join ContratoTransporte on');
     RefreshSQL.Add('  Boocking.Contrato = ContratoTransporte.Contrato');
@@ -147,7 +152,8 @@ begin
   SqlPrincipal.Add('  Boocking.DataPrevista AS DataPrevista,');
   SqlPrincipal.Add('  Boocking.StatusBK AS StatusBK,');
   SqlPrincipal.Add('  Boocking.Quantidade AS Quantidade,');
-  SqlPrincipal.Add('  Boocking.QuntTransp AS QuntTransp');
+  SqlPrincipal.Add('  Boocking.QuntTransp AS QuntTransp,');
+  SqlPrincipal.Add('  Boocking.Usuario AS Usuario');
   SqlPrincipal.Add('from Boocking');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -172,8 +178,12 @@ begin
   QuntTransp.Valor.DataSet := Self;
   SALDO := TDBoocking_SALDO.Create(AOwner);
   SALDO.Valor.DataSet := Self;
+  Usuario := TDBoocking_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Contrato);
   ChavePrimaria.Add(Seq);
+//CRIANDO CAMPOS 
   Campos.Add(Contrato);
   Campos.Add(Seq);
   Campos.Add(Navio);
@@ -183,11 +193,13 @@ begin
   Campos.Add(Quantidade);
   Campos.Add(QuntTransp);
   Campos.Add(SALDO);
+  Campos.Add(Usuario);
   TituloIndices.Add('Contrato,Seq.');
   Indices.Add('Boocking.Contrato,Boocking.Seq');
   Crescente.Add('S');
   TituloPrimaria := 'Contrato,Seq.';
   ChPrimaria     := 'Boocking.Contrato,Boocking.Seq';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Contrato,Seq.';
   ChaveIndice    := 'Boocking.Contrato,Boocking.Seq';
   AfterInsert    := AtribuiMestre;
@@ -197,6 +209,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDBoocking.CriaForeignKeys;
 var
@@ -341,7 +356,7 @@ begin
   if EmEdicao then
     TabGlobal.DContratoTransporte.Salva;
   if ( ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'AB')  Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'BO') ) then
-    if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''AB''') then
+    if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''BO''') then
       MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
   if EmEdicao then
     TabGlobal.DContratoTransporte.Modifica;
@@ -356,7 +371,7 @@ begin
   if EmEdicao then
     TabGlobal.DContratoTransporte.Salva;
   if ( ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'AB')  Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'BO') ) then
-    if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''AB''') then
+    if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''BO''') then
       MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
   if EmEdicao then
     TabGlobal.DContratoTransporte.Modifica;

@@ -1,13 +1,13 @@
 object FormParametro: TFormParametro
-  Left = 335
-  Top = 125
-  Width = 610
-  Height = 419
+  Left = 232
+  Top = 176
+  Width = 735
+  Height = 508
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -20,13 +20,13 @@ object FormParametro: TFormParametro
   OnCloseQuery = formclosequery
   OnKeyPress = formkeypress
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object PageForm: TNotebook
     Left = 0
-    Top = 41
-    Width = 602
-    Height = 326
+    Top = 33
+    Width = 719
+    Height = 418
     Align = alClient
     TabOrder = 1
     object TPage
@@ -35,31 +35,33 @@ object FormParametro: TFormParametro
       Caption = 'Manutencao'
       object TabPaginas: TTabSet
         Left = 0
-        Top = 259
-        Width = 602
-        Height = 26
+        Top = 363
+        Width = 719
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
-          'Principal')
+          'Principal'
+          'Cor Status Contrato'
+          'Analise de Contrato')
         TabIndex = 0
         OnClick = TABPAGINASclick
       end
       object PnInferior: TPanel
         Left = 0
-        Top = 285
-        Width = 602
-        Height = 41
+        Top = 385
+        Width = 719
+        Height = 33
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 542
-          Top = 9
+          Left = 552
+          Top = 15
           Width = 32
           Height = 16
           AutoSize = True
@@ -80,8 +82,8 @@ object FormParametro: TFormParametro
           Visible = False
         end
         object Img_Form: TImage
-          Left = 591
-          Top = 9
+          Left = 584
+          Top = 15
           Width = 32
           Height = 16
           AutoSize = True
@@ -102,10 +104,10 @@ object FormParametro: TFormParametro
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 5
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 4
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -128,10 +130,10 @@ object FormParametro: TFormParametro
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 106
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 86
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -153,12 +155,53 @@ object FormParametro: TFormParametro
             3393333777333777337333333999993333333333377777333333}
           NumGlyphs = 2
         end
+        object BitBtn1: TBitBtn
+          Left = 165
+          Top = 5
+          Width = 169
+          Height = 25
+          Caption = 'Corrigir Erros de Dados'
+          TabOrder = 2
+          OnClick = BITBTN1click
+        end
+        object bitbtn_correcao: TJvBitBtn
+          Left = 337
+          Top = 5
+          Width = 97
+          Height = 24
+          Caption = 'Recebimento'
+          TabOrder = 3
+          OnClick = bitbtn_correcaoClick
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'MS Sans Serif'
+          HotTrackFont.Style = []
+        end
+        object btn_correcao_exp: TButton
+          Left = 552
+          Top = 8
+          Width = 145
+          Height = 25
+          Caption = 'Limpar Corre'#231#227'o Exp.'
+          TabOrder = 4
+          OnClick = btn_correcao_expClick
+        end
+        object btn_exib: TButton
+          Left = 464
+          Top = 8
+          Width = 75
+          Height = 25
+          Caption = 'Corre'#231#227'o Exp.'
+          TabOrder = 5
+          OnClick = btn_exibClick
+        end
       end
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 602
-        Height = 257
+        Width = 719
+        Height = 362
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -167,9 +210,10 @@ object FormParametro: TFormParametro
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 602
-          Height = 257
+          Width = 719
+          Height = 362
           Align = alClient
+          PageIndex = 2
           TabOrder = 0
           object PgPrincipal: TPage
             Left = 0
@@ -178,53 +222,130 @@ object FormParametro: TFormParametro
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 602
-              Height = 257
+              Width = 719
+              Height = 362
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcTEXTOFATURA: TLabel
-                Left = 10
-                Top = 1
-                Width = 75
-                Height = 16
+                Left = 0
+                Top = 0
+                Width = 719
+                Height = 13
+                Align = alTop
+                Alignment = taCenter
                 Caption = 'Texto Fatura'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNumNFEmit: TLabel
-                Left = 14
-                Top = 198
-                Width = 68
-                Height = 16
+                Left = 54
+                Top = 239
+                Width = 53
+                Height = 13
                 Caption = 'Nota Fiscal'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNumFatura: TLabel
-                Left = 148
-                Top = 204
-                Width = 89
-                Height = 16
+                Left = 119
+                Top = 239
+                Width = 70
+                Height = 13
                 Caption = 'N'#250'mero Fatura'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcENDERECOEMPRESA: TLabel
-                Left = 12
-                Top = 87
-                Width = 117
-                Height = 16
-                Alignment = taRightJustify
+                Left = 0
+                Top = 133
+                Width = 719
+                Height = 13
+                Align = alTop
+                Alignment = taCenter
                 Caption = 'Endereco Relat'#243'rio'
                 ParentShowHint = False
                 ShowHint = True
               end
+              object LbcUsuario: TLabel
+                Left = 536
+                Top = 239
+                Width = 36
+                Height = 13
+                Caption = 'Usu'#225'rio'
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object LbcSeqPara: TLabel
+                Left = 10
+                Top = 1
+                Width = 3
+                Height = 13
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object LbcNumOrdCobranca: TLabel
+                Left = 219
+                Top = 239
+                Width = 63
+                Height = 13
+                Alignment = taRightJustify
+                Caption = 'Ord. Cobrn'#231'a'
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object LbcIRRF: TLabel
+                Left = 310
+                Top = 239
+                Width = 25
+                Height = 13
+                Caption = 'IRRF'
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object LbcPIS_COF_CSSL: TLabel
+                Left = 423
+                Top = 239
+                Width = 75
+                Height = 13
+                Caption = 'PIS/COF/CSSL'
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object Label23: TLabel
+                Left = 128
+                Top = 272
+                Width = 51
+                Height = 13
+                Caption = 'ANO SEQ.'
+              end
+              object Label24: TLabel
+                Left = 128
+                Top = 288
+                Width = 48
+                Height = 13
+                Caption = '20110000'
+              end
+              object Label25: TLabel
+                Left = 224
+                Top = 272
+                Width = 53
+                Height = 13
+                Caption = 'ANO/SEQ.'
+              end
+              object Label26: TLabel
+                Left = 224
+                Top = 288
+                Width = 53
+                Height = 13
+                Caption = '2011/0000'
+              end
               object TEXTOFATURA: TDBMemo
-                Left = 14
-                Top = 16
-                Width = 563
-                Height = 66
+                Left = 0
+                Top = 13
+                Width = 719
+                Height = 120
+                Align = alTop
                 ParentShowHint = False
                 ScrollBars = ssVertical
                 ShowHint = True
@@ -233,10 +354,10 @@ object FormParametro: TFormParametro
                 OnExit = TEXTOFATURAexit
               end
               object NumNFEmit: TXDBNumEdit
-                Left = 14
-                Top = 212
+                Left = 46
+                Top = 252
                 Width = 70
-                Height = 24
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -290,10 +411,10 @@ object FormParametro: TFormParametro
                 OnExit = NUMNFEMITexit
               end
               object NumFatura: TXDBNumEdit
-                Left = 148
-                Top = 218
-                Width = 80
-                Height = 24
+                Left = 120
+                Top = 251
+                Width = 70
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -347,15 +468,306 @@ object FormParametro: TFormParametro
                 OnExit = NUMFATURAexit
               end
               object ENDERECOEMPRESA: TDBMemo
-                Left = 14
-                Top = 101
-                Width = 564
-                Height = 89
+                Left = 0
+                Top = 146
+                Width = 719
+                Height = 72
+                Align = alTop
                 ParentShowHint = False
                 ScrollBars = ssVertical
                 ShowHint = True
                 TabOrder = 1
                 OnExit = ENDERECOEMPRESAexit
+              end
+              object Usuario: TXDBEdit
+                Left = 534
+                Top = 252
+                Width = 154
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 8
+                Text = 'Usuario'
+                OnExit = USUARIOexit
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
+              end
+              object SeqPara: TXDBNumEdit
+                Left = 4
+                Top = 252
+                Width = 28
+                Height = 21
+                AutoHideCalculator = False
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C0008040400080404000804040008040400080404000804040008040
+                  4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                  8000808080008080800080808000808080008080800080808000808080008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                  0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                  FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                  0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                  0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                  000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C000808080008080800080808000808080008080800080808000FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                  0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000}
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 7
+                Visible = False
+                OnExit = SEQPARAexit
+              end
+              object NumOrdCobranca: TXDBEdit
+                Left = 218
+                Top = 251
+                Width = 70
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 4
+                Text = 'NumOrdCobranca'
+                OnExit = NUMORDCOBRANCAexit
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
+              end
+              object IRRF: TXDBNumEdit
+                Left = 308
+                Top = 253
+                Width = 100
+                Height = 21
+                AutoHideCalculator = False
+                Decimals = 6
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C0008040400080404000804040008040400080404000804040008040
+                  4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                  8000808080008080800080808000808080008080800080808000808080008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                  0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                  FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                  0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                  0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                  000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C000808080008080800080808000808080008080800080808000FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                  0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000}
+                ParentShowHint = False
+                ShowHint = True
+                ShowButton = True
+                TabOrder = 5
+                OnExit = IRRFexit
+              end
+              object PIS_COF_CSSL: TXDBNumEdit
+                Left = 421
+                Top = 252
+                Width = 100
+                Height = 21
+                AutoHideCalculator = False
+                Decimals = 6
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C0008040400080404000804040008040400080404000804040008040
+                  4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                  8000808080008080800080808000808080008080800080808000808080008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                  0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                  FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                  0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                  0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                  0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                  600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                  C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                  000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                  C000808080008080800080808000808080008080800080808000FFC0C0008080
+                  8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                  6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                  C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                  0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                  C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                  C000}
+                ParentShowHint = False
+                ShowHint = True
+                ShowButton = True
+                TabOrder = 6
+                OnExit = PIS_COF_CSSLexit
               end
             end
           end
@@ -366,11 +778,216 @@ object FormParametro: TFormParametro
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 719
+              Height = 362
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
+              object Label1: TLabel
+                Left = 248
+                Top = 56
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clWhite
+                ParentColor = False
+              end
+              object Label2: TLabel
+                Left = 248
+                Top = 72
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clGradientInactiveCaption
+                ParentColor = False
+              end
+              object Label3: TLabel
+                Left = 248
+                Top = 104
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clLime
+                ParentColor = False
+              end
+              object Label4: TLabel
+                Left = 248
+                Top = 88
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clFuchsia
+                ParentColor = False
+              end
+              object Label5: TLabel
+                Left = 248
+                Top = 176
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clFuchsia
+                ParentColor = False
+              end
+              object Label6: TLabel
+                Left = 248
+                Top = 160
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clYellow
+                ParentColor = False
+              end
+              object Label7: TLabel
+                Left = 248
+                Top = 144
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clGradientActiveCaption
+                ParentColor = False
+              end
+              object Label8: TLabel
+                Left = 248
+                Top = 128
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clAqua
+                ParentColor = False
+              end
+              object Label9: TLabel
+                Left = 288
+                Top = 56
+                Width = 37
+                Height = 13
+                Caption = ' Aberto '
+                Color = clWhite
+                ParentColor = False
+              end
+              object Label10: TLabel
+                Left = 288
+                Top = 72
+                Width = 39
+                Height = 13
+                Caption = 'Booking'
+                Color = clGradientInactiveCaption
+                ParentColor = False
+              end
+              object Label11: TLabel
+                Left = 288
+                Top = 88
+                Width = 135
+                Height = 13
+                Caption = 'Em Execu'#231#227'o ( Exporta'#231#227'o )'
+                Color = clFuchsia
+                ParentColor = False
+              end
+              object Label12: TLabel
+                Left = 288
+                Top = 104
+                Width = 170
+                Height = 13
+                Caption = 'Executado ( Exporta'#231#227'o Concluida )'
+                Color = clLime
+                ParentColor = False
+              end
+              object Label13: TLabel
+                Left = 288
+                Top = 128
+                Width = 104
+                Height = 13
+                Caption = 'Comiss'#245'es Pendentes'
+                Color = clAqua
+                ParentColor = False
+              end
+              object Label14: TLabel
+                Left = 288
+                Top = 144
+                Width = 80
+                Height = 13
+                Caption = 'Ordem Cobran'#231'a'
+                Color = clGradientActiveCaption
+                ParentColor = False
+              end
+              object Label15: TLabel
+                Left = 288
+                Top = 176
+                Width = 59
+                Height = 13
+                Caption = 'Nota Fiscal  '
+                Color = clFuchsia
+                ParentColor = False
+              end
+              object Label16: TLabel
+                Left = 288
+                Top = 160
+                Width = 67
+                Height = 13
+                Caption = 'Fatura Emitida'
+                Color = clYellow
+                ParentColor = False
+              end
+              object Label17: TLabel
+                Left = 248
+                Top = 192
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clActiveBorder
+                ParentColor = False
+              end
+              object Label18: TLabel
+                Left = 288
+                Top = 192
+                Width = 47
+                Height = 13
+                Caption = 'Concluido'
+                Color = clActiveBorder
+                ParentColor = False
+              end
+              object Label19: TLabel
+                Left = 248
+                Top = 208
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clRed
+                ParentColor = False
+              end
+              object Label20: TLabel
+                Left = 288
+                Top = 208
+                Width = 44
+                Height = 13
+                Caption = 'Problema'
+                Color = clRed
+                ParentColor = False
+              end
+              object Label21: TLabel
+                Left = 288
+                Top = 224
+                Width = 58
+                Height = 13
+                Caption = 'Aplicar Rate'
+                Color = clGradientInactiveCaption
+                ParentColor = False
+              end
+              object Label22: TLabel
+                Left = 248
+                Top = 224
+                Width = 30
+                Height = 13
+                Caption = '          '
+                Color = clGradientInactiveCaption
+                ParentColor = False
+              end
+              object ColorGrid1: TColorGrid
+                Left = 512
+                Top = 24
+                Width = 100
+                Height = 100
+                TabOrder = 0
+              end
             end
           end
           object PgComplemento2: TPage
@@ -380,11 +997,35 @@ object FormParametro: TFormParametro
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 719
+              Height = 362
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
+              object RxDBGrid1: TRxDBGrid
+                Left = 0
+                Top = 25
+                Width = 719
+                Height = 337
+                Align = alClient
+                DataSource = DS_analise
+                TabOrder = 0
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -11
+                TitleFont.Name = 'MS Sans Serif'
+                TitleFont.Style = []
+              end
+              object DBNavigator1: TDBNavigator
+                Left = 0
+                Top = 0
+                Width = 719
+                Height = 25
+                DataSource = DS_analise
+                VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
+                Align = alTop
+                TabOrder = 1
+              end
             end
           end
           object PgComplemento3: TPage
@@ -394,8 +1035,8 @@ object FormParametro: TFormParametro
             object Pagina3: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -408,8 +1049,8 @@ object FormParametro: TFormParametro
             object Pagina4: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -422,8 +1063,8 @@ object FormParametro: TFormParametro
             object Pagina5: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -436,8 +1077,8 @@ object FormParametro: TFormParametro
             object Pagina6: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -450,8 +1091,8 @@ object FormParametro: TFormParametro
             object Pagina7: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -464,8 +1105,8 @@ object FormParametro: TFormParametro
             object Pagina8: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -478,8 +1119,8 @@ object FormParametro: TFormParametro
             object Pagina9: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -492,8 +1133,8 @@ object FormParametro: TFormParametro
             object Pagina10: TScrollBox
               Left = 0
               Top = 0
-              Width = 585
-              Height = 409
+              Width = 702
+              Height = 283
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -503,9 +1144,9 @@ object FormParametro: TFormParametro
       end
       object Divisao_inf: TPanel
         Left = 0
-        Top = 257
-        Width = 602
-        Height = 2
+        Top = 362
+        Width = 719
+        Height = 1
         Align = alBottom
         TabOrder = 3
         Visible = False
@@ -517,13 +1158,13 @@ object FormParametro: TFormParametro
       Caption = 'Consulta'
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 357
-        Width = 631
-        Height = 26
+        Top = 290
+        Width = 513
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -534,13 +1175,13 @@ object FormParametro: TFormParametro
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 631
-        Height = 357
+        Width = 513
+        Height = 290
         Align = alClient
         BorderStyle = bsNone
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -560,16 +1201,16 @@ object FormParametro: TFormParametro
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 602
-    Height = 41
+    Width = 719
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object BtnModificar: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -592,10 +1233,10 @@ object FormParametro: TFormParametro
       OnClick = BTNMODIFICARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 79
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -618,10 +1259,10 @@ object FormParametro: TFormParametro
       OnClick = BTNTABELAclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -644,17 +1285,17 @@ object FormParametro: TFormParametro
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 38
-      Width = 602
-      Height = 3
+      Top = 31
+      Width = 719
+      Height = 2
       Align = alBottom
       TabOrder = 0
     end
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 367
-    Width = 602
+    Top = 451
+    Width = 719
     Height = 19
     Panels = <
       item
@@ -773,5 +1414,36 @@ object FormParametro: TFormParametro
       'f;*.wmf|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*' +
       '.jpeg|Bitmaps (*.bmp)|*.bmp|Todos os arquivos (*.*)|*.*'
     Title = 'Abrir Imagem'
+  end
+  object ColorDialog1: TColorDialog
+  end
+  object IBQuery_Analise: TIBQuery
+    SQL.Strings = (
+      'select'
+      '   *'
+      'from ('
+      'select'
+      '  contratotransporte.contrato ,'
+      '  contratotransporte.quantidadetotal as Qunat_Total_Contrato,'
+      
+        '  ( ( select sum(produtocontratot.quantidade) from produtocontra' +
+        'tot  where produtocontratot.contrato = contratotransporte.contra' +
+        'to )) as Qunat_Total_Produto,'
+      '  contratotransporte.QUANTTOTALEXP as Qunat_Total_Exp_Contrato,'
+      
+        '  ( ( select sum(EXPORTADOTRANSITO.QUANTIDADEEXP)  from EXPORTAD' +
+        'OTRANSITO  where EXPORTADOTRANSITO.contrato = contratotransporte' +
+        '.contrato  ))  as Qunat_Total_Ja_Exportada'
+      
+        'from contratotransporte) as analise   where (  Qunat_Total_Contr' +
+        'ato <   Qunat_Total_Produto ) OR (  Qunat_Total_Exp_Contrato < 0' +
+        '  ) ORDER BY CONTRATO')
+    Left = 661
+    Top = 70
+  end
+  object DS_analise: TDataSource
+    DataSet = IBQuery_Analise
+    Left = 657
+    Top = 99
   end
 end

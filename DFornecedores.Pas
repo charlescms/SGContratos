@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0006,
+     AtrL0007,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -29,6 +29,7 @@ type
     CPF: TDFornecedores_CPF;
     IEST: TDFornecedores_IEST;
     IMUN: TDFornecedores_IMUN;
+    CDPAIS: TDFornecedores_CDPAIS;
     DDD: TDFornecedores_DDD;
     TEL1: TDFornecedores_TEL1;
     TEL2: TDFornecedores_TEL2;
@@ -46,6 +47,7 @@ type
     ID: TDFornecedores_ID;
     NOME: TDFornecedores_NOME;
     MOEDACOMISSAO: TDFornecedores_MOEDACOMISSAO;
+    Usuario: TDFornecedores_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -110,6 +112,7 @@ begin
     InsertSQL.Add('  CPF,');
     InsertSQL.Add('  IEST,');
     InsertSQL.Add('  IMUN,');
+    InsertSQL.Add('  CDPAIS,');
     InsertSQL.Add('  DDD,');
     InsertSQL.Add('  TEL1,');
     InsertSQL.Add('  TEL2,');
@@ -125,7 +128,8 @@ begin
     InsertSQL.Add('  TBATIVCOD,');
     InsertSQL.Add('  OBS,');
     InsertSQL.Add('  ID,');
-    InsertSQL.Add('  MOEDACOMISSAO');
+    InsertSQL.Add('  MOEDACOMISSAO,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -138,6 +142,7 @@ begin
     InsertSQL.Add('  :CPF,');
     InsertSQL.Add('  :IEST,');
     InsertSQL.Add('  :IMUN,');
+    InsertSQL.Add('  :CDPAIS,');
     InsertSQL.Add('  :DDD,');
     InsertSQL.Add('  :TEL1,');
     InsertSQL.Add('  :TEL2,');
@@ -153,7 +158,8 @@ begin
     InsertSQL.Add('  :TBATIVCOD,');
     InsertSQL.Add('  :OBS,');
     InsertSQL.Add('  :ID,');
-    InsertSQL.Add('  :MOEDACOMISSAO');
+    InsertSQL.Add('  :MOEDACOMISSAO,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update Fornecedores');
@@ -167,6 +173,7 @@ begin
     ModifySQL.Add('  CPF = :CPF,');
     ModifySQL.Add('  IEST = :IEST,');
     ModifySQL.Add('  IMUN = :IMUN,');
+    ModifySQL.Add('  CDPAIS = :CDPAIS,');
     ModifySQL.Add('  DDD = :DDD,');
     ModifySQL.Add('  TEL1 = :TEL1,');
     ModifySQL.Add('  TEL2 = :TEL2,');
@@ -182,7 +189,8 @@ begin
     ModifySQL.Add('  TBATIVCOD = :TBATIVCOD,');
     ModifySQL.Add('  OBS = :OBS,');
     ModifySQL.Add('  ID = :ID,');
-    ModifySQL.Add('  MOEDACOMISSAO = :MOEDACOMISSAO');
+    ModifySQL.Add('  MOEDACOMISSAO = :MOEDACOMISSAO,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  FORCOD = :OLD_FORCOD');
     // Refresh de Registro
@@ -196,6 +204,7 @@ begin
     RefreshSQL.Add('  Fornecedores.CPF AS CPF,');
     RefreshSQL.Add('  Fornecedores.IEST AS IEST,');
     RefreshSQL.Add('  Fornecedores.IMUN AS IMUN,');
+    RefreshSQL.Add('  Fornecedores.CDPAIS AS CDPAIS,');
     RefreshSQL.Add('  Fornecedores.DDD AS DDD,');
     RefreshSQL.Add('  Fornecedores.TEL1 AS TEL1,');
     RefreshSQL.Add('  Fornecedores.TEL2 AS TEL2,');
@@ -212,7 +221,8 @@ begin
     RefreshSQL.Add('  Fornecedores.OBS AS OBS,');
     RefreshSQL.Add('  Fornecedores.ID AS ID,');
     RefreshSQL.Add('  TAB_PAIS.NOME AS NOME,');
-    RefreshSQL.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO');
+    RefreshSQL.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO,');
+    RefreshSQL.Add('  Fornecedores.Usuario AS Usuario');
     RefreshSQL.Add('from Fornecedores');
     RefreshSQL.Add('Left Outer Join TbAtividades on');
     RefreshSQL.Add('  Fornecedores.TBATIVCOD = TbAtividades.TBATIVCOD');
@@ -235,6 +245,7 @@ begin
   SqlPrincipal.Add('  Fornecedores.CPF AS CPF,');
   SqlPrincipal.Add('  Fornecedores.IEST AS IEST,');
   SqlPrincipal.Add('  Fornecedores.IMUN AS IMUN,');
+  SqlPrincipal.Add('  Fornecedores.CDPAIS AS CDPAIS,');
   SqlPrincipal.Add('  Fornecedores.DDD AS DDD,');
   SqlPrincipal.Add('  Fornecedores.TEL1 AS TEL1,');
   SqlPrincipal.Add('  Fornecedores.TEL2 AS TEL2,');
@@ -251,7 +262,8 @@ begin
   SqlPrincipal.Add('  Fornecedores.OBS AS OBS,');
   SqlPrincipal.Add('  Fornecedores.ID AS ID,');
   SqlPrincipal.Add('  TAB_PAIS.NOME AS NOME,');
-  SqlPrincipal.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO');
+  SqlPrincipal.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO,');
+  SqlPrincipal.Add('  Fornecedores.Usuario AS Usuario');
   SqlPrincipal.Add('from Fornecedores');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -264,6 +276,8 @@ begin
   FORCOD.Valor.DataSet := Self;
   RAZAO := TDFornecedores_RAZAO.Create(AOwner);
   RAZAO.Valor.DataSet := Self;
+  CDPAIS := TDFornecedores_CDPAIS.Create(AOwner);
+  CDPAIS.Valor.DataSet := Self;
   DDD := TDFornecedores_DDD.Create(AOwner);
   DDD.Valor.DataSet := Self;
   TEL1 := TDFornecedores_TEL1.Create(AOwner);
@@ -312,7 +326,11 @@ begin
   MOEDACOMISSAO.Valor.DataSet := Self;
   NOME := TDFornecedores_NOME.Create(AOwner);
   NOME.Valor.DataSet := Self;
+  Usuario := TDFornecedores_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(FORCOD);
+//CRIANDO CAMPOS 
   Campos.Add(FORCOD);
   Campos.Add(DATCAD);
   Campos.Add(RAZAO);
@@ -322,6 +340,7 @@ begin
   Campos.Add(CPF);
   Campos.Add(IEST);
   Campos.Add(IMUN);
+  Campos.Add(CDPAIS);
   Campos.Add(DDD);
   Campos.Add(TEL1);
   Campos.Add(TEL2);
@@ -339,11 +358,13 @@ begin
   Campos.Add(ID);
   Campos.Add(NOME);
   Campos.Add(MOEDACOMISSAO);
+  Campos.Add(Usuario);
   TituloIndices.Add('Código');
   Indices.Add('Fornecedores.FORCOD');
   Crescente.Add('S');
   TituloPrimaria := 'Código';
   ChPrimaria     := 'Fornecedores.FORCOD';
+//CRIANDO TituloIndices 
   TituloIndices.Add('Por Razão Social');
   Indices.Add('RAZAO');
   Crescente.Add('S');
@@ -356,6 +377,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDFornecedores.CriaForeignKeys;
 var

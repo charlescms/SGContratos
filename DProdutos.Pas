@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0008,
+     AtrL0015,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -23,6 +23,8 @@ type
     Produto: TDProdutos_Produto;
     QUANT_PREVISTA: TDProdutos_QUANT_PREVISTA;
     VALOR_PREVISTO: TDProdutos_VALOR_PREVISTO;
+    Usuario: TDProdutos_Usuario;
+    Observacoes: TDProdutos_Observacoes;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -80,27 +82,35 @@ begin
     InsertSQL.Add('  (');
     InsertSQL.Add('  Produto,');
     InsertSQL.Add('  QUANT_PREVISTA,');
-    InsertSQL.Add('  VALOR_PREVISTO');
+    InsertSQL.Add('  VALOR_PREVISTO,');
+    InsertSQL.Add('  Usuario,');
+    InsertSQL.Add('  Observacoes');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :Produto,');
     InsertSQL.Add('  :QUANT_PREVISTA,');
-    InsertSQL.Add('  :VALOR_PREVISTO');
+    InsertSQL.Add('  :VALOR_PREVISTO,');
+    InsertSQL.Add('  :Usuario,');
+    InsertSQL.Add('  :Observacoes');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update Produtos');
     ModifySQL.Add('set');
     ModifySQL.Add('  Produto = :Produto,');
     ModifySQL.Add('  QUANT_PREVISTA = :QUANT_PREVISTA,');
-    ModifySQL.Add('  VALOR_PREVISTO = :VALOR_PREVISTO');
+    ModifySQL.Add('  VALOR_PREVISTO = :VALOR_PREVISTO,');
+    ModifySQL.Add('  Usuario = :Usuario,');
+    ModifySQL.Add('  Observacoes = :Observacoes');
     ModifySQL.Add('where');
     ModifySQL.Add('  Produto = :OLD_Produto');
     // Refresh de Registro
     RefreshSQL.Add('Select');
     RefreshSQL.Add('  Produtos.Produto AS Produto,');
     RefreshSQL.Add('  Produtos.QUANT_PREVISTA AS QUANT_PREVISTA,');
-    RefreshSQL.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO');
+    RefreshSQL.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO,');
+    RefreshSQL.Add('  Produtos.Usuario AS Usuario,');
+    RefreshSQL.Add('  Produtos.Observacoes AS Observacoes');
     RefreshSQL.Add('from Produtos');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  Produtos.Produto = :OLD_Produto');
@@ -110,26 +120,37 @@ begin
   SqlPrincipal.Add('Select');
   SqlPrincipal.Add('  Produtos.Produto AS Produto,');
   SqlPrincipal.Add('  Produtos.QUANT_PREVISTA AS QUANT_PREVISTA,');
-  SqlPrincipal.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO');
+  SqlPrincipal.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO,');
+  SqlPrincipal.Add('  Produtos.Usuario AS Usuario,');
+  SqlPrincipal.Add('  Produtos.Observacoes AS Observacoes');
   SqlPrincipal.Add('from Produtos');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
   Sql.Add('order by Produtos.Produto');
-  QUANT_PREVISTA := TDProdutos_QUANT_PREVISTA.Create(AOwner);
-  QUANT_PREVISTA.Valor.DataSet := Self;
   Produto := TDProdutos_Produto.Create(AOwner);
   Produto.Valor.DataSet := Self;
+  QUANT_PREVISTA := TDProdutos_QUANT_PREVISTA.Create(AOwner);
+  QUANT_PREVISTA.Valor.DataSet := Self;
   VALOR_PREVISTO := TDProdutos_VALOR_PREVISTO.Create(AOwner);
   VALOR_PREVISTO.Valor.DataSet := Self;
+  Usuario := TDProdutos_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+  Observacoes := TDProdutos_Observacoes.Create(AOwner);
+  Observacoes.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Produto);
+//CRIANDO CAMPOS 
   Campos.Add(Produto);
   Campos.Add(QUANT_PREVISTA);
   Campos.Add(VALOR_PREVISTO);
+  Campos.Add(Usuario);
+  Campos.Add(Observacoes);
   TituloIndices.Add('Produto');
   Indices.Add('Produtos.Produto');
   Crescente.Add('S');
   TituloPrimaria := 'Produto';
   ChPrimaria     := 'Produtos.Produto';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Produto';
   ChaveIndice    := 'Produtos.Produto';
   AfterInsert    := AtribuiMestre;
@@ -139,6 +160,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDProdutos.CriaForeignKeys;
 var
@@ -173,6 +197,13 @@ end;
 
 procedure TDProdutos.ExclusaoCascata;
 begin
+  // Exclusão em Cascata Tabela: DPREVISAO
+  TabGlobal.DPREVISAO.Filtro.Clear;
+  TabGlobal.DPREVISAO.Filtro.Add('PREVISAO.Produto = :Produtos_Produto');
+  TabGlobal.DPREVISAO.AtualizaSql;
+  while not TabGlobal.DPREVISAO.Eof do
+    if not TabGlobal.DPREVISAO.Exclui then
+      TabGlobal.DPREVISAO.Next;
 end;
 
 function TDProdutos.PesquisaRelacionados(Tabela, Campo: String; var Retorno: Variant; CampoFoco: String = ''): Boolean;
@@ -194,6 +225,7 @@ end;
 
 procedure TDProdutos.AtribuiRelacionamentos(Atribui: Boolean = True);
 begin
+  TabGlobal.DPREVISAO.AtribuiFiltroMestre(Atribui);
 end;
 
 procedure TDProdutos.AtribuiFiltroMestre(Atribui: Boolean = True; Atualiza: Boolean = True);

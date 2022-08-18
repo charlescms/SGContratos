@@ -183,6 +183,7 @@ function PTabela(TabelaPrincipal: TTabela; CalculosArray: Array of String; Expre
 // Pesquisa e Retorna os Valores dos Campos Desejados
 function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; ValoresArray: Array of Variant; CamposMostrar: array of String; var ValoresRetornar: Variant; ordenacao: String = ''): Boolean; overload;
 // Pesquisa e atualiza campos
+//       PTabela(TabGlobal.DExportadoTransito, ['NumOrdCobranca'], [TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo], 'NumOrdCobranca = ''''')
 function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; ValoresArray: Array of Variant; Update: String): Boolean; overload;
 // Pesquisa e realiza a exclusão do registro
 function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; ValoresArray: Array of Variant; Excluir: Boolean): Boolean; overload;
@@ -265,7 +266,7 @@ function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; Valores
 var
   Tabela: TTabela;
   I: Integer;
-  Operador, Negacao, NomeCampo: String;
+  Operador, Negacao, NomeCampo, s_teste: String;
   Invalido: Boolean;
 begin
   Sistema.Conexao_i := Time;
@@ -302,7 +303,8 @@ begin
     SQL[SQL.Count-1] := Copy(SQL[SQL.Count-1],01,Length(SQL[SQL.Count-1])-1);
     SQL.Add('From');
     SQL.Add(TabelaPrincipal.NomeTabela);
-    SQL.Add('Where');
+//    SQL.Add('Where ( ');
+    SQL.Add('Where  ');
     for I:=0 to Length(CamposArray)-1 do
     begin
       Operador := '=';
@@ -332,14 +334,23 @@ begin
       end;
       SQL.Add(Negacao + NomeCampo + Operador + ':' + CamposArray[I] + ' and ');
     end;
+//    SQL.Add(' ) ');
+
     SQL[SQL.Count-1] := Copy(SQL[SQL.Count-1],01,Length(SQL[SQL.Count-1])-5);
+    s_teste :=  SQL[SQL.Count-1] ;
+
     for I:=0 to Length(CamposArray)-1 do
       ParamByName(CamposArray[I]).Value := ValoresArray[I];
     Conexao;
+    SQL.SaveToFile('_PTabela.sql');
+    Prepare ;
+    SQL.SaveToFile('_PTabela2.sql');
     try
+
       Active := True;
       if not Eof then Result := True;
       Active := False;
+
     finally
       Free;
     end;
@@ -526,9 +537,8 @@ begin
 
     TabelaPrincipal.Parametros(Tabela);
     Conexao;
-//    SQL.SaveToFile('_PTabela_ATUALIZA_'+TabelaPrincipal.NomeTabela+'.SQL');
     try
-      SQL.SaveToFile('_PTabela_ATUALIZA_'+TabelaPrincipal.NomeTabela+'.SQL');
+//      SQL.SaveToFile('_sql_PTabela_ATUALIZA_'+TabelaPrincipal.NomeTabela+'.SQL');
       ExecSQL;
       {$IFDEF IBX}
       Transaction.CommitRetaining;
@@ -1366,6 +1376,61 @@ var
             ')';
         end;
       Query.SQL.Text := Query.SQL.Text + ')';
+//      Query.SQL.SaveToFile('__criando_tabela.sql');
+      Query.Prepare;
+      {$IFDEF IBX}
+      Query.ExecQuery;
+      Query.Transaction.Commit;
+      {$ELSE}
+      Query.ExecSQL;
+      {$ENDIF}
+    finally
+      Query.Free;
+    end;
+  end;
+
+  procedure InternalCreateView;
+  var
+    I: Integer;
+    {$IFDEF IBX}
+    Query: TIBSql;
+    {$ELSE}
+    Query: TXSQLQuery;
+    {$ENDIF}
+  begin
+    {$IFDEF IBX}
+    if (FieldList = '') then
+      IBError(ibxeFieldUnsupportedType,[nil]);
+    Query := TIBSql.Create(self);
+    {$ELSE}
+    Query := TXSQLQuery.Create(self);
+    {$ENDIF}
+    try
+      {$IFDEF IBX}
+      Query.Database := Database;
+      Query.transaction := Transaction;
+      if not Transaction.Active then
+        Transaction.Active := True;
+      {$ELSE}
+      Query.DatabaseName := DatabaseName;
+      {$ENDIF}
+      Query.SQL.Text := 'Create view ' +
+        FormatIdentifier(Versao, NomeTabela) +
+        ' (' + FieldList;
+        {
+      for I := 0 to IndexDefs.Count - 1 do
+      with IndexDefs[I] do
+        if (ixPrimary in Options) and (Trim(FormatFieldsList(Fields)) <> '') then
+        begin
+          Query.SQL.Text := Query.SQL.Text + ', CONSTRAINT ' +
+            FormatIdentifier(Versao, 'I' + NomeTabela) +
+            ' Primary Key (' +
+            FormatFieldsList(Fields) +
+            ')';
+        end;
+        }
+      Query.SQL.Text := Query.SQL.Text + ')';
+//      Query.SQL.SaveToFile('__criando_view.sql');
       Query.Prepare;
       {$IFDEF IBX}
       Query.ExecQuery;
@@ -1390,7 +1455,11 @@ begin
   {$IFDEF XSQL}
   DataBase.StartTransaction;
   {$ENDIF}
-  InternalCreateTable;
+  if TableType = ttTable then
+     InternalCreateTable
+  else
+     InternalCreateView;
+
   {$IFDEF XSQL}
   DataBase.Commit;
   {$ENDIF}
@@ -1833,11 +1902,12 @@ begin
       if Trim(ChaveIndice) <> '' then
         Sql.Add('Order By '+ChaveIndice);
     end;
-    // cms debug
+
+    Sql.SaveToFile('_sql_Tabela_'+NomeTabela+'.sql');
 
     Prepare;
-//    SqlPrincipal.SaveToFile('_z_'+NomeTabela+'.sql');
-    Sql.SaveToFile('_sql_'+NomeTabela+'.sql');
+
+    
     if (SqlPrincipal.Count > 0) and
        (not Local) then
       Parametros(Self);
@@ -1911,6 +1981,7 @@ begin
   try
     Sistema.Conexao_i := Time;
     Append; //Insert;
+    //insert ;
     Inclusao    := True;
     Modificacao := False;
     Result      := True;
@@ -2043,7 +2114,7 @@ var
   I, Y: Integer;
   Nome_Par, s_nome: String;
 begin
-//  Tabela.Sql.SaveToFile( Tabela.NomeTabela+'_sql5.sql');
+
   with Tabela do
   begin
       Parametro_Tipo('Sistema_Titulo', ftString);
@@ -2124,7 +2195,7 @@ begin
 
       sl_monitor.add(SQL.TEXT);
 
-     // TTabela(Lst_Tabelas[I]).SqlPrincipal.SaveToFile('_'+s_nome+'.sql');
+
       for Y:=0 to TTabela(Lst_Tabelas[I]).Campos.Count-1 do
       begin
         if Assigned(TTabela(Lst_Tabelas[I]).FindField(TAtributo(TTabela(Lst_Tabelas[I]).Campos[Y]).Nome)) then
@@ -2136,20 +2207,18 @@ begin
           Parametro_Valor(Nome_Par, TTabela(Lst_Tabelas[I]).FieldValues[TAtributo(TTabela(Lst_Tabelas[I]).Campos[Y]).Nome]);
 
           sl_monitor.add( LS_LINHA  )   ;
+//
+//          sl_monitor.SaveToFile('sl_monitor.add');
+//
           LS_LINHA := '' ;
 
         end;
       end;
-    //  Tabela.SQL.SaveToFile('Parametros_Padrao_'+Tabela.NomeTabela+'.SQL');
-
       for Y:=0 to Tabela.ParamCount-1 do
           sl_monitor.ADD( Tabela.Params[Y].Name );
 
-    //  sl_monitor.SaveToFile('sl_monitor.SQL' );
     end;
   end;
- // Tabela.SQL.SaveToFile('Parametros_Padrao_'+Tabela.NomeTabela+'.SQL');
- // sl_monitor.SaveToFile('sl_monitor.SQL' );
 end;
 
 procedure TTabela.Parametro_Tipo(Nome: String; Tipo: TFieldType);

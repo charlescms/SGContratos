@@ -1,13 +1,13 @@
 object FormExportadorN: TFormExportadorN
-  Left = 847
-  Top = 243
+  Left = 533
+  Top = 435
   Width = 952
-  Height = 515
+  Height = 740
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -21,13 +21,13 @@ object FormExportadorN: TFormExportadorN
   OnKeyPress = formkeypress
   OnResize = formresize
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 40
-    Width = 944
-    Height = 442
+    Top = 33
+    Width = 936
+    Height = 669
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -37,15 +37,15 @@ object FormExportadorN: TFormExportadorN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 373
-        Width = 936
-        Height = 38
+        Top = 611
+        Width = 928
+        Height = 30
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 345
-          Top = 9
+          Left = 280
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -66,8 +66,8 @@ object FormExportadorN: TFormExportadorN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 394
-          Top = 9
+          Left = 320
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -88,10 +88,10 @@ object FormExportadorN: TFormExportadorN
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -114,10 +114,10 @@ object FormExportadorN: TFormExportadorN
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 121
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 98
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -140,10 +140,10 @@ object FormExportadorN: TFormExportadorN
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 231
-          Top = 6
-          Width = 93
-          Height = 31
+          Left = 188
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -169,13 +169,13 @@ object FormExportadorN: TFormExportadorN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 347
-        Width = 936
-        Height = 26
+        Top = 589
+        Width = 928
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -187,8 +187,8 @@ object FormExportadorN: TFormExportadorN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 936
-        Height = 347
+        Width = 928
+        Height = 589
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -197,8 +197,8 @@ object FormExportadorN: TFormExportadorN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 936
-          Height = 347
+          Width = 928
+          Height = 589
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -208,225 +208,244 @@ object FormExportadorN: TFormExportadorN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 936
-              Height = 347
+              Width = 928
+              Height = 589
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcFORCOD: TLabel
-                Left = 12
+                Left = 10
                 Top = 1
-                Width = 44
-                Height = 16
+                Width = 33
+                Height = 13
                 Caption = 'C'#243'digo'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcDATCAD: TLabel
-                Left = 86
+                Left = 70
                 Top = 1
-                Width = 55
-                Height = 16
+                Width = 42
+                Height = 13
                 Caption = 'Cadastro'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcRAZAO: TLabel
-                Left = 198
+                Left = 161
                 Top = 1
-                Width = 81
-                Height = 16
+                Width = 63
+                Height = 13
                 Caption = 'Raz'#227'o Social'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNOMCON: TLabel
-                Left = 12
-                Top = 49
-                Width = 46
-                Height = 16
+                Left = 10
+                Top = 40
+                Width = 37
+                Height = 13
                 Caption = 'Contato'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCNPJ: TLabel
-                Left = 12
-                Top = 95
-                Width = 35
-                Height = 16
+                Left = 10
+                Top = 77
+                Width = 27
+                Height = 13
                 Caption = 'CNPJ'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCPF: TLabel
-                Left = 390
-                Top = 95
-                Width = 26
-                Height = 16
+                Left = 317
+                Top = 77
+                Width = 20
+                Height = 13
                 Caption = 'CPF'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcIEST: TLabel
-                Left = 154
-                Top = 95
-                Width = 83
-                Height = 16
+                Left = 125
+                Top = 77
+                Width = 67
+                Height = 13
                 Caption = 'Insc. Estadual'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcIMUN: TLabel
-                Left = 279
-                Top = 95
-                Width = 87
-                Height = 16
+                Left = 227
+                Top = 77
+                Width = 71
+                Height = 13
                 Caption = 'Insc. Municipal'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcDDD: TLabel
-                Left = 464
-                Top = 48
-                Width = 30
-                Height = 16
+                Left = 417
+                Top = 40
+                Width = 24
+                Height = 13
                 Caption = 'DDD'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTEL1: TLabel
-                Left = 503
-                Top = 48
-                Width = 69
-                Height = 16
+                Left = 449
+                Top = 40
+                Width = 55
+                Height = 13
                 Caption = '1'#186' Telefone'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTEL2: TLabel
-                Left = 594
-                Top = 48
-                Width = 69
-                Height = 16
+                Left = 523
+                Top = 40
+                Width = 55
+                Height = 13
                 Caption = '2'#186' Telefone'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcFAX: TLabel
-                Left = 686
-                Top = 48
-                Width = 22
-                Height = 16
+                Left = 597
+                Top = 40
+                Width = 17
+                Height = 13
                 Caption = 'Fax'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcENDERECO: TLabel
-                Left = 11
-                Top = 142
-                Width = 59
-                Height = 16
+                Left = 9
+                Top = 115
+                Width = 46
+                Height = 13
                 Caption = 'Endere'#231'o'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcBAI: TLabel
-                Left = 11
-                Top = 190
-                Width = 36
-                Height = 16
+                Left = 9
+                Top = 154
+                Width = 27
+                Height = 13
                 Caption = 'Bairro'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCEP: TLabel
-                Left = 292
-                Top = 190
-                Width = 27
-                Height = 16
+                Left = 237
+                Top = 154
+                Width = 21
+                Height = 13
                 Caption = 'CEP'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcCID: TLabel
-                Left = 383
-                Top = 190
-                Width = 44
-                Height = 16
+                Left = 311
+                Top = 154
+                Width = 33
+                Height = 13
                 Caption = 'Cidade'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcUF: TLabel
-                Left = 663
-                Top = 190
-                Width = 18
-                Height = 16
+                Left = 539
+                Top = 154
+                Width = 14
+                Height = 13
                 Caption = 'UF'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcEMAIL1: TLabel
-                Left = 11
-                Top = 238
-                Width = 49
-                Height = 16
+                Left = 9
+                Top = 193
+                Width = 38
+                Height = 13
                 Caption = '1'#186' Email'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcEMAIL2: TLabel
-                Left = 464
-                Top = 238
-                Width = 49
-                Height = 16
+                Left = 377
+                Top = 193
+                Width = 38
+                Height = 13
                 Caption = '2'#186' Email'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcSITE: TLabel
-                Left = 11
-                Top = 286
-                Width = 23
-                Height = 16
+                Left = 9
+                Top = 232
+                Width = 18
+                Height = 13
                 Caption = 'Site'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTBATIVCOD: TLabel
-                Left = 512
-                Top = 95
-                Width = 85
-                Height = 16
+                Left = 416
+                Top = 77
+                Width = 66
+                Height = 13
                 Caption = 'C'#243'd Atividade'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcID: TLabel
-                Left = 695
-                Top = 91
-                Width = 27
-                Height = 16
+                Left = 567
+                Top = 74
+                Width = 20
+                Height = 13
                 Alignment = taRightJustify
                 Caption = 'Pais'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcMOEDACOMISSAO: TLabel
-                Left = 774
-                Top = 47
-                Width = 107
-                Height = 16
+                Left = 675
+                Top = 40
+                Width = 81
+                Height = 13
                 Alignment = taRightJustify
                 Caption = 'Moeda Comiss'#227'o'
                 ParentShowHint = False
                 ShowHint = True
               end
+              object LbcUsuario: TLabel
+                Left = 378
+                Top = 233
+                Width = 36
+                Height = 13
+                Caption = 'Usu'#225'rio'
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object LbcCDPAIS: TLabel
+                Left = 366
+                Top = 40
+                Width = 45
+                Height = 13
+                Alignment = taRightJustify
+                Caption = 'C'#243'd. Pais'
+                ParentShowHint = False
+                ShowHint = True
+              end
               object FORCOD: TXDBNumEdit
-                Left = 12
-                Top = 18
-                Width = 69
-                Height = 24
+                Left = 10
+                Top = 15
+                Width = 56
+                Height = 21
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -480,10 +499,10 @@ object FormExportadorN: TFormExportadorN
                 OnExit = FORCODexit
               end
               object DATCAD: TXDBDateEdit
-                Left = 86
-                Top = 18
-                Width = 107
-                Height = 24
+                Left = 70
+                Top = 15
+                Width = 87
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 1
@@ -544,10 +563,10 @@ object FormExportadorN: TFormExportadorN
                 ShowButton = True
               end
               object RAZAO: TXDBEdit
-                Left = 198
-                Top = 18
-                Width = 448
-                Height = 24
+                Left = 161
+                Top = 15
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 2
@@ -601,10 +620,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object NOMCON: TXDBEdit
-                Left = 12
-                Top = 66
-                Width = 448
-                Height = 24
+                Left = 10
+                Top = 54
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 3
@@ -658,10 +677,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object TIPPESSOA: TDBRadioGroup
-                Left = 658
-                Top = 4
-                Width = 228
-                Height = 42
+                Left = 535
+                Top = 3
+                Width = 185
+                Height = 34
                 Caption = 'Tipo de Pessoa'
                 Columns = 2
                 ParentShowHint = False
@@ -670,10 +689,10 @@ object FormExportadorN: TFormExportadorN
                 OnExit = TIPPESSOAexit
               end
               object CNPJ: TXDBEdit
-                Left = 12
-                Top = 112
-                Width = 138
-                Height = 24
+                Left = 10
+                Top = 91
+                Width = 112
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 5
@@ -727,10 +746,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object CPF: TXDBEdit
-                Left = 390
-                Top = 112
-                Width = 112
-                Height = 24
+                Left = 317
+                Top = 91
+                Width = 91
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 6
@@ -784,10 +803,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object IEST: TXDBEdit
-                Left = 154
-                Top = 112
-                Width = 120
-                Height = 24
+                Left = 125
+                Top = 91
+                Width = 98
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 7
@@ -841,10 +860,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object IMUN: TXDBEdit
-                Left = 279
-                Top = 112
-                Width = 104
-                Height = 24
+                Left = 227
+                Top = 91
+                Width = 84
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 8
@@ -898,10 +917,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object DDD: TXDBEdit
-                Left = 464
-                Top = 65
-                Width = 34
-                Height = 24
+                Left = 417
+                Top = 54
+                Width = 28
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 9
@@ -955,10 +974,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object TEL1: TXDBEdit
-                Left = 503
-                Top = 65
-                Width = 87
-                Height = 24
+                Left = 449
+                Top = 54
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 10
@@ -1012,10 +1031,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object TEL2: TXDBEdit
-                Left = 594
-                Top = 65
-                Width = 87
-                Height = 24
+                Left = 523
+                Top = 54
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 11
@@ -1069,10 +1088,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object FAX: TXDBEdit
-                Left = 686
-                Top = 65
-                Width = 86
-                Height = 24
+                Left = 597
+                Top = 54
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 12
@@ -1126,10 +1145,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object ENDERECO: TXDBEdit
-                Left = 11
-                Top = 159
-                Width = 879
-                Height = 24
+                Left = 9
+                Top = 129
+                Width = 714
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 14
@@ -1183,10 +1202,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object BAI: TXDBEdit
-                Left = 11
-                Top = 207
-                Width = 276
-                Height = 24
+                Left = 9
+                Top = 168
+                Width = 224
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 15
@@ -1240,10 +1259,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object CEP: TXDBEdit
-                Left = 292
-                Top = 207
-                Width = 86
-                Height = 24
+                Left = 237
+                Top = 168
+                Width = 70
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 16
@@ -1297,10 +1316,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object CID: TXDBEdit
-                Left = 383
-                Top = 207
-                Width = 275
-                Height = 24
+                Left = 311
+                Top = 168
+                Width = 224
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 17
@@ -1354,10 +1373,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object UF: TXDBEdit
-                Left = 663
-                Top = 207
-                Width = 35
-                Height = 24
+                Left = 539
+                Top = 168
+                Width = 28
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 18
@@ -1411,10 +1430,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object EMAIL1: TXDBEdit
-                Left = 11
-                Top = 255
-                Width = 448
-                Height = 24
+                Left = 9
+                Top = 207
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 19
@@ -1468,10 +1487,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object EMAIL2: TXDBEdit
-                Left = 464
-                Top = 255
-                Width = 448
-                Height = 24
+                Left = 377
+                Top = 207
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 20
@@ -1525,10 +1544,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object SITE: TXDBEdit
-                Left = 11
-                Top = 303
-                Width = 448
-                Height = 24
+                Left = 9
+                Top = 246
+                Width = 364
+                Height = 21
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 21
@@ -1582,10 +1601,10 @@ object FormExportadorN: TFormExportadorN
                   0000}
               end
               object TBATIVCOD: TXDBLookUp
-                Left = 512
-                Top = 112
-                Width = 178
-                Height = 24
+                Left = 416
+                Top = 91
+                Width = 145
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
@@ -1593,11 +1612,11 @@ object FormExportadorN: TFormExportadorN
                 OnExit = TBATIVCODexit
               end
               object MOEDACOMISSAO: TDBComboBox
-                Left = 779
-                Top = 65
-                Width = 94
-                Height = 24
-                ItemHeight = 16
+                Left = 673
+                Top = 54
+                Width = 76
+                Height = 21
+                ItemHeight = 13
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 13
@@ -1605,15 +1624,129 @@ object FormExportadorN: TFormExportadorN
                 OnExit = MOEDACOMISSAOexit
               end
               object ID: TXDBLookUp
-                Left = 696
-                Top = 110
-                Width = 145
-                Height = 24
+                Left = 566
+                Top = 89
+                Width = 117
+                Height = 21
                 DropDownRows = 14
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 23
-                OnExit = IDExit
+                OnExit = IDexit
+              end
+              object Usuario: TXDBEdit
+                Left = 378
+                Top = 247
+                Width = 154
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 24
+                Text = 'Usuario'
+                OnExit = USUARIOexit
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
+              end
+              object CDPAIS: TXDBEdit
+                Left = 377
+                Top = 54
+                Width = 35
+                Height = 21
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 25
+                Text = 'CDPAIS'
+                OnExit = CDPAISexit
+                Glyph.Data = {
+                  7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                  2000000000004805000000000000000000000000000000000000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000000000000000000000000000008000000080000000800000008000000080
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF000080000000800000008000000080000000800000FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000800000008000000080
+                  0000008000000080000000000000008000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000080000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF000000000000000000000000008080
+                  8000008000000080000000800000808080000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00808080000080
+                  0000008000000080000080808000FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000000000000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00000000000080000000000000000000000000000000000000008000000000
+                  000000000000000000000000000000800000008000000080000000800000FFFF
+                  FF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000800000FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0000000000008000000000000000000000000000000000
+                  0000008000000000000000000000000000000000000000800000008000000080
+                  000000800000FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF000080
+                  0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000
+                  0000000000000000000000000000000000000000000000000000000000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+                  0000000000000000000000000000808080000000000000000000000000000000
+                  00000000000000800000008000000080000000800000FFFFFF00FFFFFF00FFFF
+                  FF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                  FF00008000000080000000000000000000000080000000800000008000000000
+                  0000000000000080000000800000008000000080000000800000008000000080
+                  000000800000FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFF
+                  FF00008000000080000000800000008000000000000000000000008000000080
+                  0000008000000000000000000000008000000080000000800000008000000080
+                  0000008000000080000000800000FFFFFF00FFFFFF0000800000008000000080
+                  0000FFFFFF00FFFFFF0000800000008000000080000000800000000000000000
+                  0000008000000080000000800000000000000000000000800000008000000080
+                  00000080000000800000008000000080000000800000FFFFFF00FFFFFF000080
+                  00000080000000800000FFFFFF00FFFFFF000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000008000000080000000800000008000000080000000800000008000000080
+                  0000}
               end
             end
           end
@@ -1624,16 +1757,16 @@ object FormExportadorN: TFormExportadorN
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 1086
-              Height = 380
+              Width = 936
+              Height = 374
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object OBS: TDBMemo
                 Left = 0
                 Top = 0
-                Width = 1086
-                Height = 380
+                Width = 936
+                Height = 374
                 Align = alClient
                 ParentShowHint = False
                 ScrollBars = ssVertical
@@ -1650,8 +1783,8 @@ object FormExportadorN: TFormExportadorN
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 1086
-              Height = 380
+              Width = 936
+              Height = 374
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1705,17 +1838,17 @@ object FormExportadorN: TFormExportadorN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 382
-        Width = 918
-        Height = 38
+        Top = 610
+        Width = 928
+        Height = 31
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -1741,14 +1874,14 @@ object FormExportadorN: TFormExportadorN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 918
-        Height = 356
+        Width = 928
+        Height = 589
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -1765,13 +1898,13 @@ object FormExportadorN: TFormExportadorN
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 356
-        Width = 918
-        Height = 26
+        Top = 589
+        Width = 928
+        Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -12
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -1784,16 +1917,16 @@ object FormExportadorN: TFormExportadorN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 944
-    Height = 40
+    Width = 936
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object BtnIncluir: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -1816,10 +1949,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 79
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -1842,10 +1975,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 154
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -1868,10 +2001,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -1894,10 +2027,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 304
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -1920,10 +2053,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -1945,10 +2078,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 403
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -1970,10 +2103,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 427
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -1995,10 +2128,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -2020,10 +2153,10 @@ object FormExportadorN: TFormExportadorN
       OnClick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -2046,8 +2179,8 @@ object FormExportadorN: TFormExportadorN
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 37
-      Width = 944
+      Top = 30
+      Width = 936
       Height = 3
       Align = alBottom
       TabOrder = 0

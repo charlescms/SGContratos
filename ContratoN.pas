@@ -47,10 +47,9 @@ type
     CopiarImagem: TMenuItem;
     CortarImagem: TMenuItem;
     DataAss: TXDBDateEdit;
-    DataEmbarque: TXDBEdit;
     DataSource: TDataSource;
     DataSource_Grid_Boocking: TDataSource;
-    DataSource_Grid_ExpotadoTransito: TDataSource;
+    DataSource_Grid_ExportadoTransito: TDataSource;
     DataSource_Grid_PrudutoContratoT: TDataSource;
     Divisao_sup: TPanel;
     DlgAbrirImagem: TOpenDialog;
@@ -58,13 +57,13 @@ type
     FORCOD: TXDBNumEdit;
     FormComissao: TDBComboBox;
     Grid_Boocking: TDBGrid;
-    Grid_ExpotadoTransito: TDBGrid;
+    Grid_ExportadoTransito: TDBGrid;
     Grid_PrudutoContratoT: TDBGrid;
     GridConsulta: TDBGrid;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
-    ID: TXDBEdit;
+    ID_FORN: TXDBLookUp;
     Img_Form: TImage;
     Img_Tabela: TImage;
     LbcC_C: TLabel;
@@ -86,8 +85,10 @@ type
     LbcRAZAOEXPOSTADOR: TLabel;
     Lbcseq: TLabel;
     LbcStatusCT: TLabel;
+    LbcUsuario: TLabel;
     LbcValorSCCTotal: TLabel;
     LbcValorTotalComissao: TLabel;
+    LbcValorTotalComissaoExecutado: TLabel;
     LbcValorTotalExp: TLabel;
     LbcValorTotalPendente: TLabel;
     MenuImagem: TPopupMenu;
@@ -107,7 +108,6 @@ type
     N3: TMenuItem;
     NoManutencao: TNotebook;
     NOME: TXDBEdit;
-    NOME_PAIS: TXDBEdit;
     NomeMix: TXDBLookUp;
     OBS: TXDBEdit;
     PagePrincipal: TPageControl;
@@ -131,15 +131,22 @@ type
     RAZAO: TXDBEdit;
     RAZAOEXPOSTADOR: TXDBEdit;
     SalvarImagem: TMenuItem;
+    SDataEmbarque: TXDBEdit;
     seq: TXDBNumEdit;
     StatusCT: TDBComboBox;
     TabConsulta: TTabSheet;
     TabManutencao: TTabSheet;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     ValorSCCTotal: TXDBNumEdit;
     ValorTotalComissao: TXDBNumEdit;
+    ValorTotalComissaoExecutado: TXDBNumEdit;
     ValorTotalExp: TXDBNumEdit;
     ValorTotalPendente: TXDBNumEdit;
+    XNumEdit1: TXNumEdit;
+    XNumEdit2: TXNumEdit;
+    GroupBox4: TGroupBox;
+    btn_Corrig: TBitBtn;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure CadastroExit(Sender: TObject);
@@ -152,10 +159,7 @@ type
     procedure NOMEExit(Sender: TObject);
     procedure FORCODExit(Sender: TObject);
     procedure RAZAOEXPOSTADORExit(Sender: TObject);
-    procedure IDExit(Sender: TObject);
-    procedure NOME_PAISExit(Sender: TObject);
     procedure C_CExit(Sender: TObject);
-    procedure DataEmbarqueExit(Sender: TObject);
     procedure PrecoFOBTotalExit(Sender: TObject);
     procedure QuantidadeTotalExit(Sender: TObject);
     procedure ValorSCCTotalExit(Sender: TObject);
@@ -172,6 +176,10 @@ type
     procedure QuantadePendenteExit(Sender: TObject);
     procedure ValorTotalExpExit(Sender: TObject);
     procedure ValorTotalPendenteExit(Sender: TObject);
+    procedure ValorTotalComissaoExecutadoExit(Sender: TObject);
+    procedure SDataEmbarqueExit(Sender: TObject);
+    procedure ID_FORNExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -221,10 +229,20 @@ type
     procedure Grid_BoockingColEnter(Sender: TObject);
     procedure Grid_BoockingExit(Sender: TObject);
     procedure Grid_BoockingEditButtonClick(Sender: TObject);
-    procedure Grid_ExpotadoTransitoDblClick(Sender: TObject);
-    procedure Grid_ExpotadoTransitoColEnter(Sender: TObject);
-    procedure Grid_ExpotadoTransitoExit(Sender: TObject);
-    procedure Grid_ExpotadoTransitoEditButtonClick(Sender: TObject);
+    procedure Grid_ExportadoTransitoDblClick(Sender: TObject);
+    procedure Grid_ExportadoTransitoColEnter(Sender: TObject);
+    procedure Grid_ExportadoTransitoExit(Sender: TObject);
+    procedure Grid_ExportadoTransitoEditButtonClick(Sender: TObject);
+    procedure CLICODClick(Sender: TObject);
+    procedure FORCODChange(Sender: TObject);
+    procedure DataSourceDataChange(Sender: TObject; Field: TField);
+    procedure ValorTotalExpChange(Sender: TObject);
+    procedure GridConsultaDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure btn_CorrigClick(Sender: TObject);
+    procedure DataSource_Grid_PrudutoContratoTDataChange(Sender: TObject;
+      Field: TField);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -289,13 +307,12 @@ Var
   I: Integer;
 begin
 
-
-
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   TabelaPrincipal    := TabGlobal.DContratoTransporte;
   TituloModulo       := 'Cadastro de Contrato';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
+  TabelaPrincipal.AtribuiRelacionamentos(TRUE);  
   FormPrincipal.PnImagemFundo.Visible := False;
   Sistema.JanelasMDI := Sistema.JanelasMDI + 01;
   if Sistema.JanelasMDI < 1 then   // Pouco provável + ...
@@ -309,22 +326,19 @@ begin
   TabPaginas.TabIndex:= 0;
   // posicione
   Grid_Boocking.height := Trunc( Pagina2.height /2) ;
-  Grid_ExpotadoTransito.align := alClient ;
+  Grid_ExportadoTransito.align := alClient ;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ID_FORN, -2, ID_FORNExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.SDataEmbarque, -2, SDataEmbarqueExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ValorTotalComissaoExecutado, -2, ValorTotalComissaoExecutadoExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ValorTotalPendente, -2, ValorTotalPendenteExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ValorTotalExp, -2, ValorTotalExpExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.QuantadePendente, -2, QuantadePendenteExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.QUANTTOTALEXP, -2, QUANTTOTALEXPExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.NomeMix, -2, NomeMixExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
-  DataSource_Grid_ExpotadoTransito.DataSet := TabGlobal.DExpotadoTransito;
-  Grid_ExpotadoTransito.DataSource := DataSource_Grid_ExpotadoTransito;
-  AtribuiGridEdicao(TabGlobal.DExpotadoTransito, Grid_ExpotadoTransito, True, ValidaColunaGrid);
-  DataSource_Grid_Boocking.DataSet := TabGlobal.DBoocking;
-  Grid_Boocking.DataSource := DataSource_Grid_Boocking;
-  AtribuiGridEdicao(TabGlobal.DBoocking, Grid_Boocking, True, ValidaColunaGrid);
-  DataSource_Grid_PrudutoContratoT.DataSet := TabGlobal.DPrudutoContratoT;
-  Grid_PrudutoContratoT.DataSource := DataSource_Grid_PrudutoContratoT;
-  AtribuiGridEdicao(TabGlobal.DPrudutoContratoT, Grid_PrudutoContratoT, True, ValidaColunaGrid);
+
+
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Comentario, -2, ComentarioExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.DataAss, -2, DataAssExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.OBS, -2, OBSExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
@@ -334,10 +348,7 @@ begin
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ValorSCCTotal, -2, ValorSCCTotalExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.QuantidadeTotal, -2, QuantidadeTotalExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.PrecoFOBTotal, -2, PrecoFOBTotalExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.DataEmbarque, -2, DataEmbarqueExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.C_C, -2, C_CExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.NOME_PAIS, -2, NOME_PAISExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
-  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ID, -2, IDExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.RAZAOEXPOSTADOR, -2, RAZAOEXPOSTADORExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.FORCOD, -2, FORCODExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.NOME, -2, NOMEExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
@@ -369,7 +380,25 @@ begin
   Panel2.Align := alClient ;
   GroupBox2.Align := alLeft ;
   GroupBox3.Align := alClient ;
+  StatusCT.Enabled := false ;
+
+  DataSource_Grid_ExportadoTransito.DataSet := TabGlobal.DExportadoTransito;
+  Grid_ExportadoTransito.DataSource := DataSource_Grid_ExportadoTransito;
+  AtribuiGridEdicao(TabGlobal.DExportadoTransito, Grid_ExportadoTransito, false, ValidaColunaGrid);
+  DataSource_Grid_Boocking.DataSet := TabGlobal.DBoocking;
+  Grid_Boocking.DataSource := DataSource_Grid_Boocking;
+  AtribuiGridEdicao(TabGlobal.DBoocking, Grid_Boocking, false, ValidaColunaGrid);
+  DataSource_Grid_PrudutoContratoT.DataSet := TabGlobal.DProdutoContratoT;
+  Grid_PrudutoContratoT.DataSource := DataSource_Grid_PrudutoContratoT;
+  AtribuiGridEdicao(TabGlobal.DProdutoContratoT, Grid_PrudutoContratoT, false, ValidaColunaGrid);
   
+  
+
+  if TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo < TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo then
+    btn_Corrig.Visible := True
+ else
+    btn_Corrig.Visible := False  ;
+
 end;
 
 function TFormContratoN.AbreTabelas: Boolean;
@@ -506,7 +535,9 @@ end;
 
 procedure TFormContratoN.DepoisdeModificar;
 begin
-
+  TabGlobal.DContratoTransporte.Edit ;
+  TabGlobal.DContratoTransporte.ID.Conteudo := TabGlobal.DContratoTransporte.ID_FORN.Conteudo ;
+  TabGlobal.DContratoTransporte.Post ;
 end;
 
 procedure TFormContratoN.DepoisdeExcluir;
@@ -616,6 +647,9 @@ procedure TFormContratoN.BtnSalvarClick(Sender: TObject);
 Var
   EInclusao, Ok: Boolean;
 begin
+   // esta redundancia existe para compatibilizar o que ja foi desenolvido
+  TabGlobal.DContratoTransporte.ID.Conteudo := TabGlobal.DContratoTransporte.ID_FORN.Conteudo ;
+  
   if Not ConfirmaGravacao then
   begin
     MessageDlg('Gravação Cancelada !',mtError,[mbOk],0);
@@ -1463,6 +1497,8 @@ begin
   TabelaPrincipal.AtribuiRelacionamentos;
 //  CLICOD.OnEnter(sender);
   RAZAO.Refresh ;
+  TabGlobal.DContratoTransporte.ID.Conteudo := TabGlobal.DFornecedores.ID.Conteudo ;
+
 
 end;
 
@@ -1511,10 +1547,14 @@ begin
     ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.FORCOD);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
-  
+
   TabelaPrincipal.AtribuiRelacionamentos;
   RAZAOEXPOSTADOR.Refresh;
   RAZAOEXPOSTADOR.Refresh;
+  
+  if (TabGlobal.DContratoTransporte.State = dsInsert) or
+     ( TabGlobal.DContratoTransporte.State = dsedit  ) then
+  TabGlobal.DContratoTransporte.ID.AtribuiValorPadrao ;
 
 end;
 
@@ -1529,32 +1569,6 @@ begin
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
 
-procedure TFormContratoN.IDExit(Sender: TObject);
-var MsgErro : string;
-begin
-  if AbandonandoEdicao then
-    Exit;
-  if not TabGlobal.DContratoTransporte.ID.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.ID);
-  if not SalvarRegistro then
-    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
-    
-  TabelaPrincipal.AtribuiRelacionamentos;
-  NOME_PAIS.Refresh ;
-
-end;
-
-procedure TFormContratoN.NOME_PAISExit(Sender: TObject);
-var MsgErro : string;
-begin
-  if AbandonandoEdicao then
-    Exit;
-  if not TabGlobal.DContratoTransporte.NOME_PAIS.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.NOME_PAIS);
-  if not SalvarRegistro then
-    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
-end;
-
 procedure TFormContratoN.C_CExit(Sender: TObject);
 var MsgErro : string;
 begin
@@ -1562,17 +1576,6 @@ begin
     Exit;
   if not TabGlobal.DContratoTransporte.C_C.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.C_C);
-  if not SalvarRegistro then
-    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
-end;
-
-procedure TFormContratoN.DataEmbarqueExit(Sender: TObject);
-var MsgErro : string;
-begin
-  if AbandonandoEdicao then
-    Exit;
-  if not TabGlobal.DContratoTransporte.DataEmbarque.Valido(MsgErro, not SalvarRegistro) then
-    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.DataEmbarque);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
@@ -1721,7 +1724,7 @@ end;
 
 procedure TFormContratoN.Grid_PrudutoContratoTColEnter(Sender: TObject);
 begin
-  if (TabGlobal.DPrudutoContratoT.State = dsInsert) and
+  if (TabGlobal.DProdutoContratoT.State = dsInsert) and
      (TabelaPrincipal.Inclusao) then
   begin
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
@@ -1729,30 +1732,30 @@ begin
     begin
       MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
       begin
-        TabGlobal.DPrudutoContratoT.Cancel;
+        TabGlobal.DProdutoContratoT.Cancel;
         exit;
       end;
     end;
     if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
     begin
-      TabGlobal.DPrudutoContratoT.Cancel;
+      TabGlobal.DProdutoContratoT.Cancel;
       exit;
     end;
     if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
     begin
-      TabGlobal.DPrudutoContratoT.Cancel;
+      TabGlobal.DProdutoContratoT.Cancel;
       exit;
     end
     else
       if not TabelaPrincipal.Modifica then
       begin
-        TabGlobal.DPrudutoContratoT.Cancel;
+        TabGlobal.DProdutoContratoT.Cancel;
         exit;
       end
       else
-        TabGlobal.DPrudutoContratoT.AtribuiMestre(TabGlobal.DPrudutoContratoT);
+        TabGlobal.DProdutoContratoT.AtribuiMestre(TabGlobal.DProdutoContratoT);
   end;
-  ExecutaPreValidacoesGrid(TabGlobal.DPrudutoContratoT);
+  ExecutaPreValidacoesGrid(TabGlobal.DProdutoContratoT);
   KeyPreview := False;
 end;
 
@@ -1769,9 +1772,9 @@ Var
 begin
   CampoGrid := Grid_PrudutoContratoT.SelectedField;
   if CampoGrid = Nil then exit;
-  for I:=0 to TabGlobal.DPrudutoContratoT.Campos.Count-1 do
+  for I:=0 to TabGlobal.DProdutoContratoT.Campos.Count-1 do
   begin
-    Campo := TAtributo(TabGlobal.DPrudutoContratoT.Campos[I]);
+    Campo := TAtributo(TabGlobal.DProdutoContratoT.Campos[I]);
     if Campo.Valor.FieldName = CampoGrid.FieldName then
       Break;
   end;
@@ -1781,7 +1784,7 @@ begin
     FormGridPesquisa.Atalho := VK_F8;
     FormGridPesquisa.Campo  := Campo;
     if FormGridPesquisa.ShowModal = mrOk then
-      ExecutaPreValidacoesGrid(TabGlobal.DPrudutoContratoT);
+      ExecutaPreValidacoesGrid(TabGlobal.DProdutoContratoT);
   Finally
     FormGridPesquisa.Free;
   end;
@@ -1881,7 +1884,7 @@ begin
   end;
 end;
 
-procedure TFormContratoN.Grid_ExpotadoTransitoDblClick(Sender: TObject);
+procedure TFormContratoN.Grid_ExportadoTransitoDblClick(Sender: TObject);
 begin
   if TabelaPrincipal.Inclusao then  // Garante integridade do uso em rede
   begin                             // salva o registro PAI para depois incluir os registros FILHO
@@ -1905,11 +1908,12 @@ begin
   Finally
     FormEXPORTACAO.Free;
   end;
+  
 end;
 
-procedure TFormContratoN.Grid_ExpotadoTransitoColEnter(Sender: TObject);
+procedure TFormContratoN.Grid_ExportadoTransitoColEnter(Sender: TObject);
 begin
-  if (TabGlobal.DExpotadoTransito.State = dsInsert) and
+  if (TabGlobal.DExportadoTransito.State = dsInsert) and
      (TabelaPrincipal.Inclusao) then
   begin
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
@@ -1917,49 +1921,49 @@ begin
     begin
       MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
       begin
-        TabGlobal.DExpotadoTransito.Cancel;
+        TabGlobal.DExportadoTransito.Cancel;
         exit;
       end;
     end;
     if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
     begin
-      TabGlobal.DExpotadoTransito.Cancel;
+      TabGlobal.DExportadoTransito.Cancel;
       exit;
     end;
     if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
     begin
-      TabGlobal.DExpotadoTransito.Cancel;
+      TabGlobal.DExportadoTransito.Cancel;
       exit;
     end
     else
       if not TabelaPrincipal.Modifica then
       begin
-        TabGlobal.DExpotadoTransito.Cancel;
+        TabGlobal.DExportadoTransito.Cancel;
         exit;
       end
       else
-        TabGlobal.DExpotadoTransito.AtribuiMestre(TabGlobal.DExpotadoTransito);
+        TabGlobal.DExportadoTransito.AtribuiMestre(TabGlobal.DExportadoTransito);
   end;
-  ExecutaPreValidacoesGrid(TabGlobal.DExpotadoTransito);
+  ExecutaPreValidacoesGrid(TabGlobal.DExportadoTransito);
   KeyPreview := False;
 end;
 
-procedure TFormContratoN.Grid_ExpotadoTransitoExit(Sender: TObject);
+procedure TFormContratoN.Grid_ExportadoTransitoExit(Sender: TObject);
 begin
   KeyPreview := True;
 end;
 
-procedure TFormContratoN.Grid_ExpotadoTransitoEditButtonClick(Sender: TObject);
+procedure TFormContratoN.Grid_ExportadoTransitoEditButtonClick(Sender: TObject);
 Var
   I: Integer;
   Campo: TAtributo;
   CampoGrid: TField;
 begin
-  CampoGrid := Grid_ExpotadoTransito.SelectedField;
+  CampoGrid := Grid_ExportadoTransito.SelectedField;
   if CampoGrid = Nil then exit;
-  for I:=0 to TabGlobal.DExpotadoTransito.Campos.Count-1 do
+  for I:=0 to TabGlobal.DExportadoTransito.Campos.Count-1 do
   begin
-    Campo := TAtributo(TabGlobal.DExpotadoTransito.Campos[I]);
+    Campo := TAtributo(TabGlobal.DExportadoTransito.Campos[I]);
     if Campo.Valor.FieldName = CampoGrid.FieldName then
       Break;
   end;
@@ -1969,7 +1973,7 @@ begin
     FormGridPesquisa.Atalho := VK_F8;
     FormGridPesquisa.Campo  := Campo;
     if FormGridPesquisa.ShowModal = mrOk then
-      ExecutaPreValidacoesGrid(TabGlobal.DExpotadoTransito);
+      ExecutaPreValidacoesGrid(TabGlobal.DExportadoTransito);
   Finally
     FormGridPesquisa.Free;
   end;
@@ -2028,6 +2032,131 @@ begin
     ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.ValorTotalPendente);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormContratoN.ValorTotalComissaoExecutadoExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DContratoTransporte.ValorTotalComissaoExecutado.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.ValorTotalComissaoExecutado);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormContratoN.CLICODClick(Sender: TObject);
+{utilize o "var" para declarar variáveis}
+begin
+  {codificação...}
+  // atyribuir pais para fascilitar a digitacao
+  
+  TabGlobal.DContratoTransporte.ID.Conteudo := TabGlobal.DFornecedores.ID.Conteudo ;
+end;
+
+procedure TFormContratoN.SDataEmbarqueExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DContratoTransporte.SDataEmbarque.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.SDataEmbarque);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormContratoN.FORCODChange(Sender: TObject);
+begin
+//  if (TabGlobal.DContratoTransporte.State = dsInsert) or
+//     ( TabGlobal.DContratoTransporte.State = dsedit  ) then
+//      FORCODExit(sender) ;
+end;
+
+procedure TFormContratoN.ID_FORNExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DContratoTransporte.ID_FORN.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.ID_FORN);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormContratoN.DataSourceDataChange(Sender: TObject;
+  Field: TField);
+begin
+ XNumEdit1.Value := TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo - TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo ;
+ XNumEdit2.Value := TabGlobal.DContratoTransporte.QuantidadeTotal.Conteudo - TabGlobal.DContratoTransporte.QUANTTOTALEXP.Conteudo ;
+end;
+
+procedure TFormContratoN.ValorTotalExpChange(Sender: TObject);
+begin
+ DataSourceDataChange(Sender, nil );
+end;
+
+procedure TFormContratoN.GridConsultaDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+
+//  if (TabGlobal.DPonto.SITUACAO.Conteudo = 'P') and (TabGlobal.DPonto.DATA.Conteudo <> DataAtual) then begin
+    GridConsulta.Canvas.Font.Color:= clBlack;
+//    GridConsulta.DefaultDrawDataCell(Rect, GridConsulta.columns[datacol].field, State);
+//  end;
+//  if (TabGlobal.DPonto.SITUACAO.Conteudo = 'P') and (TabGlobal.DPonto.DATA.Conteudo = DataAtual) then begin
+    GridConsulta.Canvas.Brush.Color :=  RetCorFundo(TabGlobal.DContratoTransporte.StatusCT.CONTEUDO) ; // $00FFF4DF;
+    GridConsulta.DefaultDrawDataCell(Rect, GridConsulta.columns[datacol].field, State);
+//  end;
+
+end;
+
+procedure TFormContratoN.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DContratoTransporte.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormContratoN.btn_CorrigClick(Sender: TObject);
+begin
+  if TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo < TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo then
+  begin
+     if MessageDlg('O Valor Total Exp. e maior que o Valor SCC Total. Corrigir?',mtConfirmation,[mbYes,mbNo],0) = mrYes then
+     begin
+       if TabGlobal.DContratoTransporte.Modificacao = False then
+       begin
+          //TabGlobal.DContratoTransporte.Edit;
+          BtnModificarClick(Self) ;
+          TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo := TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo ;
+         // TabGlobal.DContratoTransporte.Post;
+          BtnSalvarClick(Self) ;
+
+       end
+       else
+       begin
+       //   BtnModificarClick(Self) ;
+          TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo := TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo ;
+          TabGlobal.DContratoTransporte.Post;
+      //    BtnSalvarClick(Self) ;
+       end
+
+       ;
+     end;
+  end;
+end;
+
+procedure TFormContratoN.DataSource_Grid_PrudutoContratoTDataChange(
+  Sender: TObject; Field: TField);
+begin
+ if TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo < TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo then
+    btn_Corrig.Visible := True
+ else
+    btn_Corrig.Visible := False  ;
 end;
 
 end.

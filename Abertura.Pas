@@ -33,8 +33,8 @@ type
     DUSER_AGENDA : TDUSER_AGENDA;
     DBoocking : TDBoocking;
     DContratoTransporte : TDContratoTransporte;
-    DExpotadoTransito : TDExpotadoTransito;
-    DPrudutoContratoT : TDPrudutoContratoT;
+    DExportadoTransito : TDExportadoTransito;
+    DProdutoContratoT : TDProdutoContratoT;
     DTbPorto : TDTbPorto;
     DTbFormaPagamento : TDTbFormaPagamento;
     DTbCondicaoCompra : TDTbCondicaoCompra;
@@ -43,17 +43,27 @@ type
     DTbSitClientes : TDTbSitClientes;
     DFornecedores : TDFornecedores;
     DTbCategClientes : TDTbCategClientes;
-    DDIVISOES : TDDIVISOES;
-    DTAB_PAIS : TDTAB_PAIS;
+    DDivisoes : TDDivisoes;
+    DTab_pais : TDTab_pais;
     DProdutos : TDProdutos;
     DFatura : TDFatura;
-    DPARAMETROS : TDPARAMETROS;
-    CSCNS_Infome : TCSCNS_Infome;
+    DParametros : TDParametros;
+    DInforme : TDInforme;
+    DCERBO : TDCERBO;
+    DSituacao : TDSituacao;
+    DRESUMENCONTRATACION : TDRESUMENCONTRATACION;
+    DOrdemCobrancaDescont : TDOrdemCobrancaDescont;
+    DOrdemCobranca : TDOrdemCobranca;
+    DOrdemCobrancaProdExp : TDOrdemCobrancaProdExp;
+    DPREVISAO : TDPREVISAO;
+    CSInfome : TCSInfome;
     procedure CalculosDBoocking(DataSet: TDataSet);
     procedure CalculosDContratoTransporte(DataSet: TDataSet);
-    procedure CalculosDExpotadoTransito(DataSet: TDataSet);
-    procedure CalculosDPrudutoContratoT(DataSet: TDataSet);
+    procedure CalculosDExportadoTransito(DataSet: TDataSet);
+    procedure CalculosDProdutoContratoT(DataSet: TDataSet);
     procedure CalculosDFatura(DataSet: TDataSet);
+    procedure CalculosDOrdemCobranca(DataSet: TDataSet);
+    procedure CalculosDOrdemCobrancaProdExp(DataSet: TDataSet);
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure AbrirTabelas;
     procedure FecharTabelas(Finalizar: Boolean);
@@ -185,8 +195,8 @@ begin
   DUSER_AGENDA := TDUSER_AGENDA.Create(Self);
   DBoocking := TDBoocking.Create(Self);
   DContratoTransporte := TDContratoTransporte.Create(Self);
-  DExpotadoTransito := TDExpotadoTransito.Create(Self);
-  DPrudutoContratoT := TDPrudutoContratoT.Create(Self);
+  DExportadoTransito := TDExportadoTransito.Create(Self);
+  DProdutoContratoT := TDProdutoContratoT.Create(Self);
   DTbPorto := TDTbPorto.Create(Self);
   DTbFormaPagamento := TDTbFormaPagamento.Create(Self);
   DTbCondicaoCompra := TDTbCondicaoCompra.Create(Self);
@@ -195,12 +205,20 @@ begin
   DTbSitClientes := TDTbSitClientes.Create(Self);
   DFornecedores := TDFornecedores.Create(Self);
   DTbCategClientes := TDTbCategClientes.Create(Self);
-  DDIVISOES := TDDIVISOES.Create(Self);
-  DTAB_PAIS := TDTAB_PAIS.Create(Self);
+  DDivisoes := TDDivisoes.Create(Self);
+  DTab_pais := TDTab_pais.Create(Self);
   DProdutos := TDProdutos.Create(Self);
   DFatura := TDFatura.Create(Self);
-  DPARAMETROS := TDPARAMETROS.Create(Self);
-  CSCNS_Infome := TCSCNS_Infome.Create(Self);
+  DParametros := TDParametros.Create(Self);
+  DInforme := TDInforme.Create(Self);
+  DCERBO := TDCERBO.Create(Self);
+  DSituacao := TDSituacao.Create(Self);
+  DRESUMENCONTRATACION := TDRESUMENCONTRATACION.Create(Self);
+  DOrdemCobrancaDescont := TDOrdemCobrancaDescont.Create(Self);
+  DOrdemCobranca := TDOrdemCobranca.Create(Self);
+  DOrdemCobrancaProdExp := TDOrdemCobrancaProdExp.Create(Self);
+  DPREVISAO := TDPREVISAO.Create(Self);
+  CSInfome := TCSInfome.Create(Self);
   I := 0;
   if Sistema.SelecionaUsr then
   begin
@@ -259,7 +277,7 @@ begin
     begin
       Lst_Tabelas.Free;
       Lst_Tabelas := nil;
-    end;                        
+    end;
   except
     on Erro: Exception do
     begin
@@ -296,9 +314,11 @@ begin
   {03-Início do Bloco Modular. Modificações não serão preservadas}
   DBoocking.OnCalcFields := CalculosDBoocking;
   DContratoTransporte.OnCalcFields := CalculosDContratoTransporte;
-  DExpotadoTransito.OnCalcFields := CalculosDExpotadoTransito;
-  DPrudutoContratoT.OnCalcFields := CalculosDPrudutoContratoT;
+  DExportadoTransito.OnCalcFields := CalculosDExportadoTransito;
+  DProdutoContratoT.OnCalcFields := CalculosDProdutoContratoT;
   DFatura.OnCalcFields := CalculosDFatura;
+  DOrdemCobranca.OnCalcFields := CalculosDOrdemCobranca;
+  DOrdemCobrancaProdExp.OnCalcFields := CalculosDOrdemCobrancaProdExp;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
 end;
 
@@ -312,16 +332,26 @@ procedure TTabGlobal.CalculosDContratoTransporte(DataSet: TDataSet);
 begin
 end;
 
-procedure TTabGlobal.CalculosDExpotadoTransito(DataSet: TDataSet);
+procedure TTabGlobal.CalculosDExportadoTransito(DataSet: TDataSet);
 begin
 end;
 
-procedure TTabGlobal.CalculosDPrudutoContratoT(DataSet: TDataSet);
+procedure TTabGlobal.CalculosDProdutoContratoT(DataSet: TDataSet);
 begin
 end;
 
 procedure TTabGlobal.CalculosDFatura(DataSet: TDataSet);
 begin
+end;
+
+procedure TTabGlobal.CalculosDOrdemCobranca(DataSet: TDataSet);
+begin
+end;
+
+procedure TTabGlobal.CalculosDOrdemCobrancaProdExp(DataSet: TDataSet);
+begin
+  DOrdemCobrancaProdExp.COMISAOSFATURA_EX.Conteudo := CalculaDOrdemCobrancaProdExp_COMISAOSFATURA_EX(Self);
+  DOrdemCobrancaProdExp.VALORCONVERTIDO_EX.Conteudo := CalculaDOrdemCobrancaProdExp_VALORCONVERTIDO_EX(Self);
 end;
 
 {99-Final do Bloco Modular. Modificações não serão preservadas}

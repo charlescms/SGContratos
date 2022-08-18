@@ -1,0 +1,700 @@
+============================================
+ TABELA = USER_NOMES
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_NOMES_Usuario
+USER_NOMES_Senha
+USER_NOMES_Master
+USER_NOMES_Grupo
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_GRUPOS
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_GRUPOS_Grupo
+USER_GRUPOS_Descricao
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_MENU_LATERAL
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_MENU_LATERAL_Opcao
+USER_MENU_LATERAL_Grupo
+USER_MENU_LATERAL_PorSenha
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_MENU_SUPERIOR
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_MENU_SUPERIOR_Opcao
+USER_MENU_SUPERIOR_Grupo
+USER_MENU_SUPERIOR_PorSenha
+USER_MENU_SUPERIOR_Invisivel
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_BARRA_F
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_BARRA_F_Opcao
+USER_BARRA_F_Grupo
+USER_BARRA_F_PorSenha
+USER_BARRA_F_Invisivel
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_TABELAS
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_TABELAS_Tabela_Obj
+USER_TABELAS_Grupo
+USER_TABELAS_Cerceado
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_LOG
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_LOG_Usuario
+USER_LOG_Data
+USER_LOG_Hora
+USER_LOG_Tabela
+USER_LOG_Tipo
+USER_LOG_Comando
+USER_LOG_Estacao
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = USER_AGENDA
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+USER_AGENDA_Sequencia
+USER_AGENDA_Usuario
+USER_AGENDA_Nome
+USER_AGENDA_Telefone
+USER_AGENDA_Complemento
+USER_AGENDA_Compartilhado
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Boocking
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Boocking_Contrato
+Boocking_Seq
+Boocking_Navio
+Boocking_Cadastro
+Boocking_DataPrevista
+Boocking_StatusBK
+Boocking_Quantidade
+Boocking_QuntTransp
+Boocking_SALDO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ContratoTransporte
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+ContratoTransporte_Contrato
+ContratoTransporte_Cadastro
+ContratoTransporte_StatusCT
+ContratoTransporte_CLICOD
+ContratoTransporte_RAZAO
+ContratoTransporte_seq
+ContratoTransporte_NOME
+ContratoTransporte_FORCOD
+ContratoTransporte_RAZAOEXPOSTADOR
+ContratoTransporte_ID
+ContratoTransporte_NOME_PAIS
+ContratoTransporte_C_C
+ContratoTransporte_SDataEmbarque
+ContratoTransporte_PrecoFOBTotal
+ContratoTransporte_QuantidadeTotal
+ContratoTransporte_QUANTTOTALEXP
+ContratoTransporte_QuantadePendente
+ContratoTransporte_ValorSCCTotal
+ContratoTransporte_ValorTotalExp
+ContratoTransporte_ValorTotalPendente
+ContratoTransporte_Comissao
+ContratoTransporte_FormComissao
+ContratoTransporte_ValorTotalComissao
+ContratoTransporte_ValorTotalComissaoExecutado
+ContratoTransporte_OBS
+ContratoTransporte_DataAss
+ContratoTransporte_NomeMix
+ContratoTransporte_Comentario
+ContratoTransporte_MOEDACOMISSAO
+ContratoTransporte_QUANT_PREVISTA
+ContratoTransporte_VALOR_PREVISTO
+ContratoTransporte_VlTotalComissaoPendente
+ContratoTransporte_ID_FORN
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ExportadoTransito
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+ExportadoTransito_Contrato
+ExportadoTransito_Seq
+ExportadoTransito_Navio
+ExportadoTransito_Cadastro
+ExportadoTransito_DataEmbarque
+ExportadoTransito_ETADestino
+ExportadoTransito_Fatura
+ExportadoTransito_QuantidadeExp
+ExportadoTransito_Valor
+ExportadoTransito_ValorDesconto
+ExportadoTransito_FormPago
+ExportadoTransito_PrecoFOB
+ExportadoTransito_FormComissao
+ExportadoTransito_Comissao
+ExportadoTransito_ComisaoSFatura
+ExportadoTransito_StDocumento
+ExportadoTransito_OBS
+ExportadoTransito_Comentario
+ExportadoTransito_Rate
+ExportadoTransito_DataLiq
+ExportadoTransito_NumNFEmit
+ExportadoTransito_NumFatura
+ExportadoTransito_DataFatura
+ExportadoTransito_DataNF
+ExportadoTransito_Status
+ExportadoTransito_MOEDACOMISSAO
+ExportadoTransito_ValorConvertido
+ExportadoTransito_FORCOD
+ExportadoTransito_NomeMix
+ExportadoTransito_RAZAO
+ExportadoTransito_Recebimento
+ExportadoTransito_Valor_NF
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ProdutoContratoT
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+ProdutoContratoT_Contrato
+ProdutoContratoT_Sequencia
+ProdutoContratoT_Produto
+ProdutoContratoT_FormPago
+ProdutoContratoT_CodTbPorto
+ProdutoContratoT_NomePorto
+ProdutoContratoT_PrecoFOB
+ProdutoContratoT_PrecoSCC
+ProdutoContratoT_Quantidade
+ProdutoContratoT_ValorSCC
+ProdutoContratoT_ComisaoSFatura
+ProdutoContratoT_OBS
+ProdutoContratoT_Complemento
+ProdutoContratoT_Cadastro
+ProdutoContratoT_FormComissao
+ProdutoContratoT_Comissao
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbPorto
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbPorto_CodTbPorto
+TbPorto_NomePorto
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbFormaPagamento
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbFormaPagamento_FormPago
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbCondicaoCompra
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbCondicaoCompra_C_C
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Clientes
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Clientes_CLICOD
+Clientes_RAZAO
+Clientes_NOMFAN
+Clientes_NOMRES
+Clientes_CONTATO
+Clientes_TIPPESSOA
+Clientes_CPF
+Clientes_RG
+Clientes_CNPJ
+Clientes_IEST
+Clientes_IMUN
+Clientes_DDD
+Clientes_TEL1
+Clientes_TEL2
+Clientes_FAX
+Clientes_ENDERECO
+Clientes_BAI
+Clientes_CEP
+Clientes_CID
+Clientes_UF
+Clientes_DATCAD
+Clientes_EMAIL1
+Clientes_EMAIL2
+Clientes_SITE
+Clientes_ENDERECO_COB
+Clientes_BAI_COB
+Clientes_CEP_COB
+Clientes_CID_COB
+Clientes_UF_COB
+Clientes_SITCLICOD
+Clientes_CATCLICOD
+Clientes_TBATIVCOD
+Clientes_LIMCRE
+Clientes_LIMCREUSA
+Clientes_OBS
+Clientes_ID
+Clientes_NOME
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbAtividades
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbAtividades_TBATIVCOD
+TbAtividades_DESCRICAO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbSitClientes
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbSitClientes_SITCLICOD
+TbSitClientes_DESCRICAO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Fornecedores
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Fornecedores_FORCOD
+Fornecedores_DATCAD
+Fornecedores_RAZAO
+Fornecedores_NOMCON
+Fornecedores_TIPPESSOA
+Fornecedores_CNPJ
+Fornecedores_CPF
+Fornecedores_IEST
+Fornecedores_IMUN
+Fornecedores_DDD
+Fornecedores_TEL1
+Fornecedores_TEL2
+Fornecedores_FAX
+Fornecedores_ENDERECO
+Fornecedores_BAI
+Fornecedores_CEP
+Fornecedores_CID
+Fornecedores_UF
+Fornecedores_EMAIL1
+Fornecedores_EMAIL2
+Fornecedores_SITE
+Fornecedores_TBATIVCOD
+Fornecedores_OBS
+Fornecedores_ID
+Fornecedores_NOME
+Fornecedores_MOEDACOMISSAO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = TbCategClientes
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+TbCategClientes_CATCLICOD
+TbCategClientes_DESCRICAO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Divisoes
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Divisoes_CLICOD
+Divisoes_seq
+Divisoes_NOME
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Tab_pais
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Tab_pais_ID
+Tab_pais_NOME
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Produtos
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Produtos_Produto
+Produtos_QUANT_PREVISTA
+Produtos_VALOR_PREVISTO
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ExportadoTransito
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Fatura_Contrato
+Fatura_Seq
+Fatura_StDocumento
+Fatura_NomeMix
+Fatura_Navio
+Fatura_DataEmbarque
+Fatura_QuantidadeExp
+Fatura_Fatura
+Fatura_FormComissao
+Fatura_Comissao
+Fatura_Valor
+Fatura_ValorDesconto
+Fatura_Cadastro
+Fatura_ETADestino
+Fatura_FormPago
+Fatura_PrecoFOB
+Fatura_ComisaoSFatura
+Fatura_DataFatura
+Fatura_Rate
+Fatura_ValorConvertido
+Fatura_NumNFEmit
+Fatura_NumFatura
+Fatura_DataNF
+Fatura_OBS
+Fatura_Comentario
+Fatura_DataLiq
+Fatura_Status
+Fatura_FORCOD
+Fatura_MOEDACOMISSAO
+Fatura_RAZAO
+Fatura_Recebimento
+Fatura_Valor_NF
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = Parametros
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Parametros_TEXTOFATURA
+Parametros_NumNFEmit
+Parametros_NumFatura
+Parametros_ENDERECOEMPRESA
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ContratoTransporte
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Informe_Contrato
+Informe_RAZAO
+Informe_NOME
+Informe_NomeMix
+Informe_C_C
+Informe_QUANTIDADETOTAL
+Informe_SDataEmbarque
+Informe_PRECOFOBTOTAL
+Informe_VALORSCCTOTAL
+Informe_FORCOD
+Informe_ID
+Informe_FormPago
+Informe_PrecoFOB
+Informe_PrecoSCC
+Informe_Quantidade
+Informe_Navio
+Informe_NAVIO_BOOCK
+Informe_ETADestino
+Informe_Fatura
+Informe_QuantidadeExp
+Informe_Valor
+Informe_OBS
+Informe_DataEmbarque
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ExportadoTransito
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+CERBO_Contrato
+CERBO_RAZAO
+CERBO_Navio
+CERBO_DataEmbarque
+CERBO_QuantidadeExp
+CERBO_Fatura
+CERBO_Comissao
+CERBO_FormComissao
+CERBO_ComisaoSFatura
+CERBO_NumNFEmit
+CERBO_NumFatura
+CERBO_Status
+CERBO_FORCOD
+CERBO_CLICOD
+CERBO_RAZAO_CLIENTE
+CERBO_NOME
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ContratoTransporte
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+Situacao_Contrato
+Situacao_NomeMix
+Situacao_FORCOD
+Situacao_RAZAO
+Situacao_C_C
+Situacao_QuantidadeTotal
+Situacao_PrecoFOBTotal
+Situacao_ValorSCCTotal
+Situacao_QUANTTOTALEXP
+Situacao_ValorTotalExp
+Situacao_Navio
+Situacao_DataEmbarque
+Situacao_QuantidadeExp
+Situacao_Valor
+Situacao_ID
+Situacao_NOME
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = RESUMENCONTRATACION
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+RESUMENCONTRATACION_CODIGO
+RESUMENCONTRATACION_CLICOD
+RESUMENCONTRATACION_seq
+RESUMENCONTRATACION_NOME
+RESUMENCONTRATACION_NomeMix
+RESUMENCONTRATACION_Observacoes
+RESUMENCONTRATACION_FormPago
+RESUMENCONTRATACION_QuantidadeTotal
+RESUMENCONTRATACION_QUANTTOTALEXP
+RESUMENCONTRATACION_QuantadePendente
+RESUMENCONTRATACION_ValorSCCTotal
+RESUMENCONTRATACION_ValorTotalExp
+RESUMENCONTRATACION_ValorTotalPendente
+ExportadoTransito_QuantidadeExp
+Contrato
+============================================
+ TABELA = ComplementoFatura
+============================================
+== CAMPO =============== VALOR =============
+Update
+ContratoTransporte
+Set
+QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp
+Where
+Contrato = :Contrato
+
+ComplementoFatura_NumFatura
+ComplementoFatura_Seq
+ComplementoFatura_Observacao
+ComplementoFatura_Valor

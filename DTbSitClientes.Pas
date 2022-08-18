@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0016,
+     AtrL0024,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -22,6 +22,7 @@ type
   public
     SITCLICOD: TDTbSitClientes_SITCLICOD;
     DESCRICAO: TDTbSitClientes_DESCRICAO;
+    Usuario: TDTbSitClientes_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -78,24 +79,28 @@ begin
     InsertSQL.Add('insert into TbSitClientes');
     InsertSQL.Add('  (');
     InsertSQL.Add('  SITCLICOD,');
-    InsertSQL.Add('  DESCRICAO');
+    InsertSQL.Add('  DESCRICAO,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
     InsertSQL.Add('  :SITCLICOD,');
-    InsertSQL.Add('  :DESCRICAO');
+    InsertSQL.Add('  :DESCRICAO,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update TbSitClientes');
     ModifySQL.Add('set');
     ModifySQL.Add('  SITCLICOD = :SITCLICOD,');
-    ModifySQL.Add('  DESCRICAO = :DESCRICAO');
+    ModifySQL.Add('  DESCRICAO = :DESCRICAO,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  SITCLICOD = :OLD_SITCLICOD');
     // Refresh de Registro
     RefreshSQL.Add('Select');
     RefreshSQL.Add('  TbSitClientes.SITCLICOD AS SITCLICOD,');
-    RefreshSQL.Add('  TbSitClientes.DESCRICAO AS DESCRICAO');
+    RefreshSQL.Add('  TbSitClientes.DESCRICAO AS DESCRICAO,');
+    RefreshSQL.Add('  TbSitClientes.Usuario AS Usuario');
     RefreshSQL.Add('from TbSitClientes');
     RefreshSQL.Add('where');
     RefreshSQL.Add('  TbSitClientes.SITCLICOD = :OLD_SITCLICOD');
@@ -104,7 +109,8 @@ begin
     // Sql Principal
   SqlPrincipal.Add('Select');
   SqlPrincipal.Add('  TbSitClientes.SITCLICOD AS SITCLICOD,');
-  SqlPrincipal.Add('  TbSitClientes.DESCRICAO AS DESCRICAO');
+  SqlPrincipal.Add('  TbSitClientes.DESCRICAO AS DESCRICAO,');
+  SqlPrincipal.Add('  TbSitClientes.Usuario AS Usuario');
   SqlPrincipal.Add('from TbSitClientes');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -113,14 +119,20 @@ begin
   SITCLICOD.Valor.DataSet := Self;
   DESCRICAO := TDTbSitClientes_DESCRICAO.Create(AOwner);
   DESCRICAO.Valor.DataSet := Self;
+  Usuario := TDTbSitClientes_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(SITCLICOD);
+//CRIANDO CAMPOS 
   Campos.Add(SITCLICOD);
   Campos.Add(DESCRICAO);
+  Campos.Add(Usuario);
   TituloIndices.Add('Código');
   Indices.Add('TbSitClientes.SITCLICOD');
   Crescente.Add('S');
   TituloPrimaria := 'Código';
   ChPrimaria     := 'TbSitClientes.SITCLICOD';
+//CRIANDO TituloIndices 
   TituloIndices.Add('Por Descrição');
   Indices.Add('SitClientes.DESCRICAO');
   Crescente.Add('S');
@@ -133,6 +145,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDTbSitClientes.CriaForeignKeys;
 var

@@ -1,10 +1,10 @@
 object FormOpcRel: TFormOpcRel
   Left = 239
   Top = 177
-  Width = 391
-  Height = 262
+  Width = 395
+  Height = 288
   BorderStyle = bsSizeToolWin
-  Caption = 'Configuração'
+  Caption = 'Configura'#231#227'o'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,26 +20,26 @@ object FormOpcRel: TFormOpcRel
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 383
+    Width = 379
     Height = 173
     ActivePage = TabSheet1
     Align = alTop
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = 'Página'
+      Caption = 'P'#225'gina'
       object Label9: TLabel
         Left = 7
         Top = 126
         Width = 28
         Height = 13
-        Caption = 'Título'
+        Caption = 'T'#237'tulo'
       end
       object GroupBox2: TGroupBox
         Left = 198
         Top = 8
         Width = 163
         Height = 69
-        Caption = ' Orientação '
+        Caption = ' Orienta'#231#227'o '
         TabOrder = 0
         object imgLandScape: TImage
           Left = 121
@@ -185,7 +185,7 @@ object FormOpcRel: TFormOpcRel
         Top = 8
         Width = 253
         Height = 109
-        Caption = ' Margens da Página '
+        Caption = ' Margens da P'#225'gina '
         TabOrder = 0
         object Label3: TLabel
           Left = 8
@@ -225,7 +225,7 @@ object FormOpcRel: TFormOpcRel
           Width = 117
           Height = 17
           HelpContext = 62
-          Caption = 'Não usar'
+          Caption = 'N'#227'o usar'
           TabOrder = 0
           OnClick = CB5Click
         end
@@ -277,14 +277,14 @@ object FormOpcRel: TFormOpcRel
           Top = 24
           Width = 37
           Height = 13
-          Caption = 'Número'
+          Caption = 'N'#250'mero'
         end
         object Label8: TLabel
           Left = 8
           Top = 52
           Width = 125
           Height = 13
-          Caption = 'Espaço entre colunas, mm'
+          Caption = 'Espa'#231'o entre colunas, mm'
           FocusControl = E7
         end
         object E7: TEdit
@@ -349,14 +349,14 @@ object FormOpcRel: TFormOpcRel
         Top = 0
         Width = 361
         Height = 68
-        Caption = ' Totalizações '
+        Caption = ' Totaliza'#231#245'es '
         TabOrder = 0
         object CTotalizar: TCheckBox
           Left = 4
           Top = 16
           Width = 159
           Height = 17
-          Caption = 'Totalizar colunas númericas'
+          Caption = 'Totalizar colunas n'#250'mericas'
           TabOrder = 0
         end
         object CQuantificar: TCheckBox
@@ -396,7 +396,7 @@ object FormOpcRel: TFormOpcRel
           Top = 33
           Width = 181
           Height = 17
-          Caption = 'SubTotalizar colunas númericas'
+          Caption = 'SubTotalizar colunas n'#250'mericas'
           TabOrder = 1
         end
       end
@@ -404,8 +404,8 @@ object FormOpcRel: TFormOpcRel
   end
   object Panel1: TPanel
     Left = 0
-    Top = 194
-    Width = 383
+    Top = 209
+    Width = 379
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
@@ -438,7 +438,7 @@ object FormOpcRel: TFormOpcRel
     Top = 174
     Width = 181
     Height = 17
-    Caption = 'Abrir editor de relatórios ( Expert )'
+    Caption = 'Abrir editor de relat'#243'rios ( Expert )'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -11

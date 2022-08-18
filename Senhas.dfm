@@ -3,7 +3,7 @@ object FormSenhas: TFormSenhas
   Top = 181
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Configura'#231#227'o de Senhas'
+  Caption = 'Configuração de Senhas'
   ClientHeight = 370
   ClientWidth = 356
   Color = clBtnFace
@@ -55,8 +55,8 @@ object FormSenhas: TFormSenhas
       Top = 2
       Width = 99
       Height = 25
-      Hint = 'Log de Opera'#231#245'es em Tabelas'
-      Caption = 'Log de Opera'#231#245'es'
+      Hint = 'Log de Operações em Tabelas'
+      Caption = 'Log de Operações'
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
@@ -72,7 +72,7 @@ object FormSenhas: TFormSenhas
     TabOrder = 0
     OnChange = PAGESENHASchange
     object PagUsr: TTabSheet
-      Caption = '( &1 ) Usu'#225'rios'
+      Caption = '( &1 ) Usuários'
       object Label1: TLabel
         Left = 22
         Top = 270
@@ -111,7 +111,6 @@ object FormSenhas: TFormSenhas
         Top = 4
         Width = 326
         Height = 262
-        Style = lbOwnerDrawFixed
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -13
@@ -120,6 +119,7 @@ object FormSenhas: TFormSenhas
         ItemHeight = 18
         ParentFont = False
         Sorted = True
+        Style = lbOwnerDrawFixed
         TabOrder = 0
         OnDblClick = lbUsuariosDblClick
         OnDrawItem = lbUsuariosDrawItem
@@ -129,7 +129,7 @@ object FormSenhas: TFormSenhas
         Top = 272
         Width = 75
         Height = 25
-        Hint = 'Incluir novo usu'#225'rio'
+        Hint = 'Incluir novo usuário'
         Caption = '&Incluir'
         ParentShowHint = False
         ShowHint = True
@@ -142,7 +142,7 @@ object FormSenhas: TFormSenhas
         Top = 272
         Width = 75
         Height = 25
-        Hint = 'Editar usu'#225'rio'
+        Hint = 'Editar usuário'
         Caption = '&Editar'
         ParentShowHint = False
         ShowHint = True
@@ -155,7 +155,7 @@ object FormSenhas: TFormSenhas
         Top = 272
         Width = 75
         Height = 25
-        Hint = 'Excluir usu'#225'rio'
+        Hint = 'Excluir usuário'
         Cancel = True
         Caption = 'E&xcluir'
         ParentShowHint = False
@@ -173,7 +173,6 @@ object FormSenhas: TFormSenhas
         Top = 4
         Width = 326
         Height = 262
-        Style = lbOwnerDrawFixed
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -13
@@ -181,6 +180,7 @@ object FormSenhas: TFormSenhas
         Font.Style = []
         ItemHeight = 17
         ParentFont = False
+        Style = lbOwnerDrawFixed
         TabOrder = 0
         OnDblClick = lbGruposDblClick
       end

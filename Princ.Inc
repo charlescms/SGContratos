@@ -20,3 +20,8 @@
   {$DEFINE DELPHI10}
 {$ENDIF}
 {00-Início do Bloco Avulso, as codificações abaixo serão preservadas}
+
+
+{$DEFINE ERRO_LOG}
+
+

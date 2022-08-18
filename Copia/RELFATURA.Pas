@@ -83,7 +83,7 @@ type
     { Public declarations }
 
     {03-Início do Bloco Modular. Modificações não serão preservadas}
-//    DFatura: TDFatura;
+
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure EXIBIR_REL;
     procedure set_cod_exportador(cod_ini, cod_final : integer );
@@ -148,7 +148,6 @@ var
   I: Integer;
 begin
 
-//  DFatura.Filtro.Clear;
   DFatura.AtualizaSql(False);
   Parametros(DFatura);
   DFatura.Open;
@@ -408,6 +407,8 @@ Screen.Cursor := crHourGlass      ;
 LbTituloForm.Caption := LbTituloForm.Caption + 'Gravando Fatura' ;
 Refresh ;
 // para todos os registro gravar
+
+TabGlobal.DFatura.First ; // primeiro
 while TabGlobal.DFatura.Eof do begin
   if (( TabGlobal.DFatura.State <>  dsEdit)    and
       (TabGlobal.DFatura.State  <>  dsinsert)) then

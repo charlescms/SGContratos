@@ -38,6 +38,7 @@ type
     BtnSalvar: TBitBtn;
     BtnTabela: TSpeedButton;
     BtnUltimo: TSpeedButton;
+    CDPAIS: TXDBEdit;
     CEP: TXDBEdit;
     CID: TXDBEdit;
     CNPJ: TXDBEdit;
@@ -63,6 +64,7 @@ type
     Img_Tabela: TImage;
     IMUN: TXDBEdit;
     LbcBAI: TLabel;
+    LbcCDPAIS: TLabel;
     LbcCEP: TLabel;
     LbcCID: TLabel;
     LbcCNPJ: TLabel;
@@ -85,6 +87,7 @@ type
     LbcTEL1: TLabel;
     LbcTEL2: TLabel;
     LbcUF: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     mnu_ApagarColuna: TMenuItem;
@@ -125,6 +128,7 @@ type
     TEL2: TXDBEdit;
     TIPPESSOA: TDBRadioGroup;
     UF: TXDBEdit;
+    Usuario: TXDBEdit;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure FORCODExit(Sender: TObject);
     procedure DATCADExit(Sender: TObject);
@@ -153,6 +157,8 @@ type
     procedure MOEDACOMISSAODrawItem(Control: TWinControl; Index: Integer;
                               Rect: TRect; State: TOwnerDrawState);
     procedure IDExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
+    procedure CDPAISExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -274,6 +280,8 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DFornecedores, TabGlobal.DFornecedores.CDPAIS, -2, CDPAISExit, Nil, ListaCamposEd, FormExportadorN, DataSource, ChamaGridPesquisa);
+  AtribuiCampoEdicao(TabGlobal.DFornecedores, TabGlobal.DFornecedores.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormExportadorN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DFornecedores, TabGlobal.DFornecedores.ID, -2, IDExit, Nil, ListaCamposEd, FormExportadorN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DFornecedores, TabGlobal.DFornecedores.MOEDACOMISSAO, -2, MOEDACOMISSAOExit, MOEDACOMISSAODrawItem, ListaCamposEd, FormExportadorN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DFornecedores, TabGlobal.DFornecedores.OBS, -2, OBSExit, Nil, ListaCamposEd, FormExportadorN, DataSource, ChamaGridPesquisa);
@@ -1632,6 +1640,28 @@ begin
     Exit;
   if not TabGlobal.DFornecedores.ID.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DFornecedores.ID);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormExportadorN.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DFornecedores.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DFornecedores.Usuario);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormExportadorN.CDPAISExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DFornecedores.CDPAIS.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DFornecedores.CDPAIS);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

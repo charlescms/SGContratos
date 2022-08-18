@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0001,
+     AtrL0002,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -57,6 +57,7 @@ type
     OBS: TDClientes_OBS;
     ID: TDClientes_ID;
     NOME: TDClientes_NOME;
+    Usuario: TDClientes_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -147,7 +148,8 @@ begin
     InsertSQL.Add('  LIMCRE,');
     InsertSQL.Add('  LIMCREUSA,');
     InsertSQL.Add('  OBS,');
-    InsertSQL.Add('  ID');
+    InsertSQL.Add('  ID,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -186,7 +188,8 @@ begin
     InsertSQL.Add('  :LIMCRE,');
     InsertSQL.Add('  :LIMCREUSA,');
     InsertSQL.Add('  :OBS,');
-    InsertSQL.Add('  :ID');
+    InsertSQL.Add('  :ID,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update Clientes');
@@ -226,7 +229,8 @@ begin
     ModifySQL.Add('  LIMCRE = :LIMCRE,');
     ModifySQL.Add('  LIMCREUSA = :LIMCREUSA,');
     ModifySQL.Add('  OBS = :OBS,');
-    ModifySQL.Add('  ID = :ID');
+    ModifySQL.Add('  ID = :ID,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  CLICOD = :OLD_CLICOD');
     // Refresh de Registro
@@ -267,7 +271,8 @@ begin
     RefreshSQL.Add('  Clientes.LIMCREUSA AS LIMCREUSA,');
     RefreshSQL.Add('  Clientes.OBS AS OBS,');
     RefreshSQL.Add('  Clientes.ID AS ID,');
-    RefreshSQL.Add('  TAB_PAIS.NOME AS NOME');
+    RefreshSQL.Add('  TAB_PAIS.NOME AS NOME,');
+    RefreshSQL.Add('  Clientes.Usuario AS Usuario');
     RefreshSQL.Add('from Clientes');
     RefreshSQL.Add('Left Outer Join TbAtividades on');
     RefreshSQL.Add('  Clientes.TBATIVCOD = TbAtividades.TBATIVCOD');
@@ -323,7 +328,8 @@ begin
   SqlPrincipal.Add('  Clientes.LIMCREUSA AS LIMCREUSA,');
   SqlPrincipal.Add('  Clientes.OBS AS OBS,');
   SqlPrincipal.Add('  Clientes.ID AS ID,');
-  SqlPrincipal.Add('  TAB_PAIS.NOME AS NOME');
+  SqlPrincipal.Add('  TAB_PAIS.NOME AS NOME,');
+  SqlPrincipal.Add('  Clientes.Usuario AS Usuario');
   SqlPrincipal.Add('from Clientes');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -410,7 +416,11 @@ begin
   LIMCRE.Valor.DataSet := Self;
   LIMCREUSA := TDClientes_LIMCREUSA.Create(AOwner);
   LIMCREUSA.Valor.DataSet := Self;
+  Usuario := TDClientes_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(CLICOD);
+//CRIANDO CAMPOS 
   Campos.Add(CLICOD);
   Campos.Add(RAZAO);
   Campos.Add(NOMFAN);
@@ -448,11 +458,13 @@ begin
   Campos.Add(OBS);
   Campos.Add(ID);
   Campos.Add(NOME);
+  Campos.Add(Usuario);
   TituloIndices.Add('Cliente');
   Indices.Add('Clientes.CLICOD');
   Crescente.Add('S');
   TituloPrimaria := 'Cliente';
   ChPrimaria     := 'Clientes.CLICOD';
+//CRIANDO TituloIndices 
   TituloIndices.Add('Por Razão Social');
   Indices.Add('RAZAO');
   Crescente.Add('S');
@@ -465,6 +477,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDClientes.CriaForeignKeys;
 var

@@ -1,6 +1,6 @@
 object FormRestaura: TFormRestaura
-  Left = 209
-  Top = 180
+  Left = 823
+  Top = 280
   Width = 423
   Height = 172
   BorderIcons = [biSystemMenu]
@@ -9,7 +9,7 @@ object FormRestaura: TFormRestaura
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -18,27 +18,27 @@ object FormRestaura: TFormRestaura
   OnClose = FormClose
   OnKeyPress = FormKeyPress
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 415
-    Height = 90
+    Width = 407
+    Height = 94
     Align = alClient
     TabOrder = 0
     object Label2: TLabel
-      Left = 6
-      Top = 15
-      Width = 89
-      Height = 16
+      Left = 5
+      Top = 12
+      Width = 69
+      Height = 13
       Caption = 'Pasta - Origem'
     end
     object BtnPastaOrigem: TSpeedButton
-      Left = 374
-      Top = 33
-      Width = 28
-      Height = 27
+      Left = 304
+      Top = 27
+      Width = 23
+      Height = 22
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000120B0000120B00001000000000000000000000000000
@@ -56,17 +56,17 @@ object FormRestaura: TFormRestaura
       OnClick = BtnPastaOrigemClick
     end
     object Label1: TLabel
-      Left = 6
-      Top = 70
-      Width = 91
-      Height = 16
+      Left = 5
+      Top = 57
+      Width = 72
+      Height = 13
       Caption = 'Pasta - Destino'
     end
     object BtnPastaDestino: TSpeedButton
-      Left = 374
-      Top = 89
-      Width = 28
-      Height = 27
+      Left = 304
+      Top = 72
+      Width = 23
+      Height = 22
       Glyph.Data = {
         76010000424D7601000000000000760000002800000020000000100000000100
         04000000000000010000120B0000120B00001000000000000000000000000000
@@ -84,32 +84,32 @@ object FormRestaura: TFormRestaura
       OnClick = BtnPastaDestinoClick
     end
     object EdOrigem: TEdit
-      Left = 4
-      Top = 33
-      Width = 365
+      Left = 3
+      Top = 27
+      Width = 297
       Height = 21
       TabOrder = 0
     end
     object EdDestino: TEdit
-      Left = 4
-      Top = 89
-      Width = 365
+      Left = 3
+      Top = 72
+      Width = 297
       Height = 21
       TabOrder = 1
     end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 90
-    Width = 415
-    Height = 49
+    Top = 94
+    Width = 407
+    Height = 40
     Align = alBottom
     TabOrder = 1
     object BtnCancela: TBitBtn
-      Left = 309
-      Top = 9
-      Width = 92
-      Height = 30
+      Left = 251
+      Top = 7
+      Width = 75
+      Height = 25
       Hint = 'Cancela opera'#231#227'o'
       Cancel = True
       Caption = '&Cancelar'
@@ -121,10 +121,10 @@ object FormRestaura: TFormRestaura
       NumGlyphs = 2
     end
     object BtnAjuda: TBitBtn
-      Left = 95
-      Top = 9
-      Width = 92
-      Height = 30
+      Left = 77
+      Top = 7
+      Width = 75
+      Height = 25
       Hint = 'Ajuda'
       Caption = 'A&juda'
       ParentShowHint = False
@@ -133,10 +133,10 @@ object FormRestaura: TFormRestaura
       NumGlyphs = 2
     end
     object BtnOk: TBitBtn
-      Left = 202
-      Top = 9
-      Width = 92
-      Height = 30
+      Left = 164
+      Top = 7
+      Width = 75
+      Height = 25
       Hint = 'Restaurar c'#243'pia'
       Caption = '&Restaurar'
       ParentShowHint = False

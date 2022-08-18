@@ -35,11 +35,14 @@ type
     CopiarImagem: TMenuItem;
     CortarImagem: TMenuItem;
     DataSource: TDataSource;
+    DataSource_Grid_RESUMENCONTRATACION: TDataSource;
     DlgAbrirImagem: TOpenDialog;
     DlgSalvarComoImagem: TSaveDialog;
+    Grid_RESUMENCONTRATACION: TDBGrid;
     LbcCLICOD: TLabel;
     LbcNOME: TLabel;
     Lbcseq: TLabel;
+    LbcUsuario: TLabel;
     MenuImagem: TPopupMenu;
     MnSep01: TMenuItem;
     NoManutencao: TNotebook;
@@ -50,9 +53,11 @@ type
     SalvarImagem: TMenuItem;
     seq: TXDBNumEdit;
     TabPaginas: TTabSet;
+    Usuario: TXDBEdit;
     procedure CLICODExit(Sender: TObject);
     procedure seqExit(Sender: TObject);
     procedure NOMEExit(Sender: TObject);
+    procedure UsuarioExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -78,6 +83,10 @@ type
     procedure BtnAnteriorClick(Sender: TObject);
     procedure BtnProximoClick(Sender: TObject);
     procedure BtnUltimoClick(Sender: TObject);
+    procedure Grid_RESUMENCONTRATACIONDblClick(Sender: TObject);
+    procedure Grid_RESUMENCONTRATACIONColEnter(Sender: TObject);
+    procedure Grid_RESUMENCONTRATACIONExit(Sender: TObject);
+    procedure Grid_RESUMENCONTRATACIONEditButtonClick(Sender: TObject);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -126,7 +135,7 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, Interno;
+uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, Interno, RESUMENCONTFORM;
 
 procedure TFormDivisao.FormShow(Sender: TObject);
 Var
@@ -145,6 +154,10 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DDivisoes, TabGlobal.DDivisoes.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormDivisao, DataSource, ChamaGridPesquisa);
+  DataSource_Grid_RESUMENCONTRATACION.DataSet := TabGlobal.DRESUMENCONTRATACION;
+  Grid_RESUMENCONTRATACION.DataSource := DataSource_Grid_RESUMENCONTRATACION;
+  AtribuiGridEdicao(TabGlobal.DRESUMENCONTRATACION, Grid_RESUMENCONTRATACION, True, ValidaColunaGrid);
   AtribuiCampoEdicao(TabGlobal.DDIVISOES, TabGlobal.DDIVISOES.NOME, -2, NOMEExit, Nil, ListaCamposEd, FormDivisao, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DDIVISOES, TabGlobal.DDIVISOES.seq, -1, seqExit, Nil, ListaCamposEd, FormDivisao, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DDIVISOES, TabGlobal.DDIVISOES.CLICOD, -1, CLICODExit, Nil, ListaCamposEd, FormDivisao, DataSource, ChamaGridPesquisa);
@@ -758,6 +771,111 @@ begin
     Exit;
   if not TabGlobal.DDIVISOES.NOME.Valido(MsgErro, not SalvarRegistro) then
     ErroValidacaoCampo(MsgErro, TabGlobal.DDIVISOES.NOME);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+end;
+
+procedure TFormDivisao.Grid_RESUMENCONTRATACIONDblClick(Sender: TObject);
+begin
+  if TabelaPrincipal.Inclusao then  // Garante integridade do uso em rede
+  begin                             // salva o registro PAI para depois incluir os registros FILHO
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+    if TabelaPrincipal.PesquisaRelacionados(TabelaPrincipal.NomeTabela) then
+    begin
+      MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
+      exit;
+    end;
+    if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
+      exit;
+    if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
+      exit
+    else
+      if not TabelaPrincipal.Modifica then
+        exit;
+  end;
+  FormRESUMENCONTFORM := TFormRESUMENCONTFORM.Create(Application);
+  Try
+    FormRESUMENCONTFORM.ShowModal;
+  Finally
+    FormRESUMENCONTFORM.Free;
+  end;
+end;
+
+procedure TFormDivisao.Grid_RESUMENCONTRATACIONColEnter(Sender: TObject);
+begin
+  if (TabGlobal.DRESUMENCONTRATACION.State = dsInsert) and
+     (TabelaPrincipal.Inclusao) then
+  begin
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
+    if TabelaPrincipal.PesquisaRelacionados(TabelaPrincipal.NomeTabela) then
+    begin
+      MessageDlg('Duplicidade - Registro já cadastrado !',mtWarning,[mbOk],0);
+      begin
+        TabGlobal.DRESUMENCONTRATACION.Cancel;
+        exit;
+      end;
+    end;
+    if MessageDlg('Salvar ('+TabelaPrincipal.Titulo+') ?',mtConfirmation,[mbYes,mbNo],0) <> mrYes then
+    begin
+      TabGlobal.DRESUMENCONTRATACION.Cancel;
+      exit;
+    end;
+    if (not CamposDadosValidos(ListaCamposEd, ErroValidacao)) or (not TabelaPrincipal.Salva) then
+    begin
+      TabGlobal.DRESUMENCONTRATACION.Cancel;
+      exit;
+    end
+    else
+      if not TabelaPrincipal.Modifica then
+      begin
+        TabGlobal.DRESUMENCONTRATACION.Cancel;
+        exit;
+      end
+      else
+        TabGlobal.DRESUMENCONTRATACION.AtribuiMestre(TabGlobal.DRESUMENCONTRATACION);
+  end;
+  ExecutaPreValidacoesGrid(TabGlobal.DRESUMENCONTRATACION);
+  KeyPreview := False;
+end;
+
+procedure TFormDivisao.Grid_RESUMENCONTRATACIONExit(Sender: TObject);
+begin
+  KeyPreview := True;
+end;
+
+procedure TFormDivisao.Grid_RESUMENCONTRATACIONEditButtonClick(Sender: TObject);
+Var
+  I: Integer;
+  Campo: TAtributo;
+  CampoGrid: TField;
+begin
+  CampoGrid := Grid_RESUMENCONTRATACION.SelectedField;
+  if CampoGrid = Nil then exit;
+  for I:=0 to TabGlobal.DRESUMENCONTRATACION.Campos.Count-1 do
+  begin
+    Campo := TAtributo(TabGlobal.DRESUMENCONTRATACION.Campos[I]);
+    if Campo.Valor.FieldName = CampoGrid.FieldName then
+      Break;
+  end;
+  if (Campo = nil) or (Campo.Valor.ReadOnly) then exit;
+  FormGridPesquisa := TFormGridPesquisa.Create(Application);
+  Try
+    FormGridPesquisa.Atalho := VK_F8;
+    FormGridPesquisa.Campo  := Campo;
+    if FormGridPesquisa.ShowModal = mrOk then
+      ExecutaPreValidacoesGrid(TabGlobal.DRESUMENCONTRATACION);
+  Finally
+    FormGridPesquisa.Free;
+  end;
+end;
+
+procedure TFormDivisao.UsuarioExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DDivisoes.Usuario.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DDivisoes.Usuario);
   if not SalvarRegistro then
     ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;

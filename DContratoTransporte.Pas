@@ -9,7 +9,7 @@ interface
 {$I Princ.inc}
 
 uses SysUtils, StdCtrls, Tabela, BaseD, classes, Atributo, Estrutur,
-     AtrL0002,
+     AtrL0003,
      {$IFDEF IBX}
      IBDatabase, IBSQL, IB, IBQuery, IBUpdateSQL,
      {$ELSE}
@@ -32,24 +32,28 @@ type
     ID: TDContratoTransporte_ID;
     NOME_PAIS: TDContratoTransporte_NOME_PAIS;
     C_C: TDContratoTransporte_C_C;
-    DataEmbarque: TDContratoTransporte_DataEmbarque;
+    SDataEmbarque: TDContratoTransporte_SDataEmbarque;
     PrecoFOBTotal: TDContratoTransporte_PrecoFOBTotal;
     QuantidadeTotal: TDContratoTransporte_QuantidadeTotal;
     QUANTTOTALEXP: TDContratoTransporte_QUANTTOTALEXP;
+    QuantadePendente: TDContratoTransporte_QuantadePendente;
     ValorSCCTotal: TDContratoTransporte_ValorSCCTotal;
+    ValorTotalExp: TDContratoTransporte_ValorTotalExp;
+    ValorTotalPendente: TDContratoTransporte_ValorTotalPendente;
     Comissao: TDContratoTransporte_Comissao;
     FormComissao: TDContratoTransporte_FormComissao;
     ValorTotalComissao: TDContratoTransporte_ValorTotalComissao;
+    ValorTotalComissaoExecutado: TDContratoTransporte_ValorTotalComissaoExecutado;
     OBS: TDContratoTransporte_OBS;
     DataAss: TDContratoTransporte_DataAss;
     NomeMix: TDContratoTransporte_NomeMix;
     Comentario: TDContratoTransporte_Comentario;
     MOEDACOMISSAO: TDContratoTransporte_MOEDACOMISSAO;
-    QuantadePendente: TDContratoTransporte_QuantadePendente;
-    ValorTotalExp: TDContratoTransporte_ValorTotalExp;
-    ValorTotalPendente: TDContratoTransporte_ValorTotalPendente;
     QUANT_PREVISTA: TDContratoTransporte_QUANT_PREVISTA;
     VALOR_PREVISTO: TDContratoTransporte_VALOR_PREVISTO;
+    VlTotalComissaoPendente: TDContratoTransporte_VlTotalComissaoPendente;
+    ID_FORN: TDContratoTransporte_ID_FORN;
+    Usuario: TDContratoTransporte_Usuario;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -113,21 +117,24 @@ begin
     InsertSQL.Add('  FORCOD,');
     InsertSQL.Add('  ID,');
     InsertSQL.Add('  C_C,');
-    InsertSQL.Add('  DataEmbarque,');
+    InsertSQL.Add('  SDataEmbarque,');
     InsertSQL.Add('  PrecoFOBTotal,');
     InsertSQL.Add('  QuantidadeTotal,');
     InsertSQL.Add('  QUANTTOTALEXP,');
+    InsertSQL.Add('  QuantadePendente,');
     InsertSQL.Add('  ValorSCCTotal,');
+    InsertSQL.Add('  ValorTotalExp,');
+    InsertSQL.Add('  ValorTotalPendente,');
     InsertSQL.Add('  Comissao,');
     InsertSQL.Add('  FormComissao,');
     InsertSQL.Add('  ValorTotalComissao,');
+    InsertSQL.Add('  ValorTotalComissaoExecutado,');
     InsertSQL.Add('  OBS,');
     InsertSQL.Add('  DataAss,');
     InsertSQL.Add('  NomeMix,');
     InsertSQL.Add('  Comentario,');
-    InsertSQL.Add('  QuantadePendente,');
-    InsertSQL.Add('  ValorTotalExp,');
-    InsertSQL.Add('  ValorTotalPendente');
+    InsertSQL.Add('  VlTotalComissaoPendente,');
+    InsertSQL.Add('  Usuario');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -139,21 +146,24 @@ begin
     InsertSQL.Add('  :FORCOD,');
     InsertSQL.Add('  :ID,');
     InsertSQL.Add('  :C_C,');
-    InsertSQL.Add('  :DataEmbarque,');
+    InsertSQL.Add('  :SDataEmbarque,');
     InsertSQL.Add('  :PrecoFOBTotal,');
     InsertSQL.Add('  :QuantidadeTotal,');
     InsertSQL.Add('  :QUANTTOTALEXP,');
+    InsertSQL.Add('  :QuantadePendente,');
     InsertSQL.Add('  :ValorSCCTotal,');
+    InsertSQL.Add('  :ValorTotalExp,');
+    InsertSQL.Add('  :ValorTotalPendente,');
     InsertSQL.Add('  :Comissao,');
     InsertSQL.Add('  :FormComissao,');
     InsertSQL.Add('  :ValorTotalComissao,');
+    InsertSQL.Add('  :ValorTotalComissaoExecutado,');
     InsertSQL.Add('  :OBS,');
     InsertSQL.Add('  :DataAss,');
     InsertSQL.Add('  :NomeMix,');
     InsertSQL.Add('  :Comentario,');
-    InsertSQL.Add('  :QuantadePendente,');
-    InsertSQL.Add('  :ValorTotalExp,');
-    InsertSQL.Add('  :ValorTotalPendente');
+    InsertSQL.Add('  :VlTotalComissaoPendente,');
+    InsertSQL.Add('  :Usuario');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update ContratoTransporte');
@@ -166,21 +176,24 @@ begin
     ModifySQL.Add('  FORCOD = :FORCOD,');
     ModifySQL.Add('  ID = :ID,');
     ModifySQL.Add('  C_C = :C_C,');
-    ModifySQL.Add('  DataEmbarque = :DataEmbarque,');
+    ModifySQL.Add('  SDataEmbarque = :SDataEmbarque,');
     ModifySQL.Add('  PrecoFOBTotal = :PrecoFOBTotal,');
     ModifySQL.Add('  QuantidadeTotal = :QuantidadeTotal,');
     ModifySQL.Add('  QUANTTOTALEXP = :QUANTTOTALEXP,');
+    ModifySQL.Add('  QuantadePendente = :QuantadePendente,');
     ModifySQL.Add('  ValorSCCTotal = :ValorSCCTotal,');
+    ModifySQL.Add('  ValorTotalExp = :ValorTotalExp,');
+    ModifySQL.Add('  ValorTotalPendente = :ValorTotalPendente,');
     ModifySQL.Add('  Comissao = :Comissao,');
     ModifySQL.Add('  FormComissao = :FormComissao,');
     ModifySQL.Add('  ValorTotalComissao = :ValorTotalComissao,');
+    ModifySQL.Add('  ValorTotalComissaoExecutado = :ValorTotalComissaoExecutado,');
     ModifySQL.Add('  OBS = :OBS,');
     ModifySQL.Add('  DataAss = :DataAss,');
     ModifySQL.Add('  NomeMix = :NomeMix,');
     ModifySQL.Add('  Comentario = :Comentario,');
-    ModifySQL.Add('  QuantadePendente = :QuantadePendente,');
-    ModifySQL.Add('  ValorTotalExp = :ValorTotalExp,');
-    ModifySQL.Add('  ValorTotalPendente = :ValorTotalPendente');
+    ModifySQL.Add('  VlTotalComissaoPendente = :VlTotalComissaoPendente,');
+    ModifySQL.Add('  Usuario = :Usuario');
     ModifySQL.Add('where');
     ModifySQL.Add('  Contrato = :OLD_Contrato');
     // Refresh de Registro
@@ -197,24 +210,28 @@ begin
     RefreshSQL.Add('  ContratoTransporte.ID AS ID,');
     RefreshSQL.Add('  TAB_PAIS.NOME AS NOME_PAIS,');
     RefreshSQL.Add('  ContratoTransporte.C_C AS C_C,');
-    RefreshSQL.Add('  ContratoTransporte.DataEmbarque AS DataEmbarque,');
+    RefreshSQL.Add('  ContratoTransporte.SDataEmbarque AS SDataEmbarque,');
     RefreshSQL.Add('  ContratoTransporte.PrecoFOBTotal AS PrecoFOBTotal,');
     RefreshSQL.Add('  ContratoTransporte.QuantidadeTotal AS QuantidadeTotal,');
     RefreshSQL.Add('  ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,');
+    RefreshSQL.Add('  ContratoTransporte.QuantadePendente AS QuantadePendente,');
     RefreshSQL.Add('  ContratoTransporte.ValorSCCTotal AS ValorSCCTotal,');
+    RefreshSQL.Add('  ContratoTransporte.ValorTotalExp AS ValorTotalExp,');
+    RefreshSQL.Add('  ContratoTransporte.ValorTotalPendente AS ValorTotalPendente,');
     RefreshSQL.Add('  ContratoTransporte.Comissao AS Comissao,');
     RefreshSQL.Add('  ContratoTransporte.FormComissao AS FormComissao,');
     RefreshSQL.Add('  ContratoTransporte.ValorTotalComissao AS ValorTotalComissao,');
+    RefreshSQL.Add('  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado,');
     RefreshSQL.Add('  ContratoTransporte.OBS AS OBS,');
     RefreshSQL.Add('  ContratoTransporte.DataAss AS DataAss,');
     RefreshSQL.Add('  ContratoTransporte.NomeMix AS NomeMix,');
     RefreshSQL.Add('  ContratoTransporte.Comentario AS Comentario,');
     RefreshSQL.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO,');
-    RefreshSQL.Add('  ContratoTransporte.QuantadePendente AS QuantadePendente,');
-    RefreshSQL.Add('  ContratoTransporte.ValorTotalExp AS ValorTotalExp,');
-    RefreshSQL.Add('  ContratoTransporte.ValorTotalPendente AS ValorTotalPendente,');
     RefreshSQL.Add('  Produtos.QUANT_PREVISTA AS QUANT_PREVISTA,');
-    RefreshSQL.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO');
+    RefreshSQL.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO,');
+    RefreshSQL.Add('  ContratoTransporte.VlTotalComissaoPendente AS VlTotalComissaoPendente,');
+    RefreshSQL.Add('  Fornecedores.ID AS ID_FORN,');
+    RefreshSQL.Add('  ContratoTransporte.Usuario AS Usuario');
     RefreshSQL.Add('from ContratoTransporte');
     RefreshSQL.Add('Left Outer Join TbCondicaoCompra on');
     RefreshSQL.Add('  ContratoTransporte.C_C = TbCondicaoCompra.C_C');
@@ -253,24 +270,28 @@ begin
   SqlPrincipal.Add('  ContratoTransporte.ID AS ID,');
   SqlPrincipal.Add('  TAB_PAIS.NOME AS NOME_PAIS,');
   SqlPrincipal.Add('  ContratoTransporte.C_C AS C_C,');
-  SqlPrincipal.Add('  ContratoTransporte.DataEmbarque AS DataEmbarque,');
+  SqlPrincipal.Add('  ContratoTransporte.SDataEmbarque AS SDataEmbarque,');
   SqlPrincipal.Add('  ContratoTransporte.PrecoFOBTotal AS PrecoFOBTotal,');
   SqlPrincipal.Add('  ContratoTransporte.QuantidadeTotal AS QuantidadeTotal,');
   SqlPrincipal.Add('  ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,');
+  SqlPrincipal.Add('  ContratoTransporte.QuantadePendente AS QuantadePendente,');
   SqlPrincipal.Add('  ContratoTransporte.ValorSCCTotal AS ValorSCCTotal,');
+  SqlPrincipal.Add('  ContratoTransporte.ValorTotalExp AS ValorTotalExp,');
+  SqlPrincipal.Add('  ContratoTransporte.ValorTotalPendente AS ValorTotalPendente,');
   SqlPrincipal.Add('  ContratoTransporte.Comissao AS Comissao,');
   SqlPrincipal.Add('  ContratoTransporte.FormComissao AS FormComissao,');
   SqlPrincipal.Add('  ContratoTransporte.ValorTotalComissao AS ValorTotalComissao,');
+  SqlPrincipal.Add('  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado,');
   SqlPrincipal.Add('  ContratoTransporte.OBS AS OBS,');
   SqlPrincipal.Add('  ContratoTransporte.DataAss AS DataAss,');
   SqlPrincipal.Add('  ContratoTransporte.NomeMix AS NomeMix,');
   SqlPrincipal.Add('  ContratoTransporte.Comentario AS Comentario,');
   SqlPrincipal.Add('  Fornecedores.MOEDACOMISSAO AS MOEDACOMISSAO,');
-  SqlPrincipal.Add('  ContratoTransporte.QuantadePendente AS QuantadePendente,');
-  SqlPrincipal.Add('  ContratoTransporte.ValorTotalExp AS ValorTotalExp,');
-  SqlPrincipal.Add('  ContratoTransporte.ValorTotalPendente AS ValorTotalPendente,');
   SqlPrincipal.Add('  Produtos.QUANT_PREVISTA AS QUANT_PREVISTA,');
-  SqlPrincipal.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO');
+  SqlPrincipal.Add('  Produtos.VALOR_PREVISTO AS VALOR_PREVISTO,');
+  SqlPrincipal.Add('  ContratoTransporte.VlTotalComissaoPendente AS VlTotalComissaoPendente,');
+  SqlPrincipal.Add('  Fornecedores.ID AS ID_FORN,');
+  SqlPrincipal.Add('  ContratoTransporte.Usuario AS Usuario');
   SqlPrincipal.Add('from ContratoTransporte');
   Sql.AddStrings(SqlPrincipal);
     // Foreign Key
@@ -288,54 +309,40 @@ begin
   FiltroExtra.Add('Left Outer Join Produtos on');
   FiltroExtra.Add('  ContratoTransporte.NomeMix = Produtos.Produto');
   Sql.Add('order by ContratoTransporte.Cadastro DESC');
+  Cadastro := TDContratoTransporte_Cadastro.Create(AOwner);
+  Cadastro.Valor.DataSet := Self;
   Contrato := TDContratoTransporte_Contrato.Create(AOwner);
   Contrato.Valor.DataSet := Self;
   StatusCT := TDContratoTransporte_StatusCT.Create(AOwner);
   StatusCT.Valor.DataSet := Self;
-  DataEmbarque := TDContratoTransporte_DataEmbarque.Create(AOwner);
-  DataEmbarque.Valor.DataSet := Self;
-  QuantidadeTotal := TDContratoTransporte_QuantidadeTotal.Create(AOwner);
-  QuantidadeTotal.Valor.DataSet := Self;
-  OBS := TDContratoTransporte_OBS.Create(AOwner);
-  OBS.Valor.DataSet := Self;
+  NomeMix := TDContratoTransporte_NomeMix.Create(AOwner);
+  NomeMix.Valor.DataSet := Self;
+  RAZAOEXPOSTADOR := TDContratoTransporte_RAZAOEXPOSTADOR.Create(AOwner);
+  RAZAOEXPOSTADOR.Valor.DataSet := Self;
+  NOME_PAIS := TDContratoTransporte_NOME_PAIS.Create(AOwner);
+  NOME_PAIS.Valor.DataSet := Self;
   C_C := TDContratoTransporte_C_C.Create(AOwner);
   C_C.Valor.DataSet := Self;
-  ValorTotalComissao := TDContratoTransporte_ValorTotalComissao.Create(AOwner);
-  ValorTotalComissao.Valor.DataSet := Self;
+  FormComissao := TDContratoTransporte_FormComissao.Create(AOwner);
+  FormComissao.Valor.DataSet := Self;
+  QuantidadeTotal := TDContratoTransporte_QuantidadeTotal.Create(AOwner);
+  QuantidadeTotal.Valor.DataSet := Self;
+  SDataEmbarque := TDContratoTransporte_SDataEmbarque.Create(AOwner);
+  SDataEmbarque.Valor.DataSet := Self;
   PrecoFOBTotal := TDContratoTransporte_PrecoFOBTotal.Create(AOwner);
   PrecoFOBTotal.Valor.DataSet := Self;
   ValorSCCTotal := TDContratoTransporte_ValorSCCTotal.Create(AOwner);
   ValorSCCTotal.Valor.DataSet := Self;
+  ValorTotalComissao := TDContratoTransporte_ValorTotalComissao.Create(AOwner);
+  ValorTotalComissao.Valor.DataSet := Self;
   Comissao := TDContratoTransporte_Comissao.Create(AOwner);
   Comissao.Valor.DataSet := Self;
-  NOME_PAIS := TDContratoTransporte_NOME_PAIS.Create(AOwner);
-  NOME_PAIS.Valor.DataSet := Self;
-  CLICOD := TDContratoTransporte_CLICOD.Create(AOwner);
-  CLICOD.Valor.DataSet := Self;
-  FormComissao := TDContratoTransporte_FormComissao.Create(AOwner);
-  FormComissao.Valor.DataSet := Self;
-  Cadastro := TDContratoTransporte_Cadastro.Create(AOwner);
-  Cadastro.Valor.DataSet := Self;
   RAZAO := TDContratoTransporte_RAZAO.Create(AOwner);
   RAZAO.Valor.DataSet := Self;
-  FORCOD := TDContratoTransporte_FORCOD.Create(AOwner);
-  FORCOD.Valor.DataSet := Self;
-  RAZAOEXPOSTADOR := TDContratoTransporte_RAZAOEXPOSTADOR.Create(AOwner);
-  RAZAOEXPOSTADOR.Valor.DataSet := Self;
-  seq := TDContratoTransporte_seq.Create(AOwner);
-  seq.Valor.DataSet := Self;
-  DataAss := TDContratoTransporte_DataAss.Create(AOwner);
-  DataAss.Valor.DataSet := Self;
-  ID := TDContratoTransporte_ID.Create(AOwner);
-  ID.Valor.DataSet := Self;
-  Comentario := TDContratoTransporte_Comentario.Create(AOwner);
-  Comentario.Valor.DataSet := Self;
-  NomeMix := TDContratoTransporte_NomeMix.Create(AOwner);
-  NomeMix.Valor.DataSet := Self;
   NOME := TDContratoTransporte_NOME.Create(AOwner);
   NOME.Valor.DataSet := Self;
-  MOEDACOMISSAO := TDContratoTransporte_MOEDACOMISSAO.Create(AOwner);
-  MOEDACOMISSAO.Valor.DataSet := Self;
+  DataAss := TDContratoTransporte_DataAss.Create(AOwner);
+  DataAss.Valor.DataSet := Self;
   QUANTTOTALEXP := TDContratoTransporte_QUANTTOTALEXP.Create(AOwner);
   QUANTTOTALEXP.Valor.DataSet := Self;
   QuantadePendente := TDContratoTransporte_QuantadePendente.Create(AOwner);
@@ -348,7 +355,31 @@ begin
   QUANT_PREVISTA.Valor.DataSet := Self;
   VALOR_PREVISTO := TDContratoTransporte_VALOR_PREVISTO.Create(AOwner);
   VALOR_PREVISTO.Valor.DataSet := Self;
+  ValorTotalComissaoExecutado := TDContratoTransporte_ValorTotalComissaoExecutado.Create(AOwner);
+  ValorTotalComissaoExecutado.Valor.DataSet := Self;
+  VlTotalComissaoPendente := TDContratoTransporte_VlTotalComissaoPendente.Create(AOwner);
+  VlTotalComissaoPendente.Valor.DataSet := Self;
+  MOEDACOMISSAO := TDContratoTransporte_MOEDACOMISSAO.Create(AOwner);
+  MOEDACOMISSAO.Valor.DataSet := Self;
+  OBS := TDContratoTransporte_OBS.Create(AOwner);
+  OBS.Valor.DataSet := Self;
+  Comentario := TDContratoTransporte_Comentario.Create(AOwner);
+  Comentario.Valor.DataSet := Self;
+  seq := TDContratoTransporte_seq.Create(AOwner);
+  seq.Valor.DataSet := Self;
+  CLICOD := TDContratoTransporte_CLICOD.Create(AOwner);
+  CLICOD.Valor.DataSet := Self;
+  ID := TDContratoTransporte_ID.Create(AOwner);
+  ID.Valor.DataSet := Self;
+  FORCOD := TDContratoTransporte_FORCOD.Create(AOwner);
+  FORCOD.Valor.DataSet := Self;
+  ID_FORN := TDContratoTransporte_ID_FORN.Create(AOwner);
+  ID_FORN.Valor.DataSet := Self;
+  Usuario := TDContratoTransporte_Usuario.Create(AOwner);
+  Usuario.Valor.DataSet := Self;
+//CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Contrato);
+//CRIANDO CAMPOS 
   Campos.Add(Contrato);
   Campos.Add(Cadastro);
   Campos.Add(StatusCT);
@@ -361,29 +392,34 @@ begin
   Campos.Add(ID);
   Campos.Add(NOME_PAIS);
   Campos.Add(C_C);
-  Campos.Add(DataEmbarque);
+  Campos.Add(SDataEmbarque);
   Campos.Add(PrecoFOBTotal);
   Campos.Add(QuantidadeTotal);
   Campos.Add(QUANTTOTALEXP);
+  Campos.Add(QuantadePendente);
   Campos.Add(ValorSCCTotal);
+  Campos.Add(ValorTotalExp);
+  Campos.Add(ValorTotalPendente);
   Campos.Add(Comissao);
   Campos.Add(FormComissao);
   Campos.Add(ValorTotalComissao);
+  Campos.Add(ValorTotalComissaoExecutado);
   Campos.Add(OBS);
   Campos.Add(DataAss);
   Campos.Add(NomeMix);
   Campos.Add(Comentario);
   Campos.Add(MOEDACOMISSAO);
-  Campos.Add(QuantadePendente);
-  Campos.Add(ValorTotalExp);
-  Campos.Add(ValorTotalPendente);
   Campos.Add(QUANT_PREVISTA);
   Campos.Add(VALOR_PREVISTO);
+  Campos.Add(VlTotalComissaoPendente);
+  Campos.Add(ID_FORN);
+  Campos.Add(Usuario);
   TituloIndices.Add('Contrato');
   Indices.Add('ContratoTransporte.Contrato');
   Crescente.Add('S');
   TituloPrimaria := 'Contrato';
   ChPrimaria     := 'ContratoTransporte.Contrato';
+//CRIANDO TituloIndices 
   TituloIndice   := 'Cadastro';
   ChaveIndice    := 'ContratoTransporte.Cadastro DESC';
   AfterInsert    := AtribuiMestre;
@@ -393,6 +429,9 @@ begin
   BeforeEdit     := ProcessoInverso1;
   BeforeDelete   := ProcessoInverso2;
 end;
+////////////////////////////////
+//   CRIANDO PROCEDIMENTOS    //
+////////////////////////////////
 
 procedure TDContratoTransporte.CriaForeignKeys;
 var
@@ -427,20 +466,20 @@ end;
 
 procedure TDContratoTransporte.ExclusaoCascata;
 begin
-  // Exclusão em Cascata Tabela: DPrudutoContratoT
-  TabGlobal.DPrudutoContratoT.Filtro.Clear;
-  TabGlobal.DPrudutoContratoT.Filtro.Add('PrudutoContratoT.Contrato = :ContratoTransporte_Contrato');
-  TabGlobal.DPrudutoContratoT.AtualizaSql;
-  while not TabGlobal.DPrudutoContratoT.Eof do
-    if not TabGlobal.DPrudutoContratoT.Exclui then
-      TabGlobal.DPrudutoContratoT.Next;
-  // Exclusão em Cascata Tabela: DExpotadoTransito
-  TabGlobal.DExpotadoTransito.Filtro.Clear;
-  TabGlobal.DExpotadoTransito.Filtro.Add('ExpotadoTransito.Contrato = :ContratoTransporte_Contrato');
-  TabGlobal.DExpotadoTransito.AtualizaSql;
-  while not TabGlobal.DExpotadoTransito.Eof do
-    if not TabGlobal.DExpotadoTransito.Exclui then
-      TabGlobal.DExpotadoTransito.Next;
+  // Exclusão em Cascata Tabela: DProdutoContratoT
+  TabGlobal.DProdutoContratoT.Filtro.Clear;
+  TabGlobal.DProdutoContratoT.Filtro.Add('ProdutoContratoT.Contrato = :ContratoTransporte_Contrato');
+  TabGlobal.DProdutoContratoT.AtualizaSql;
+  while not TabGlobal.DProdutoContratoT.Eof do
+    if not TabGlobal.DProdutoContratoT.Exclui then
+      TabGlobal.DProdutoContratoT.Next;
+  // Exclusão em Cascata Tabela: DExportadoTransito
+  TabGlobal.DExportadoTransito.Filtro.Clear;
+  TabGlobal.DExportadoTransito.Filtro.Add('ExportadoTransito.Contrato = :ContratoTransporte_Contrato');
+  TabGlobal.DExportadoTransito.AtualizaSql;
+  while not TabGlobal.DExportadoTransito.Eof do
+    if not TabGlobal.DExportadoTransito.Exclui then
+      TabGlobal.DExportadoTransito.Next;
   // Exclusão em Cascata Tabela: DBoocking
   TabGlobal.DBoocking.Filtro.Clear;
   TabGlobal.DBoocking.Filtro.Add('Boocking.Contrato = :ContratoTransporte_Contrato');
@@ -514,14 +553,16 @@ end;
 
 procedure TDContratoTransporte.CalculaCampos;
 begin
+  StatusCT.Conteudo := CalculaDContratoTransporte_StatusCT(Self);
   QuantadePendente.Conteudo := CalculaDContratoTransporte_QuantadePendente(Self);
   ValorTotalPendente.Conteudo := CalculaDContratoTransporte_ValorTotalPendente(Self);
+  VlTotalComissaoPendente.Conteudo := CalculaDContratoTransporte_VlTotalComissaoPendente(Self);
 end;
 
 procedure TDContratoTransporte.AtribuiRelacionamentos(Atribui: Boolean = True);
 begin
-  TabGlobal.DPrudutoContratoT.AtribuiFiltroMestre(Atribui);
-  TabGlobal.DExpotadoTransito.AtribuiFiltroMestre(Atribui);
+  TabGlobal.DProdutoContratoT.AtribuiFiltroMestre(Atribui);
+  TabGlobal.DExportadoTransito.AtribuiFiltroMestre(Atribui);
   TabGlobal.DBoocking.AtribuiFiltroMestre(Atribui);
 end;
 

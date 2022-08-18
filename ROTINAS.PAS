@@ -1,4 +1,4 @@
-{
+{   cms
    Programa.: Rotinas.PAS
    Copyright: Modular Software 2006
             : Todos os direitos reservados
@@ -12,7 +12,7 @@ interface
 
 uses Forms, Classes, WinProcs, Controls, Menus, ExtCtrls, Printers,
      Mask, {$IFDEF DELPHI5}{$ELSE}MaskUtils,{$ENDIF} Dialogs, Sysutils,
-     Publicas, Princ, Acesso;
+     Publicas, Princ, Acesso, Graphics,math;
 
 function ConstStr(Ch: string; N: byte): string;
 function DiretorioComBarra(NomeDir: string): string;
@@ -69,13 +69,110 @@ function DifTempo(hora_i, hora_f: TTime): String;
 function RepeatChar(Ch: Char; S: string): string;
 procedure Atualiza_Status;
 function AtribuiAspas(S: String): String;
+function nome_mes(nMes, nTam : Word  ): String;
+function RetCorFundo(opcao : string): TColor;
+function RetCorFundoFatura(opcao : STRING): TColor;
+function RoundDec(valor : double ; decimais : integer ): double;
+
+//function PaisForn():integer ;
 
 implementation
 
-uses FR_SMTP;
+uses FR_SMTP, UCMS_CONST;
 
 const
   FatorBloco = 32767;
+
+function RoundDec( Valor : double ; Decimais : integer ): double;
+var
+ Mult : double ;
+begin
+ Mult := power(10, Decimais) ;
+ result := trunc(valor*Mult+0.5*sign(valor))/Mult;
+end;
+
+function RetCorFundo(opcao : string): TColor;
+VAR
+ C_RET : TColor ;
+begin
+// CORRECAO 05/12/2011 VARIAVEL  C_RET NAO ERA INICIALIZADA
+// C_RET := clWhite ;
+C_RET := clWindow ;
+//case opcao of
+IF opcao = s_ST_AB THEN  {'Aberto'); }
+       C_RET := clWhite ;
+IF opcao =  s_ST_BO THEN  { 'Boocking'); }
+       C_RET :=  clGradientInactiveCaption;
+IF opcao =  s_ST_EM  THEN  { 'Em Execução ( Exportação )'); }
+       C_RET := clAqua ; // clFuchsia; // modificado por solicitacao da carina clMoneyGreen;
+IF opcao =  s_ST_EX  THEN   { 'Execução ( Exportação Concluida )'); }
+       C_RET :=  clLime ;
+IF opcao =  s_ST_CM  THEN   { 'Comissões Pendentes'); }
+       C_RET :=  clAqua;
+IF opcao =  s_ST_OC  THEN   { 'Ordem Cobrança');}
+       C_RET :=  clGradientActiveCaption;
+IF opcao =  s_ST_FA  THEN   { 'Fatura Emitida'); }
+       C_RET :=  clYellow;
+IF opcao =  s_ST_NF  THEN   { 'Nota Fiscal'); }
+       C_RET :=   clFuchsia;
+IF opcao =  s_ST_OK  THEN   { 'Concluido'); }
+       C_RET :=   clActiveBorder;
+IF opcao =  s_ST_PR  THEN   { 'Problema');  }
+       C_RET :=   clRed ;
+
+
+RetCorFundo := C_RET ;
+
+end;
+
+function RetCorFundoFatura(opcao : STRING): TColor;
+VAR
+ C_RET : TColor ;
+begin
+
+// CORRECAO 05/12/2011 VARIAVEL  C_RET NAO ERA INICIALIZADA
+//C_RET := clWhite ;
+C_RET := clWindow ;
+//case opcao of      clFuchsia
+IF opcao = s_ST_AB_F THEN  {'Aberto'); }
+       C_RET := clWhite ;
+//IF opcao =  s_ST_BO_F THEN  { 'Boocking'); }
+//       C_RET :=  clGradientInactiveCaption;
+
+IF opcao =  s_ST_RT_F THEN  { 'Aplicar Rate'); }
+       C_RET := clLime ; // clGradientInactiveCaption;
+
+
+IF opcao =  s_ST_EM_F  THEN  { 'Em Execução ( Exportação )'); }
+       C_RET :=  clAqua ; // modificado por solicitacao da carina clMoneyGreen;
+IF opcao =  s_ST_EX_F  THEN   { 'Execução ( Exportação Concluida )'); }
+       C_RET :=  clLime ;
+IF opcao =  s_ST_CM_F  THEN   { 'Comissões Pendentes'); }
+       C_RET :=  clFuchsia;
+IF opcao =  s_ST_OC_F  THEN   { 'Ordem Cobrança');}
+       C_RET :=  clGradientActiveCaption;
+IF opcao =  s_ST_FA_F  THEN   { 'Fatura Emitida'); }
+       C_RET :=  clLime ; // clYellow;
+IF opcao =  s_ST_NF_F  THEN   { 'Nota Fiscal'); }
+       C_RET :=  clLime ; // clFuchsia;
+IF opcao =  s_ST_OK_F  THEN   { 'Concluido'); }
+       C_RET :=   clLime ; // clActiveBorder;
+IF opcao =  s_ST_PR_F  THEN   { 'Problema');  }
+       C_RET :=   clRed ;
+
+RetCorFundoFatura := C_RET ;
+end;
+
+//esta função retira os caracteres diferentes de 0..9 de uma string
+function SoNum(digitado: String): String;
+var i: integer;
+begin
+Result := '';
+for i:=1 To Length(digitado) do
+if digitado[I] In ['0', '1','2','3','4','5','6','7','8','9'] then
+Result := Result + digitado[I];
+end;
+
 
 function MascValor(Valor: Extended; Mascara: string): string;
 var
@@ -219,6 +316,17 @@ begin
     Delete(S, Length(S) - 2, 3);
   RetiraHK := S;
 end;
+
+function Retira_CHR(S, P : string): string;
+begin
+  IF P <>  '' then begin
+     while Pos(P, S) > 0 do
+       Delete(S, Pos(P, S), 1);
+  end;
+
+  Retira_CHR := S;
+end;
+
 
 function ArrayToString(OpenArray: array of string; Separador: char): string;
 var
@@ -610,7 +718,10 @@ var
   sAno: string;
 begin
   sMes := Copy( MesAno, 1, 2 );
-  sAno := Copy( MesAno, 3, 4 );
+//  26/04/2013 erro corrigido
+//  sAno := Copy( MesAno, 3, 4 );
+  sAno := Copy( MesAno, 4, 4 );
+
   if Pos( sMes, '01 03 05 07 08 10 12' ) > 0 then
     UltimoDiaDoMes := '31'
   else
@@ -645,6 +756,8 @@ var
 begin
   DecodeDate( Data, sAno, sMes, sDia );
   MesAno := StrZero( sMes, 2 ) + '/' +
+    //Copy( StrZero( sAno, 4 );
+    // correcao de erro de logica 26/04/2013
     Copy( StrZero( sAno, 4 ), 3, 2 );
 end;
 
@@ -1082,4 +1195,28 @@ begin
   AtribuiAspas := Format('''%s''', [RepeatChar('''', S)]);
 end;
 
+function nome_mes(nMes, nTam : Word  ): String;
+begin
+  case nMes of
+    1 : Result := 'Janeiro';
+    2 : Result := 'Fevereiro';
+    3 : Result := 'Março';
+    4 : Result := 'Abril';
+    5 : Result := 'Maio';
+    6 : Result := 'Junho';
+    7 : Result := 'Julho';
+    8 : Result := 'Agosto';
+    9 : Result := 'Setembro';
+   10 : Result := 'Outubro';
+   11 : Result := 'Novembro';
+   12 : Result := 'Dezembro';
+  end;
+  Result := copy(Result,1, nTam ) ;
+end;
+{
+function PaisForn():integer ;
+begin
+   PaisForn := TabGlobal.DFornecedores.ID.Valor.Value ;
+end;
+}
 end.

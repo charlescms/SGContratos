@@ -1,0 +1,49 @@
+    RxMemoryData_Excel: TClientDataSet;
+
+    RxMemoryData_ExcelLINHA: TIntegerField;
+    RxMemoryData_ExcelCONTRATO: TStringField;
+    RxMemoryData_ExcelNOMEMIX: TStringField;
+    RxMemoryData_ExcelRAZAO: TStringField;
+    RxMemoryData_ExcelNOME: TStringField;
+    RxMemoryData_ExcelC_C: TStringField;
+    RxMemoryData_ExcelFORMPAGO: TStringField;
+    RxMemoryData_ExcelQUANTIDADETOTAL: TFloatField;
+    RxMemoryData_ExcelSDATAEMBARQUE: TStringField;
+    RxMemoryData_ExcelPRECOFOB: TFloatField;
+    RxMemoryData_ExcelPRECOFOBTOTAL: TFloatField;
+    RxMemoryData_ExcelPRECOSCC: TFloatField;
+    RxMemoryData_ExcelVALORSCCTOTAL: TFloatField;
+    RxMemoryData_ExcelQUANTIDADE: TFloatField;
+    RxMemoryData_ExcelNAVIO: TStringField;
+    RxMemoryData_ExcelQUANTIDADEEXP: TFloatField;
+    RxMemoryData_ExcelDATAEMBARQUE: TDateTimeField;
+    RxMemoryData_ExcelFATURA: TStringField;
+    RxMemoryData_ExcelETADESTINO: TDateTimeField;
+    RxMemoryData_ExcelOBS: TStringField;
+
+
+    RxMemoryData_Excel_DT: TClientDataSet;
+
+    RxMemoryData_Excel_DTLINHA: TIntegerField;
+    RxMemoryData_Excel_DTCONTRATO: TStringField;
+    RxMemoryData_Excel_DTNOMEMIX: TStringField;
+    RxMemoryData_Excel_DTRAZAO: TStringField;
+    RxMemoryData_Excel_DTNOME: TStringField;
+    RxMemoryData_Excel_DTC_C: TStringField;
+    RxMemoryData_Excel_DTFORMPAGO: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADETOTAL: TFloatField;
+    RxMemoryData_Excel_DTSDATAEMBARQUE: TStringField;
+    RxMemoryData_Excel_DTPRECOFOB: TFloatField;
+    RxMemoryData_Excel_DTPRECOFOBTOTAL: TFloatField;
+    RxMemoryData_Excel_DTPRECOSCC: TFloatField;
+    RxMemoryData_Excel_DTVALORSCCTOTAL: TFloatField;
+    RxMemoryData_Excel_DTNAVIO_BUQ: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADE: TFloatField;
+    RxMemoryData_Excel_DTNAVIO: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADEEXP: TFloatField;
+    RxMemoryData_Excel_DTVALOR: TFloatField;
+    RxMemoryData_Excel_DTDATAEMBARQUE: TDateTimeField;
+    RxMemoryData_Excel_DTFATURA: TStringField;
+    RxMemoryData_Excel_DTETADESTINO: TDateTimeField;
+    RxMemoryData_Excel_DTOBS: TStringField;
+    RxMemoryData_Excel_DTDIVISAO: TStringField;
