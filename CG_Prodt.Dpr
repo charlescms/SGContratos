@@ -13,6 +13,7 @@
 program CG_Prodt;
 
 uses
+  FASTMM4,
   {$I LTab.Inc}
   {$I AtrL.Inc}
   WinTypes,

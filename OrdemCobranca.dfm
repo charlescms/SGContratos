@@ -7,7 +7,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -17
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -22,13 +22,13 @@ object FormOrdemCobranca: TFormOrdemCobranca
   OnKeyPress = formkeypress
   OnResize = formresize
   OnShow = formshow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 144
+  TextHeight = 20
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 41
+    Top = 51
     Width = 942
-    Height = 513
+    Height = 499
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,17 +38,17 @@ object FormOrdemCobranca: TFormOrdemCobranca
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 444
+        Top = 416
         Width = 934
-        Height = 38
+        Height = 48
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 2
         object BtnSalvar: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 13
+          Top = 8
+          Width = 115
+          Height = 38
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -71,10 +71,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 102
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 128
+          Top = 8
+          Width = 115
+          Height = 38
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -97,10 +97,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 891
-          Top = -4
-          Width = 92
-          Height = 31
+          Left = 1114
+          Top = -5
+          Width = 115
+          Height = 39
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -124,10 +124,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object Btn_imprime: TBitBtn
-          Left = 1018
-          Top = 5
-          Width = 92
-          Height = 31
+          Left = 1273
+          Top = 6
+          Width = 115
+          Height = 39
           Caption = 'Impr. Fatura'
           TabOrder = 8
           Visible = False
@@ -148,10 +148,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BtnVisualizar: TBitBtn
-          Left = 593
-          Top = 6
-          Width = 122
-          Height = 31
+          Left = 741
+          Top = 8
+          Width = 153
+          Height = 38
           Hint = 'Visualizar impress'#227'o'
           Caption = '&Vis. Fatura'
           ParentShowHint = False
@@ -174,10 +174,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object Btn_grava: TBitBtn
-          Left = 196
-          Top = 6
-          Width = 147
-          Height = 31
+          Left = 245
+          Top = 8
+          Width = 184
+          Height = 38
           Hint = 'Gravar Fatura no contrato(s)'
           Caption = 'Aplicar Ord. Cob.'
           TabOrder = 2
@@ -198,10 +198,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BitB_Nv_Fatura: TBitBtn
-          Left = 470
-          Top = 6
-          Width = 123
-          Height = 31
+          Left = 588
+          Top = 8
+          Width = 153
+          Height = 38
           Hint = 'Gravar Fatura no contrato(s)'
           Caption = 'Nova Fatura'
           TabOrder = 4
@@ -222,10 +222,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BtnAplicarNF: TBitBtn
-          Left = 345
-          Top = 6
-          Width = 123
-          Height = 31
+          Left = 431
+          Top = 8
+          Width = 154
+          Height = 38
           Hint = 'Gravar NF Surimpex no contrato(s)'
           Caption = 'Aplicar NF'
           TabOrder = 3
@@ -246,10 +246,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
           NumGlyphs = 2
         end
         object BitBtn1: TBitBtn
-          Left = 716
-          Top = 6
-          Width = 152
-          Height = 31
+          Left = 895
+          Top = 8
+          Width = 190
+          Height = 38
           Hint = 'Visualizar impress'#227'o'
           Caption = '&Vis. Ord. Cobran'#231'a'
           ParentShowHint = False
@@ -274,13 +274,13 @@ object FormOrdemCobranca: TFormOrdemCobranca
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 418
+        Top = 384
         Width = 934
-        Height = 26
+        Height = 32
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -293,7 +293,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
         Left = 0
         Top = 0
         Width = 934
-        Height = 418
+        Height = 384
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -303,7 +303,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
           Left = 0
           Top = 0
           Width = 934
-          Height = 418
+          Height = 384
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -314,18 +314,18 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object Grid_OrdemCobrncaProdExp: TDBGrid
-                Left = 20
-                Top = 325
-                Width = 394
-                Height = 92
+                Left = 25
+                Top = 406
+                Width = 493
+                Height = 115
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -15
+                Font.Height = -20
                 Font.Name = 'MS Sans Serif'
                 Font.Style = []
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -346,12 +346,12 @@ object FormOrdemCobranca: TFormOrdemCobranca
               end
               object Grid_OrdemCobrancaDescont: TDBGrid
                 Left = 0
-                Top = 431
-                Width = 394
-                Height = 98
+                Top = 539
+                Width = 493
+                Height = 122
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -15
+                Font.Height = -20
                 Font.Name = 'MS Sans Serif'
                 Font.Style = []
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
@@ -373,139 +373,139 @@ object FormOrdemCobranca: TFormOrdemCobranca
               object GroupBox1: TGroupBox
                 Left = 0
                 Top = 0
-                Width = 914
-                Height = 178
+                Width = 910
+                Height = 223
                 Align = alTop
                 TabOrder = 0
                 object LbcComentario: TLabel
-                  Left = 11
-                  Top = 101
-                  Width = 69
-                  Height = 16
+                  Left = 14
+                  Top = 126
+                  Width = 82
+                  Height = 20
                   Caption = 'Coment'#225'rio'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcNumOrdCobranca: TLabel
-                  Left = 12
-                  Top = 11
-                  Width = 87
-                  Height = 16
+                  Left = 15
+                  Top = 14
+                  Width = 103
+                  Height = 20
                   Caption = 'Ord. Cobranca'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCadastro: TLabel
-                  Left = 105
-                  Top = 11
-                  Width = 55
-                  Height = 16
+                  Left = 131
+                  Top = 14
+                  Width = 65
+                  Height = 20
                   Caption = 'Cadastro'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcStatus: TLabel
-                  Left = 212
-                  Top = 11
-                  Width = 37
-                  Height = 16
+                  Left = 265
+                  Top = 14
+                  Width = 47
+                  Height = 20
                   Caption = 'Status'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcFATURA: TLabel
-                  Left = 362
-                  Top = 11
-                  Width = 97
-                  Height = 16
+                  Left = 453
+                  Top = 14
+                  Width = 117
+                  Height = 20
                   Caption = 'Fatura Surimpex'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcDataFatura: TLabel
-                  Left = 460
-                  Top = 11
-                  Width = 70
-                  Height = 16
+                  Left = 575
+                  Top = 14
+                  Width = 86
+                  Height = 20
                   Caption = 'Data Fatura'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcCTTO: TLabel
-                  Left = 574
-                  Top = 11
-                  Width = 37
-                  Height = 16
+                  Left = 718
+                  Top = 14
+                  Width = 41
+                  Height = 20
                   Caption = 'CTTO'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcValor: TLabel
-                  Left = 681
-                  Top = 11
-                  Width = 102
-                  Height = 16
+                  Left = 851
+                  Top = 14
+                  Width = 123
+                  Height = 20
                   Caption = 'Valor Fatura Exp.'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcValorDesconto: TLabel
-                  Left = 826
-                  Top = 11
-                  Width = 58
-                  Height = 16
+                  Left = 1033
+                  Top = 14
+                  Width = 69
+                  Height = 20
                   Caption = 'Desconto'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALOR_LIQ: TLabel
-                  Left = 974
-                  Top = 11
-                  Width = 66
-                  Height = 16
+                  Left = 1218
+                  Top = 14
+                  Width = 79
+                  Height = 20
                   Caption = 'VL. Liquido'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcFORCOD: TLabel
-                  Left = 14
-                  Top = 54
-                  Width = 66
-                  Height = 16
+                  Left = 18
+                  Top = 68
+                  Width = 78
+                  Height = 20
                   Caption = 'Exportador'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcRAZAO: TLabel
-                  Left = 130
-                  Top = 54
-                  Width = 81
-                  Height = 16
+                  Left = 163
+                  Top = 68
+                  Width = 94
+                  Height = 20
                   Caption = 'Raz'#227'o Social'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object Label1: TLabel
-                  Left = 620
-                  Top = 54
-                  Width = 43
-                  Height = 16
+                  Left = 775
+                  Top = 68
+                  Width = 49
+                  Height = 20
                   Caption = 'Moeda'
                 end
                 object LbcTextoDsconto: TLabel
-                  Left = 770
-                  Top = 54
-                  Width = 73
-                  Height = 16
+                  Left = 963
+                  Top = 68
+                  Width = 86
+                  Height = 20
                   Caption = 'T. Desconto'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object Comentario: TDBMemo
                   Left = 2
-                  Top = 118
-                  Width = 910
-                  Height = 58
+                  Top = 149
+                  Width = 906
+                  Height = 72
                   Align = alBottom
                   ParentShowHint = False
                   ScrollBars = ssVertical
@@ -514,10 +514,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = COMENTARIOexit
                 end
                 object NumOrdCobranca: TXDBEdit
-                  Left = 12
-                  Top = 28
-                  Width = 86
-                  Height = 21
+                  Left = 15
+                  Top = 35
+                  Width = 108
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 0
@@ -571,10 +571,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                     0000}
                 end
                 object Cadastro: TXDBDateEdit
-                  Left = 105
-                  Top = 28
-                  Width = 107
-                  Height = 21
+                  Left = 131
+                  Top = 35
+                  Width = 134
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 1
@@ -635,11 +635,11 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object Status: TDBComboBox
-                  Left = 212
-                  Top = 28
-                  Width = 144
-                  Height = 24
-                  ItemHeight = 16
+                  Left = 265
+                  Top = 35
+                  Width = 180
+                  Height = 28
+                  ItemHeight = 20
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 2
@@ -647,10 +647,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = STATUSexit
                 end
                 object FATURA: TXDBEdit
-                  Left = 362
-                  Top = 28
-                  Width = 86
-                  Height = 21
+                  Left = 453
+                  Top = 35
+                  Width = 107
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 3
@@ -704,10 +704,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                     0000}
                 end
                 object DataFatura: TXDBDateEdit
-                  Left = 460
-                  Top = 28
-                  Width = 107
-                  Height = 21
+                  Left = 575
+                  Top = 35
+                  Width = 134
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 4
@@ -768,10 +768,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object CTTO: TXDBEdit
-                  Left = 574
-                  Top = 28
-                  Width = 103
-                  Height = 21
+                  Left = 718
+                  Top = 35
+                  Width = 128
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 5
@@ -825,10 +825,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                     0000}
                 end
                 object Valor: TXDBNumEdit
-                  Left = 681
-                  Top = 28
-                  Width = 141
-                  Height = 21
+                  Left = 851
+                  Top = 35
+                  Width = 177
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -883,10 +883,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALORexit
                 end
                 object ValorDesconto: TXDBNumEdit
-                  Left = 825
-                  Top = 28
-                  Width = 141
-                  Height = 21
+                  Left = 1031
+                  Top = 35
+                  Width = 177
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -941,10 +941,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALORDESCONTOexit
                 end
                 object VALOR_LIQ: TXDBNumEdit
-                  Left = 974
-                  Top = 28
-                  Width = 141
-                  Height = 21
+                  Left = 1218
+                  Top = 35
+                  Width = 176
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -999,10 +999,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALOR_LIQexit
                 end
                 object FORCOD: TXDBNumEdit
-                  Left = 11
-                  Top = 71
-                  Width = 118
-                  Height = 21
+                  Left = 14
+                  Top = 89
+                  Width = 147
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1056,10 +1056,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = FORCODexit
                 end
                 object RAZAO: TXDBEdit
-                  Left = 130
-                  Top = 71
-                  Width = 448
-                  Height = 21
+                  Left = 163
+                  Top = 89
+                  Width = 560
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 10
@@ -1113,11 +1113,11 @@ object FormOrdemCobranca: TFormOrdemCobranca
                     0000}
                 end
                 object MOEDACOMISSAO: TDBComboBox
-                  Left = 583
-                  Top = 71
-                  Width = 179
-                  Height = 24
-                  ItemHeight = 16
+                  Left = 729
+                  Top = 89
+                  Width = 224
+                  Height = 28
+                  ItemHeight = 20
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 11
@@ -1125,10 +1125,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = MOEDACOMISSAOexit
                 end
                 object TextoDsconto: TXDBEdit
-                  Left = 770
-                  Top = 71
-                  Width = 344
-                  Height = 21
+                  Left = 963
+                  Top = 89
+                  Width = 430
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 12
@@ -1184,107 +1184,107 @@ object FormOrdemCobranca: TFormOrdemCobranca
               end
               object GroupBox2: TGroupBox
                 Left = 0
-                Top = 178
-                Width = 914
-                Height = 109
+                Top = 223
+                Width = 910
+                Height = 136
                 Align = alTop
                 TabOrder = 1
                 object LbcDataLiq: TLabel
-                  Left = 12
-                  Top = 58
-                  Width = 53
-                  Height = 16
+                  Left = 15
+                  Top = 73
+                  Width = 64
+                  Height = 20
                   Caption = 'Data Liq.'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcRecebimento: TLabel
-                  Left = 246
-                  Top = 58
-                  Width = 81
-                  Height = 16
+                  Left = 308
+                  Top = 73
+                  Width = 95
+                  Height = 20
                   Caption = 'Recebimento'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcDataProtesto: TLabel
-                  Left = 134
-                  Top = 58
-                  Width = 66
-                  Height = 16
+                  Left = 168
+                  Top = 73
+                  Width = 81
+                  Height = 20
                   Caption = 'Dt Protesto'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALOR_NF_LIQ: TLabel
-                  Left = 672
-                  Top = 11
-                  Width = 84
-                  Height = 16
+                  Left = 840
+                  Top = 14
+                  Width = 100
+                  Height = 20
                   Caption = 'VL NF Liquido'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALOR_PIS_COF: TLabel
-                  Left = 526
-                  Top = 11
-                  Width = 112
-                  Height = 16
+                  Left = 658
+                  Top = 14
+                  Width = 137
+                  Height = 20
                   Caption = 'VL. PIS/COF/CSSL'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALOR_IRRF: TLabel
-                  Left = 389
-                  Top = 11
-                  Width = 53
-                  Height = 16
+                  Left = 486
+                  Top = 14
+                  Width = 67
+                  Height = 20
                   Caption = 'VL. IRRF'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALOR_NF: TLabel
-                  Left = 252
-                  Top = 11
-                  Width = 87
-                  Height = 16
+                  Left = 315
+                  Top = 14
+                  Width = 105
+                  Height = 20
                   Caption = 'Valor NF Bruto'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcDataNF: TLabel
-                  Left = 133
-                  Top = 11
-                  Width = 50
-                  Height = 16
+                  Left = 166
+                  Top = 14
+                  Width = 60
+                  Height = 20
                   Caption = 'Data NF'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcNumNFEmit: TLabel
-                  Left = 12
-                  Top = 12
-                  Width = 68
-                  Height = 16
+                  Left = 15
+                  Top = 15
+                  Width = 79
+                  Height = 20
                   Caption = 'Nota Fiscal'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object LbcVALORRECEBIDO: TLabel
-                  Left = 386
-                  Top = 55
-                  Width = 78
-                  Height = 16
+                  Left = 490
+                  Top = 69
+                  Width = 90
+                  Height = 20
                   Alignment = taRightJustify
                   Caption = 'Vl. Recebido'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object NumNFEmit: TXDBNumEdit
-                  Left = 12
-                  Top = 30
-                  Width = 86
-                  Height = 21
+                  Left = 15
+                  Top = 38
+                  Width = 108
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1338,10 +1338,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = NUMNFEMITexit
                 end
                 object DataNF: TXDBDateEdit
-                  Left = 128
-                  Top = 28
-                  Width = 107
-                  Height = 21
+                  Left = 160
+                  Top = 35
+                  Width = 134
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 1
@@ -1402,10 +1402,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object VALOR_NF: TXDBNumEdit
-                  Left = 246
-                  Top = 28
-                  Width = 129
-                  Height = 21
+                  Left = 308
+                  Top = 35
+                  Width = 161
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1460,10 +1460,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALOR_NFexit
                 end
                 object VALOR_IRRF: TXDBNumEdit
-                  Left = 380
-                  Top = 28
-                  Width = 142
-                  Height = 21
+                  Left = 475
+                  Top = 35
+                  Width = 178
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1518,10 +1518,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALOR_IRRFexit
                 end
                 object VALOR_PIS_COF: TXDBNumEdit
-                  Left = 527
-                  Top = 28
-                  Width = 141
-                  Height = 21
+                  Left = 659
+                  Top = 35
+                  Width = 176
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1576,10 +1576,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALOR_PIS_COFexit
                 end
                 object VALOR_NF_LIQ: TXDBNumEdit
-                  Left = 673
-                  Top = 28
-                  Width = 142
-                  Height = 21
+                  Left = 841
+                  Top = 35
+                  Width = 178
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1634,10 +1634,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   OnExit = VALOR_NF_LIQexit
                 end
                 object DataLiq: TXDBDateEdit
-                  Left = 12
-                  Top = 75
-                  Width = 107
-                  Height = 21
+                  Left = 15
+                  Top = 94
+                  Width = 134
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 6
@@ -1698,10 +1698,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object Recebimento: TXDBDateEdit
-                  Left = 246
-                  Top = 75
-                  Width = 107
-                  Height = 21
+                  Left = 308
+                  Top = 94
+                  Width = 133
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 8
@@ -1762,10 +1762,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object DataProtesto: TXDBDateEdit
-                  Left = 129
-                  Top = 75
-                  Width = 107
-                  Height = 21
+                  Left = 161
+                  Top = 94
+                  Width = 134
+                  Height = 24
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 7
@@ -1826,10 +1826,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   ShowButton = True
                 end
                 object VALORRECEBIDO: TXDBNumEdit
-                  Left = 380
-                  Top = 73
-                  Width = 142
-                  Height = 21
+                  Left = 475
+                  Top = 91
+                  Width = 178
+                  Height = 24
                   AutoHideCalculator = False
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1894,41 +1894,41 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcUsuario: TLabel
-                Left = 453
-                Top = -2
-                Width = 47
-                Height = 16
+                Left = 566
+                Top = -3
+                Width = 55
+                Height = 20
                 Caption = 'Usu'#225'rio'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcNOME: TLabel
-                Left = 17
+                Left = 21
                 Top = -1
-                Width = 67
-                Height = 16
+                Width = 76
+                Height = 20
                 Caption = 'Nome Pais'
                 ParentShowHint = False
                 ShowHint = True
               end
               object LbcTEXTO_PADRAO: TLabel
-                Left = 15
-                Top = 44
-                Width = 87
-                Height = 16
+                Left = 19
+                Top = 55
+                Width = 105
+                Height = 20
                 Caption = 'Texto Contrato'
                 ParentShowHint = False
                 ShowHint = True
               end
               object Usuario: TXDBEdit
-                Left = 453
-                Top = 15
-                Width = 189
+                Left = 566
+                Top = 19
+                Width = 237
                 Height = 21
                 ParentShowHint = False
                 ShowHint = True
@@ -1983,9 +1983,9 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   0000}
               end
               object NOME: TXDBEdit
-                Left = 17
-                Top = 16
-                Width = 431
+                Left = 21
+                Top = 20
+                Width = 539
                 Height = 21
                 ParentShowHint = False
                 ShowHint = True
@@ -2040,10 +2040,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
                   0000}
               end
               object TEXTO_PADRAO: TDBMemo
-                Left = 112
-                Top = 16
-                Width = 1167
-                Height = 428
+                Left = 140
+                Top = 20
+                Width = 1459
+                Height = 535
                 ParentShowHint = False
                 ScrollBars = ssVertical
                 ShowHint = True
@@ -2060,7 +2060,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2074,7 +2074,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2088,7 +2088,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2102,7 +2102,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2116,7 +2116,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2130,7 +2130,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2144,7 +2144,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2158,7 +2158,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2172,7 +2172,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               Left = 0
               Top = 0
               Width = 934
-              Height = 418
+              Height = 384
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2186,17 +2186,17 @@ object FormOrdemCobranca: TFormOrdemCobranca
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 562
-        Width = 1136
-        Height = 39
+        Top = 703
+        Width = 1420
+        Height = 48
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 10
-          Top = 6
-          Width = 92
-          Height = 31
+          Left = 13
+          Top = 8
+          Width = 115
+          Height = 38
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -2222,14 +2222,14 @@ object FormOrdemCobranca: TFormOrdemCobranca
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1136
-        Height = 537
+        Width = 1420
+        Height = 671
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -2246,13 +2246,13 @@ object FormOrdemCobranca: TFormOrdemCobranca
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 537
-        Width = 1136
-        Height = 25
+        Top = 671
+        Width = 1420
+        Height = 32
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -20
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -2266,15 +2266,15 @@ object FormOrdemCobranca: TFormOrdemCobranca
     Left = 0
     Top = 0
     Width = 942
-    Height = 41
+    Height = 51
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     object BtnIncluir: TSpeedButton
-      Left = 5
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 6
+      Top = 5
+      Width = 115
+      Height = 38
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -2298,10 +2298,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 97
-      Top = 4
-      Width = 93
-      Height = 30
+      Left = 121
+      Top = 5
+      Width = 117
+      Height = 38
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -2324,10 +2324,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 190
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 238
+      Top = 5
+      Width = 115
+      Height = 38
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -2350,10 +2350,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 282
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 353
+      Top = 5
+      Width = 115
+      Height = 38
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -2376,10 +2376,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 374
-      Top = 4
-      Width = 92
-      Height = 30
+      Left = 468
+      Top = 5
+      Width = 115
+      Height = 38
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -2402,10 +2402,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 466
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 583
+      Top = 5
+      Width = 37
+      Height = 38
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -2427,10 +2427,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 496
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 620
+      Top = 5
+      Width = 38
+      Height = 38
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -2452,10 +2452,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 526
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 658
+      Top = 5
+      Width = 36
+      Height = 38
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -2477,10 +2477,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 555
-      Top = 4
-      Width = 30
-      Height = 30
+      Left = 694
+      Top = 5
+      Width = 37
+      Height = 38
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -2502,10 +2502,10 @@ object FormOrdemCobranca: TFormOrdemCobranca
       OnClick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 585
-      Top = 4
-      Width = 29
-      Height = 30
+      Left = 731
+      Top = 5
+      Width = 37
+      Height = 38
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -2528,7 +2528,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 38
+      Top = 48
       Width = 942
       Height = 3
       Align = alBottom
