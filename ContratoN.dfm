@@ -1,6 +1,6 @@
 object FormContratoN: TFormContratoN
-  Left = 209
-  Top = 46
+  Left = 336
+  Top = 40
   Width = 1031
   Height = 714
   Caption = 'Entrada de Dados'

@@ -1,6 +1,6 @@
 object FormOrdemCobranca: TFormOrdemCobranca
-  Left = 325
-  Top = 112
+  Left = 285
+  Top = 133
   Width = 950
   Height = 587
   Caption = 'Entrada de Dados'
@@ -27,8 +27,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
   object PagePrincipal: TPageControl
     Left = 0
     Top = 33
-    Width = 934
-    Height = 516
+    Width = 942
+    Height = 527
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,8 +38,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 457
-        Width = 926
+        Top = 468
+        Width = 934
         Height = 31
         Align = alBottom
         BevelOuter = bvNone
@@ -274,8 +274,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 436
-        Width = 926
+        Top = 447
+        Width = 934
         Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -292,8 +292,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 926
-        Height = 436
+        Width = 934
+        Height = 447
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -302,8 +302,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 926
-          Height = 436
+          Width = 934
+          Height = 447
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -313,8 +313,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 926
-              Height = 436
+              Width = 934
+              Height = 447
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -373,7 +373,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               object GroupBox1: TGroupBox
                 Left = 0
                 Top = 0
-                Width = 926
+                Width = 934
                 Height = 145
                 Align = alTop
                 TabOrder = 0
@@ -504,7 +504,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
                 object Comentario: TDBMemo
                   Left = 2
                   Top = 96
-                  Width = 922
+                  Width = 930
                   Height = 47
                   Align = alBottom
                   ParentShowHint = False
@@ -1185,7 +1185,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
               object GroupBox2: TGroupBox
                 Left = 0
                 Top = 145
-                Width = 926
+                Width = 934
                 Height = 88
                 Align = alTop
                 TabOrder = 1
@@ -2265,7 +2265,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 934
+    Width = 942
     Height = 33
     Align = alTop
     BevelOuter = bvNone
@@ -2529,7 +2529,7 @@ object FormOrdemCobranca: TFormOrdemCobranca
     object Divisao_sup: TPanel
       Left = 0
       Top = 31
-      Width = 934
+      Width = 942
       Height = 2
       Align = alBottom
       TabOrder = 0

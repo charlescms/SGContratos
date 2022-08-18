@@ -1075,7 +1075,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1124,7 +1124,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := 'Qunatidade Tota Exportada';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1222,7 +1222,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1271,7 +1271,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1475,7 +1475,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := '';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1524,7 +1524,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := 'Valor total da comissão Executada';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;
@@ -1568,7 +1568,7 @@ begin
   CaractereEdicao   := '_';
   Ajuda             := 'Valor total da comissão Executada';
   Calculado         := False;
-  Calculado_F       := False;
+  Calculado_F       := True;
   Valor.FieldName   := Nome;
   Valor.Size        := TamanhoDado;
   Valor.DisplayLabel:= Titulo;

@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 218
-  Top = 161
+  Left = 199
+  Top = 205
   Width = 950
   Height = 732
   Caption = 'Titulo do Projeto'
@@ -365,8 +365,8 @@ object FormPrincipal: TFormPrincipal
       end
     end
     object TreeOpcoes: TTreeView
-      Left = 39
-      Top = 17
+      Left = 7
+      Top = 25
       Width = 226
       Height = 488
       BorderStyle = bsNone
@@ -833,7 +833,7 @@ object FormPrincipal: TFormPrincipal
   end
   object ListaImagem: TImageList
     Bitmap = {
-      494C010115001800240010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010115001800300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

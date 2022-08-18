@@ -6,7 +6,7 @@ unit Calculos;
 
 interface
 
-uses SysUtils, StdCtrls, BaseD, classes, Atributo, Estrutur, Princ,
+uses SysUtils, StdCtrls, BaseD, classes, Atributo, Estrutur, Princ, Variants,
      {$I LTab.pas}
      Rotinas, Validar, Controls, Tabela, Abertura, Publicas;
 
@@ -19,13 +19,41 @@ function CalculaDContratoTransporte_StatusCT(AOwner: TComponent) : String;
 
 function CalculaDContratoTransporte_StatusCT_Rel(AOwner: TComponent) : String;
 
+function CalculaDContratoTransporte_QuantidadeTotal(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_QuantidadeTotal_Rel(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_QUANTTOTALEXP(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_QUANTTOTALEXP_Rel(AOwner: TComponent) : Double;
+
 function CalculaDContratoTransporte_QuantadePendente(AOwner: TComponent) : Double;
 
 function CalculaDContratoTransporte_QuantadePendente_Rel(AOwner: TComponent) : Double;
 
+function CalculaDContratoTransporte_ValorSCCTotal(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorSCCTotal_Rel(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalExp(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalExp_Rel(AOwner: TComponent) : Double;
+
 function CalculaDContratoTransporte_ValorTotalPendente(AOwner: TComponent) : Double;
 
 function CalculaDContratoTransporte_ValorTotalPendente_Rel(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalComissao(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalComissao_Rel(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS_Rel(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalComissaoExecutado(AOwner: TComponent) : Double;
+
+function CalculaDContratoTransporte_ValorTotalComissaoExecutado_Rel(AOwner: TComponent) : Double;
 
 function CalculaDContratoTransporte_VlTotalComissaoPendente(AOwner: TComponent) : Double;
 
@@ -159,6 +187,66 @@ begin
      END;
 end;
 
+function CalculaDContratoTransporte_QuantidadeTotal(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+    ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'QuantidadeTotal = (QuantidadeTotal + (:ProdutoContratoT_Quantidade))') then
+     PTabela(TabGlobal.DProdutoContratoT,['SUM(Quantidade) AS Quantidade'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_QuantidadeTotal_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DProdutoContratoT: TDProdutoContratoT;
+  // variáveis locais
+    ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DProdutoContratoT := TDProdutoContratoT(LocalizaTabela(Nil, 'DProdutoContratoT'));
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'QuantidadeTotal = (QuantidadeTotal + (:ProdutoContratoT_Quantidade))') then
+     PTabela(DProdutoContratoT,['SUM(Quantidade) AS Quantidade'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_QUANTTOTALEXP(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+     ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp') then
+     PTabela(TabGlobal.DExportadoTransito,['SUM(QuantidadeExp) AS QuantidadeExp'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_QUANTTOTALEXP_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DExportadoTransito: TDExportadoTransito;
+  // variáveis locais
+     ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DExportadoTransito := TDExportadoTransito(LocalizaTabela(Nil, 'DExportadoTransito'));
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'QUANTTOTALEXP = QUANTTOTALEXP + :ExportadoTransito_QuantidadeExp') then
+     PTabela(DExportadoTransito,['SUM(QuantidadeExp) AS QuantidadeExp'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
 function CalculaDContratoTransporte_QuantadePendente(AOwner: TComponent) : Double;
   // variáveis locais
 begin
@@ -184,6 +272,64 @@ begin
       Result := 0;
 end;
 
+function CalculaDContratoTransporte_ValorSCCTotal(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+    ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorSCCTotal = (ValorSCCTotal + (:ProdutoContratoT_ValorSCC))') then
+     PTabela(TabGlobal.DProdutoContratoT,['SUM(ValorSCC) AS ValorSCC'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorSCCTotal_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DProdutoContratoT: TDProdutoContratoT;
+  // variáveis locais
+    ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DProdutoContratoT := TDProdutoContratoT(LocalizaTabela(Nil, 'DProdutoContratoT'));
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorSCCTotal = (ValorSCCTotal + (:ProdutoContratoT_ValorSCC))') then
+     PTabela(DProdutoContratoT,['SUM(ValorSCC) AS ValorSCC'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalExp(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+   ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+     PTabela(TabGlobal.DExportadoTransito,['SUM(Valor) AS Valor'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalExp_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DExportadoTransito: TDExportadoTransito;
+  // variáveis locais
+   ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(AOwner, 'DContratoTransporte'));
+  DExportadoTransito := TDExportadoTransito(LocalizaTabela(Nil, 'DExportadoTransito'));
+  // a variável "Result" deverá conter o resultado da expressão
+     PTabela(DExportadoTransito,['SUM(Valor) AS Valor'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
 function CalculaDContratoTransporte_ValorTotalPendente(AOwner: TComponent) : Double;
   // variáveis locais
 begin
@@ -207,6 +353,98 @@ begin
   Result := DContratoTransporte.ValorSCCTotal.Conteudo - DContratoTransporte.ValorTotalExp.Conteudo ;
   IF Result = 0 THEN
      Result := 0 ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalComissao(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+  ValoresRetornar: Variant  ;
+begin
+  //  if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorTotalComissao = ( ValorTotalComissao + ( :ProdutoContratoT_ComisaoSFatura  ))') then
+     PTabela(TabGlobal.DProdutoContratoT,['SUM(ComisaoSFatura) AS ComisaoSFatura'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalComissao_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DProdutoContratoT: TDProdutoContratoT;
+  // variáveis locais
+  ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DProdutoContratoT := TDProdutoContratoT(LocalizaTabela(Nil, 'DProdutoContratoT'));
+  //  if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorTotalComissao = ( ValorTotalComissao + ( :ProdutoContratoT_ComisaoSFatura  ))') then
+     PTabela(DProdutoContratoT,['SUM(ComisaoSFatura) AS ComisaoSFatura'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+   ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+     PTabela(TabGlobal.DExportadoTransito,['SUM(ComisaoSFatura) AS ComisaoSFatura'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DExportadoTransito: TDExportadoTransito;
+  // variáveis locais
+   ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DExportadoTransito := TDExportadoTransito(LocalizaTabela(Nil, 'DExportadoTransito'));
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+     PTabela(DExportadoTransito,['SUM(ComisaoSFatura) AS ComisaoSFatura'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalComissaoExecutado(AOwner: TComponent) : Double;
+  // variáveis locais
+var
+  ValoresRetornar: Variant  ;
+begin
+  // a variável "Result" deverá conter o resultado da expressão
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+  // if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorTotalComissaoExecutado = ValorTotalComissaoExecutado + :Fatura_ValorConvertido') then
+     PTabela(TabGlobal.DExportadoTransito,['SUM(ValorConvertido) AS ValorConvertido'],'Contrato = '+AtribuiAspas(TabGlobal.DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
+end;
+
+function CalculaDContratoTransporte_ValorTotalComissaoExecutado_Rel(AOwner: TComponent) : Double;
+var
+  DContratoTransporte: TDContratoTransporte;
+  DExportadoTransito: TDExportadoTransito;
+  // variáveis locais
+  ValoresRetornar: Variant  ;
+begin
+  DContratoTransporte := TDContratoTransporte(LocalizaTabela(Nil, 'DContratoTransporte'));
+  DExportadoTransito := TDExportadoTransito(LocalizaTabela(Nil, 'DExportadoTransito'));
+  // a variável "Result" deverá conter o resultado da expressão
+  // a variável "Result" deverá conter o resultado da expressão
+  //   if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+  // if not PTabela(DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'ValorTotalComissaoExecutado = ValorTotalComissaoExecutado + :Fatura_ValorConvertido') then
+     PTabela(DExportadoTransito,['SUM(ValorConvertido) AS ValorConvertido'],'Contrato = '+AtribuiAspas(DContratoTransporte.Contrato.Conteudo),ValoresRetornar);
+     Result := 0 ;
+     IF ValoresRetornar[0] <> null then
+        Result := ValoresRetornar[0]  ;
 end;
 
 function CalculaDContratoTransporte_VlTotalComissaoPendente(AOwner: TComponent) : Double;

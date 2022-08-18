@@ -563,8 +563,15 @@ end;
 procedure TDContratoTransporte.CalculaCampos;
 begin
   StatusCT.Conteudo := CalculaDContratoTransporte_StatusCT(Self);
+  QuantidadeTotal.Conteudo := CalculaDContratoTransporte_QuantidadeTotal(Self);
+  QUANTTOTALEXP.Conteudo := CalculaDContratoTransporte_QUANTTOTALEXP(Self);
   QuantadePendente.Conteudo := CalculaDContratoTransporte_QuantadePendente(Self);
+  ValorSCCTotal.Conteudo := CalculaDContratoTransporte_ValorSCCTotal(Self);
+  ValorTotalExp.Conteudo := CalculaDContratoTransporte_ValorTotalExp(Self);
   ValorTotalPendente.Conteudo := CalculaDContratoTransporte_ValorTotalPendente(Self);
+  ValorTotalComissao.Conteudo := CalculaDContratoTransporte_ValorTotalComissao(Self);
+  VALORTOTALCOMISSAOEXECUTADOUS.Conteudo := CalculaDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS(Self);
+  ValorTotalComissaoExecutado.Conteudo := CalculaDContratoTransporte_ValorTotalComissaoExecutado(Self);
   VlTotalComissaoPendente.Conteudo := CalculaDContratoTransporte_VlTotalComissaoPendente(Self);
 end;
 
