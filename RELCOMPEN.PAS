@@ -118,7 +118,9 @@ begin
   DFatura.Filtro.Clear;
   DFatura.Filtro.add(s_filtro);
   DFatura.AtualizaSql(False);
+
   Parametros(DFatura);
+  DFatura.SQL.SaveToFile('_RELCOMPEN_DFatura.sql');
   DFatura.Open;
   frDBDataSet.DataSet := DFatura;
 end;

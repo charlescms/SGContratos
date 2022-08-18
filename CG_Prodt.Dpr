@@ -3,7 +3,7 @@
  Programa...: CG_Prodt.Dpr - Gerenciador dos Módulos do Projeto
  Sistema....: 
  Data.......: 19/09/2014
- Versão.....: 3.40
+ Versão.....: 3.49
  Analista...: Charles
  Programador: Charles
  Criação....: xMaker 5.1 Release: R05

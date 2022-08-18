@@ -1,6 +1,6 @@
 object FormOrdemCobranca: TFormOrdemCobranca
-  Left = 285
-  Top = 133
+  Left = 774
+  Top = 512
   Width = 950
   Height = 587
   Caption = 'Entrada de Dados'

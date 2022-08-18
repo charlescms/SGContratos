@@ -180,6 +180,11 @@ arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
     CORRECAO NO DICIONARIO DE DADOS DO XMAKER
     TODOS OS CAMPOS CALCULADO AGORA ESTAO SENDO CALCULADO EM UM SOMATORIO NA TABELA DE
     ORIGRM DO CALCULO PARA CORRIGIR O EVENTUAL ERRO DO SISTEMA
+
+14/11/2014    versao := 3.50
+     problema identificado no arquivo Informe.pas
+     linha
+     RELCOMPEN layout relatorio foi modificado a pedido da elaine
       }
 
                        

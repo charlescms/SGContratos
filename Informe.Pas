@@ -2961,7 +2961,11 @@ begin
 //         S_FILTRO_EXP_NV:=                  '     ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
 
          S_FILTRO       := S_FILTRO       + ' AND ( Informe.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+//         S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+//  14/11/2014    v3.49
+         S_FILTRO_CERBO_NV := S_FILTRO_CERBO_NV + ' AND ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+
+         S_FILTRO_CERBO_NV := S_FILTRO_CERBO_NV + ' AND ( CERBO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
          S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CERBO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
       END ;
       S_FILTRO_QUANTIDADE_DT := ' AND ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  +' ) ' ;
@@ -2989,7 +2993,10 @@ begin
           END;
 
           S_FILTRO := S_FILTRO + ' AND ( Informe.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ';
-          S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
+//          S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
+//  14/11/2014    v3.49
+          S_FILTRO_CERBO_NV := S_FILTRO_CERBO_NV + ' AND ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
+          S_FILTRO_CERBO_NV := S_FILTRO_CERBO_NV + ' AND ( CERBO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
           S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CERBO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
 
       END;
