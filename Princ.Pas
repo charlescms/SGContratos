@@ -168,6 +168,13 @@ arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
    O RELATORIO  INFOMES  ALIMPORT O CANPO [DCERBO_L_DET."FATURA"] FOI SUBSTITUIDO PELO [DCERBO_L_DET."FATURASUR"]
     E AS QUERESE RESPECTIVAS FORMA MODIFICADASA PARA ATENDER Z NECESSIDADE
     Versao         := '3.48';
+25/07/2014
+    CORRECAO unit Informe; NO RELATORIO 
+      CODIGO CORRIGIDO
+      // erro de conjunto em sql 25/07/2014 identificado no relatorio master
+      //  '  CERBO.FaturaSUR AS FaturaSUR,' + NOVA_LINHA +     //   02/05/2014
+      // MODIFICADO TITULO DO RELATORIO A PEDIDO DA KARINA
+    CORRECAO unit Parametro;
       }
 
                        

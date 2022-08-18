@@ -319,14 +319,7 @@ SC_CERBO_INICI =
   '  (select Fornecedores.RAZAO from Fornecedores where   ContratoTransporte.FORCOD = Fornecedores.FORCOD ) AS RAZAO,' + NOVA_LINHA +
   '  ContratoTransporte.NomeMix AS NomeMix,   ' +  NOVA_LINHA +
   '  ContratoTransporte.FormComissao AS FormComissao,' + NOVA_LINHA;
-
-{
-  '  ContratoTransporte.QuantidadeTotal AS QuantidadeTotal,' + NOVA_LINHA +
-  '  ContratoTransporte.VALORTOTALCOMISSAO as ComisaoSFatura  ,' + NOVA_LINHA +
-  '  ContratoTransporte.QUANTTOTALEXP as QuantidadeExp   ,' + NOVA_LINHA +
-  '  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado ,' + NOVA_LINHA +
-}
-
+  
  SC_QUANTIDADETOTAL_I             = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.QUANTIDADE)       IS NULL ,0,SUM(PRODUTOCONTRATOT.QUANTIDADE) )       FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
  SC_QUANTIDADETOTAL_F             = ' )  AS  QUANTIDADETOTAL, ' +    NOVA_LINHA  ;
 
@@ -351,7 +344,8 @@ SC_CERBO_INICI =
 
 SC_CERBO_INICI_2 =
   '  ( select Clientes.RAZAO  from Clientes where ContratoTransporte.CLICOD = Clientes.CLICOD ) AS RAZAO_CLIENTE,' + NOVA_LINHA +
-  '  CERBO.FaturaSUR AS FaturaSUR,' + NOVA_LINHA +     //   02/05/2014
+// erro de conjunto em sql 25/07/2014 identificado no relatorio master
+//  '  CERBO.FaturaSUR AS FaturaSUR,' + NOVA_LINHA +     //   02/05/2014
   '  ContratoTransporte.CLICOD AS CLICOD ' + NOVA_LINHA +
   'from ( select' + NOVA_LINHA +
   '       ExportadoTransito.Contrato AS Contrato,' + NOVA_LINHA +

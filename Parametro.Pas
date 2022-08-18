@@ -27,6 +27,7 @@ s_analise =
 'from ( ' +     NOVA_LINHA +
   'select ' +   NOVA_LINHA +
   '  contratotransporte.contrato , ' +  NOVA_LINHA +
+  '  contratotransporte.StatusCT , ' + NOVA_LINHA +
   '  contratotransporte.ValorSCCTotal , ' + NOVA_LINHA +
   '  (( select sum(produtocontratot.ValorSCC) from produtocontratot  where produtocontratot.contrato = contratotransporte.contrato )) as ValorSCC_TOTAL_PRODUTO, ' + NOVA_LINHA +
   '  contratotransporte.ValorTotalExp ,' + NOVA_LINHA +
@@ -50,7 +51,9 @@ s_analise =
   '       ( VALORTOTALCOMISSAO < VALORTOTALCOMISSAO_CAL_PRODUTO ) or '+ NOVA_LINHA +
   '       ( VALORTOTALCOMISSAOEXECUTADO is null)  or  '+ NOVA_LINHA +
   '       ( VALORTOTALCOMISSAOEXECUTADO  < VALORTOTALCOMISSAOEXECUTADO_CAL  ) OR '+ NOVA_LINHA +
-  '       ( VALORTOTALCOMISSAOEXECUTADOUS  < VALORTOTALCOMISSAO_CAL_EXEC_US ) '+ NOVA_LINHA +
+  '       ( VALORTOTALCOMISSAOEXECUTADOUS  < VALORTOTALCOMISSAO_CAL_EXEC_US ) OR '+ NOVA_LINHA +
+  // 25/07/2014 INCLUIDO ESTE CRITERIO PARA CORRECAO
+  '       ((  StatusCT = ''EX'') and ( VALORTOTALCOMISSAO > VALORTOTALCOMISSAO_CAL_PRODUTO ) ) '+ NOVA_LINHA +
   ' ORDER BY CONTRATO';
 
 sc_sql_recebimento =

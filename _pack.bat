@@ -1,1 +1,1 @@
-DEL *.~* *.DDP *.dcu *.bak *.exe *.sql n*.txt *.log *.map *.xml *.cfg /S
+DEL *.~* *.DDP *.dcu *.bak *.exe  /S

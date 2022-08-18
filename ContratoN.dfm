@@ -1,6 +1,6 @@
 object FormContratoN: TFormContratoN
-  Left = 261
-  Top = 293
+  Left = 209
+  Top = 46
   Width = 1031
   Height = 714
   Caption = 'Entrada de Dados'
@@ -27,8 +27,8 @@ object FormContratoN: TFormContratoN
   object PagePrincipal: TPageControl
     Left = 0
     Top = 33
-    Width = 1015
-    Height = 643
+    Width = 1023
+    Height = 654
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,8 +38,8 @@ object FormContratoN: TFormContratoN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 584
-        Width = 1007
+        Top = 595
+        Width = 1015
         Height = 31
         Align = alBottom
         BevelOuter = bvNone
@@ -209,8 +209,8 @@ object FormContratoN: TFormContratoN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 563
-        Width = 1007
+        Top = 574
+        Width = 1015
         Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -227,8 +227,8 @@ object FormContratoN: TFormContratoN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1007
-        Height = 563
+        Width = 1015
+        Height = 574
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -237,8 +237,8 @@ object FormContratoN: TFormContratoN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1007
-          Height = 563
+          Width = 1015
+          Height = 574
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -248,15 +248,15 @@ object FormContratoN: TFormContratoN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1007
-              Height = 563
+              Width = 1015
+              Height = 574
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object Panel1: TPanel
                 Left = 0
                 Top = 0
-                Width = 1007
+                Width = 1015
                 Height = 233
                 Align = alTop
                 TabOrder = 0
@@ -2082,7 +2082,7 @@ object FormContratoN: TFormContratoN
               object GroupBox1: TGroupBox
                 Left = 0
                 Top = 233
-                Width = 1007
+                Width = 1015
                 Height = 120
                 Align = alTop
                 Caption = 'Produtos'
@@ -2090,7 +2090,7 @@ object FormContratoN: TFormContratoN
                 object Grid_PrudutoContratoT: TDBGrid
                   Left = 2
                   Top = 15
-                  Width = 1003
+                  Width = 1011
                   Height = 103
                   Align = alClient
                   Font.Charset = DEFAULT_CHARSET
@@ -2118,7 +2118,7 @@ object FormContratoN: TFormContratoN
               object Panel2: TPanel
                 Left = 0
                 Top = 353
-                Width = 1007
+                Width = 1015
                 Height = 129
                 Align = alTop
                 TabOrder = 2
@@ -2159,7 +2159,7 @@ object FormContratoN: TFormContratoN
                   end
                 end
                 object GroupBox3: TGroupBox
-                  Left = 560
+                  Left = 568
                   Top = 1
                   Width = 446
                   Height = 127
@@ -2383,7 +2383,7 @@ object FormContratoN: TFormContratoN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1015
+    Width = 1023
     Height = 33
     Align = alTop
     BevelOuter = bvNone
@@ -2646,7 +2646,7 @@ object FormContratoN: TFormContratoN
     object Divisao_sup: TPanel
       Left = 0
       Top = 29
-      Width = 1015
+      Width = 1023
       Height = 4
       Align = alBottom
       TabOrder = 0

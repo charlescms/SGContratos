@@ -1,6 +1,6 @@
 object FormParametro: TFormParametro
-  Left = 293
-  Top = 115
+  Left = 373
+  Top = 30
   Width = 735
   Height = 508
   Caption = 'Entrada de Dados'
@@ -25,8 +25,8 @@ object FormParametro: TFormParametro
   object PageForm: TNotebook
     Left = 0
     Top = 33
-    Width = 719
-    Height = 418
+    Width = 727
+    Height = 429
     Align = alClient
     TabOrder = 1
     object TPage
@@ -35,8 +35,8 @@ object FormParametro: TFormParametro
       Caption = 'Manutencao'
       object TabPaginas: TTabSet
         Left = 0
-        Top = 354
-        Width = 719
+        Top = 365
+        Width = 727
         Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -53,8 +53,8 @@ object FormParametro: TFormParametro
       end
       object PnInferior: TPanel
         Left = 0
-        Top = 376
-        Width = 719
+        Top = 387
+        Width = 727
         Height = 42
         Align = alBottom
         BevelOuter = bvNone
@@ -200,8 +200,8 @@ object FormParametro: TFormParametro
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 719
-        Height = 353
+        Width = 727
+        Height = 364
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -210,8 +210,8 @@ object FormParametro: TFormParametro
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 719
-          Height = 353
+          Width = 727
+          Height = 364
           Align = alClient
           PageIndex = 2
           TabOrder = 0
@@ -222,15 +222,15 @@ object FormParametro: TFormParametro
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 719
-              Height = 353
+              Width = 727
+              Height = 364
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object LbcTEXTOFATURA: TLabel
                 Left = 0
                 Top = 0
-                Width = 719
+                Width = 727
                 Height = 13
                 Align = alTop
                 Alignment = taCenter
@@ -259,7 +259,7 @@ object FormParametro: TFormParametro
               object LbcENDERECOEMPRESA: TLabel
                 Left = 0
                 Top = 133
-                Width = 719
+                Width = 727
                 Height = 13
                 Align = alTop
                 Alignment = taCenter
@@ -343,7 +343,7 @@ object FormParametro: TFormParametro
               object TEXTOFATURA: TDBMemo
                 Left = 0
                 Top = 13
-                Width = 719
+                Width = 727
                 Height = 120
                 Align = alTop
                 ParentShowHint = False
@@ -470,7 +470,7 @@ object FormParametro: TFormParametro
               object ENDERECOEMPRESA: TDBMemo
                 Left = 0
                 Top = 146
-                Width = 719
+                Width = 727
                 Height = 72
                 Align = alTop
                 ParentShowHint = False
@@ -997,16 +997,16 @@ object FormParametro: TFormParametro
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 719
-              Height = 353
+              Width = 727
+              Height = 364
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object RxDBGrid1: TRxDBGrid
                 Left = 0
                 Top = 25
-                Width = 719
-                Height = 328
+                Width = 727
+                Height = 339
                 Align = alClient
                 DataSource = DS_analise
                 TabOrder = 0
@@ -1019,7 +1019,7 @@ object FormParametro: TFormParametro
               object DBNavigator1: TDBNavigator
                 Left = 0
                 Top = 0
-                Width = 719
+                Width = 727
                 Height = 25
                 DataSource = DS_analise
                 VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
@@ -1144,8 +1144,8 @@ object FormParametro: TFormParametro
       end
       object Divisao_inf: TPanel
         Left = 0
-        Top = 353
-        Width = 719
+        Top = 364
+        Width = 727
         Height = 1
         Align = alBottom
         TabOrder = 3
@@ -1201,7 +1201,7 @@ object FormParametro: TFormParametro
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 719
+    Width = 727
     Height = 33
     Align = alTop
     BevelOuter = bvNone
@@ -1286,7 +1286,7 @@ object FormParametro: TFormParametro
     object Divisao_sup: TPanel
       Left = 0
       Top = 31
-      Width = 719
+      Width = 727
       Height = 2
       Align = alBottom
       TabOrder = 0
@@ -1294,8 +1294,8 @@ object FormParametro: TFormParametro
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 451
-    Width = 719
+    Top = 462
+    Width = 727
     Height = 19
     Panels = <
       item
@@ -1438,12 +1438,12 @@ object FormParametro: TFormParametro
         'from contratotransporte) as analise   where (  Qunat_Total_Contr' +
         'ato <   Qunat_Total_Produto ) OR (  Qunat_Total_Exp_Contrato < 0' +
         '  ) ORDER BY CONTRATO')
-    Left = 661
-    Top = 70
+    Left = 469
+    Top = 174
   end
   object DS_analise: TDataSource
     DataSet = IBQuery_Analise
-    Left = 657
-    Top = 99
+    Left = 681
+    Top = 195
   end
 end
