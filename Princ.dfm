@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 162
-  Top = 69
+  Left = 199
+  Top = 78
   Width = 950
   Height = 695
   Caption = 'Titulo do Projeto'
@@ -364,9 +364,9 @@ object FormPrincipal: TFormPrincipal
       end
     end
     object TreeOpcoes: TTreeView
-      Left = -1
-      Top = 65
-      Width = 205
+      Left = 47
+      Top = 57
+      Width = 90
       Height = 332
       BorderStyle = bsNone
       Font.Charset = DEFAULT_CHARSET
@@ -432,8 +432,8 @@ object FormPrincipal: TFormPrincipal
         20506167616D656E746F}
     end
     object TreeMenuSup: TTreeView
-      Left = -19
-      Top = 183
+      Left = 21
+      Top = 439
       Width = 71
       Height = 57
       BorderStyle = bsNone

@@ -23,6 +23,7 @@ type
     {01-Início do Bloco Modular. Modificações não serão preservadas}
     AbaConsulta: TTabSet;
     AbrirImagem: TMenuItem;
+    btn_Corrig: TBitBtn;
     BtnAnterior: TSpeedButton;
     BtnDesistir: TBitBtn;
     BtnExcluir: TSpeedButton;
@@ -63,6 +64,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
     ID_FORN: TXDBLookUp;
     Img_Form: TImage;
     Img_Tabela: TImage;
@@ -145,8 +147,7 @@ type
     ValorTotalPendente: TXDBNumEdit;
     XNumEdit1: TXNumEdit;
     XNumEdit2: TXNumEdit;
-    GroupBox4: TGroupBox;
-    btn_Corrig: TBitBtn;
+    btn_CancelaContrato: TBitBtn;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure CadastroExit(Sender: TObject);
@@ -243,6 +244,7 @@ type
     procedure btn_CorrigClick(Sender: TObject);
     procedure DataSource_Grid_PrudutoContratoTDataChange(Sender: TObject;
       Field: TField);
+    procedure btn_CancelaContratoClick(Sender: TObject);
   private
     { Private declarations }
     Navegando: Boolean;
@@ -1281,6 +1283,12 @@ end;
 
 procedure TFormContratoN.BtnExcluirClick(Sender: TObject);
 begin
+  if ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'CA' ) then
+  begin
+    MessageDlg('Registro não pode ser Excluido, ele está cancelado!',mtError,[mbOk],0);
+    exit;
+  end;
+
   if TabelaPrincipal.Eof then
   begin
     TabelaPrincipal.Prior;
@@ -2142,6 +2150,7 @@ begin
        //   BtnModificarClick(Self) ;
           TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo := TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo ;
           TabGlobal.DContratoTransporte.Post;
+          // TabGlobal.DProdutoContratoT;
       //    BtnSalvarClick(Self) ;
        end
 
@@ -2157,6 +2166,38 @@ begin
     btn_Corrig.Visible := True
  else
     btn_Corrig.Visible := False  ;
+end;
+
+procedure TFormContratoN.btn_CancelaContratoClick(Sender: TObject);
+begin
+    if (  TabGlobal.dExportadoTransito.eof )  then
+    begin
+       if MessageDlg('Confirma Cancela Contrato =' + TabGlobal.DContratoTransporte.Contrato.ValorString + ' ?',mtConfirmation,[mbYes,mbNo],0) = mrYes then
+       begin
+          while (( not TabGlobal.DProdutoContratoT.Eof) and
+                 ( TabGlobal.DProdutoContratoT.Contrato.Conteudo = TabGlobal.DContratoTransporte.Contrato.Conteudo ))
+          do begin
+             TabGlobal.DProdutoContratoT.Modifica ;
+             TabGlobal.DProdutoContratoT.ComisaoSFatura.Conteudo := 0 ;             
+             TabGlobal.DProdutoContratoT.Quantidade.Conteudo := 0 ;
+             TabGlobal.DProdutoContratoT.ValorSCC.Conteudo := 0;
+             TabGlobal.DProdutoContratoT.PrecoFOB.Conteudo := 0 ;
+             TabGlobal.DProdutoContratoT.PrecoSCC.Conteudo := 0 ;
+
+             TabGlobal.DProdutoContratoT.Salva ;
+
+             TabGlobal.DProdutoContratoT.Next;
+          end;
+          TabGlobal.DContratoTransporte.Modifica ;
+          TabGlobal.DContratoTransporte.StatusCT.Conteudo := 'CA';
+          TabGlobal.DContratoTransporte.Salva ;
+       end
+
+    end
+    else
+       MessageDlg('Contrato =' + TabGlobal.DContratoTransporte.Contrato.ValorString + ' não pode ser Cancelado já existem Exportações ?',mtInformation ,[mbOK],0) ;
+
+
 end;
 
 end.

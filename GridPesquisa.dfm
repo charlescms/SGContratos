@@ -22,7 +22,7 @@ object FormGridPesquisa: TFormGridPesquisa
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 642
+    Width = 634
     Height = 20
     Align = alTop
     BevelOuter = bvNone
@@ -30,7 +30,7 @@ object FormGridPesquisa: TFormGridPesquisa
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 642
+      Width = 634
       Height = 20
       Align = alClient
       Brush.Color = 14743792
@@ -41,7 +41,7 @@ object FormGridPesquisa: TFormGridPesquisa
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 642
+      Width = 634
       Height = 20
       Align = alClient
       Alignment = taCenter
@@ -59,8 +59,8 @@ object FormGridPesquisa: TFormGridPesquisa
   object GridConsulta: TDBGrid
     Left = 0
     Top = 20
-    Width = 642
-    Height = 212
+    Width = 634
+    Height = 201
     Align = alClient
     DataSource = DataSource
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
@@ -76,8 +76,8 @@ object FormGridPesquisa: TFormGridPesquisa
   end
   object PnRodape: TPanel
     Left = 0
-    Top = 232
-    Width = 642
+    Top = 221
+    Width = 634
     Height = 55
     Align = alBottom
     BevelOuter = bvLowered
@@ -101,14 +101,14 @@ object FormGridPesquisa: TFormGridPesquisa
       Top = 16
       Width = 75
       Height = 13
-      Caption = 'Pesquisar após:'
+      Caption = 'Pesquisar ap'#243's:'
     end
     object BtnOrdem: TSpeedButton
       Left = 378
       Top = 31
       Width = 16
       Height = 18
-      Hint = 'Alterar ordenação'
+      Hint = 'Alterar ordena'#231#227'o'
       Glyph.Data = {
         96000000424D960000000000000076000000280000000A000000040000000100
         0400000000002000000000000000000000001000000000000000000000000000
@@ -122,7 +122,7 @@ object FormGridPesquisa: TFormGridPesquisa
     object LbTransportar: TLabel
       Left = 1
       Top = 1
-      Width = 640
+      Width = 632
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -161,7 +161,7 @@ object FormGridPesquisa: TFormGridPesquisa
         '<= Menor ou Igual'
         '>   Maior que'
         '>= Maior ou Igual'
-        '%  Contém'
+        '%  Cont'#233'm'
         '?   Vazio')
     end
     object EdEstilo: TComboBox

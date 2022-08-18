@@ -19,8 +19,8 @@ uses
   {$IFDEF DELPHI5}{$ELSE}Variants, MaskUtils,{$ENDIF}
   Atributo,  Clipbrd, Tabela, IniFiles, Printers, Calculos,
   {$I LTab.pas}
-  JPeg,      XEdit, XBanner,  XNum, RxMemDS, IBDatabase, DBClient, FR_Class,
-  FR_DSet, FR_DBSet, FR_Desgn, UCMS_CONST;
+  JPeg,      XEdit, XBanner,  XNum, RxMemDS, IBDatabase,  FR_Class,
+  FR_DSet, FR_DBSet, FR_Desgn, UCMS_CONST, DBClient;
 
 
 CONST
@@ -50,14 +50,14 @@ CONST
        '      ContratoTransporte.Contrato AS Contrato,' + NOVA_LINHA +
        '      ContratoTransporte.NomeMix AS NomeMix,  ' + NOVA_LINHA +
        '      ContratoTransporte.C_C AS C_C,          ' + NOVA_LINHA +
-       '      ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +  NOVA_LINHA +
-       '      ContratoTransporte.SDataEmbarque AS SDataEmbarque,' +  NOVA_LINHA +
-       '      ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,' +  NOVA_LINHA +
-       '      ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,' +  NOVA_LINHA +
        '      ContratoTransporte.FORCOD AS FORCOD,              ' +  NOVA_LINHA +
        '      ContratoTransporte.CLICOD AS CLICOD,              ' +  NOVA_LINHA +
        '      CONTRATOTRANSPORTE.CADASTRO as CADASTRO ,         ' +  NOVA_LINHA +
        '      CONTRATOTRANSPORTE.SEQ as SEQ ,                   ' +  NOVA_LINHA +
+       '      ContratoTransporte.SDataEmbarque AS SDataEmbarque,' +  NOVA_LINHA  +
+       '      ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +  NOVA_LINHA +
+       '      ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,' +  NOVA_LINHA +
+       '      ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,' +  NOVA_LINHA +
        '      ContratoTransporte.ID AS ID                       ' +  NOVA_LINHA +
        '      from  ContratoTransporte                          ' +  NOVA_LINHA +
        '    ) as  Informe                                       ' +  NOVA_LINHA +
@@ -88,13 +88,13 @@ CONST
        '       ContratoTransporte.NomeMix AS NomeMix,   ' +          NOVA_LINHA +
        '       CONTRATOTRANSPORTE.CADASTRO as CADASTRO ,' +          NOVA_LINHA +
        '       ContratoTransporte.C_C AS C_C,           ' +          NOVA_LINHA +
-       '       ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +  NOVA_LINHA +
-       '       ContratoTransporte.SDataEmbarque AS SDataEmbarque,    ' +  NOVA_LINHA +
-       '       ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    ' +  NOVA_LINHA +
-       '       ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    ' +  NOVA_LINHA +
        '       ContratoTransporte.FORCOD AS FORCOD,  ' +                  NOVA_LINHA +
        '       ContratoTransporte.CLICOD AS CLICOD,  ' +                  NOVA_LINHA +
        '       CONTRATOTRANSPORTE.SEQ as SEQ ,       ' +                  NOVA_LINHA +
+       '       ContratoTransporte.SDataEmbarque AS SDataEmbarque,    ' +  NOVA_LINHA  +
+       '       ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +  NOVA_LINHA +
+       '       ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    ' +  NOVA_LINHA +
+       '       ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    ' +  NOVA_LINHA +
        '       ContratoTransporte.ID AS ID           ' +                  NOVA_LINHA +
        '       from  ContratoTransporte              ' +                  NOVA_LINHA +
        '     ) as  Informe                           ' +                  NOVA_LINHA +
@@ -128,14 +128,15 @@ CONST
        '        ContratoTransporte.Contrato AS Contrato,    ' +             NOVA_LINHA +
        '        ContratoTransporte.NomeMix AS NomeMix,      ' +             NOVA_LINHA +
        '        ContratoTransporte.C_C AS C_C,              ' +             NOVA_LINHA +
-       '        ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +   NOVA_LINHA +
-       '        ContratoTransporte.SDataEmbarque AS SDataEmbarque,    ' +   NOVA_LINHA +
-       '        ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    ' +   NOVA_LINHA +
-       '        ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    ' +   NOVA_LINHA +
        '        ContratoTransporte.FORCOD AS FORCOD,     ' +                NOVA_LINHA +
        '        ContratoTransporte.CLICOD AS CLICOD,     ' +                NOVA_LINHA +
        '        CONTRATOTRANSPORTE.CADASTRO as CADASTRO ,' +                NOVA_LINHA +
        '        CONTRATOTRANSPORTE.SEQ as SEQ ,          ' +                NOVA_LINHA +
+       '        ContratoTransporte.SDataEmbarque AS SDataEmbarque,    ' +   NOVA_LINHA +
+
+       '        ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,' +   NOVA_LINHA +
+       '        ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    ' +   NOVA_LINHA +
+       '        ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    ' +   NOVA_LINHA +
        '        ContratoTransporte.ID AS ID              ' +                NOVA_LINHA +
        '        from  ContratoTransporte                 ' +                NOVA_LINHA +
        '      ) as  Informe                              ' +                NOVA_LINHA +
@@ -146,7 +147,7 @@ CONST
        ' Left Outer Join Fornecedores on                ' +                 NOVA_LINHA +
        '   Informe.FORCOD = Fornecedores.FORCOD         ' +                 NOVA_LINHA +
        ' Left Outer Join ExportadoTransito on           ' +                 NOVA_LINHA +
-       '   Informe.Contrato = ExportadoTransito.Contrato' ;                
+       '   Informe.Contrato = ExportadoTransito.Contrato' ;
 
        SC_ExportadoTransito_WHERE = ' WHERE ( ExportadoTransito.Contrato IS NOT  NULL )' ;
 
@@ -159,58 +160,51 @@ CONST
        ' Fornecedores.RAZAO AS RAZAO,               '+                  NOVA_LINHA +
        ' TAB_PAIS.NOME AS NOME,                     '+                  NOVA_LINHA +
        ' Informe.C_C AS C_C,                        '+                  NOVA_LINHA +
-       // correcao de erro 05/01/2012
-       {'  PRODUTOCONTRATOT.FormPago AS FormPago_OLD,    '+                  NOVA_LINHA +   }
        ' iif( (select  count(PRODUTOCONTRATOT.FormPago)  as FormPago from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato )> 1 , '' '',  PRODUTOCONTRATOT.FormPago )   AS FormPago ,  '+                  NOVA_LINHA ;
+
        SC_Contrato_VALORSCCTOTAL =
        ' Informe.VALORSCCTOTAL AS VALORSCCTOTAL,                     '+ NOVA_LINHA ;
-//     26/102012
-//       SC_Contrato_QUANTIDADETOTAL =
-//       ' Informe.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+                  NOVA_LINHA ;
+
+       SC_Contrato_VALORSCCTOTAL_Inicial =
+       '(select  sum(PRODUTOCONTRATOT.VALORSCC)  as PrecoFOB from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato ' ;
+
+       SC_Contrato_VALORSCCTOTAL_FIN =
+        ' ) AS VALORSCCTOTAL , ' +  NOVA_LINHA ;
+
+
 
        SC_Contrato_QUANTIDADETOTAL_Inicial =
        '(select  sum(PRODUTOCONTRATOT.QUANTIDADE)  as PrecoFOB from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato ' ;
-
-//        AND ( PRODUTOCONTRATOT.CADASTRO >= '2011/12/01' )  AND ( PRODUTOCONTRATOT.CADASTRO <= '2012/10/25' )
 
        SC_Contrato_QUANTIDADETOTAL_FIN =
         ' ) as QUANTIDADETOTAL , ' +  NOVA_LINHA ;
 
        SC_Contrato_QUANTIDADETOTAL_CONTINUA =
        ' Informe.SDataEmbarque AS SDataEmbarque,    '+                  NOVA_LINHA +
-       // correcao 08/01/2012
-       {' PRODUTOCONTRATOT.PrecoFOB AS PrecoFOB,     '+                  NOVA_LINHA +   }
        ' (select  MAX(PRODUTOCONTRATOT.PrecoFOB)  as PrecoFOB from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato ) as PrecoFOB , '+ NOVA_LINHA +
        ' Informe.PRECOFOBTOTAL AS PRECOFOBTOTAL,    '+                  NOVA_LINHA ;
-//       ' Informe.QUANTTOTALEXP AS QUANTTOTALEXP2,    '+                  NOVA_LINHA +
-//       ' Informe.ValorTotalExp AS ValorTotalExp2,    '+                  NOVA_LINHA ;
+
        SC_Contrato_princ_q_i =  // quantidade
        '(select  distinct sum(ExportadoTransito.QuantidadeExp) from ExportadoTransito  WHERE ExportadoTransito.Contrato = Informe.Contrato and ( ExportadoTransito.Contrato IS NOT  NULL )';
+
        SC_Contrato_princ_q_f =  // quantidade
        ' ) as QUANTTOTALEXP ,' +                  NOVA_LINHA ;
+
        SC_Contrato_princ_v_i =  // valor
        '(select  distinct sum(ExportadoTransito.valor) from ExportadoTransito  WHERE ExportadoTransito.Contrato = Informe.Contrato and ( ExportadoTransito.Contrato IS NOT  NULL )' ;
+
        SC_Contrato_princ_v_f =
         '  ) as ValorTotalExp ,'  +                  NOVA_LINHA ;
 
-       SC_Contrato_princ_v_f2 =   // CRIADO PARA 
+       SC_Contrato_princ_v_f2 =   // CRIADO PARA
         '  ) as ValorTotalExp '  +                  NOVA_LINHA ;
-       SC_Contrato_princ_f =
+
+       SC_Contrato_princ_f =  // duvida desta quere
        ' (( SELECT SUM ( Boocking.QUANTIDADE) AS QUANTIDADE FROM Boocking WHERE Informe.Contrato = Boocking.Contrato )) AS QUANTIDADE, '+ NOVA_LINHA +
-       // correcao de erro 05/01/2012
-       {' PRODUTOCONTRATOT.PrecoSCC AS PrecoSCC_OLD,                      '+ NOVA_LINHA + }
+       ' (( SELECT SUM ( Boocking.QUANTIDADE) AS QUANTIDADE FROM Boocking WHERE Informe.Contrato = Boocking.Contrato )) AS QUANTIDADEBOOCK,'+ NOVA_LINHA +
        ' (select  sum(PRODUTOCONTRATOT.PrecoSCC)  as PrecoSCC from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato ) as PrecoSCC_OLD ,'+ NOVA_LINHA +
        ' (select  MAX(PRODUTOCONTRATOT.PrecoSCC)  as PrecoSCC from PRODUTOCONTRATOT WHERE Informe.Contrato = PRODUTOCONTRATOT.Contrato ) as PrecoSCC ,'+ NOVA_LINHA +
        ' Informe.CLICOD AS CLICOD,                                   '+ NOVA_LINHA +
- {      '/* Boocking.Navio AS NAVIO_BOOCK,                       */     '+ NOVA_LINHA +
-       '/* Boocking.Quantidade AS Quantidade,                 */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.Navio AS Navio,                   */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.QuantidadeExp AS QuantidadeExp,	  */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.Valor AS Valor,                   */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.DataEmbarque AS DataEmbarque,     */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.Fatura AS Fatura,                 */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.ETADestino AS ETADestino,         */     '+ NOVA_LINHA +
-       '/* ExportadoTransito.OBS AS OBS,                       */     '+ NOVA_LINHA + }
        ' Informe.CADASTRO as CADASTRO ,                              '+ NOVA_LINHA +
        ' Informe.FORCOD AS FORCOD,                                   '+ NOVA_LINHA +
        ' Informe.StatusCT AS StatusCT,                                   '+ NOVA_LINHA +
@@ -220,17 +214,17 @@ CONST
        '       ContratoTransporte.Contrato AS Contrato,              '+ NOVA_LINHA +
        '       ContratoTransporte.NomeMix AS NomeMix,                '+ NOVA_LINHA +
        '       ContratoTransporte.C_C AS C_C,                        '+ NOVA_LINHA +
-       '       ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+ NOVA_LINHA +
-       '       ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,    '+ NOVA_LINHA +
-       '       ContratoTransporte.ValorTotalExp AS ValorTotalExp,    '+ NOVA_LINHA +
-       '       ContratoTransporte.SDataEmbarque AS SDataEmbarque,    '+ NOVA_LINHA +
-       '       ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    '+ NOVA_LINHA +
-       '       ContratoTransporte.CLICOD AS CLICOD,                  '+ NOVA_LINHA +
-       '       ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    '+ NOVA_LINHA +
        '       CONTRATOTRANSPORTE.CADASTRO as CADASTRO ,' +             NOVA_LINHA +
        '       CONTRATOTRANSPORTE.SEQ as SEQ , ' +                      NOVA_LINHA +
        '       ContratoTransporte.FORCOD AS FORCOD,'+      NOVA_LINHA +
        '       ContratoTransporte.StatusCT AS StatusCT,'+      NOVA_LINHA +
+       '       ContratoTransporte.SDataEmbarque AS SDataEmbarque,    '+ NOVA_LINHA +
+       '       ContratoTransporte.CLICOD AS CLICOD,                  '+ NOVA_LINHA +
+       '       ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+ NOVA_LINHA +
+       '       ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,    '+ NOVA_LINHA +
+       '       ContratoTransporte.ValorTotalExp AS ValorTotalExp,    '+ NOVA_LINHA +
+       '       ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,    '+ NOVA_LINHA +
+       '       ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,    '+ NOVA_LINHA +
        '       ContratoTransporte.ID AS ID         '+      NOVA_LINHA +
        '       from  ContratoTransporte            '+      NOVA_LINHA +
        '     ) as  Informe                         '+      NOVA_LINHA +
@@ -249,6 +243,17 @@ CONST
 
 SC_Contrato_WHERE = ' WHERE ( Informe.Contrato IS NOT  NULL )' ;
 SC_Contrato_order = ' Order By TAB_PAIS.NOME, Informe.Contrato ' ;
+
+SC_Total_Pais_Inicio_NOVO =
+      ' SELECT'+ NOVA_LINHA +
+      '   TOTAL_PAIS.NOME,'+ NOVA_LINHA +
+      '   IIF ( SUM( TOTAL_PAIS.QUANTIDADETOTAL) IS NULL,0, SUM( TOTAL_PAIS.QUANTIDADETOTAL) )  AS  QUANTIDADETOTAL,'+ NOVA_LINHA +
+      '   IIF ( SUM( TOTAL_PAIS.VALORSCCTOTAL)   IS NULL,0, SUM( TOTAL_PAIS.VALORSCCTOTAL)   ) AS VALORSCCTOTAL,'+ NOVA_LINHA +
+      '   IIF ( SUM( TOTAL_PAIS.QUANTIDADEBOOCK) IS NULL,0, SUM( TOTAL_PAIS.QUANTIDADEBOOCK) ) AS QUANTIDADEBOOCK,'+ NOVA_LINHA +
+      '   IIF ( SUM( TOTAL_PAIS.QUANTTOTALEXP)   IS NULL,0, SUM( TOTAL_PAIS.QUANTTOTALEXP)   ) AS QUANTTOTALEXP,'+ NOVA_LINHA +
+      '   IIF ( SUM( TOTAL_PAIS.ValorTotalExp)   IS NULL,0, SUM( TOTAL_PAIS.ValorTotalExp)   ) AS ValorTotalExp'+ NOVA_LINHA +
+      ' FROM ('+ NOVA_LINHA ;
+
 
 SC_Total_Pais_Inicio =
       ' SELECT'+ NOVA_LINHA +
@@ -273,16 +278,18 @@ SC_Total_Pais_Inicio2 =
       '               ContratoTransporte.Contrato AS Contrato,'+ NOVA_LINHA +
       '               ContratoTransporte.NomeMix AS NomeMix,'+ NOVA_LINHA +
       '               ContratoTransporte.C_C AS C_C,'+ NOVA_LINHA +
-      '               ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+ NOVA_LINHA +
-      '               ContratoTransporte.SDataEmbarque AS SDataEmbarque,'+ NOVA_LINHA +
-      '               ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,'+ NOVA_LINHA +
-      '               ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,'+ NOVA_LINHA +
-      '               ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,'+ NOVA_LINHA +
-      '               CONTRATOTRANSPORTE.CADASTRO as CADASTRO , ' +  NOVA_LINHA +      
-      '               ContratoTransporte.ValorTotalExp AS ValorTotalExp,'+ NOVA_LINHA +
       '               ContratoTransporte.FORCOD AS FORCOD,'+ NOVA_LINHA +
       '               ContratoTransporte.CLICOD as CLICOD,'+ NOVA_LINHA +
       '               CONTRATOTRANSPORTE.SEQ as SEQ , ' +    NOVA_LINHA +
+      '               CONTRATOTRANSPORTE.CADASTRO as CADASTRO , ' +  NOVA_LINHA +
+      '               ContratoTransporte.SDataEmbarque AS SDataEmbarque,'+ NOVA_LINHA +
+
+      '               ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+ NOVA_LINHA +
+      '               ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,'+ NOVA_LINHA +
+      '               ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,'+ NOVA_LINHA +
+      '               ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,'+ NOVA_LINHA +
+      '               ContratoTransporte.ValorTotalExp AS ValorTotalExp,'+ NOVA_LINHA +
+
       '               ContratoTransporte.ID AS ID'+ NOVA_LINHA +
       '               from  ContratoTransporte'+ NOVA_LINHA +
       '             ) as  Informe'+ NOVA_LINHA +
@@ -294,8 +301,6 @@ SC_Total_Pais_Inicio2 =
       '          Informe.FORCOD = Fornecedores.FORCOD'+ NOVA_LINHA +
       '        Left Outer Join EXPORTADOTRANSITO on'+ NOVA_LINHA +
       '          Informe.Contrato = EXPORTADOTRANSITO.Contrato'+ NOVA_LINHA +
-//      '        Left Outer Join Boocking on'+ NOVA_LINHA +
-//      '          Informe.Contrato = Boocking.Contrato'+ NOVA_LINHA +
       '        Left Outer Join PRODUTOCONTRATOT on'+ NOVA_LINHA +
       '        Informe.Contrato = PRODUTOCONTRATOT.Contrato'+ NOVA_LINHA ;
 
@@ -303,37 +308,24 @@ SC_Total_Pais_where =
       '       WHERE ( Informe.Contrato IS NOT  NULL )'+ NOVA_LINHA ;
 
 SC_Total_Pais_Final =
-      '       Order By TAB_PAIS.NOME'+ NOVA_LINHA +
       '     ) AS TOTAL_PAIS'+ NOVA_LINHA +
       '     GROUP BY   TOTAL_PAIS.NOME'+ NOVA_LINHA +
       '     ORDER BY   TOTAL_PAIS.NOME'+ NOVA_LINHA ;
 
-//      SC_PRODUTOS_where = ' WHERE ( Informe.Contrato IS NOT  NULL ) ';
-//      SC_PRODUTOS_order = ' Order By TAB_PAIS.NOME, Informe.Contrato'              ;
 
-// SC_Total_Pais_Inicio + SC_Total_Pais_where + SC_Total_Pais_Final
 
 SC_CERBO_INICI =
   'Select  DISTINCT ' + NOVA_LINHA +
   '  CERBO.Contrato AS Contrato,' + NOVA_LINHA +
   '  Fornecedores.RAZAO AS RAZAO,' + NOVA_LINHA +
   '  ContratoTransporte.NomeMix AS NomeMix,   ' +  NOVA_LINHA +
-  // '  CERBO.Navio AS Navio,' + NOVA_LINHA +
-  // '  CERBO.DataEmbarque AS DataEmbarque,' + NOVA_LINHA +
-  // '  CERBO.QuantidadeExp AS QuantidadeExp,' + NOVA_LINHA +
   '  ContratoTransporte.QUANTTOTALEXP as QuantidadeExp   ,' + NOVA_LINHA +
   '  ContratoTransporte.QuantidadeTotal AS QuantidadeTotal,' + NOVA_LINHA +
-  //'  CERBO.Fatura AS Fatura,' + NOVA_LINHA +
-  //'  ContratoTransporte.Comissao AS Comissao,' + NOVA_LINHA +
   '  ContratoTransporte.FormComissao AS FormComissao,' + NOVA_LINHA +
-  //'  CERBO.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '  ContratoTransporte.VALORTOTALCOMISSAO as ComisaoSFatura  ,' + NOVA_LINHA +
   '  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado ,' + NOVA_LINHA +
-  // '  CERBO.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
-  // '  CERBO.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
   '  Clientes.RAZAO AS RAZAO_CLIENTE,' + NOVA_LINHA +
   '  Clientes.CLICOD AS CLICOD ' + NOVA_LINHA +
-  // '  CERBO.Status AS Status' + NOVA_LINHA +
   'from ( select' + NOVA_LINHA +
   '       ExportadoTransito.Contrato AS Contrato,' + NOVA_LINHA +
   '       ExportadoTransito.Navio AS Navio,' + NOVA_LINHA +
@@ -353,8 +345,6 @@ SC_CERBO_INICI =
   'Left Outer Join Clientes on' + NOVA_LINHA +
   '  ContratoTransporte.CLICOD = Clientes.CLICOD' + NOVA_LINHA +
   'Left Outer Join Divisoes on' + NOVA_LINHA +
-// CORRECAO 25/04/2012 FALTAVA ESTE CRITERIO =>  AND ContratoTransporte.SEQ = DIVISOES.SEQ
-//'  ContratoTransporte.CLICOD = Divisoes.CLICOD' + NOVA_LINHA ;
   '  ContratoTransporte.CLICOD = Divisoes.CLICOD AND ContratoTransporte.SEQ = DIVISOES.SEQ ' + NOVA_LINHA ;
 
 
@@ -378,7 +368,7 @@ SC_CERBO_INICI =
 //'  CERBO.Status AS Status' + NOVA_LINHA +
    S_CONSTANTE_STATUS + NOVA_LINHA +
   'from ( select' + NOVA_LINHA +
-  '       ExportadoTransito.seq AS seq,' + NOVA_LINHA +                       
+  '       ExportadoTransito.seq AS seq,' + NOVA_LINHA +
   '       ExportadoTransito.Contrato AS Contrato,' + NOVA_LINHA +
   '       ExportadoTransito.Navio AS Navio,' + NOVA_LINHA +
   '       ExportadoTransito.DataEmbarque AS DataEmbarque,' + NOVA_LINHA +
@@ -397,60 +387,11 @@ SC_CERBO_INICI =
   'Left Outer Join Clientes on' + NOVA_LINHA +
   '  ContratoTransporte.CLICOD = Clientes.CLICOD' + NOVA_LINHA +
   'Left Outer Join Divisoes on' + NOVA_LINHA +
-// CORRECAO 25/04/2012 FALTAVA ESTE CRITERIO =>  AND ContratoTransporte.SEQ = DIVISOES.SEQ
-//'  ContratoTransporte.CLICOD = Divisoes.CLICOD' + NOVA_LINHA ;
- 
   '  ContratoTransporte.CLICOD = Divisoes.CLICOD AND ContratoTransporte.SEQ = DIVISOES.SEQ ' + NOVA_LINHA +
   ' Where CERBO.Contrato = :Contrato ' + NOVA_LINHA ;
 
 
-  //'Where' + NOVA_LINHA +
-  //' CONTRATOTRANSPORTE.CADASTRO >= '2011/05/01' AND CONTRATOTRANSPORTE.CADASTRO <= '2011/07/09'' + NOVA_LINHA +
   SC_CERBO_ORDE = 'Order By ContratoTransporte.CLICOD,CERBO.Contrato' + NOVA_LINHA ;
-  // SC_CERBO_INICI + ' WHERE ' + SC_CERBO_ORDE
-
-{
-Select distinct
-/*  CERBO.seq AS seq, */
-  CERBO.Contrato AS Contrato,
-  Fornecedores.RAZAO AS RAZAO,
-/*  CERBO.Navio AS Navio,
-  CERBO.DataEmbarque AS DataEmbarque,
-  CERBO.QuantidadeExp AS QuantidadeExp, */
-  ContratoTransporte.QUANTTOTALEXP as QuantidadeExp   ,
-/*  CERBO.Fatura AS Fatura,
-  ContratoTransporte.Comissao AS Comissao, */
-  ContratoTransporte.FormComissao AS FormComissao,
-/*  CERBO.ComisaoSFatura AS ComisaoSFatura, */
-  ContratoTransporte.VALORTOTALCOMISSAO as ComisaoSFatura  ,
-  CERBO.NumNFEmit AS NumNFEmit,
-  CERBO.NumOrdCobranca AS NumOrdCobranca,
-  Clientes.RAZAO AS RAZAO_CLIENTE,
-  Clientes.CLICOD AS CLICOD ,
-  CERBO.Status AS Status
-from ( select DISTINCT
-       ExportadoTransito.Contrato AS Contrato,
-       ExportadoTransito.Navio AS Navio,
-       ExportadoTransito.DataEmbarque AS DataEmbarque,
-       ExportadoTransito.QuantidadeExp AS QuantidadeExp,
-       ExportadoTransito.Fatura AS Fatura,
-       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,
-       ExportadoTransito.NumNFEmit AS NumNFEmit,
-       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,
-       ExportadoTransito.Status AS Status
-       from  ExportadoTransito
-     ) as  CERBO
-Left Outer Join ContratoTransporte on
-  CERBO.Contrato = ContratoTransporte.Contrato
-Left Outer Join Fornecedores on
-  ContratoTransporte.FORCOD = Fornecedores.FORCOD
-Left Outer Join Clientes on
-  ContratoTransporte.CLICOD = Clientes.CLICOD
-Left Outer Join Divisoes on
-  ContratoTransporte.CLICOD = Divisoes.CLICOD
-Order By ContratoTransporte.CLICOD,CERBO.Contrato
-
-}
 
 type
   TFormInforme = class(TForm)
@@ -716,6 +657,53 @@ type
     IBQContratosID: TIBStringField;
     RxMemoryData_Excel: TClientDataSet;
     RxMemoryData_Excel_DT: TClientDataSet;
+    DBGrid_EXCEL_DT: TDBGrid;
+    RxMemoryData_ExcelLINHA: TIntegerField;
+    RxMemoryData_ExcelCONTRATO: TStringField;
+    RxMemoryData_ExcelNOMEMIX: TStringField;
+    RxMemoryData_ExcelRAZAO: TStringField;
+    RxMemoryData_ExcelNOME: TStringField;
+    RxMemoryData_ExcelC_C: TStringField;
+    RxMemoryData_ExcelFORMPAGO: TStringField;
+    RxMemoryData_ExcelQUANTIDADETOTAL: TFloatField;
+    RxMemoryData_ExcelSDATAEMBARQUE: TStringField;
+    RxMemoryData_ExcelPRECOFOB: TFloatField;
+    RxMemoryData_ExcelPRECOFOBTOTAL: TFloatField;
+    RxMemoryData_ExcelPRECOSCC: TFloatField;
+    RxMemoryData_ExcelVALORSCCTOTAL: TFloatField;
+    RxMemoryData_ExcelNAVIO_BUQ: TStringField;
+    RxMemoryData_ExcelQUANTIDADE: TFloatField;
+    RxMemoryData_ExcelNAVIO: TStringField;
+    RxMemoryData_ExcelQUANTIDADEEXP: TFloatField;
+    RxMemoryData_ExcelVALOR: TFloatField;
+    RxMemoryData_ExcelDATAEMBARQUE: TDateTimeField;
+    RxMemoryData_ExcelFATURA: TStringField;
+    RxMemoryData_ExcelETADESTINO: TDateTimeField;
+    RxMemoryData_ExcelOBS: TStringField;
+    RxMemoryData_ExcelDIVISAO: TStringField;
+    RxMemoryData_Excel_DTLINHA: TIntegerField;
+    RxMemoryData_Excel_DTCONTRATO: TStringField;
+    RxMemoryData_Excel_DTNOMEMIX: TStringField;
+    RxMemoryData_Excel_DTRAZAO: TStringField;
+    RxMemoryData_Excel_DTNOME: TStringField;
+    RxMemoryData_Excel_DTC_C: TStringField;
+    RxMemoryData_Excel_DTFORMPAGO: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADETOTAL: TFloatField;
+    RxMemoryData_Excel_DTSDATAEMBARQUE: TStringField;
+    RxMemoryData_Excel_DTPRECOFOB: TFloatField;
+    RxMemoryData_Excel_DTPRECOFOBTOTAL: TFloatField;
+    RxMemoryData_Excel_DTPRECOSCC: TFloatField;
+    RxMemoryData_Excel_DTVALORSCCTOTAL: TFloatField;
+    RxMemoryData_Excel_DTNAVIO_BUQ: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADE: TFloatField;
+    RxMemoryData_Excel_DTNAVIO: TStringField;
+    RxMemoryData_Excel_DTQUANTIDADEEXP: TFloatField;
+    RxMemoryData_Excel_DTVALOR: TFloatField;
+    RxMemoryData_Excel_DTDATAEMBARQUE: TDateTimeField;
+    RxMemoryData_Excel_DTFATURA: TStringField;
+    RxMemoryData_Excel_DTETADESTINO: TDateTimeField;
+    RxMemoryData_Excel_DTOBS: TStringField;
+    RxMemoryData_Excel_DTDIVISAO: TStringField;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure NomeMixExit(Sender: TObject);
@@ -889,10 +877,7 @@ type
     RxMemoryData_ExcelFATURA: TStringField;
     RxMemoryData_ExcelETADESTINO: TDateTimeField;
     RxMemoryData_ExcelOBS: TStringField;
-
-
     RxMemoryData_Excel_DT: TClientDataSet;
-
     RxMemoryData_Excel_DTLINHA: TIntegerField;
     RxMemoryData_Excel_DTCONTRATO: TStringField;
     RxMemoryData_Excel_DTNOMEMIX: TStringField;
@@ -916,8 +901,7 @@ type
     RxMemoryData_Excel_DTETADESTINO: TDateTimeField;
     RxMemoryData_Excel_DTOBS: TStringField;
     RxMemoryData_Excel_DTDIVISAO: TStringField;
-
- }
+}
 
   end;
 
@@ -1047,7 +1031,8 @@ begin
   // alinhamento da tela
   DBGrid_Contrato.Align := alClient ;
   GroupB_contrato.Align := alClient ;
-  DBGrid_excel.Align := alClient ;
+  DBGrid_excel.Align :=  alTop ; //alClient ;
+  DBGrid_EXCEL_DT.Align := alClient ;
   DBNavigator_excel.Align := alTop ;
   Panel2.height := 280 ;
   GroupBox_Excel.Align := alClient;
@@ -1208,10 +1193,6 @@ begin
   RxMemoryData_Excel.Close;
 
   RxMemData_tmp.Free;
-//  RxMemoryData_Excel_DT.Free;
-//  RxMemoryData_Excel.Free;
-
-  //TabelaPrincipal.AtribuiRelacionamentos(False); // Habilite esta opção caso seja realmente necessário...
   DesabilitaFuncoesEd;
   ListaCamposED.Free;
   DCERBO_TMP.Free ;
@@ -1987,7 +1968,6 @@ begin
       DepoisdeExcluir;
       Screen.Cursor := crDefault;
       StatusTabela;
-//      if PageForm.PageIndex = 0 then
       IF PagePrincipal.TABINDEX = 0 THEN
         TelaManutencao;
     end;
@@ -2009,7 +1989,6 @@ procedure TFormInforme.BtnLocalizarClick(Sender: TObject);
 begin
   Ed_Localizar(TabelaPrincipal, FormInforme, GridConsulta);
   StatusTabela;
-//  if PageForm.PageIndex = 0 then
   IF PagePrincipal.TABINDEX = 0 THEN
     TelaManutencao;
 
@@ -2027,7 +2006,6 @@ begin
     finally
       Screen.Cursor := crDefault;
       StatusTabela;
-//    if PageForm.PageIndex = 0 then
       IF PagePrincipal.TABINDEX = 0 THEN
         TelaManutencao;
     end;
@@ -2045,7 +2023,6 @@ begin
     if TabelaPrincipal.Bof then
       MessageDlg('Início dos registros!', mtInformation, [mbOk], 0);
     StatusTabela;
-//    if PageForm.PageIndex = 0 then
     IF PagePrincipal.TABINDEX = 0 THEN
       TelaManutencao;
   end;
@@ -2062,7 +2039,6 @@ begin
     if TabelaPrincipal.Eof then
       MessageDlg('Final dos registros!', mtInformation, [mbOk], 0);
     StatusTabela;
-//    if PageForm.PageIndex = 0 then
     IF PagePrincipal.TABINDEX = 0 THEN
       TelaManutencao;
   end;
@@ -2085,7 +2061,6 @@ begin
     finally
       Screen.Cursor := crDefault;
       StatusTabela;
-      //if PageForm.PageIndex = 0 then
       IF PagePrincipal.TABINDEX = 0 THEN
         TelaManutencao;
     end;
@@ -2098,7 +2073,6 @@ begin
   if MessageDlg('Atualizar registros?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     TabelaPrincipal.AtualizaSql;
-    // if PageForm.PageIndex = 0 then
     IF PagePrincipal.TABINDEX = 0 THEN
       TelaManutencao;
   end;
@@ -2360,13 +2334,9 @@ end;
 
 procedure TFormInforme.FormCreate(Sender: TObject);
 vAR
-//t_text , S_NOME , SC_Contrato_princ_v_JA_EXP , SC_Contrato_princ_Q_JA_EXP : STRING ;
 t_text , S_NOME   : STRING ;
 IND : INTEGER ;
 begin
-//    SC_Contrato_princ_v_JA_EXP :=  '( 0.0 )/100 * 100 as ValorTotal_JA_Exp, ' + NOVA_LINHA ;
-//    SC_Contrato_princ_Q_JA_EXP :=  '( 0.0 )/100 * 100 as QUANTTOTAL_JA_EXP, ' + NOVA_LINHA ;
-
     DCERBO_TMP := TDCERBO.Create(Self);
     IBQProduto.Database     := BaseDados.BD_Base_Dados ;
     IBQboock.Database       := BaseDados.BD_Base_Dados ;
@@ -2386,23 +2356,12 @@ begin
     DCERBO_L_DET.Transaction   := BaseDados.TRS_BD_Base_Dados ;
 
     IBQuery_Total_Pais.Transaction := BaseDados.TRS_BD_Base_Dados ;
-
-
     IBQuery_Total_Pais.Close;
     IBQuery_Total_Pais.sql.clear;
 
-//  IBQuery_Total_Pais.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + SC_PRODUTOS_order)   ;
-
-    IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio + SC_Total_Pais_CAOMPOS + SC_Total_Pais_Inicio2 + SC_Total_Pais_where + SC_Total_Pais_Final)   ;
-    IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');
-    IBQuery_Total_Pais.Prepare ;
-    IBQuery_Total_Pais.Open;
-
-
-
     IBQProduto.Close;
     IBQProduto.sql.clear;
-    IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + SC_PRODUTOS_order)   ;
+    IBQProduto.sql.Add(SC_PRODUTOS_princ + SC_PRODUTOS_where + SC_PRODUTOS_order)   ;
     IBQProduto.sql.SaveToFile('_IBQProduto.sql');
     IBQProduto.Prepare ;
     IBQProduto.Open;
@@ -2417,17 +2376,23 @@ begin
 
     IBQContratos.Close;
     IBQContratos.sql.clear;
-    IBQContratos.sql.Add(SC_Contrato_princ_i+ SC_Contrato_VALORSCCTOTAL +SC_Contrato_QUANTIDADETOTAL_Inicial +  SC_Contrato_QUANTIDADETOTAL_FIN +
+    IBQContratos.sql.Add(SC_Contrato_princ_i + SC_Contrato_VALORSCCTOTAL_inicial+ SC_Contrato_VALORSCCTOTAL_Fin+SC_Contrato_QUANTIDADETOTAL_Inicial +  SC_Contrato_QUANTIDADETOTAL_FIN +
                          SC_Contrato_QUANTIDADETOTAL_CONTINUA + SC_Contrato_princ_q_i + SC_Contrato_princ_q_f +
-//                           SC_Contrato_princ_q_JA_EXP +
-                          SC_Contrato_princ_v_i +SC_Contrato_princ_v_f +
-//                         SC_Contrato_princ_v_JA_EXP  +
+                         SC_Contrato_princ_v_i +SC_Contrato_princ_v_f +
                          SC_Contrato_princ_f+SC_contrato_where + SC_contrato_order)   ;
+
     IBQContratos.sql.SaveToFile('_IBQContratos.sql');
     IBQContratos.Prepare;
     IBQContratos.Open;
     IBQContratos.Last ;
     IBQContratos.First;
+
+
+    IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio_NOVO + IBQContratos.sql.Text + SC_Total_Pais_Final)   ;
+    IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');
+    IBQuery_Total_Pais.Prepare ;
+    IBQuery_Total_Pais.Open;
+
 
 
     IBQExportado.Close;
@@ -2437,31 +2402,13 @@ begin
     IBQExportado.Prepare;
     IBQExportado.Open;
 
- //   RxMemoryData_Excel.ClearFields;
-  //  RxMemoryData_Excel.Active := TRUE ;
-
-  //  RxMemoryData_Excel_DT.Active := TRUE ;
-  //  27/07/2012
-  //  while NOT RxMemoryData_Excel.Eof do
-  //        RxMemoryData_Excel.delete ;
-  //
-  //  while NOT RxMemoryData_Excel_DT.Eof do
-  //        RxMemoryData_Excel_DT.delete ;
 
     IBQContratos.First ;
     Caption_GrupBox ;
 
-  // 27/07/2012
-  //  RxMemoryData_Excel_DT.EmptyDataset;
-  //  RxMemoryData_Excel.EmptyDataset;
 
     RxMemData_tmp := TClientDataSet.Create(APPLICATION) ;
- //   RxMemoryData_Excel_DT := TClientDataSet.Create(APPLICATION) ;
- //   RxMemoryData_Excel := TClientDataSet.Create(APPLICATION) ;
 
-  // 27/07/2012
-  //  RxMemoryData_Excel.close;
-  //  RxMemoryData_Excel_DT.close;
    {
     RxMemoryData_Excel.Close;
     RxMemoryData_Excel.FieldDefs.Clear ;
@@ -2746,19 +2693,10 @@ begin
 
   }
 
-//    RxMemoryData_Excel.FieldDefs.Add('OBS',ftString	,15,false);   // : TIBStringField;
-
-//    27/07/2012
-//    RxMemoryData_Excel.Close  ;
-//    RxMemoryData_Excel.MasterFields := 'LINHA';
-//    RxMemoryData_Excel.Open;
-//    RxMemoryData_Excel_DT.Open;
-//    RxMemData_tmp
-//    RxMemData_tmp.MasterFields := 'LINHA';
-//    RxMemData_tmp.Open;
 
     DS_EXCEL.DataSet := RxMemoryData_Excel ;
     DS_EXCEL_DT.DataSet := RxMemoryData_Excel_DT ;
+    
     RxMemoryData_Excel_DT.MasterSource := DS_EXCEL ;
     RxMemoryData_Excel_DT.IndexFieldNames := 'CONTRATO' ;
     RxMemoryData_Excel_DT.MasterFields    := 'CONTRATO' ;
@@ -2767,7 +2705,8 @@ begin
     DS_DCERBO_L.DataSet := DCERBO_L ;
     DS_DCERBO_L_DET.DataSet := DCERBO_L_DET ;
     DCERBO_L_DET.DataSource := DS_DCERBO_L ;
-    frDBDataSet1. DataSet := RxMemoryData_Excel ;
+
+    frDBDataSet1.DataSet := RxMemoryData_Excel ;
     frDBDataSet2.DataSet := RxMemoryData_Excel_DT ;
 
 
@@ -2790,7 +2729,7 @@ begin
   S_Total_Pais_CAOMPOS_P1 := '';
 
   S_Contrato_QUANTIDADETOTAL := SC_Contrato_QUANTIDADETOTAL_Inicial + SC_Contrato_QUANTIDADETOTAL_FIN ;
-  S_Contrato_VALORSCCTOTAL   := SC_Contrato_VALORSCCTOTAL ;
+  S_Contrato_VALORSCCTOTAL   := SC_Contrato_VALORSCCTOTAL_inicial   + SC_Contrato_VALORSCCTOTAL_FIN   ;
   S_Total_Pais_CAOMPOS       := SC_Total_Pais_CAOMPOS ;
   Caption := 'INFORMES';
 
@@ -2801,9 +2740,6 @@ begin
       S_Contrato_VALORSCCTOTAL   := '( Informe.VALORSCCTOTAL   - IIF( ' +  SC_Contrato_princ_V_I + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' )) IS NULL ,0 ,'+ SC_Contrato_princ_V_I + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' ))'+')) AS VALORSCCTOTAL,'+                  NOVA_LINHA ;
       S_Contrato_QUANTIDADETOTAL := '( Informe.QUANTIDADETOTAL - IIF( ' +  SC_Contrato_princ_q_i + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' )) IS NULL ,0 ,'+ SC_Contrato_princ_q_i + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' ))'+')) AS QUANTIDADETOTAL,'+                  NOVA_LINHA ;
       S_Total_Pais_CAOMPOS_P1    := S_Contrato_VALORSCCTOTAL + S_Contrato_QUANTIDADETOTAL ;
-
-
-
   END;
 
   IF  XDE_EMB_F.DateValue <> -693594 THEN BEGIN
@@ -3015,43 +2951,39 @@ begin
          S_FILTRO_QUANTIDADE_DT := S_FILTRO_QUANTIDADE_DT + ' AND ( PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
 
   END;
-  /// CADASTRO FIM
-
-  // FILTRO COM A QUANTIDADE
 
   if S_FILTRO_QUANTIDADE_DT <> '' THEN
+  begin
      S_Contrato_QUANTIDADETOTAL := SC_Contrato_QUANTIDADETOTAL_Inicial + S_FILTRO_QUANTIDADE_DT + SC_Contrato_QUANTIDADETOTAL_FIN ;
-
-
-
-  IF S_FILTRO <> '' THEN  begin
-     S_SQL_WHERE := '  and ' + S_FILTRO ;
-     S_SQL_WHERE_CT  := '  and ' + S_FILTRO_CT ;
-     S_SQL_WHERE_EXP := '  and ' + S_FILTRO_EXP ;
-  end
-  ELSE begin
-     S_SQL_WHERE := ' ';
-     S_SQL_WHERE_CT := ' ';
-     S_SQL_WHERE_EXP := ' ' ;
+     S_Contrato_VALORSCCTOTAL   := SC_Contrato_VALORSCCTOTAL_inicial   + S_FILTRO_QUANTIDADE_DT + SC_Contrato_VALORSCCTOTAL_Fin;
   end;
+                                                                                                                                      
+
+  S_SQL_WHERE_CT := ' ';
+  S_SQL_WHERE_EXP := ' ' ;
+  S_SQL_WHERE := ' ';
+  // mod 2013/08/09
+  IF S_FILTRO <> '' THEN
+     S_SQL_WHERE := '  and ' + S_FILTRO ;
+
+  if S_FILTRO_EXP  <> '' then
+     S_SQL_WHERE_EXP := '  and ' + S_FILTRO_EXP ;
+
+  if S_FILTRO_CT  <> '' then
+     S_SQL_WHERE_CT  := '  and ' + S_FILTRO_CT ;
+
+
 
   if  S_Total_Pais_CAOMPOS_P1 <> '' then
       S_Total_Pais_CAOMPOS :=
                  S_Contrato_VALORSCCTOTAL +
                  S_Contrato_QUANTIDADETOTAL +
-                 SC_Contrato_princ_q_i + S_EMBARQUE + SC_Contrato_princ_q_f +
-                 SC_Contrato_princ_v_i + S_EMBARQUE + SC_Contrato_princ_v_f2 ;
-
-
-
-
-
-
+                 SC_Contrato_princ_q_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_q_f +
+                 SC_Contrato_princ_v_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_v_f2 ;
 
   IBQProduto.Close;
   IBQProduto.sql.clear;
-// 24/1012012
-//  IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE + S_EMBARQUE + SC_PRODUTOS_order)   ;
+
   IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE_CT + S_EMBARQUE + SC_PRODUTOS_order)   ;
   IBQProduto.sql.SaveToFile('_IBQProduto.SQL');
   IBQProduto.Prepare ;
@@ -3071,7 +3003,7 @@ begin
 
   IBQExportado.Close;
   IBQExportado.sql.clear ;
-//24/10/2012  
+//24/10/2012
 //IBQExportado.sql.Add( SC_ExportadoTransito_princ  +   SC_ExportadoTransito_where + S_SQL_WHERE + S_EMBARQUE +SC_ExportadoTransito_order )    ;
   IBQExportado.sql.Add( SC_ExportadoTransito_princ  +   SC_ExportadoTransito_where + S_SQL_WHERE_EXP + S_EMBARQUE +SC_ExportadoTransito_order )    ;
   IBQExportado.sql.SaveToFile('_IBQExportado.SQL');
@@ -3122,9 +3054,10 @@ begin
 
   IBQContratos.Close;
   IBQContratos.sql.clear;
-  IBQContratos.sql.Add(SC_Contrato_princ_i + S_Contrato_VALORSCCTOTAL + S_Contrato_QUANTIDADETOTAL + SC_Contrato_QUANTIDADETOTAL_CONTINUA + SC_Contrato_princ_q_i + S_EMBARQUE + SC_Contrato_princ_q_f +
-    SC_Contrato_princ_v_i + S_EMBARQUE + SC_Contrato_princ_v_f +
-    SC_Contrato_princ_f  +SC_contrato_where + S_SQL_WHERE_CT + S_EMBARQUE + SC_contrato_order)   ;
+  IBQContratos.sql.Add(SC_Contrato_princ_i   + S_Contrato_VALORSCCTOTAL + S_Contrato_QUANTIDADETOTAL + SC_Contrato_QUANTIDADETOTAL_CONTINUA +
+                       SC_Contrato_princ_q_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_q_f +
+                       SC_Contrato_princ_v_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_v_f +
+                       SC_Contrato_princ_f   + SC_contrato_where + S_SQL_WHERE_CT + S_EMBARQUE + SC_contrato_order)   ;
   IBQContratos.sql.SaveToFile('_IBQContratos.SQL');
   IBQContratos.Prepare ;
   IBQContratos.Open;
@@ -3132,9 +3065,9 @@ begin
   IBQContratos.First;
 
 
-  IBQuery_Total_Pais.Close;
+  IBQuery_Total_Pais.Close;// S_SQL_WHERE_CT
+  IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio_NOVO + IBQContratos.sql.Text + SC_Total_Pais_Final)   ;
   IBQuery_Total_Pais.sql.clear;
-  IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio + S_Total_Pais_CAOMPOS + SC_Total_Pais_Inicio2 + SC_Total_Pais_where + S_SQL_WHERE + S_EMBARQUE + SC_Total_Pais_Final)   ;
   IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');
   IBQuery_Total_Pais.Prepare ;
   IBQuery_Total_Pais.Open;
@@ -3153,31 +3086,11 @@ var
  LINHA,n_reg, tam : INTEGER ;
 begin
 
-//  Screen.Cursor := crHourGlass;
   BitB_FiltroClick( Sender ) ;
   Screen.Cursor := crHourGlass;
-//  27/07/2012
-//  RxMemData_tmp.First;
-//  while not RxMemData_tmp.eof  do begin
-//      RxMemData_tmp.Delete ;
-//  end ;
   RxMemData_tmp.EmptyDataSet ;
-  RxMemoryData_Excel_DT.EmptyDataSet ;
   RxMemoryData_Excel.EmptyDataSet ;
-
-//  Screen.Cursor := crHourGlass;
-  // apaga os registros anteriores
-  {
-  RxMemoryData_Excel.First;
-  while not RxMemoryData_Excel.eof  do begin
-      N_REG := RxMemoryData_Excel_DT.RecordCount ;
-      RxMemoryData_Excel_DT.First;
-      while not RxMemoryData_Excel_DT.eof  do begin
-          RxMemoryData_Excel_DT.Delete ;
-      end ;
-      RxMemoryData_Excel.Delete ;
-  end ;
-  }
+  RxMemoryData_Excel_DT.EmptyDataSet ;
 
   LINHA := 0;
 
@@ -3192,24 +3105,6 @@ begin
      RxMemoryData_Excel.FieldByName('C_C').Value:= IBQContratosC_C.Value ;	  // : TIBStringField;
 
      RxMemoryData_Excel.FieldByName('FORMPAGO').Value:= IBQContratosFORMPAGO.Value ;	  // : TIBStringField;
-
-     // campo de formpago
-{
-    if ( not IBQContratosFORMPAGO.IsNull ) and (IBQContratosFORMPAGO.Value <> '') then begin
-        stest := IBQContratosFORMPAGO.Value;
-        tam := length( stest ) ;
-        tam := tam + 1;
-        if (IBQContratosFORMPAGO.Value <> '' ) then
-           RxMemoryData_Excel.FieldByName('FORMPAGO').VALUE  := IBQContratosFORMPAGO.Value   // ; // RxMemData_tmp.FieldByName('FORMPAGO').VALUE
-        else
-           RxMemoryData_Excel.FieldByName('FORMPAGO').VALUE  := '___' ; // RxMemData_tmp.FieldByName('FORMPAGO').VALUE;
-     end
-     else
-
-        RxMemoryData_Excel.FieldByName('FORMPAGO').VALUE  := '___' ; // RxMemData_tmp.FieldByName('FORMPAGO').VALUE;
-}
-
-
      RxMemoryData_Excel.FieldByName('QUANTIDADETOTAL').Value:= IBQContratosQUANTIDADETOTAL.Value ;  // : TFloatField;
      RxMemoryData_Excel.FieldByName('SDATAEMBARQUE').Value:= IBQContratosSDATAEMBARQUE.Value ;  // : TIB:=StringField;
      // NAO EXISTE O PRECO FOB TOTAL
@@ -3217,23 +3112,8 @@ begin
      RxMemoryData_Excel.FieldByName('PRECOFOBTOTAL').Value:= IBQContratosPRECOFOB.Value ; // IBQContratosPRECOFOBTOTAL.Value ;  // : TFloatField;
      RxMemoryData_Excel.FieldByName('PRECOSCC').Value:= IBQContratosPRECOSCC.Value ;  // : TFloatField;
      RxMemoryData_Excel.FieldByName('VALORSCCTOTAL').Value:=  IBQContratosVALORSCCTOTAL.Value ;  // : TFloatField;
-     // 19/04/2012
-//     IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').IsNull
-//     IF not IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').IsNull  then
-//        RxMemoryData_Excel.FieldByName('QUANTIDADEEXP').Value:=  IBQContratosQUANTTOTALEXP.Value  - IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').Value // IBQContratosQUANTTOTAL_JA_EXP.AsFloat  // : TFloatField;
-//     else
-//        RxMemoryData_Excel.FieldByName('QUANTIDADEEXP').Value:=  IBQContratosQUANTTOTALEXP.Value  ; //- IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').Value ; // : TFloatField;
-
-
-//     IF not IBQContratosQUANTTOTAL_JA_EXP.IsNull  then
-//        RxMemoryData_Excel.FieldByName('QUANTIDADEEXP').Value:=  IBQContratosQUANTTOTALEXP.Value  - IBQContratosQUANTTOTAL_JA_EXP.AsFloat  // : TFloatField;
-//     else
-        RxMemoryData_Excel.FieldByName('QUANTIDADEEXP').Value:=  IBQContratosQUANTTOTALEXP.Value  ; //- IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').Value ; // : TFloatField;
-
-//     IF not IBQContratosVALORTOTAL_JA_EXP.IsNull THEN
-//        RxMemoryData_Excel.FieldByName('VALOR').Value:=  IBQContratosVALORTOTALEXP.Value  - IBQContratosVALORTOTAL_JA_EXP.AsCurrency  // : TFloatField;
-//     else
-        RxMemoryData_Excel.FieldByName('VALOR').Value:=  IBQContratosVALORTOTALEXP.Value ; // - IBQContratos.FieldByName('VALORTOTAL_JA_EXP').Value ; // : TFloatField;
+     RxMemoryData_Excel.FieldByName('QUANTIDADEEXP').Value:=  IBQContratosQUANTTOTALEXP.Value  ; //- IBQContratos.FieldByName('QUANTTOTAL_JA_EXP').Value ; // : TFloatField;
+     RxMemoryData_Excel.FieldByName('VALOR').Value:=  IBQContratosVALORTOTALEXP.Value ; // - IBQContratos.FieldByName('VALORTOTAL_JA_EXP').Value ; // : TFloatField;
 
      RxMemoryData_Excel.FieldByName('DIVISAO').Value:=  IBQContratosNOMEDIV.Value ; // : TFloatField;
      RxMemoryData_Excel.FieldByName('QUANTIDADE').Value:= IBQContratosQUANTIDADE.Value ; //: TFloatField;
@@ -3246,11 +3126,20 @@ begin
      IBQProduto.First;
 
      n_reg := IBQProduto.RecordCount ;
+
+     if  ( n_reg = 1 ) then begin
+         RxMemData_tmp.Append ;
+         LINHA := LINHA + 1   ;
+         RxMemData_tmp.FieldByName('LINHA').Value:= LINHA ;
+         RxMemData_tmp.FieldByName('CONTRATO').Value:= IBQProdutoCONTRATO.Value ; 	  // : TIBStringField;
+     end;
+
      while ( not IBQProduto.eof ) AND ( n_reg > 1 ) do begin
          RxMemData_tmp.Append ;
          LINHA := LINHA + 1   ;
          RxMemData_tmp.FieldByName('LINHA').Value:= LINHA ;
          RxMemData_tmp.FieldByName('CONTRATO').Value:= IBQProdutoCONTRATO.Value ; 	  // : TIBStringField;
+
          RxMemData_tmp.FieldByName('NOMEMIX').Value:= IBQProdutoNOMEMIX.Value ;	  // : TIBStringField;
          RxMemData_tmp.FieldByName('RAZAO').Value:= IBQProdutoRAZAO.Value ;	  // : TIBStringField;
          RxMemData_tmp.FieldByName('NOME').Value:= IBQProdutoNOME.Value ;	  // : TIBStringField;
@@ -3447,8 +3336,7 @@ begin
      s_sql := ' and Informe.Contrato = '+ AtribuiAspas ( IBQContratos.FieldValues['Contrato'] ) ;
      IBQProduto.Close;
      IBQProduto.sql.clear;
-   // 24/102012  
-   //  IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE + S_EMBARQUE + s_sql + SC_PRODUTOS_order)   ;
+
      IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE_CT + S_EMBARQUE  + s_sql + SC_PRODUTOS_order)   ;
      IBQProduto.sql.SaveToFile('_IBQProduto.sql');
      IBQProduto.Open;

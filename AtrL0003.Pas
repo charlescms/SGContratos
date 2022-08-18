@@ -430,6 +430,7 @@ begin
   IncluiValorValido('NF', 'Nota Fiscal');
   IncluiValorValido('OK', 'Concluido');
   IncluiValorValido('PR', 'Problema');
+  IncluiValorValido('CA', 'Cancelado');
   IncluiValorValido('', '');
   Valor.OnGetText := GetText;
 end;

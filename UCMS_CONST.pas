@@ -105,25 +105,6 @@ S_CONSTANTE_STATUS =
   CMB_Boocking             = 'Boocking';                // '9', 'Boocking');
   CMB_Em_Execucao          = 'Em Execução';             // 'A', 'Em Execução');
   CMB_Exportacao_Bloqueada = 'Exportação Bloqueada';    // 'B', 'Exportação Bloqueada');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // contantes sistemicas charles
 CMS_Data_vazia = -693594;
 implementation

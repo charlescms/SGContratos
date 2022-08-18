@@ -1,6 +1,6 @@
 object FormContratoN: TFormContratoN
-  Left = 498
-  Top = 582
+  Left = 234
+  Top = 32
   Width = 1081
   Height = 623
   Caption = 'Entrada de Dados'
@@ -45,8 +45,8 @@ object FormContratoN: TFormContratoN
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 392
-          Top = 7
+          Left = 516
+          Top = 4
           Width = 32
           Height = 16
           AutoSize = True
@@ -67,8 +67,8 @@ object FormContratoN: TFormContratoN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 432
-          Top = 7
+          Left = 557
+          Top = 2
           Width = 32
           Height = 16
           AutoSize = True
@@ -124,7 +124,7 @@ object FormContratoN: TFormContratoN
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
-          OnClick = BTNDESISTIRclick
+          OnClick = BtnDesistirClick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -141,8 +141,8 @@ object FormContratoN: TFormContratoN
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 284
-          Top = 5
+          Left = 368
+          Top = 0
           Width = 75
           Height = 25
           Hint = 'Tabelas relacionadas ...'
@@ -168,13 +168,34 @@ object FormContratoN: TFormContratoN
           NumGlyphs = 2
         end
         object btn_Corrig: TBitBtn
-          Left = 192
-          Top = 5
+          Left = 260
+          Top = 3
           Width = 75
           Height = 25
           Caption = 'Correcao'
           TabOrder = 3
-          OnClick = btn_CorrigClick
+          OnClick = BTN_CORRIGclick
+          Glyph.Data = {
+            F6000000424DF600000000000000760000002800000010000000100000000100
+            04000000000080000000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00999999999999
+            99999C4F0F44400004499CC0F040088880099CC0F008888000099CCF00888007
+            88099CCC0888077780499CC0FF80777880499CC0FF00877804499C0FF077F870
+            44499C0FF0777F8444499C0F077770F8F4499C0F07770CC084499C007700CCF8
+            F4499CC000CCCCCCCC499CCCCCCCCCCCCCC99999999999999999}
+        end
+        object btn_CancelaContrato: TBitBtn
+          Left = 180
+          Top = 5
+          Width = 75
+          Height = 25
+          Hint = 'Cancela Contrto'
+          Caption = 'Cancela'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 4
+          OnClick = btn_CancelaContratoClick
           Glyph.Data = {
             F6000000424DF600000000000000760000002800000010000000100000000100
             04000000000080000000120B0000120B00001000000000000000000000000000
@@ -198,7 +219,8 @@ object FormContratoN: TFormContratoN
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
-          'Principal')
+          'Principal'
+          'Texto Complementar')
         TabIndex = 0
         OnClick = TABPAGINASclick
       end
@@ -2113,16 +2135,16 @@ object FormContratoN: TFormContratoN
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 1065
-              Height = 639
+              Width = 1057
+              Height = 472
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object Comentario: TDBMemo
                 Left = 0
                 Top = 0
-                Width = 1065
-                Height = 639
+                Width = 1057
+                Height = 472
                 Align = alClient
                 ParentShowHint = False
                 ScrollBars = ssVertical
@@ -2669,16 +2691,10 @@ object FormContratoN: TFormContratoN
   object PopRelacionados: TPopupMenu
   end
   object DataSource_Grid_PrudutoContratoT: TDataSource
-    OnDataChange = DataSource_Grid_PrudutoContratoTDataChange
-    Left = 80
-    Top = 64
+    OnDataChange = DATASOURCE_GRID_PRUDUTOCONTRATOTdatachange
   end
   object DataSource_Grid_Boocking: TDataSource
-    Left = 160
-    Top = 88
   end
   object DataSource_Grid_ExportadoTransito: TDataSource
-    Left = 104
-    Top = 8
   end
 end

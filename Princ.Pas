@@ -104,7 +104,13 @@
   20/02/2013 3.25
   // errono relatorio INFOMECOMERCIAL problema na rotina   UltimoDiaDoMes
   // arquivo modificado Rotinas
-}                 
+  10/08/2013 3.26  Versao         := '3.26';
+  // correcao de erro do relatorio  arquivo => Informe
+  // campos nao estavam corretos os campos estao conciderando o campo data de cadsatro para corrigi os
+  // relatorio os dados
+
+}
+
 unit Princ;
 
 interface
@@ -412,19 +418,15 @@ end;
 procedure TFormPrincipal.FormShow(Sender: TObject);
 Var
   ArqIni: TIniFile;
-  Seguranca :TSeguranca ;
-  op_ok : integer ;
+//  Seguranca :TSeguranca ;
+//  op_ok : integer ;
 //  msg_pcha : pansichar ;
   //msg : string ;
-  Msg: PAnsiChar;
+  // Msg: PAnsiChar;
 begin
   {
     Inicializa variáveis públicas e ambiente de trabalho
   }
-  {
-  //
-  }
-
   {
   
   Seguranca := TSeguranca.create ;

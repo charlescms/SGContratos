@@ -27,45 +27,45 @@ uses
 const
  NOVA_LINHA = CHR(13)+CHR(10) ;
  SC_SQL_TOTAL ='SELECT ' +  NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	AS QuantidadeTotal, ' +   NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	AS VALORSCCTOTAL ,  ' +    NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	AS QUANTTOTALEXP,   ' +    NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	AS VALORTOTALEXP,   ' +    NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE)   AS QUANTADEPENDENTE, ' +  NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE) AS VALORTOTALPENDENTE,' +  NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO) AS VALORTOTALCOMISSAO , ' + NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	 	 	 	 	 	AS QuantidadeTotal, ' +   NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	 	 	 	 	 	AS VALORSCCTOTAL ,  ' +    NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	 	 	 	 	 	AS QUANTTOTALEXP,   ' +    NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	 	 	 	 	 	AS VALORTOTALEXP,   ' +    NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE)   	 	 	 	 	AS QUANTADEPENDENTE, ' +  NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)          AS VALORTOTALPENDENTE,' +  NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          AS VALORTOTALCOMISSAO , ' + NOVA_LINHA +
  	             '    Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) AS ValorTotalComissaoExecutado , ' + NOVA_LINHA +
- 	             '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente) AS VlTotalComissaoPendente , ' +  NOVA_LINHA +
+ 	             '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     AS VlTotalComissaoPendente , ' +  NOVA_LINHA +
                '    '' < = TOTAL GERAL  '' ' +  NOVA_LINHA +
                'FROM CONTRATOTRANSPORTE ' ;
  SC_SQL_TOTAL_WHERE = ' WHERE CONTRATOTRANSPORTE.CADASTRO = '  ;
 
 
  SC_SQL_PROD ='SELECT ' +
-	            '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	AS QuantidadeTotal, ' +  NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	AS VALORSCCTOTAL ,  ' +   NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	AS QUANTTOTALEXP,   ' +  NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	AS VALORTOTALEXP,   ' +   NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE)   AS QUANTADEPENDENTE, ' +   NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE) AS VALORTOTALPENDENTE,' +   NOVA_LINHA +
-              '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO) AS VALORTOTALCOMISSAO ,' +   NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) AS ValorTotalComissaoExecutado , ' +  NOVA_LINHA +
-	            '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente) AS VlTotalComissaoPendente , ' +  NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	            	AS QuantidadeTotal, ' +  NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	            	AS VALORSCCTOTAL ,  ' +   NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	            	AS QUANTTOTALEXP,   ' +  NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	            	AS VALORTOTALEXP,   ' +   NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE)             	AS QUANTADEPENDENTE, ' +   NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)           	AS VALORTOTALPENDENTE,' +   NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)           	AS VALORTOTALCOMISSAO ,' +   NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado)  	AS ValorTotalComissaoExecutado , ' +  NOVA_LINHA +
+	            '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)      	AS VlTotalComissaoPendente , ' +  NOVA_LINHA +
               '    CONTRATOTRANSPORTE.NOMEMIX ' +  NOVA_LINHA +
               'FROM CONTRATOTRANSPORTE ' ;
   SC_SQL_PROD_WHERE = ' WHERE CONTRATOTRANSPORTE.CADASTRO = '  ;
   SC_SQL_PROD_ORDER = ' GROUP BY CONTRATOTRANSPORTE.NOMEMIX' ;
 
   SC_SQL_PAIS =  'SELECT ' +   NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL)  	AS QuantidadeTotal,' +   NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)    	AS VALORSCCTOTAL ,  ' +  NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)    	AS QUANTTOTALEXP,   ' +  NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)    	AS VALORTOTALEXP,   ' +    NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE) 	AS QUANTADEPENDENTE,'  +   NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE) AS VALORTOTALPENDENTE,' +   NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO) AS VALORTOTALCOMISSAO ,' +    NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL)  	 	 	 	 	 	AS QuantidadeTotal,' +   NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)    	 	 	 	 	 	AS VALORSCCTOTAL ,  ' +  NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)    	 	 	 	 	 	AS QUANTTOTALEXP,   ' +  NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)    	 	 	 	 	 	AS VALORTOTALEXP,   ' +    NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.QUANTADEPENDENTE) 	 	 	 	 	 	AS QUANTADEPENDENTE,'  +   NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)          AS VALORTOTALPENDENTE,' +   NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          AS VALORTOTALCOMISSAO ,' +    NOVA_LINHA +
                  '    Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) AS ValorTotalComissaoExecutado , ' +   NOVA_LINHA +
-	               '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente) AS VlTotalComissaoPendente , ' +    NOVA_LINHA +
+	               '    Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     AS VlTotalComissaoPendente , ' +    NOVA_LINHA +
                  '   ''TOTAL '' || TAB_PAIS.NOME AS PAIS ' +    NOVA_LINHA +
                  ' FROM CONTRATOTRANSPORTE,TAB_PAIS '  +    NOVA_LINHA;
 
