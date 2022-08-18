@@ -358,11 +358,11 @@ begin
 
 
   IBQuery_pais.Close ;
-  IBQuery_pais.SQL.SaveToFile('_rel_IBQuery_pais.sql');
+  IBQuery_pais.SQL.SaveToFile(Trim(Sistema.usuario)+'_rel_IBQuery_pais.sql');
   IBQuery_pais.open;
 
   DContratoTransporte.Close ;
-  DContratoTransporte.sql.SaveToFile('_rel_DContratoTransporte.sql');
+  DContratoTransporte.sql.SaveToFile(Trim(Sistema.usuario)+'_rel_DContratoTransporte.sql');
   DContratoTransporte.open;
 
   InicializaVariaveis;
@@ -668,7 +668,7 @@ begin
   T_SQL_PROD.Close;
   T_SQL_PROD.SQL.Clear;
   T_SQL_PROD.SQL.Add(SC_SQL_PROD + S_SQL_SUM + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
-  T_SQL_PROD.SQL.SaveToFile('_T_SQL_PROD.SQL');
+  T_SQL_PROD.SQL.SaveToFile(Trim(Sistema.usuario)+'_T_SQL_PROD.SQL');
   T_SQL_PROD.Prepare ;
   T_SQL_PROD.Open ;
   T_SQL_PROD.Last ;
@@ -685,7 +685,7 @@ begin
   T_SQL_PAIS.Close ;
   T_SQL_PAIS.SQL.Clear;
   T_SQL_PAIS.SQL.Add(SC_SQL_PAIS + S_SQL_SUM + S_SQL_PAIS_WHERE + SC_SQL_PAIS_ORDER );
-  T_SQL_PAIS.SQL.SaveToFile('_T_SQL_PAIS.SQL');
+  T_SQL_PAIS.SQL.SaveToFile(Trim(Sistema.usuario)+'_T_SQL_PAIS.SQL');
   T_SQL_PAIS.Prepare ;
   T_SQL_PAIS.Open ;
 
@@ -695,21 +695,21 @@ begin
   IBQ_TOT.Close ;
   IBQ_TOT.SQL.Clear ;
   IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_SUM + S_SQL_PROD_WHERE  ) ;
-  IBQ_TOT.SQL.SaveToFile('_IBQ_TOT.SQL');
+  IBQ_TOT.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQ_TOT.SQL');
   IBQ_TOT.Prepare ;
   IBQ_TOT.Open ;
 
   DContratoTransporte.Close;
   DContratoTransporte.SQL.Clear;
   DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_SUM+ S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
-  DContratoTransporte.SQL.SaveToFile('_DContratoTransporte.SQL');
+  DContratoTransporte.SQL.SaveToFile(Trim(Sistema.usuario)+'_DContratoTransporte.SQL');
   DContratoTransporte.Prepare ;
   DContratoTransporte.Open ;
 
   IBQuery_pais.Close ;
   IBQuery_pais.SQL.Clear;
   IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_SUM + S_SQL_PAIS_WHERE + SC_SQL_PAIS_ORDER );
-  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.SQL');
+  IBQuery_pais.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_pais.SQL');
   IBQuery_pais.Prepare ;
   IBQuery_pais.Open ;
   Screen.Cursor := crDefault;
@@ -804,7 +804,7 @@ begin
 //  S_SQL_PROD_WHERE := SC_SQL_TOTAL_WHERE +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',DATE) )  + '' ;
   S_SQL_PROD_WHERE := SC_SQL_TOTAL_WHERE ;
   T_SQL_PROD.SQL.Add(SC_SQL_PROD + S_SQL_SUM + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
-  T_SQL_PROD.SQL.SaveToFile('_T_SQL_PROD.SQL');
+  T_SQL_PROD.SQL.SaveToFile(Trim(Sistema.usuario)+'_T_SQL_PROD.SQL');
   T_SQL_PROD.Prepare ;
   T_SQL_PROD.Open ;
 
@@ -815,7 +815,7 @@ begin
 //S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE + ' AND PRODUTOCONTRATOT.CADASTRO = '  + '' + AtribuiAspas ( FormatDateTime('YYYY/MM/DD',DATE)) + '' ;
   S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE  ;
   T_SQL_PAIS.SQL.Add(SC_SQL_PAIS + S_SQL_SUM + S_SQL_PAIS_WHERE + SC_SQL_PAIS_ORDER );
-  T_SQL_PAIS.SQL.SaveToFile('_T_SQL_PAIS.SQL');
+  T_SQL_PAIS.SQL.SaveToFile(Trim(Sistema.usuario)+'_T_SQL_PAIS.SQL');
 
   T_SQL_PAIS.Prepare ;
   T_SQL_PAIS.Open ;
@@ -828,7 +828,7 @@ begin
   DContratoTransporte.SQL.Clear ;
 
   DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_SUM + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER) ;
-  DContratoTransporte.SQL.SaveToFile('_DContratoTransporte.sql');
+  DContratoTransporte.SQL.SaveToFile(Trim(Sistema.usuario)+'_DContratoTransporte.sql');
   DContratoTransporte.Prepare ;
   DContratoTransporte.Open ;
 
@@ -836,7 +836,7 @@ begin
   IBQuery_pais.Transaction := TabGlobal.DContratoTransporte.Transaction ;
   IBQuery_pais.SQL.Clear ;
   IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_SUM+ S_SQL_PAIS_WHERE + SC_SQL_PAIS_ORDER ) ;
-  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.SQL');
+  IBQuery_pais.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_pais.SQL');
   IBQuery_pais.Prepare ;
   IBQuery_pais.Open ;
 
@@ -848,7 +848,7 @@ begin
 
   IBQ_TOT.SQL.Clear ;
   IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_SUM +  S_SQL_PROD_WHERE  ) ;
-  IBQ_TOT.SQL.SaveToFile('_IBQ_TOT.SQL');
+  IBQ_TOT.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQ_TOT.SQL');
   IBQ_TOT.Prepare ;
   IBQ_TOT.Open ;
 

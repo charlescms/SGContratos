@@ -234,7 +234,7 @@ begin
   DContratoTransporte.Close;
   DContratoTransporte.SQL.Clear;
   DContratoTransporte.SQL.add(SC_SQL_TOTAL + SC_SQL_TOTAL_ORDER ) ;
-  DContratoTransporte.SQL.SaveToFile('_Rel_Diversos_I_DContratoTransporte.SQL');
+  DContratoTransporte.SQL.SaveToFile(Trim(Sistema.usuario)+'_Rel_Diversos_I_DContratoTransporte.SQL');
   DContratoTransporte.Open ;
   DContratoTransporte.Last ;
   DContratoTransporte.First ;
@@ -541,7 +541,7 @@ begin
   DContratoTransporte.SQL.Clear;
   DContratoTransporte.SQL.add(SC_SQL_TOTAL ) ;
   DContratoTransporte.SQL.add( S_FILTRO   + NOVA_LINHA + SC_SQL_TOTAL_ORDER );
-  DContratoTransporte.SQL.SaveToFile('_Rel_Diversos_F_DContratoTransporte.SQL');
+  DContratoTransporte.SQL.SaveToFile(Trim(Sistema.usuario)+'_Rel_Diversos_F_DContratoTransporte.SQL');
   DContratoTransporte.Prepare ;
   DContratoTransporte.Open ;
   DContratoTransporte.Last ;

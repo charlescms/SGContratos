@@ -132,7 +132,7 @@ try
 
   DOrdemCobranca.AtualizaSql(False);
   Parametros(DOrdemCobranca);
-  DOrdemCobranca.SQL.SaveToFile('_REL_FATURATAB_F_DOrdemCobranca.SQL');
+  DOrdemCobranca.SQL.SaveToFile(Trim(Sistema.usuario)+'_REL_FATURATAB_F_DOrdemCobranca.SQL');
   DOrdemCobranca.Open;
   frDBDataSet.DataSet := DOrdemCobranca;
   frDBDataSet_DFaturaProdExp.DataSet := DOrdemCobrancaProdExp;

@@ -212,7 +212,7 @@ begin
   IBQuery_soma.CLOSE ;
   IBQuery_soma.SQL.Clear ;
   IBQuery_soma.SQL.Add(SQL_SOMA + S_FILTRO + SQL_SOMA_ORDER )  ;
-  IBQuery_soma.SQL.SaveToFile('_IBQuery_soma_REL_NF.SQL');
+  IBQuery_soma.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_soma_REL_NF.SQL');
   IBQuery_soma.Prepare  ;
   IBQuery_soma.Open;
 
@@ -228,7 +228,7 @@ begin
   DOrdemCobranca.Filtro.Add(S_FILTRO)     ;
   DOrdemCobranca.AtualizaSql;
 //  DOrdemCobranca.AtribuiRelacionamentos;
-  DOrdemCobranca.SQL.SaveToFile('_DOrdemCobranca_REL_NF.SQL');
+  DOrdemCobranca.SQL.SaveToFile(Trim(Sistema.usuario)+'_DOrdemCobranca_REL_NF.SQL');
   Parametros(DOrdemCobranca);
 //  DOrdemCobranca.Open;
   QyRelatorio := DOrdemCobranca;

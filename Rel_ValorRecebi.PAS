@@ -153,7 +153,7 @@ begin
   DOrdemCobranca.Filtro.Add(S_FILTRO);
 //  DOrdemCobranca.Filtro.Add('AND (OrdemCobranca.Recebimento <= :XDateEdit3)');
   DOrdemCobranca.AtualizaSql(true);
-  DOrdemCobranca.SQL.SaveToFile('Rel_ValorRecebi_DOrdemCobranca.sql');
+  DOrdemCobranca.SQL.SaveToFile(Trim(Sistema.usuario)+'Rel_ValorRecebi_DOrdemCobranca.sql');
   Parametros(DOrdemCobranca);
 //  DOrdemCobranca.Open;
   frDBDataSet.DataSet := DOrdemCobranca;

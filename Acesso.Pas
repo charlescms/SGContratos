@@ -713,7 +713,7 @@ procedure TFormAcesso.FormShow(Sender: TObject);
 
 begin
 
-  Usuario.text := 'master' ;
+//  Usuario.text := 'master' ;
 //  Senha.Text := Encript(UpperCase('CMS1354219'));
   BtnCancelaNovaSenhaClick(Self);
   LbTitulo1.Caption := Nome_Projeto + ' - Versão: ' + Sistema.Versao;

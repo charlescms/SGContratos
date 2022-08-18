@@ -461,8 +461,8 @@ begin
   ConstroiSql;
   InicializaVariaveis;
 
-  DContratoTransporte.sql.SaveToFile('_2REL_DContratoTransporte.sql');
-  IBQuery_pais.SQL.SaveToFile('_2REL_IBQuery_pais.SQL');
+  DContratoTransporte.sql.SaveToFile(Trim(Sistema.usuario)+'_2REL_DContratoTransporte.sql');
+  IBQuery_pais.SQL.SaveToFile(Trim(Sistema.usuario)+'_2REL_IBQuery_pais.SQL');
   IBQuery_pais.CLOSE ;
   IBQuery_pais.OPEN ;
 
@@ -601,17 +601,23 @@ begin
   Caption_rel := 'Resumo Geral';  //19/06/2012 'INFORMES';
 
   IF  XDT_INIC.DateValue <> -693594 THEN begin
-      S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+      // 07/02/2014
+      // S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+      S_FILTRO_EXP := ' EXPORTADOTRANSITO.DATAEMBARQUE >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
       S_FILTRO_PRO := ' PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
   end;
 
   IF  XDT_FIM.DateValue <> -693594 THEN
       IF  S_FILTRO_PRO = '' THEN begin
-          S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          // 07/02/2014
+          // S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          S_FILTRO_EXP := ' EXPORTADOTRANSITO.DATAEMBARQUE <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
           S_FILTRO_PRO := ' PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue))  ;
       end
       ELSE begin
-          S_FILTRO_EXP := S_FILTRO_EXP + ' AND  EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          // 07/02/2014
+          // S_FILTRO_EXP := S_FILTRO_EXP + ' AND  EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          S_FILTRO_EXP := S_FILTRO_EXP + ' AND  EXPORTADOTRANSITO.DATAEMBARQUE <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
           S_FILTRO_PRO := S_FILTRO_PRO + ' AND  PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
       end;
 
@@ -695,7 +701,7 @@ begin
   T_SQL_PROD.SQL.Add( S_SQL_SUM  );
   T_SQL_PROD.SQL.Add( S_SQL_PROD_WHERE );
   T_SQL_PROD.SQL.Add( SC_SQL_PROD_ORDER );
-  T_SQL_PROD.SQL.SaveToFile('_T_SQL_PROD.SQL');
+  T_SQL_PROD.SQL.SaveToFile(Trim(Sistema.usuario)+'_T_SQL_PROD.SQL');
   T_SQL_PROD.Prepare ;
   T_SQL_PROD.Open ;
 
@@ -711,27 +717,18 @@ begin
   ELSE
      ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + S_SQL_SUM + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX +                      SC_SQL_PROD_ORDER_EX );
 
-  ibq_PROD_EX.SQL.SaveToFile('_ibq_PROD_EX.SQL');
+  ibq_PROD_EX.SQL.SaveToFile(Trim(Sistema.usuario)+'_ibq_PROD_EX.SQL');
   ibq_PROD_EX.Prepare ;
   ibq_PROD_EX.Open ;
   ibq_PROD_EX.Last ;
   ibq_PROD_EX.First ;
   PRODUTO.Caption := 'PRODUTO/SURIMPEX  Núm. Linhas = ' + INTTOSTR(ibq_PROD_EX.RecordCount)   ;
- {
-  T_SQL_PAIS.Close ;
-  T_SQL_PAIS.SQL.Clear;
-  T_SQL_PAIS.SQL.Add(SC_SQL_PAIS  + S_SQL_SUM + S_SQL_PAIS_WHERE +  SC_SQL_PAIS_ORDER );
-  T_SQL_PAIS.SQL.SaveToFile('_T_SQL_PAIS.SQL');
-  T_SQL_PAIS.Prepare ;
-  T_SQL_PAIS.Open ;
-  T_SQL_PAIS.Last ;
-  T_SQL_PAIS.First ;
-}
+
 
   IBQuery_pais.Close ;
   IBQuery_pais.SQL.Clear;
   IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_SUM + S_SQL_PAIS_WHERE  + SC_SQL_PAIS_ORDER );
-  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.SQL');
+  IBQuery_pais.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_pais.SQL');
   IBQuery_pais.Prepare ;
   IBQuery_pais.Open ;
   IBQuery_pais.First ;  
@@ -742,7 +739,7 @@ begin
   IBQ_TOT.Close ;
   IBQ_TOT.SQL.Clear ;
   IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_SUM + S_SQL_PROD_WHERE  ) ;
-  IBQ_TOT.SQL.SaveToFile('_IBQ_TOT.SQL');
+  IBQ_TOT.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQ_TOT.SQL');
   IBQ_TOT.Prepare ;
   IBQ_TOT.Open ;
   IBQ_TOT.First ;
@@ -757,7 +754,7 @@ begin
   ELSE
      ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + S_SQL_SUM + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX                     ) ;
 
-  ibq_TOT_EX.SQL.SaveToFile('_ibq_TOT_EX.SQL');
+  ibq_TOT_EX.SQL.SaveToFile(Trim(Sistema.usuario)+'_ibq_TOT_EX.SQL');
   ibq_TOT_EX.Prepare ;
   ibq_TOT_EX.Open ;
   ibq_TOT_EX.First ;  
@@ -771,7 +768,7 @@ begin
     TAtributo(DContratoTransporte.Campos[I]).Valor.DataSet := Nil;
 
   DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_SUM + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
-  DContratoTransporte.SQL.SaveToFile('_DContratoTransporte.SQL');
+  DContratoTransporte.SQL.SaveToFile(Trim(Sistema.usuario)+'_DContratoTransporte.SQL');
   DContratoTransporte.Prepare ;
   DContratoTransporte.Open ;
 

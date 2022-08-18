@@ -392,7 +392,7 @@ begin
 
   IBQuery_Analise.SQL.Clear ;
   IBQuery_Analise.SQL.Add(s_analise) ;
-  IBQuery_Analise.SQL.SaveToFile('_IBQuery_Analise.SQL');
+  IBQuery_Analise.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_Analise.SQL');
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
 
@@ -1309,7 +1309,7 @@ begin
    t_tabela.Transaction := TabGlobal.DParametros.Transaction;
    t_tabela.SQL.Clear ;
    t_tabela.SQL.Add(sc_sql_recebimento) ;
-   t_tabela.SQL.SaveToFile('sc_sql_recebimento.sql') ;
+   t_tabela.SQL.SaveToFile(Trim(Sistema.usuario)+'sc_sql_recebimento.sql') ;
    t_tabela.Prepare ;
    t_tabela.Open ;
 
@@ -1330,7 +1330,7 @@ begin
      TabGlobal.DFatura.Filtro.Clear ;
      TabGlobal.DFatura.Filtro.Add(s_filtro)   ;
      TabGlobal.DFatura.AtualizaSql;
-     TabGlobal.DFatura.SQL.SaveToFile('l_fatura.sql');
+     TabGlobal.DFatura.SQL.SaveToFile(Trim(Sistema.usuario)+'l_fatura.sql');
     // l_fatura.Prepare ;
     // l_fatura.Open  ;
      while not TabGlobal.DFatura.Eof do begin
@@ -1430,7 +1430,7 @@ begin
   IBQuery_Analise.CLOSE ;
   IBQuery_Analise.SQL.Clear ;
   IBQuery_Analise.SQL.Add(s_analise_FIN) ;
-  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise_2.SQL');
+  IBQuery_Analise.SQL.SaveToFile(Trim(Sistema.usuario)+'IBQuery_Analise_2.SQL');
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
 
@@ -1514,7 +1514,7 @@ begin
   IBQuery_Analise.CLOSE ;
   IBQuery_Analise.SQL.Clear ;
   IBQuery_Analise.SQL.Add(s_analise_FIN) ;
-  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise_2.SQL');
+  IBQuery_Analise.SQL.SaveToFile(Trim(Sistema.usuario)+'IBQuery_Analise_2.SQL');
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
 end;

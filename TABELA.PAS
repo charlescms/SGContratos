@@ -342,9 +342,9 @@ begin
     for I:=0 to Length(CamposArray)-1 do
       ParamByName(CamposArray[I]).Value := ValoresArray[I];
     Conexao;
-    SQL.SaveToFile('_PTabela.sql');
+//    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela.sql');
     Prepare ;
-    SQL.SaveToFile('_PTabela2.sql');
+//    SQL.SaveToFile(Trim(Sistema.usuario)+'_PTabela2.sql');
     try
 
       Active := True;
@@ -1903,7 +1903,7 @@ begin
         Sql.Add('Order By '+ChaveIndice);
     end;
 
-    Sql.SaveToFile('_sql_Tabela_'+NomeTabela+'.sql');
+//    Sql.SaveToFile(Trim(Sistema.usuario)+'_sql_Tabela_'+NomeTabela+'.sql');
 
     Prepare;
 

@@ -4,6 +4,7 @@
             : Todos os direitos reservados
    Site.....: http://www.xmaker.com.br
    08/06/2011 relatorio concluido
+   [DCERBO_L_DET."FATURASUR"]
 }
 unit Informe;
 
@@ -350,6 +351,7 @@ SC_CERBO_INICI =
 
 SC_CERBO_INICI_2 =
   '  ( select Clientes.RAZAO  from Clientes where ContratoTransporte.CLICOD = Clientes.CLICOD ) AS RAZAO_CLIENTE,' + NOVA_LINHA +
+  '  CERBO.FaturaSUR AS FaturaSUR,' + NOVA_LINHA +     //   02/05/2014
   '  ContratoTransporte.CLICOD AS CLICOD ' + NOVA_LINHA +
   'from ( select' + NOVA_LINHA +
   '       ExportadoTransito.Contrato AS Contrato,' + NOVA_LINHA +
@@ -360,6 +362,7 @@ SC_CERBO_INICI_2 =
   '       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '       ExportadoTransito.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
   '       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
+  '       ( select ordemcobranca.fatura from ordemcobranca where ExportadoTransito.numordcobranca = ordemcobranca.numordcobranca ) as FaturaSUR ,' + NOVA_LINHA + //   02/05/2014 
   '       ExportadoTransito.Status AS Status , ' + NOVA_LINHA +
   '       ExportadoTransito.CADASTRO as CADASTRO '+ NOVA_LINHA +
   '       from  ExportadoTransito' + NOVA_LINHA +
@@ -389,6 +392,7 @@ SC_CERBO_INICI_2 =
   '  CERBO.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '  CERBO.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
   '  CERBO.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
+  '  CERBO.FaturaSUR AS FaturaSUR,' + NOVA_LINHA +     //   02/05/2014
   '  Clientes.RAZAO AS RAZAO_CLIENTE,' + NOVA_LINHA +
   '  Clientes.CLICOD AS CLICOD ,' + NOVA_LINHA +
 //'  CERBO.Status AS Status' + NOVA_LINHA +
@@ -403,6 +407,7 @@ SC_CERBO_INICI_2 =
   '       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '       ExportadoTransito.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
   '       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
+  '       ( select ordemcobranca.fatura from ordemcobranca where ExportadoTransito.numordcobranca = ordemcobranca.numordcobranca ) as FaturaSUR ,' + NOVA_LINHA + //   02/05/2014 
   '       ExportadoTransito.CADASTRO as CADASTRO ,'+ NOVA_LINHA +
   '       ExportadoTransito.Status AS Status' + NOVA_LINHA +
   '       from  ExportadoTransito' + NOVA_LINHA +
@@ -3052,7 +3057,7 @@ begin
   IBQProduto.sql.clear;
 
   IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE_CT + S_EMBARQUE + SC_PRODUTOS_order)   ;
-  IBQProduto.sql.SaveToFile('_IBQProduto.SQL');
+  IBQProduto.sql.SaveToFile(trim(Sistema.usuario)+'_IBQProduto.SQL');
   IBQProduto.Prepare ;
   IBQProduto.Open;
   IBQProduto.Last;
@@ -3149,7 +3154,7 @@ begin
                        SC_Contrato_princ_q_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_q_f +
                        SC_Contrato_princ_v_i + S_EMBARQUE + S_SQL_WHERE_EXP + SC_Contrato_princ_v_f +
                        SC_Contrato_princ_f   + SC_contrato_where + S_SQL_WHERE_CT + S_EMBARQUE + SC_contrato_order)   ;
-  IBQContratos.sql.SaveToFile('_IBQContratos.SQL');
+  IBQContratos.sql.SaveToFile(Trim(Sistema.usuario)+'_IBQContratos.SQL');
   IBQContratos.Prepare ;
   IBQContratos.Open;
   IBQContratos.Last;
@@ -3160,7 +3165,7 @@ begin
   IBQuery_Total_Pais.sql.clear;
   IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio_NOVO + IBQContratos.sql.Text + SC_Total_Pais_Final)   ;
 
-  IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');
+  IBQuery_Total_Pais.sql.SaveToFile(Trim(Sistema.usuario)+'_IBQuery_Total_Pais.sql');
   IBQuery_Total_Pais.Prepare ;
   IBQuery_Total_Pais.Open;
   IBQuery_Total_Pais.Last;
@@ -3177,7 +3182,7 @@ var
  S_NOMEMIX , S_SDATAEMBARQUE, stest : string ;
  LINHA,n_reg, tam : INTEGER ;
 begin
-  IBQContratos.SQL.SaveToFile('___IBQContratos.SQL');
+  IBQContratos.SQL.SaveToFile(Trim(Sistema.usuario)+'___IBQContratos.SQL');
   BitB_FiltroClick( Sender ) ;
   Screen.Cursor := crHourGlass;
   RxMemData_tmp.EmptyDataSet ;
@@ -3430,7 +3435,7 @@ begin
      IBQProduto.sql.clear;
 
      IBQProduto.sql.Add(SC_PRODUTOS_princ+SC_PRODUTOS_where + S_SQL_WHERE_CT + S_EMBARQUE  + s_sql + SC_PRODUTOS_order)   ;
-     IBQProduto.sql.SaveToFile('_IBQProduto.sql');
+     IBQProduto.sql.SaveToFile(Trim(Sistema.usuario)+'_IBQProduto.sql');
      IBQProduto.Open;
      IBQProduto.Last ;
      IBQProduto.First;
@@ -3438,7 +3443,7 @@ begin
      IBQboock.Close;
      IBQboock.sql.clear ;
      IBQboock.sql.Add( SC_Boocking_princ  +   SC_Boocking_where + S_SQL_WHERE + s_sql +SC_Boocking_order )  ;
-     IBQboock.sql.SaveToFile('_IBQboock.sql');
+     IBQboock.sql.SaveToFile(Trim(Sistema.usuario)+'_IBQboock.sql');
      IBQboock.Open;
      IBQboock.Last ;
      IBQboock.First;
@@ -3448,7 +3453,7 @@ begin
 // 24-10-2012
 //   IBQExportado.sql.Add( SC_ExportadoTransito_princ  +   SC_ExportadoTransito_where + S_SQL_WHERE + S_EMBARQUE + s_sql  +SC_ExportadoTransito_order )    ;
      IBQExportado.sql.Add( SC_ExportadoTransito_princ  +   SC_ExportadoTransito_where + S_SQL_WHERE_EXP + S_EMBARQUE  + s_sql +SC_ExportadoTransito_order )    ;
-     IBQExportado.SQL.SaveToFile('_IBQExportado.sql');
+     IBQExportado.SQL.SaveToFile(Trim(Sistema.usuario)+'_IBQExportado.sql');
      IBQExportado.Open;
      IBQExportado.Last ;
      IBQExportado.First;
@@ -3461,12 +3466,12 @@ end;
 
 procedure TFormInforme.Caption_GrupBox;
 begin
-  IBQContratos.SQL.SaveToFile('__1IBQContratos.SQL');
+  IBQContratos.SQL.SaveToFile(Trim(Sistema.usuario)+'__1IBQContratos.SQL');
   GroupB_contrato.Caption    := 'Contrato Número de Linhas = '  + inttostr(IBQContratos.RecordCount )     ;
   GroupBox_Exportado.Caption := 'Exportado Número de Linhas = ' + inttostr(IBQExportado.RecordCount)  ;
   GroupBox_Prod.Caption      := 'Produtos Número de Linhas= '  + inttostr(IBQProduto.RecordCount)  ;
   GroupBox_Boock.Caption     := 'Boock Número de Linhas = '     + inttostr(IBQboock.RecordCount) ;
-  IBQContratos.SQL.SaveToFile('__IBQContratos.SQL');
+  IBQContratos.SQL.SaveToFile(Trim(Sistema.usuario)+'__IBQContratos.SQL');
 end;
 
 procedure TFormInforme.BtnVisualizarClick(Sender: TObject);
@@ -3620,9 +3625,9 @@ procedure TFormInforme.btn1Click(Sender: TObject);
 begin
    IBQuery1.Close ;
    GroupB_contrato.Caption    := 'Contrato Número de Linhas = '  + inttostr(IBQContratos.RecordCount )     ;
-   IBQContratos.SQL.SaveToFile('__1IBQContratos.SQL');
+   IBQContratos.SQL.SaveToFile(Trim(Sistema.usuario)+'__1IBQContratos.SQL');
    DS_Contrato.DataSet := IBQuery1 ;
-   IBQuery1.SQL.LoadFromFile('__1IBQContratos.SQL'); ;
+   IBQuery1.SQL.LoadFromFile(Trim(Sistema.usuario)+'__1IBQContratos.SQL'); ;
    IBQuery1.Open ;
    IBQuery1.Last ;
    IBQuery1.First;

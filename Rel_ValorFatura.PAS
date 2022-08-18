@@ -143,7 +143,7 @@ begin
   DOrdemCobranca.Filtro.add(S_FILTRO);
   DOrdemCobranca.AtualizaSql(true);
   DOrdemCobranca.AtribuiRelacionamentos(true);
-  DOrdemCobranca.SQL.SaveToFile('Rel_ValorFatura.sql');
+  DOrdemCobranca.SQL.SaveToFile(Trim(Sistema.usuario)+'Rel_ValorFatura.sql');
   Parametros(DOrdemCobranca);
   DOrdemCobranca.Open;
   frDBDataSet.DataSet := DOrdemCobranca;

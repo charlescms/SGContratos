@@ -149,7 +149,26 @@ Versao         := '3.43';
 // 10/01/2014
 foi informado pela karina que neste relatorio nao entra o fornecedor surimpex que posuui o codifo de munero 17
       Versao         := '3.44
-}
+
+
+// 23/01/2014
+O FUNCIONARIA KARINA SOLICITOU A MUDANCA DA MASCARA DO CAMPO RATE DO RELATORIO RELCOMPEN
+      Versao         := '3.45
+// 07/02/2014
+arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
+
+  Versao         := '3.46
+
+//   03/042014 correcao para nao incluir data de processo
+// RelSitucaoCred ARQUIVO MODIFICADO
+  Versao         := '3.47
+
+//   02/05/2014 correcao para nao incluir data de processo
+   ARQUIVO MODIFICADO unit Informe;
+   O RELATORIO  INFOMES  ALIMPORT O CANPO [DCERBO_L_DET."FATURA"] FOI SUBSTITUIDO PELO [DCERBO_L_DET."FATURASUR"]
+    E AS QUERESE RESPECTIVAS FORMA MODIFICADASA PARA ATENDER Z NECESSIDADE
+    Versao         := '3.48';
+      }
 
                        
 unit Princ;

@@ -861,14 +861,7 @@ try
                     sql_Situacao_ordem    ;
 
   DSituacao.Close ;
-  {
-  DSituacao.SQL.Clear ;
-  DSituacao.SQL.Add( SQL_SITUACAO ) ;
-  DSituacao.SQL.SaveToFile('DSituacao.SQL');
-  DSituacao.Prepare ;
 
-  DSituacao.Open ;
-  }
 //  DSituacao.FiltroExtra.Clear;
 //  DSituacao.FiltroExtra.Add();
   DSituacao.AtualizaSql;
@@ -889,13 +882,13 @@ try
      IBQuery_Total_Prod.SQL.Add( sql_total_alimentos + ' WHERE ' + S_FILTRO  + sql_total_alimentos_grup ) ;
      IBQuery_Pais.SQL.Add( sql_total_Pais + ' and ' + S_FILTRO  + sql_total_pais_grup ) ;
   end;
-  IBQuery_Total_Prod.SQL.SaveToFile('IBQuery_Total_Prod.SQL');
+  IBQuery_Total_Prod.SQL.SaveToFile(Trim(Sistema.usuario)+'IBQuery_Total_Prod.SQL');
   IBQuery_Total_Prod.Prepare ;
   IBQuery_Total_Prod.Open ;
   IBQuery_Total_Prod.Last;
   IBQuery_Total_Prod.First ;
 
-  IBQuery_Pais.SQL.SaveToFile('IBQuery_Pais.SQL');
+  IBQuery_Pais.SQL.SaveToFile(Trim(Sistema.usuario)+'IBQuery_Pais.SQL');
   IBQuery_Pais.Prepare ;
   IBQuery_Pais.Open ;
   IBQuery_Pais.Last;
@@ -911,7 +904,7 @@ try
   QSituacao.Close ;
   QSituacao.SQL.Clear ;
   QSituacao.SQL.Add( SQL_SITUACAO ) ;
-  QSituacao.SQL.SaveToFile('QSituacao.SQL');
+  QSituacao.SQL.SaveToFile(Trim(Sistema.usuario)+'QSituacao.SQL');
   QSituacao.Prepare ;
   QSituacao.Open ;
   QSituacao.Last;
@@ -935,7 +928,7 @@ try
 //  IBQuery_navio.SQL.Add( teste_sql  ) ;
 //  IBQuery_navio.SQL.Add( teste_sql ) ;
 
-  IBQuery_navio.SQL.SaveToFile('IBQuery_navio.SQL');
+  IBQuery_navio.SQL.SaveToFile(Trim(Sistema.usuario)+'IBQuery_navio.SQL');
   IBQuery_navio.Prepare ;
 //teste_sql
   IBQuery_navio.Open ;

@@ -306,7 +306,7 @@ begin
 //  IBQuery_Analise.SQL.Add(CONST_SQL_WHERE             );
 
   IBQuery_Analise.SQL.Add(CONST_SQL_ORDER             );
-  IBQuery_Analise.SQL.SaveToFile('_REL_INFOMECOMERCIAL_IBQuery_Analise.SQL');
+  IBQuery_Analise.SQL.SaveToFile(Trim(Sistema.usuario)+'_REL_INFOMECOMERCIAL_IBQuery_Analise.SQL');
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
 
@@ -331,7 +331,7 @@ begin
   IBQuery_Total.SQL.Add( CONST_SQL_FINAL_TOTAL     );
 //  IBQuery_Total.SQL.Add( CONST_SQL_WHERE_TOTAL     );
   IBQuery_Total.SQL.Add( CONST_SQL_ORDER_TOTAL     );
-  IBQuery_Total.SQL.SaveToFile('_REL_INFOMECOMERCIAL_IBQuery_Total.SQL');
+  IBQuery_Total.SQL.SaveToFile(Trim(Sistema.usuario)+'_REL_INFOMECOMERCIAL_IBQuery_Total.SQL');
   IBQuery_Total.Prepare;
   IBQuery_Total.Open;
 
@@ -631,7 +631,9 @@ TRY
     if iMesAnt = 0 then begin
        iMesAnt := 12 ;
        iAnoAnt := iAno - 1 ;
-       iAnoAnt := 1900 ;
+       
+    // 07/02/2014 erro gerado pelo charles
+    //   iAnoAnt := 1900 ;
     end;
 
     if idia = 31   then
@@ -815,7 +817,7 @@ TRY
   IBQuery_Analise.SQL.Add(SCONST_SQL_WHERE                );
   IBQuery_Analise.SQL.Add(sCONST_SQL_ORDER                 );
 
-  IBQuery_Analise.sql.SaveToFile('_REL_INFOMECOMERCIAL_IBQuery_Analise.sql');
+  IBQuery_Analise.sql.SaveToFile(Trim(Sistema.usuario)+'_REL_INFOMECOMERCIAL_IBQuery_Analise.sql');
 
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
@@ -831,7 +833,7 @@ TRY
   IBQuery_Total.SQL.Add( SCONST_SQL_WHERE_TOTAL );
   IBQuery_Total.SQL.Add( CONST_SQL_ORDER_TOTAL     );
 
-  IBQuery_Total.sql.SaveToFile('_REL_INFOMECOMERCIAL_IBQuery_Total.sql');
+  IBQuery_Total.sql.SaveToFile(Trim(Sistema.usuario)+'_REL_INFOMECOMERCIAL_IBQuery_Total.sql');
 
   IBQuery_Total.Prepare;
   IBQuery_Total.Open;

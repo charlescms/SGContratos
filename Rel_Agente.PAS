@@ -295,25 +295,25 @@ begin
 
   IBQueryAcordo.sql.Clear;
   IBQueryAcordo.sql.add( sql_IBQueryAcordo +  S_FILTRO2 + sql_IBQueryAcordoOrder );
-  IBQueryAcordo.sql.SaveToFile('_IBQueryAcordo.SQL');
+  IBQueryAcordo.sql.SaveToFile(Trim(Sistema.usuario)+'_IBQueryAcordo.SQL');
   IBQueryAcordo.Prepare ;
   IBQueryAcordo.Open ;
 
   IBQueryFaturaUSR.sql.Clear;
   IBQueryFaturaUSR.sql.add( sql_IBQueryFatura_Dolar +  S_FILTRO + sql_order_by ) ;
-  IBQueryFaturaUSR.SQL.SaveToFile('_IB_IBQueryFaturaUSR.SQL');
+  IBQueryFaturaUSR.SQL.SaveToFile(Trim(Sistema.usuario)+'_IB_IBQueryFaturaUSR.SQL');
   IBQueryFaturaUSR.Prepare ;
   IBQueryFaturaUSR.Open ;
 
   IBQueryFaturaEUR.sql.Clear;
   IBQueryFaturaEUR.sql.add( sql_IBQueryFatura_Euro +  S_FILTRO + sql_order_by ) ;
-  IBQueryFaturaEUR.SQL.SaveToFile('_IB_QueryFaturaEUR.SQL');
+  IBQueryFaturaEUR.SQL.SaveToFile(Trim(Sistema.usuario)+'_IB_QueryFaturaEUR.SQL');
   IBQueryFaturaEUR.Prepare ;
   IBQueryFaturaEUR.Open ;
 
   DOrdemCobranca.sql.Clear;
   DOrdemCobranca.sql.add( sql_DOrdemCobranca +  S_FILTRO + sql_order_by );
-  DOrdemCobranca.SQL.SaveToFile('_DOrdemCobranca.SQL');
+  DOrdemCobranca.SQL.SaveToFile(Trim(Sistema.usuario)+'_DOrdemCobranca.SQL');
   DOrdemCobranca.Prepare ;
   DOrdemCobranca.Open ;
 
@@ -327,7 +327,7 @@ begin
   IBQuery_soma.Close;
   IBQuery_soma.SQL.Clear;
   IBQuery_soma.SQL.Add(sql_IBQueryAcordo_total + S_FILTRO2 + ContratoTransporte_ORDER ) ;
-  IBQuery_soma.SQL.SaveToFile('_sql_IBQueryAcordo_total.SQL');
+  IBQuery_soma.SQL.SaveToFile(Trim(Sistema.usuario)+'_sql_IBQueryAcordo_total.SQL');
   IBQuery_soma.Prepare ;
   IBQuery_soma.Open ;
   if not IBQuery_soma.FieldByName('total').IsNull then
@@ -336,7 +336,7 @@ begin
   IBQuery_soma.Close;
   IBQuery_soma.SQL.Clear;
   IBQuery_soma.SQL.Add(sql_IBQueryFatura_total_dolar + S_FILTRO  + ' )' ) ;
-  IBQuery_soma.SQL.SaveToFile('_sql_IBQueryFatura_total_dolar.SQL');
+  IBQuery_soma.SQL.SaveToFile(Trim(Sistema.usuario)+'_sql_IBQueryFatura_total_dolar.SQL');
   IBQuery_soma.Prepare ;
   IBQuery_soma.Open ;
   if not IBQuery_soma.FieldByName('total').IsNull then
@@ -345,7 +345,7 @@ begin
   IBQuery_soma.Close;
   IBQuery_soma.SQL.Clear;
   IBQuery_soma.SQL.Add(sql_IBQueryFatura_total_euro + S_FILTRO + ' )' ) ;
-  IBQuery_soma.SQL.SaveToFile('_sql_IBQueryFatura_total_euro.SQL');
+  IBQuery_soma.SQL.SaveToFile(Trim(Sistema.usuario)+'_sql_IBQueryFatura_total_euro.SQL');
   IBQuery_soma.Prepare ;
   IBQuery_soma.Open ;
   if not IBQuery_soma.FieldByName('total').IsNull then
@@ -355,7 +355,7 @@ begin
   IBQuery_soma.Close;
   IBQuery_soma.SQL.Clear;
   IBQuery_soma.SQL.Add(sql_DOrdemCobranca_total + S_FILTRO  + ' )' ) ;
-  IBQuery_soma.SQL.SaveToFile('_sql_DOrdemCobranca_total.SQL');
+  IBQuery_soma.SQL.SaveToFile(Trim(Sistema.usuario)+'_sql_DOrdemCobranca_total.SQL');
   IBQuery_soma.Prepare ;
   IBQuery_soma.Open ;
   if not IBQuery_soma.FieldByName('total').IsNull then

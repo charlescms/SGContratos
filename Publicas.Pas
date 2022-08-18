@@ -7,7 +7,10 @@
        Versao         := '2.36'; 25/11/2011
        Versao         := '3.43';
        Versao         := '3.44'; 10/01/2014
-}
+       Versao         := '3.45'; 23/01/2014
+       Versao         := '3.46 ; 07/02/2014
+       Versao         := '3.47'; 02/05/2014 SOLICITANTE KARINA
+       }
 unit Publicas;
 
 interface
@@ -98,7 +101,7 @@ Begin
   with Sistema Do
   Begin
     Titulo         := 'Gestor de Contrato';
-    Versao         := '3.44';
+    Versao         := '3.48';
     Analista       := 'Charles';
     Programador    := 'Charles';
     Projetista     := 'CMS';
