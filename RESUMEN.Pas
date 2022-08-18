@@ -411,6 +411,8 @@ begin
   BtnAjuda.Visible  := False;
   BtnFechar.Visible := False;
   edt_ano.ValueInt := StrToInt( ano(Date) ) ;
+  XDT_INIC.DateValue := DT0112 ;
+  XDT_FIM.DateValue  := Date ;
 
   frReport.OnUserFunction := FuncoesExtras;
   FormResize(Self);

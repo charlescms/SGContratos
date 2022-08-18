@@ -1,6 +1,6 @@
 object FormProdutos: TFormProdutos
-  Left = 330
-  Top = 146
+  Left = 236
+  Top = 232
   Width = 746
   Height = 420
   Caption = 'Entrada de Dados'
@@ -281,7 +281,6 @@ object FormProdutos: TFormProdutos
                   Caption = 'Valor Previsto'
                   ParentShowHint = False
                   ShowHint = True
-                  Visible = False
                 end
                 object LbcProduto: TLabel
                   Left = 8
@@ -300,7 +299,6 @@ object FormProdutos: TFormProdutos
                   Caption = 'Quant. Prevista'
                   ParentShowHint = False
                   ShowHint = True
-                  Visible = False
                 end
                 object LbcUsuario: TLabel
                   Left = 473
@@ -434,7 +432,6 @@ object FormProdutos: TFormProdutos
                   ShowHint = True
                   ShowButton = True
                   TabOrder = 1
-                  Visible = False
                   OnExit = QUANT_PREVISTAexit
                 end
                 object VALOR_PREVISTO: TXDBNumEdit
@@ -493,7 +490,6 @@ object FormProdutos: TFormProdutos
                   ShowHint = True
                   ShowButton = True
                   TabOrder = 2
-                  Visible = False
                   OnExit = VALOR_PREVISTOexit
                 end
                 object Usuario: TXDBEdit
@@ -563,7 +559,7 @@ object FormProdutos: TFormProdutos
                   ShowHint = True
                   TabOrder = 4
                   Text = 'Observacoes'
-                  OnExit = OBSERVACOESExit
+                  OnExit = OBSERVACOESexit
                   Glyph.Data = {
                     7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                     2000000000004805000000000000000000000000000000000000008000000080
@@ -613,8 +609,8 @@ object FormProdutos: TFormProdutos
                 end
               end
               object grp_carrega: TGroupBox
-                Left = 251
-                Top = 185
+                Left = 329
+                Top = 138
                 Width = 185
                 Height = 97
                 Caption = 'grp_carrega'
@@ -628,8 +624,8 @@ object FormProdutos: TFormProdutos
                   Caption = 'Ano'
                 end
                 object lbl2: TLabel
-                  Left = 104
-                  Top = 16
+                  Left = 99
+                  Top = 11
                   Width = 24
                   Height = 13
                   Caption = 'Fator'
@@ -721,7 +717,6 @@ object FormProdutos: TFormProdutos
                   Width = 75
                   Height = 25
                   Hint = 'Salvar registro'
-                  Caption = 'Cancelar'
                   ParentShowHint = False
                   ShowHint = True
                   TabOrder = 2

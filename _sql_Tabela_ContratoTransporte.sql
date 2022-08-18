@@ -22,6 +22,7 @@ Select
   ContratoTransporte.Comissao AS Comissao,
   ContratoTransporte.FormComissao AS FormComissao,
   ContratoTransporte.ValorTotalComissao AS ValorTotalComissao,
+  ContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS AS VALORTOTALCOMISSAOEXECUTADOUS,
   ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado,
   ContratoTransporte.OBS AS OBS,
   ContratoTransporte.DataAss AS DataAss,

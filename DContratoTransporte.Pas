@@ -43,6 +43,7 @@ type
     Comissao: TDContratoTransporte_Comissao;
     FormComissao: TDContratoTransporte_FormComissao;
     ValorTotalComissao: TDContratoTransporte_ValorTotalComissao;
+    VALORTOTALCOMISSAOEXECUTADOUS: TDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS;
     ValorTotalComissaoExecutado: TDContratoTransporte_ValorTotalComissaoExecutado;
     OBS: TDContratoTransporte_OBS;
     DataAss: TDContratoTransporte_DataAss;
@@ -128,6 +129,7 @@ begin
     InsertSQL.Add('  Comissao,');
     InsertSQL.Add('  FormComissao,');
     InsertSQL.Add('  ValorTotalComissao,');
+    InsertSQL.Add('  VALORTOTALCOMISSAOEXECUTADOUS,');
     InsertSQL.Add('  ValorTotalComissaoExecutado,');
     InsertSQL.Add('  OBS,');
     InsertSQL.Add('  DataAss,');
@@ -157,6 +159,7 @@ begin
     InsertSQL.Add('  :Comissao,');
     InsertSQL.Add('  :FormComissao,');
     InsertSQL.Add('  :ValorTotalComissao,');
+    InsertSQL.Add('  :VALORTOTALCOMISSAOEXECUTADOUS,');
     InsertSQL.Add('  :ValorTotalComissaoExecutado,');
     InsertSQL.Add('  :OBS,');
     InsertSQL.Add('  :DataAss,');
@@ -187,6 +190,7 @@ begin
     ModifySQL.Add('  Comissao = :Comissao,');
     ModifySQL.Add('  FormComissao = :FormComissao,');
     ModifySQL.Add('  ValorTotalComissao = :ValorTotalComissao,');
+    ModifySQL.Add('  VALORTOTALCOMISSAOEXECUTADOUS = :VALORTOTALCOMISSAOEXECUTADOUS,');
     ModifySQL.Add('  ValorTotalComissaoExecutado = :ValorTotalComissaoExecutado,');
     ModifySQL.Add('  OBS = :OBS,');
     ModifySQL.Add('  DataAss = :DataAss,');
@@ -221,6 +225,7 @@ begin
     RefreshSQL.Add('  ContratoTransporte.Comissao AS Comissao,');
     RefreshSQL.Add('  ContratoTransporte.FormComissao AS FormComissao,');
     RefreshSQL.Add('  ContratoTransporte.ValorTotalComissao AS ValorTotalComissao,');
+    RefreshSQL.Add('  ContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS AS VALORTOTALCOMISSAOEXECUTADOUS,');
     RefreshSQL.Add('  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado,');
     RefreshSQL.Add('  ContratoTransporte.OBS AS OBS,');
     RefreshSQL.Add('  ContratoTransporte.DataAss AS DataAss,');
@@ -281,6 +286,7 @@ begin
   SqlPrincipal.Add('  ContratoTransporte.Comissao AS Comissao,');
   SqlPrincipal.Add('  ContratoTransporte.FormComissao AS FormComissao,');
   SqlPrincipal.Add('  ContratoTransporte.ValorTotalComissao AS ValorTotalComissao,');
+  SqlPrincipal.Add('  ContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS AS VALORTOTALCOMISSAOEXECUTADOUS,');
   SqlPrincipal.Add('  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado,');
   SqlPrincipal.Add('  ContratoTransporte.OBS AS OBS,');
   SqlPrincipal.Add('  ContratoTransporte.DataAss AS DataAss,');
@@ -377,6 +383,8 @@ begin
   ID_FORN.Valor.DataSet := Self;
   Usuario := TDContratoTransporte_Usuario.Create(AOwner);
   Usuario.Valor.DataSet := Self;
+  VALORTOTALCOMISSAOEXECUTADOUS := TDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS.Create(AOwner);
+  VALORTOTALCOMISSAOEXECUTADOUS.Valor.DataSet := Self;
 //CRIANDO CHAVE PRIMARIA 
   ChavePrimaria.Add(Contrato);
 //CRIANDO CAMPOS 
@@ -403,6 +411,7 @@ begin
   Campos.Add(Comissao);
   Campos.Add(FormComissao);
   Campos.Add(ValorTotalComissao);
+  Campos.Add(VALORTOTALCOMISSAOEXECUTADOUS);
   Campos.Add(ValorTotalComissaoExecutado);
   Campos.Add(OBS);
   Campos.Add(DataAss);

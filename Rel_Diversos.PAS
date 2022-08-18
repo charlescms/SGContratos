@@ -253,6 +253,8 @@ begin
   Carrega_CB(CBox_INIC,CBox_FIM,'SELECT RAZAO || '' >> '' || FORCOD || '' << ''  AS CAMPOS FROM FORNECEDORES ORDER BY RAZAO', 'CAMPOS',SELF);
   dbnvgr1.DataSource := ds_grid ;
   QyRelatorio := DContratoTransporte;
+  XDT_INIC.DateValue := dt0112;
+  XDT_FIM.DateValue  := Date ;
 end;
 
 procedure TFormRel_Diversos.BtnFecharClick(Sender: TObject);

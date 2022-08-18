@@ -213,7 +213,8 @@ function CalculaDContratoTransporte_VlTotalComissaoPendente(AOwner: TComponent) 
   // variáveis locais
 begin
   // a variável "Result" deverá conter o resultado da expressão
-  Result := TabGlobal.DContratoTransporte.ValorTotalComissao.Conteudo - TabGlobal.DContratoTransporte.ValorTotalComissaoExecutado.Conteudo ;
+  // Result := TabGlobal.DContratoTransporte.ValorTotalComissao.Conteudo - TabGlobal.DContratoTransporte.ValorTotalComissaoExecutado.Conteudo ;
+  Result := TabGlobal.DContratoTransporte.ValorTotalComissao.Conteudo - TabGlobal.DContratoTransporte.ValorTotalComissaoExecutadoUS.Conteudo ;
 end;
 
 function CalculaDContratoTransporte_VlTotalComissaoPendente_Rel(AOwner: TComponent) : Double;
@@ -223,7 +224,8 @@ var
 begin
   DContratoTransporte := TDContratoTransporte(LocalizaTabela(AOwner, 'DContratoTransporte'));
   // a variável "Result" deverá conter o resultado da expressão
-  Result := DContratoTransporte.ValorTotalComissao.Conteudo - DContratoTransporte.ValorTotalComissaoExecutado.Conteudo ;
+  // Result := DContratoTransporte.ValorTotalComissao.Conteudo - DContratoTransporte.ValorTotalComissaoExecutado.Conteudo ;
+  Result := DContratoTransporte.ValorTotalComissao.Conteudo - DContratoTransporte.ValorTotalComissaoExecutadoUS.Conteudo ;
 end;
 
 function CalculaDExportadoTransito_ComisaoSFatura(AOwner: TComponent) : Double;

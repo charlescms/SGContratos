@@ -34,13 +34,23 @@ s_analise =
   '  contratotransporte.quantidadetotal as Qunat_Total_Contrato, ' + NOVA_LINHA +
   '  (( select sum(produtocontratot.quantidade) from produtocontratot  where produtocontratot.contrato = contratotransporte.contrato )) as Qunat_Total_Produto, ' + NOVA_LINHA +
   '  contratotransporte.QUANTTOTALEXP as Qunat_Total_Exp_Contrato, ' + NOVA_LINHA +
-  '  (( select sum(EXPORTADOTRANSITO.QUANTIDADEEXP)  from EXPORTADOTRANSITO  where EXPORTADOTRANSITO.contrato = contratotransporte.contrato  ))  as Qunat_Total_Ja_Exportada ' + NOVA_LINHA +
+  '  (( select sum(EXPORTADOTRANSITO.QUANTIDADEEXP)  from EXPORTADOTRANSITO  where EXPORTADOTRANSITO.contrato = contratotransporte.contrato  ))  as Qunat_Total_Ja_Exportada , ' + NOVA_LINHA +
+  '  contratotransporte.VALORTOTALCOMISSAO, ' + NOVA_LINHA +
+  '  ( SELECT ( SUM(PRODUTOCONTRATOT.ComisaoSFatura)   ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) )     AS VALORTOTALCOMISSAO_CAL_PRODUTO , ' + NOVA_LINHA +
+  '   contratotransporte.VALORTOTALCOMISSAOEXECUTADO , ' + NOVA_LINHA +
+  '  ( SELECT ( SUM(EXPORTADOTRANSITO.ComisaoSFatura)   ) FROM EXPORTADOTRANSITO   WHERE (EXPORTADOTRANSITO.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) )  AS VALORTOTALCOMISSAO_CAL_EXEC_US , ' + NOVA_LINHA +
+  '   contratotransporte.VALORTOTALCOMISSAOEXECUTADOUS , ' + NOVA_LINHA +
+  '  (SELECT IIF(SUM( EXPORTADOTRANSITO.VALORCONVERTIDO) IS NULL ,0,SUM(EXPORTADOTRANSITO.VALORCONVERTIDO) ) FROM EXPORTADOTRANSITO WHERE  CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO ) AS  VALORTOTALCOMISSAOEXECUTADO_CAL' + NOVA_LINHA +
   'from contratotransporte) as analise '+ NOVA_LINHA +
   ' where ( Qunat_Total_Contrato < Qunat_Total_Produto ) OR '+ NOVA_LINHA +
   '       ( ValorSCCTotal <  ValorSCC_TOTAL_PRODUTO )  OR  '+ NOVA_LINHA +
   '       ( Qunat_Total_Exp_Contrato < 0  ) or '+ NOVA_LINHA +
-  '       ( Qunat_Total_Exp_Contrato < Qunat_Total_Ja_Exportada ) '+ NOVA_LINHA +
-  ' OR    (  ValorTotalExp <  Valor_TOTAL_exportado ) '+ NOVA_LINHA +
+  '       ( Qunat_Total_Exp_Contrato < Qunat_Total_Ja_Exportada ) or '+ NOVA_LINHA +
+  '       ( ValorTotalExp <  Valor_TOTAL_exportado ) or '+ NOVA_LINHA +
+  '       ( VALORTOTALCOMISSAO < VALORTOTALCOMISSAO_CAL_PRODUTO ) or '+ NOVA_LINHA +
+  '       ( VALORTOTALCOMISSAOEXECUTADO is null)  or  '+ NOVA_LINHA +
+  '       ( VALORTOTALCOMISSAOEXECUTADO  < VALORTOTALCOMISSAOEXECUTADO_CAL  ) OR '+ NOVA_LINHA +
+  '       ( VALORTOTALCOMISSAOEXECUTADOUS  < VALORTOTALCOMISSAO_CAL_EXEC_US ) '+ NOVA_LINHA +
   ' ORDER BY CONTRATO';
 
 sc_sql_recebimento =
@@ -382,7 +392,7 @@ begin
 
   IBQuery_Analise.SQL.Clear ;
   IBQuery_Analise.SQL.Add(s_analise) ;
-  IBQuery_Analise.SQL.SaveToFile('IBQuery_Analise.SQL');
+  IBQuery_Analise.SQL.SaveToFile('_IBQuery_Analise.SQL');
   IBQuery_Analise.Prepare ;
   IBQuery_Analise.Open ;
 
@@ -1225,6 +1235,31 @@ begin
 // 20/02/2013 correcao carrina atualizar com a versao 20/02/2013 3.25
       if IBQuery_Analise.FieldValues['Valor_TOTAL_exportado'] > IBQuery_Analise.FieldValues['ValorTotalExp'] then
          TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo := IBQuery_Analise.FieldValues['Valor_TOTAL_exportado'];
+//18/10/2013
+
+//      if IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADO'].value  = 0 then
+         TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADO.Conteudo := IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADO_CAL'];
+
+//      '       ( VALORTOTALCOMISSAOEXECUTADOUS  < VALORTOTALCOMISSAO_CAL_EXECUTADO_US ) '+ NOVA_LINHA +
+      if IBQuery_Analise.FieldValues['VALORTOTALCOMISSAO_CAL_EXEC_US'] > IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADOUS'] then
+         TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS.Conteudo := IBQuery_Analise.FieldValues['VALORTOTALCOMISSAO_CAL_EXEC_US'];
+
+
+
+      if IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADO_CAL'] > IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADO'] then
+         TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADO.Conteudo := IBQuery_Analise.FieldValues['VALORTOTALCOMISSAOEXECUTADO_CAL'];
+
+      if IBQuery_Analise.FieldValues['VALORTOTALCOMISSAO_CAL_PRODUTO'] > IBQuery_Analise.FieldValues['VALORTOTALCOMISSAO'] then
+         TabGlobal.DContratoTransporte.ValorTotalComissao.Conteudo := IBQuery_Analise.FieldValues['VALORTOTALCOMISSAO_CAL_PRODUTO'];
+         
+
+{
+  '  contratotransporte.VALORTOTALCOMISSAO, ' + NOVA_LINHA +
+  '  ( SELECT ( SUM(PRODUTOCONTRATOT.ComisaoSFatura)   ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) )  AS VALORTOTALCOMISSAO_CAL_PRODUTO , ' + NOVA_LINHA +
+  ' contratotransporte.VALORTOTALCOMISSAOEXECUTADO , ' + NOVA_LINHA +
+  ' (SELECT IIF(SUM( EXPORTADOTRANSITO.VALORCONVERTIDO) IS NULL ,0,SUM(EXPORTADOTRANSITO.VALORCONVERTIDO) ) FROM EXPORTADOTRANSITO WHERE  CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO ) AS  VALORTOTALCOMISSAOEXECUTADO_CALCULADO_EXPORTADO' + NOVA_LINHA +
+}
+
 
 
       TabGlobal.DContratoTransporte.Salva ;

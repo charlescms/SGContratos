@@ -1,6 +1,6 @@
 object FormInfome: TFormInfome
-  Left = 250
-  Top = 0
+  Left = 364
+  Top = 76
   Width = 919
   Height = 740
   Caption = 'Relat'#243'rio'

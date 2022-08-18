@@ -170,6 +170,7 @@ type
     lbl3: TLabel;
     GroupBox3: TGroupBox;
     cbb_order: TComboBox;
+    rg_data: TRadioGroup;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -261,8 +262,10 @@ Var
   n_cp, ind: Integer;
 begin
   l_Filtro := false ;
-  XDT_CAD_CONT.DATEVALUE := STRTODATE('01/12/'+INTTOSTR(STRTOINT(ANO(Date)) - 1));
+//  XDT_CAD_CONT.DATEVALUE :=  STRTODATE('01/12/'+INTTOSTR(STRTOINT(ANO(Date)) - 1));
+  XDT_CAD_CONT.DATEVALUE :=  DT0112 ; //  STRTODATE('01/12/'+INTTOSTR(STRTOINT(ANO(Date)) - 1));
   XDT_EXECUCAO.DATEVALUE :=  XDT_CAD_CONT.DATEVALUE ;
+  XDT_INIC.DateValue := Date ;
   IBQuery_Analise.Database := BaseDados.BD_Base_Dados ;
   IBQuery_Total.Database   := BaseDados.BD_Base_Dados ;
 
@@ -598,7 +601,7 @@ VAR
   N_INC  , N_FIN  : INTEGER ;
   iAno, iMes, iDia, iAnoAnt ,iMesAnt : Word ;
   s_data_final , s_data_inicial , sano_ant, smes_ant , ult_dia_ant , s_data_ant_final: string ;
-  FILTRO_PRODUTOCONTRATOT , FILTRO_EXPORTADOTRANSITO , FILTRO_PRODUTOCONTRATOT_ANT , FILTRO_EXPORTADOTRANSITO_ANT : string ;
+  FILTRO_PRODUTOCONTRATOT , FILTRO_PRODUTOCONTRATOT_CTTO, FILTRO_EXPORTADOTRANSITO , FILTRO_PRODUTOCONTRATOT_ANT , FILTRO_EXPORTADOTRANSITO_ANT : string ;
   FILTRO_COMISSAO_ANT , FILTRO_COMISSAO : string ;
   S_cont_VL_ATUAL_CONTRATADO,S_cont_VL_ANTERIOR_CONTRATADO,S_cont_VL_ATUAL_EXPORTADO,S_cont_VL_ANTERIOR_EXPORTADO,S_cont_ACUM_ATUAL_COMISSAO,S_cont_ACUM_ANTERIOR_COMISSAO  : string ;
   S_cont_VL_ATUAL_CONTRATADO_Total ,  S_cont_VL_ATUAL_EXPORTADO_Total : string ;
@@ -607,7 +610,9 @@ VAR
   FILTRO_PRODUTOCONTRATOT_SELEC ,     S_cont_ACUM_COMISSAO_CONTRATADO , SCONST_SQL_WHERE  , SCONST_SQL_WHERE_TOTAL : STRING ;
 begin
 
-S_FILTRO := '' ;
+// 10/01/2014 foi informado pela karina que neste relatorio nao entra o fornecedor surimpex que posuui o codifo de munero 17
+
+S_FILTRO := ' CONTRATOTRANSPORTE.FORCOD <> 17 ' ;
 
 TRY
   Screen.Cursor := crHourGlass;
@@ -670,6 +675,7 @@ TRY
     smes := strzero(imes,2) ;
     sano := strzero(iano,4);
 
+//    XDT_CAD_CONT
 
     s_data_ant_INIC_EX := Sano+'/'+Smes+'/'+Sdia ;
 
@@ -681,15 +687,25 @@ TRY
     FILTRO_PRODUTOCONTRATOT             := '( PRODUTOCONTRATOT.Cadastro  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( PRODUTOCONTRATOT.Cadastro  <= ' + AtribuiAspas(s_data_final) + ' )' ;
     FILTRO_EXPORTADOTRANSITO            := '( EXPORTADOTRANSITO.DATAEMBARQUE >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.DATAEMBARQUE <= ' + AtribuiAspas(s_data_final) + ' )' ;
 
-//    FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.DATALIQ  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.DATALIQ  <= ' + AtribuiAspas(s_data_final) + ' )' ;
-    FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.DATANF  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.DATANF  <= ' + AtribuiAspas(s_data_final) + ' )' ;
 
     FILTRO_PRODUTOCONTRATOT_ANT         := '( PRODUTOCONTRATOT.Cadastro  <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( PRODUTOCONTRATOT.Cadastro  >= ' + AtribuiAspas(s_data_ant_INIC_AC) + ' )' ;
 
     FILTRO_EXPORTADOTRANSITO_ANT        := '( EXPORTADOTRANSITO.DATAEMBARQUE <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( EXPORTADOTRANSITO.DATAEMBARQUE >= ' + AtribuiAspas(s_data_ant_INIC_EX) + ' )' ;
+// 3.38 17/10/2013
+//    FILTRO_COMISSAO_ANT                 := '( EXPORTADOTRANSITO.DATANF  <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( EXPORTADOTRANSITO.DATANF  >= ' + AtribuiAspas(s_data_ant_INIC_EX) + ' )' ;
 
-    FILTRO_COMISSAO_ANT                 := '( EXPORTADOTRANSITO.DATANF  <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( EXPORTADOTRANSITO.DATANF  >= ' + AtribuiAspas(s_data_ant_INIC_EX) + ' )' ;
-
+    if rg_data.ItemIndex = 0 then
+    begin
+//     FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.DATALIQ  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.DATALIQ  <= ' + AtribuiAspas(s_data_final) + ' )' ;
+       FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.Cadastro  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.Cadastro  <= ' + AtribuiAspas(s_data_final) + ' )' ;
+       FILTRO_COMISSAO_ANT                 := '( EXPORTADOTRANSITO.Cadastro  <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( EXPORTADOTRANSITO.Cadastro  >= ' + AtribuiAspas(s_data_ant_INIC_EX) + ' )' ;
+    end
+    else
+    begin
+//    FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.DATALIQ  >= ' + AtribuiAspas(s_data_inicial) + ' ) AND ( EXPORTADOTRANSITO.DATALIQ  <= ' + AtribuiAspas(s_data_final) + ' )' ;
+      FILTRO_COMISSAO                     := '( EXPORTADOTRANSITO.DATANF  >= ' + AtribuiAspas(s_data_inicial)   + ' ) AND ( EXPORTADOTRANSITO.DATANF  <= ' + AtribuiAspas(s_data_final) + ' )' ;
+      FILTRO_COMISSAO_ANT                 := '( EXPORTADOTRANSITO.DATANF  <= ' + AtribuiAspas(s_data_ant_final) + ' ) AND ( EXPORTADOTRANSITO.DATANF  >= ' + AtribuiAspas(s_data_ant_INIC_EX) + ' )' ;
+    end;
     S_cont_VL_ATUAL_CONTRATADO          := '( SELECT IIF( SUM(PRODUTOCONTRATOT.VALORSCC)         IS NULL,0, SUM(PRODUTOCONTRATOT.VALORSCC)       ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT        +') AS VL_ATUAL_CONTRATADO ,    '+ NOVA_LINHA ;
     S_cont_VL_ANTERIOR_CONTRATADO       := '( SELECT IIF( SUM(PRODUTOCONTRATOT.VALORSCC)         IS NULL,0, SUM(PRODUTOCONTRATOT.VALORSCC)       ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT_ANT    +') AS VL_ANTERIOR_CONTRATADO , '+ NOVA_LINHA ;
     S_cont_VL_ATUAL_EXPORTADO           := '( SELECT IIF( SUM(EXPORTADOTRANSITO.VALOR)           IS NULL,0, SUM(EXPORTADOTRANSITO.VALOR)         ) FROM EXPORTADOTRANSITO  WHERE (EXPORTADOTRANSITO.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_EXPORTADOTRANSITO       +') AS VL_ATUAL_EXPORTADO,      '+ NOVA_LINHA ;
@@ -697,7 +713,11 @@ TRY
 
     S_cont_ACUM_ATUAL_COMISSAO          := '( SELECT IIF( SUM(EXPORTADOTRANSITO.ComisaoSFatura)  IS NULL,0, SUM(EXPORTADOTRANSITO.ComisaoSFatura)) FROM EXPORTADOTRANSITO  WHERE (EXPORTADOTRANSITO.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND  EXPORTADOTRANSITO.DATANF IS NOT NULL AND  '+ FILTRO_COMISSAO                +') AS ACUM_ATUAL_COMISSAO,     '+ NOVA_LINHA ;
     S_cont_ACUM_ANTERIOR_COMISSAO       := '( SELECT IIF( SUM(EXPORTADOTRANSITO.ComisaoSFatura)  IS NULL,0, SUM(EXPORTADOTRANSITO.ComisaoSFatura)) FROM EXPORTADOTRANSITO  WHERE (EXPORTADOTRANSITO.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND  EXPORTADOTRANSITO.DATANF IS NOT NULL AND  '+ FILTRO_COMISSAO_ANT            +') AS ACUM_ANTERIOR_COMISSAO,  '+ NOVA_LINHA ;
-    S_cont_ACUM_COMISSAO_CONTRATADO     := '( SELECT IIF( SUM(PRODUTOCONTRATOT.ComisaoSFatura)   IS NULL,0, SUM(PRODUTOCONTRATOT.ComisaoSFatura) ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT        +') AS COMISSION_CTTO ,         '+ NOVA_LINHA ;
+
+
+//    S_cont_ACUM_COMISSAO_CONTRATADO     := '( SELECT IIF( SUM(PRODUTOCONTRATOT.ComisaoSFatura)   IS NULL,0, SUM(PRODUTOCONTRATOT.ComisaoSFatura) ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT_CCTO        +') AS COMISSION_CTTO ,         '+ NOVA_LINHA ;
+//  13/10/2013 CORRECAO IDENTIFICADA PELA CARINA
+    S_cont_ACUM_COMISSAO_CONTRATADO     := '( SELECT IIF( SUM(PRODUTOCONTRATOT.ComisaoSFatura)   IS NULL,0, SUM(PRODUTOCONTRATOT.ComisaoSFatura) ) FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT_SELEC        +') AS COMISSION_CTTO ,         '+ NOVA_LINHA ;
 
     S_cont_VL_ATUAL_CONTRATADO_Total    := '( SELECT IIF( SUM(PRODUTOCONTRATOT.VALORSCC)         IS NULL,0, SUM(PRODUTOCONTRATOT.VALORSCC))        FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT        +') AS VL_ATUAL_CONTRATADO ,    '+ NOVA_LINHA ;
     S_cont_VL_ANTERIOR_CONTRATADO_Total := '( SELECT IIF( SUM(PRODUTOCONTRATOT.VALORSCC)         IS NULL,0, SUM(PRODUTOCONTRATOT.VALORSCC))        FROM PRODUTOCONTRATOT   WHERE (PRODUTOCONTRATOT.CONTRATO  = CONTRATOTRANSPORTE.CONTRATO ) AND  '+ FILTRO_PRODUTOCONTRATOT_ANT    +') AS VL_ANTERIOR_CONTRATADO , '+ NOVA_LINHA ;
@@ -710,6 +730,8 @@ TRY
      MessageDlg(MSG_ADATAEUMCAMPOOBRIGATORIO,mtError,[mbOk],0)  ;
      exit ;
   end;
+
+
 
   // CODIGO DE CLIENTE
   IF CBox_INIC.Text <> '' THEN BEGIN
@@ -766,10 +788,12 @@ TRY
 
   SCONST_SQL_WHERE :=   '' ;
   SCONST_SQL_WHERE_TOTAL := '' ;
+
   IF S_FILTRO <> '' THEN  BEGIN
      SCONST_SQL_WHERE :=  CONST_SQL_WHERE +  S_FILTRO ;
      SCONST_SQL_WHERE_TOTAL := CONST_SQL_WHERE_TOTAL + S_FILTRO
   END;
+
 
   if Trim (cbb_order.Text) <> '' then
      sCONST_SQL_ORDER := 'ORDER BY ' + cbb_order.Text + NOVA_LINHA + ' ) AS INFORME ' +   NOVA_LINHA

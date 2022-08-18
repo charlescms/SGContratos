@@ -1,6 +1,6 @@
 object FormRELFATURA: TFormRELFATURA
-  Left = 202
-  Top = 91
+  Left = 410
+  Top = 711
   Width = 993
   Height = 613
   Caption = 'Relat'#243'rio'
@@ -136,7 +136,7 @@ object FormRELFATURA: TFormRELFATURA
             Top = 32
             Width = 97
             Height = 21
-            ItemHeight = 13
+            ItemHeight = 0
             TabOrder = 0
           end
           object CmbBox_Fatura_Final: TComboBox
@@ -144,7 +144,7 @@ object FormRELFATURA: TFormRELFATURA
             Top = 32
             Width = 97
             Height = 21
-            ItemHeight = 13
+            ItemHeight = 0
             TabOrder = 1
           end
         end

@@ -5,6 +5,8 @@
    Site.....: http://www.xmaker.com.br
        Versao         := '2.11'; 25/11/2011
        Versao         := '2.36'; 25/11/2011
+       Versao         := '3.43';
+       Versao         := '3.44'; 10/01/2014
 }
 unit Publicas;
 
@@ -96,7 +98,7 @@ Begin
   with Sistema Do
   Begin
     Titulo         := 'Gestor de Contrato';
-    Versao         := '3.36';
+    Versao         := '3.44';
     Analista       := 'Charles';
     Programador    := 'Charles';
     Projetista     := 'CMS';

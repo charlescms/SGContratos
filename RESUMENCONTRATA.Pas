@@ -445,6 +445,9 @@ begin
   DRESUMENCONTRATACION.Open ;
   TabSheet1.Visible := True ;
 
+  XDT_INIC.DateValue := DT0112 ;
+  XDT_FIM.DateValue  := Date ;
+
 end;
 
 procedure TFormRESUMENCONTRATA.BtnFecharClick(Sender: TObject);

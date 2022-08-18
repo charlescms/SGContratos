@@ -1,6 +1,6 @@
 object FormRelSitucaoCred: TFormRelSitucaoCred
-  Left = 207
-  Top = 80
+  Left = 185
+  Top = 58
   Width = 992
   Height = 620
   Caption = 'Relat'#243'rio'

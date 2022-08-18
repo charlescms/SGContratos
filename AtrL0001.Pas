@@ -115,6 +115,14 @@ Type
     procedure IncluiValoresValidos; override;
   end;
 
+Type
+  TDCERBO_Cadastro = class(TTipoData)
+  public
+    constructor Create(AOwner: TComponent); override;
+    { Valor padrão }
+    function ValorPadrao: TDateTime; override;
+  end;
+
 
 implementation
 
@@ -921,6 +929,55 @@ begin
   IncluiValorValido('OK', 'Concluido');
   IncluiValorValido('PR', 'Problema');
   Valor.OnGetText := GetText;
+end;
+
+constructor TDCERBO_Cadastro.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'Cadastro';
+  Tipo              := tpData;
+  Tamanho           := 8;
+  CasasDecimais     := 0;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Cadastro';
+  Mascara           := '99/99/9999';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Data de Criação do Registro';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 18;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 18;
+  Index_Default     := 18;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'CERBO';
+  NomeOriginal      := 'Cadastro';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
+end;
+
+function TDCERBO_Cadastro.ValorPadrao: TDateTime;
+begin
+  Result := DataAtual;
 end;
 
 end.

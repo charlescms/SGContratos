@@ -1,6 +1,6 @@
 object FormRESUMEN: TFormRESUMEN
-  Left = 116
-  Top = 23
+  Left = 103
+  Top = 84
   Width = 1064
   Height = 729
   Caption = 'Relat'#243'rio'

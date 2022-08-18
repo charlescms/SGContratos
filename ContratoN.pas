@@ -23,6 +23,7 @@ type
     {01-Início do Bloco Modular. Modificações não serão preservadas}
     AbaConsulta: TTabSet;
     AbrirImagem: TMenuItem;
+    btn_CancelaContrato: TBitBtn;
     btn_Corrig: TBitBtn;
     BtnAnterior: TSpeedButton;
     BtnDesistir: TBitBtn;
@@ -91,6 +92,7 @@ type
     LbcValorSCCTotal: TLabel;
     LbcValorTotalComissao: TLabel;
     LbcValorTotalComissaoExecutado: TLabel;
+    LbcVALORTOTALCOMISSAOEXECUTADOUS: TLabel;
     LbcValorTotalExp: TLabel;
     LbcValorTotalPendente: TLabel;
     MenuImagem: TPopupMenu;
@@ -143,11 +145,11 @@ type
     ValorSCCTotal: TXDBNumEdit;
     ValorTotalComissao: TXDBNumEdit;
     ValorTotalComissaoExecutado: TXDBNumEdit;
+    VALORTOTALCOMISSAOEXECUTADOUS: TXDBNumEdit;
     ValorTotalExp: TXDBNumEdit;
     ValorTotalPendente: TXDBNumEdit;
     XNumEdit1: TXNumEdit;
     XNumEdit2: TXNumEdit;
-    btn_CancelaContrato: TBitBtn;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure CadastroExit(Sender: TObject);
@@ -181,6 +183,7 @@ type
     procedure SDataEmbarqueExit(Sender: TObject);
     procedure ID_FORNExit(Sender: TObject);
     procedure UsuarioExit(Sender: TObject);
+    procedure VALORTOTALCOMISSAOEXECUTADOUSExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
@@ -302,21 +305,24 @@ implementation
 
 {$R *.DFM}
 
-uses Publicas, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, PRODUTOCONTRATO, BOOCKING, EXPORTACAO;
+uses Publicas,LogPrograma, Princ, Rotinas, RotinaEd, Abertura, GridPesquisa, PRODUTOCONTRATO, BOOCKING, EXPORTACAO;
 
 procedure TFormContratoN.FormShow(Sender: TObject);
 Var
   I: Integer;
 begin
-
+ TRY
+  log_cms.LOG('inicio -> TFormContratoN.FormShow');
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   TabelaPrincipal    := TabGlobal.DContratoTransporte;
   TituloModulo       := 'Cadastro de Contrato';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
-  TabelaPrincipal.AtribuiRelacionamentos(TRUE);  
+  log_cms.LOG('  TabelaPrincipal.AtribuiRelacionamentos(TRUE);');
+  TabelaPrincipal.AtribuiRelacionamentos(TRUE);
   FormPrincipal.PnImagemFundo.Visible := False;
   Sistema.JanelasMDI := Sistema.JanelasMDI + 01;
+  log_cms.LOG('  Sistema.JanelasMDI := Sistema.JanelasMDI + 01;');
   if Sistema.JanelasMDI < 1 then   // Pouco provável + ...
     Sistema.JanelasMDI := 1;
   Navegando          := False;
@@ -327,9 +333,12 @@ begin
   ErroValidacao      := False;
   TabPaginas.TabIndex:= 0;
   // posicione
+ log_cms.LOG('   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS, -2, VALORTOTALCOMISSAOEXECUTADOUSExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);');
   Grid_Boocking.height := Trunc( Pagina2.height /2) ;
   Grid_ExportadoTransito.align := alClient ;
+ log_cms.LOG('inicio  ');
   {06-Início do Bloco Modular. Modificações não serão preservadas}
+  AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS, -2, VALORTOTALCOMISSAOEXECUTADOUSExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Usuario, -2, UsuarioExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.ID_FORN, -2, ID_FORNExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.SDataEmbarque, -2, SDataEmbarqueExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
@@ -361,12 +370,15 @@ begin
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Cadastro, -2, CadastroExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa);
   {99-Final do Bloco Modular. Modificações não serão preservadas}
+ log_cms.LOG('fim   AtribuiCampoEdicao(TabGlobal.DContratoTransporte, TabGlobal.DContratoTransporte.Contrato, -1, ContratoExit, Nil, ListaCamposEd, FormContratoN, DataSource, ChamaGridPesquisa); ');
+ log_cms.LOG(' CamposCalculados');
   CamposCalculados;
   if not AbreTabelas then exit;
   AjustaColunasConsulta(TabelaPrincipal);
   TabelaPrincipal.AtualizaSql;
   StatusTabela;
   TabelaPrincipal.First;
+  log_cms.LOG(' FormResize(Self);');
   FormResize(Self);
   BtnSalvar.Enabled   := False;
   BtnDesistir.Enabled := False;
@@ -376,13 +388,15 @@ begin
   PagePrincipal.OnChange        := PagePrincipalChange;
   TelaConsulta;
   GridConsulta.SetFocus;
-
+  log_cms.LOG(' Panel1.Align := alTop ;');
   Panel1.Align := alTop ;
   GroupBox1.Align := alTop ;
   Panel2.Align := alClient ;
   GroupBox2.Align := alLeft ;
   GroupBox3.Align := alClient ;
   StatusCT.Enabled := false ;
+
+  log_cms.LOG('  DataSource_Grid_ExportadoTransito.DataSet := TabGlobal.DExportadoTransito;');
 
   DataSource_Grid_ExportadoTransito.DataSet := TabGlobal.DExportadoTransito;
   Grid_ExportadoTransito.DataSource := DataSource_Grid_ExportadoTransito;
@@ -394,13 +408,22 @@ begin
   Grid_PrudutoContratoT.DataSource := DataSource_Grid_PrudutoContratoT;
   AtribuiGridEdicao(TabGlobal.DProdutoContratoT, Grid_PrudutoContratoT, false, ValidaColunaGrid);
   
-  
+  log_cms.LOG('    if TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo < TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo then');
 
   if TabGlobal.DContratoTransporte.ValorSCCTotal.Conteudo < TabGlobal.DContratoTransporte.ValorTotalExp.Conteudo then
     btn_Corrig.Visible := True
  else
     btn_Corrig.Visible := False  ;
-
+    
+ except
+    on Erro: Exception do
+    begin
+      log_cms.LOG('Erro de Inicialização!' + ^M+^M + Erro.Message);
+      MessageDlg('Erro de Inicialização!' + ^M+^M + Erro.Message, mtError, [mbOk], 0);
+      Sistema.ErroFatal := True;
+    end;
+ end;
+log_cms.LOG('inicio -> TFormContratoN.FormShow');
 end;
 
 function TFormContratoN.AbreTabelas: Boolean;
@@ -2198,6 +2221,17 @@ begin
        MessageDlg('Contrato =' + TabGlobal.DContratoTransporte.Contrato.ValorString + ' não pode ser Cancelado já existem Exportações ?',mtInformation ,[mbOK],0) ;
 
 
+end;
+
+procedure TFormContratoN.VALORTOTALCOMISSAOEXECUTADOUSExit(Sender: TObject);
+var MsgErro : string;
+begin
+  if AbandonandoEdicao then
+    Exit;
+  if not TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS.Valido(MsgErro, not SalvarRegistro) then
+    ErroValidacaoCampo(MsgErro, TabGlobal.DContratoTransporte.VALORTOTALCOMISSAOEXECUTADOUS);
+  if not SalvarRegistro then
+    ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
 end;
 
 end.

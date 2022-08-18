@@ -556,6 +556,13 @@ begin
       MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
   if EmEdicao then
     TabGlobal.DContratoTransporte.Modifica;
+  EmEdicao := TabGlobal.DContratoTransporte.Modificacao;
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Salva;
+  if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+    MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Modifica;
   {$IFDEF IBX}
   Transaction.CommitRetaining;
   {$ELSE}
@@ -596,6 +603,16 @@ begin
     if (( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'BO' )  Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'EM' ) Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'AB' )) then
       if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''EM''') then
         MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
+    if EmEdicao then
+      TabGlobal.DContratoTransporte.Modifica;
+  end;
+  if Modificacao then
+  begin
+    EmEdicao := TabGlobal.DContratoTransporte.Modificacao;
+    if EmEdicao then
+      TabGlobal.DContratoTransporte.Salva;
+    if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS +:ExportadoTransito_ComisaoSFatura') then
+      MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
     if EmEdicao then
       TabGlobal.DContratoTransporte.Modifica;
   end;
@@ -641,6 +658,13 @@ begin
       MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
   if EmEdicao then
     TabGlobal.DContratoTransporte.Modifica;
+  EmEdicao := TabGlobal.DContratoTransporte.Modificacao;
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Salva;
+  if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS -:ExportadoTransito_ComisaoSFatura') then
+    MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Modifica;
 end;
 
 procedure TDExportadoTransito.ProcessoInverso2(DataSet: TDataSet);
@@ -668,6 +692,13 @@ begin
   if (( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'BO' )  Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'EM' ) Or ( TabGlobal.DContratoTransporte.StatusCT.Conteudo = 'AB' )) then
     if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'StatusCT = ''BO''') then
       MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Modifica;
+  EmEdicao := TabGlobal.DContratoTransporte.Modificacao;
+  if EmEdicao then
+    TabGlobal.DContratoTransporte.Salva;
+  if not PTabela(TabGlobal.DContratoTransporte, ['Contrato'], [Contrato.Valor.Value], 'VALORTOTALCOMISSAOEXECUTADOUS = VALORTOTALCOMISSAOEXECUTADOUS -:ExportadoTransito_ComisaoSFatura') then
+    MessageDlg('Falha na atualização da Tabela: '+TabGlobal.DContratoTransporte.Titulo, mtError, [mbOk],  0);
   if EmEdicao then
     TabGlobal.DContratoTransporte.Modifica;
   ExclusaoCascata;

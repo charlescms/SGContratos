@@ -37,6 +37,7 @@ type
     RAZAO_CLIENTE: TDCERBO_RAZAO_CLIENTE;
     NOME: TDCERBO_NOME;
     StatusCT: TDCERBO_StatusCT;
+    Cadastro: TDCERBO_Cadastro;
     constructor Create(AOwner: TComponent); override;
     procedure CriaForeignKeys; override;
     function PodeExcluir: Boolean; override;
@@ -100,7 +101,8 @@ begin
     InsertSQL.Add('  ComisaoSFatura,');
     InsertSQL.Add('  NumNFEmit,');
     InsertSQL.Add('  NumOrdCobranca,');
-    InsertSQL.Add('  Status');
+    InsertSQL.Add('  Status,');
+    InsertSQL.Add('  Cadastro');
     InsertSQL.Add('  )');
     InsertSQL.Add('values');
     InsertSQL.Add('  (');
@@ -112,7 +114,8 @@ begin
     InsertSQL.Add('  :ComisaoSFatura,');
     InsertSQL.Add('  :NumNFEmit,');
     InsertSQL.Add('  :NumOrdCobranca,');
-    InsertSQL.Add('  :Status');
+    InsertSQL.Add('  :Status,');
+    InsertSQL.Add('  :Cadastro');
     InsertSQL.Add('  )');
     // Modificação de Registro
     ModifySQL.Add('update ExportadoTransito');
@@ -125,7 +128,8 @@ begin
     ModifySQL.Add('  ComisaoSFatura = :ComisaoSFatura,');
     ModifySQL.Add('  NumNFEmit = :NumNFEmit,');
     ModifySQL.Add('  NumOrdCobranca = :NumOrdCobranca,');
-    ModifySQL.Add('  Status = :Status');
+    ModifySQL.Add('  Status = :Status,');
+    ModifySQL.Add('  Cadastro = :Cadastro');
     ModifySQL.Add('where');
     ModifySQL.Add('  Contrato = :OLD_Contrato');
     // Refresh de Registro
@@ -146,7 +150,8 @@ begin
     RefreshSQL.Add('  ContratoTransporte.CLICOD AS CLICOD,');
     RefreshSQL.Add('  Clientes.RAZAO AS RAZAO_CLIENTE,');
     RefreshSQL.Add('  Divisoes.NOME AS NOME,');
-    RefreshSQL.Add('  ContratoTransporte.StatusCT AS StatusCT');
+    RefreshSQL.Add('  ContratoTransporte.StatusCT AS StatusCT,');
+    RefreshSQL.Add('  CERBO.Cadastro AS Cadastro');
     // CRIANDO SUB-SELECT 1 
     RefreshSQL.Add('from ( SELECT '); // inicio sub-select 
     RefreshSQL.Add('  ExportadoTransito.Contrato AS Contrato,');
@@ -157,7 +162,8 @@ begin
     RefreshSQL.Add('  ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,');
     RefreshSQL.Add('  ExportadoTransito.NumNFEmit AS NumNFEmit,');
     RefreshSQL.Add('  ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,');
-    RefreshSQL.Add('  ExportadoTransito.Status AS Status');
+    RefreshSQL.Add('  ExportadoTransito.Status AS Status,');
+    RefreshSQL.Add('  ExportadoTransito.Cadastro AS Cadastro');
     RefreshSQL.Add('from ExportadoTransito'); // fim sub-select
     RefreshSQL.Add(' ) AS  CERBO' );
     RefreshSQL.Add('Left Outer Join ContratoTransporte on');
@@ -194,7 +200,8 @@ begin
   SqlPrincipal.Add('  ContratoTransporte.CLICOD AS CLICOD,');
   SqlPrincipal.Add('  Clientes.RAZAO AS RAZAO_CLIENTE,');
   SqlPrincipal.Add('  Divisoes.NOME AS NOME,');
-  SqlPrincipal.Add('  ContratoTransporte.StatusCT AS StatusCT');
+  SqlPrincipal.Add('  ContratoTransporte.StatusCT AS StatusCT,');
+  SqlPrincipal.Add('  CERBO.Cadastro AS Cadastro');
   SqlPrincipal.Add('from ( select      ');  // inicio de sub-select
   SqlPrincipal.Add('       ExportadoTransito.Contrato AS Contrato,');
   SqlPrincipal.Add('       ExportadoTransito.Navio AS Navio,');
@@ -204,7 +211,8 @@ begin
   SqlPrincipal.Add('       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,');
   SqlPrincipal.Add('       ExportadoTransito.NumNFEmit AS NumNFEmit,');
   SqlPrincipal.Add('       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,');
-  SqlPrincipal.Add('       ExportadoTransito.Status AS Status');
+  SqlPrincipal.Add('       ExportadoTransito.Status AS Status,');
+  SqlPrincipal.Add('       ExportadoTransito.Cadastro AS Cadastro');
   SqlPrincipal.Add('       from  ExportadoTransito'); // fim de sub-select
   SqlPrincipal.Add('     ) as  CERBO');
   Sql.AddStrings(SqlPrincipal);
@@ -248,6 +256,8 @@ begin
   NOME.Valor.DataSet := Self;
   StatusCT := TDCERBO_StatusCT.Create(AOwner);
   StatusCT.Valor.DataSet := Self;
+  Cadastro := TDCERBO_Cadastro.Create(AOwner);
+  Cadastro.Valor.DataSet := Self;
   NumOrdCobranca := TDCERBO_NumOrdCobranca.Create(AOwner);
   NumOrdCobranca.Valor.DataSet := Self;
   Status := TDCERBO_Status.Create(AOwner);
@@ -272,6 +282,7 @@ begin
   Campos.Add(RAZAO_CLIENTE);
   Campos.Add(NOME);
   Campos.Add(StatusCT);
+  Campos.Add(Cadastro);
   TituloIndices.Add('Contrato');
   Indices.Add('CERBO.Contrato');
   Crescente.Add('S');

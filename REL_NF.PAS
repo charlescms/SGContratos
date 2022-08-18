@@ -6,6 +6,7 @@
 mascara do campo de data recebimento
    [if( [ MascData([DOrdemCobranca."Recebimento"] , 'dd/mm/yyyy') ] > 0 , [MascData([DOrdemCobranca."Recebimento"] , 'dd/mm/yyyy')]  ,[ '  /  /    '] )]
 [IBQuery_soma."ANOMES"]
+[SUM([IBQuery_soma."PENDENTE"],DadosMestre_SOMA)]
 }
 unit REL_NF;
 

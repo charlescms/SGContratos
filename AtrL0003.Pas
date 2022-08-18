@@ -182,6 +182,12 @@ Type
   end;
 
 Type
+  TDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS = class(TTipoFracionario)
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+Type
   TDContratoTransporte_ValorTotalComissaoExecutado = class(TTipoFracionario)
   public
     constructor Create(AOwner: TComponent); override;
@@ -1501,6 +1507,50 @@ end;
 function TDContratoTransporte_ValorTotalComissao.ValorPadrao: Double;
 begin
   Result := 0;
+end;
+
+constructor TDContratoTransporte_VALORTOTALCOMISSAOEXECUTADOUS.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Nome              := 'VALORTOTALCOMISSAOEXECUTADOUS';
+  Tipo              := tpFracionario;
+  Tamanho           := 12;
+  CasasDecimais     := 2;
+  TipoEdicao        := tpEdit;
+  TipoSQL           := '';
+  SQL_Extra         := '';
+  Titulo            := 'Vll. Tot. Comissão Exect. US';
+  Mascara           := 'Z.ZZZ.ZZZ.ZZ9,99';
+  CaractereEdicao   := '_';
+  Ajuda             := 'Valor total da comissão Executada';
+  Calculado         := False;
+  Calculado_F       := False;
+  Valor.FieldName   := Nome;
+  Valor.Size        := TamanhoDado;
+  Valor.DisplayLabel:= Titulo;
+  Valor.Calculated  := Calculado;
+  Valor.Index       := 36;
+  Valor.Visible     := True;
+  Visible_Default   := True;
+  Chave             := False;
+  Index             := 36;
+  Index_Default     := 36;
+  AutoIncremento    := 0;
+  Incremento_Auto   := False;
+  SempreAtribui     := True;
+  PreValidacao_ativa:= False;
+  Acao              := 1;
+  LimparCampo       := False;
+  MensagemErro      := '';
+  Extra             := False;
+  NomeTabela        := 'ContratoTransporte';
+  NomeOriginal      := 'VALORTOTALCOMISSAOEXECUTADOUS';
+  TabEstrangeira    := '';
+  ChaveEstrangeira  := '';
+  CamposVisuais     := '';
+  EstiloPesquisa    := 0;
+  AcaoPesquisa      := 0;
+  FiltroFixo.Clear;
 end;
 
 constructor TDContratoTransporte_ValorTotalComissaoExecutado.Create(AOwner: TComponent);

@@ -125,9 +125,33 @@ Versao         := '3.35';
 unit RelSitucaoCred;
 Versao         := '3.36';
 
+=> arquivo modificado INFOMECOMERCIAL
+Versao         := '3.37';
+17/10/2013
+Versao         := '3.38';
+
+Parametro  foi criado uma nova versao de criterio do arquivo 
+18/10/2013
+Versao         := '3.39';
+24/10/2013
+criacao do campo VALORTOTALCOMISSAOEXECUTADOUS na tabela ContratoTransporte
+para atender a uma nessecidade da karina
+Versao         := '3.40';
+Versao         := '3.41';
+Versao         := '3.42';
+
+21/11/2013
+alteracao no formulario produto exibindo os campos quantidade prevista e valor previsto
+alterando o relatorio informe geral compo comicao anterior com o campo date errado
+relatorio nf da elanie com o campo pendente com o conteudo errado foi corrigido o aqr. de relatorio
+
+Versao         := '3.43';
+// 10/01/2014
+foi informado pela karina que neste relatorio nao entra o fornecedor surimpex que posuui o codifo de munero 17
+      Versao         := '3.44
 }
 
-
+                       
 unit Princ;
 
 interface
@@ -330,6 +354,7 @@ type
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure GradientePaint(Sender: TObject);
     procedure BtnMinimizaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Declarações Privadas }
     {10-Início do Bloco Modular. Modificações não serão preservadas}
@@ -425,7 +450,7 @@ uses Rotinas, Publicas, Splash, Interno,USEGURANCA,
      RelOrdemCobranc,
      FRM_Previsao,
      {99-Final do Bloco Modular. Modificações não serão preservadas}
-     Acesso;
+     Acesso, LogPrograma ;
 
 procedure TFormPrincipal.ShowHint(Sender: TObject);
 begin
@@ -1307,7 +1332,7 @@ begin
   
   ExecutaForm(TFormClienteN,FormClienteN);
   
-  
+
 
 end;
 procedure TFormPrincipal.Mnu_25Click(Sender: TObject);
@@ -1377,7 +1402,7 @@ procedure TFormPrincipal.Mnu_33Click(Sender: TObject);
 begin
   if not LiberaAcesso(TMenuItem(Sender).Tag, 1) then  // usuário possui acesso ?
     Abort;  // acesso negado, retorna ...
-  
+
   ExecutaForm(TFormAtividades,FormAtividades);
 end;
 procedure TFormPrincipal.Mnu_34Click(Sender: TObject);
@@ -1636,5 +1661,10 @@ begin
 end;
 
 {99-Final do Bloco Modular. Modificações não serão preservadas}
+
+procedure TFormPrincipal.FormCreate(Sender: TObject);
+begin
+  log_cms := TLogPrograma.Create()  ;
+end;
 
 end.

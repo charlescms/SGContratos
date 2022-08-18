@@ -315,15 +315,42 @@ SC_Total_Pais_Final =
 SC_CERBO_INICI =
   'Select  DISTINCT ' + NOVA_LINHA +
   '  CERBO.Contrato AS Contrato,' + NOVA_LINHA +
-  '  Fornecedores.RAZAO AS RAZAO,' + NOVA_LINHA +
+  '  (select Fornecedores.RAZAO from Fornecedores where   ContratoTransporte.FORCOD = Fornecedores.FORCOD ) AS RAZAO,' + NOVA_LINHA +
   '  ContratoTransporte.NomeMix AS NomeMix,   ' +  NOVA_LINHA +
-  '  ContratoTransporte.QUANTTOTALEXP as QuantidadeExp   ,' + NOVA_LINHA +
+  '  ContratoTransporte.FormComissao AS FormComissao,' + NOVA_LINHA;
+
+{
   '  ContratoTransporte.QuantidadeTotal AS QuantidadeTotal,' + NOVA_LINHA +
-  '  ContratoTransporte.FormComissao AS FormComissao,' + NOVA_LINHA +
   '  ContratoTransporte.VALORTOTALCOMISSAO as ComisaoSFatura  ,' + NOVA_LINHA +
+  '  ContratoTransporte.QUANTTOTALEXP as QuantidadeExp   ,' + NOVA_LINHA +
   '  ContratoTransporte.ValorTotalComissaoExecutado AS ValorTotalComissaoExecutado ,' + NOVA_LINHA +
-  '  Clientes.RAZAO AS RAZAO_CLIENTE,' + NOVA_LINHA +
-  '  Clientes.CLICOD AS CLICOD ' + NOVA_LINHA +
+}
+
+ SC_QUANTIDADETOTAL_I             = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.QUANTIDADE)       IS NULL ,0,SUM(PRODUTOCONTRATOT.QUANTIDADE) )       FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ SC_QUANTIDADETOTAL_F             = ' )  AS  QUANTIDADETOTAL, ' +    NOVA_LINHA  ;
+
+ SC_VALORSCCTOTAL_I               = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.VALORSCC)         IS NULL ,0,SUM(PRODUTOCONTRATOT.VALORSCC) )         FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ SC_VALORSCCTOTAL_F               = ' )  AS  VALORSCCTOTAL, ' +    NOVA_LINHA  ;
+
+ SC_QUANTTOTALEXP_I               = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.QUANTIDADEEXP)   IS NULL ,0,SUM(EXPORTADOTRANSITO.QUANTIDADEEXP) )   FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+// SC_QUANTTOTALEXP_F               = ' )  AS  QUANTTOTALEXP, ' +    NOVA_LINHA  ;
+ SC_QUANTTOTALEXP_F               = ' )  AS  QuantidadeExp, ' +    NOVA_LINHA  ;
+
+ SC_VALORTOTALEXP_I               = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.VALOR)           IS NULL ,0,SUM(EXPORTADOTRANSITO.VALOR) )           FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+ SC_VALORTOTALEXP_F               =     ' )  AS  VALORTOTALEXP, ' +    NOVA_LINHA  ;
+//                                            ComisaoSFatura
+ SC_VALORTOTALCOMISSAO_I          = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.COMISAOSFATURA)   IS NULL ,0,SUM(PRODUTOCONTRATOT.COMISAOSFATURA) )   FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ //SC_VALORTOTALCOMISSAO_F          =     ' )  AS  VALORTOTALCOMISSAO, ' +    NOVA_LINHA  ;
+ SC_VALORTOTALCOMISSAO_F          =     ' )  AS  ComisaoSFatura, ' +    NOVA_LINHA  ;
+
+ SC_VALORTOTALCOMISSAOEXECUTADO_I = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.COMISAOSFATURA) IS NULL ,0,SUM(EXPORTADOTRANSITO.COMISAOSFATURA) ) FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )  and ( EXPORTADOTRANSITO.numnfemit is not null )'  ;
+ SC_VALORTOTALCOMISSAOEXECUTADO_F =     ' )  AS  VALORTOTALCOMISSAOEXECUTADO , ' +    NOVA_LINHA  ;
+
+
+
+SC_CERBO_INICI_2 =
+  '  ( select Clientes.RAZAO  from Clientes where ContratoTransporte.CLICOD = Clientes.CLICOD ) AS RAZAO_CLIENTE,' + NOVA_LINHA +
+  '  ContratoTransporte.CLICOD AS CLICOD ' + NOVA_LINHA +
   'from ( select' + NOVA_LINHA +
   '       ExportadoTransito.Contrato AS Contrato,' + NOVA_LINHA +
   '       ExportadoTransito.Navio AS Navio,' + NOVA_LINHA +
@@ -333,7 +360,8 @@ SC_CERBO_INICI =
   '       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '       ExportadoTransito.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
   '       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
-  '       ExportadoTransito.Status AS Status' + NOVA_LINHA +
+  '       ExportadoTransito.Status AS Status , ' + NOVA_LINHA +
+  '       ExportadoTransito.CADASTRO as CADASTRO '+ NOVA_LINHA +
   '       from  ExportadoTransito' + NOVA_LINHA +
   '     ) as  CERBO' + NOVA_LINHA +
   'Left Outer Join ContratoTransporte on' + NOVA_LINHA +
@@ -375,6 +403,7 @@ SC_CERBO_INICI =
   '       ExportadoTransito.ComisaoSFatura AS ComisaoSFatura,' + NOVA_LINHA +
   '       ExportadoTransito.NumNFEmit AS NumNFEmit,' + NOVA_LINHA +
   '       ExportadoTransito.NumOrdCobranca AS NumOrdCobranca,' + NOVA_LINHA +
+  '       ExportadoTransito.CADASTRO as CADASTRO ,'+ NOVA_LINHA +
   '       ExportadoTransito.Status AS Status' + NOVA_LINHA +
   '       from  ExportadoTransito' + NOVA_LINHA +
   '     ) as  CERBO' + NOVA_LINHA +
@@ -2339,11 +2368,15 @@ t_text , S_NOME   : STRING ;
 IND : INTEGER ;
 begin
     DCERBO_TMP := TDCERBO.Create(Self);
+    DCERBO_TMP.Database     := BaseDados.BD_Base_Dados ;
+    DCERBO_TMP.Transaction     := BaseDados.TRS_BD_Base_Dados ;
+
     IBQProduto.Database     := BaseDados.BD_Base_Dados ;
     IBQboock.Database       := BaseDados.BD_Base_Dados ;
     IBQExportado.Database   := BaseDados.BD_Base_Dados ;
     IBQContratos.Database   := BaseDados.BD_Base_Dados ;
-    DCERBO_TMP.Database     := BaseDados.BD_Base_Dados ;
+
+
     DCERBO_L.Database       := BaseDados.BD_Base_Dados ;
     DCERBO_L_DET.Database   := BaseDados.BD_Base_Dados ;
     IBQuery_Total_Pais.Database:= BaseDados.BD_Base_Dados ;
@@ -2352,7 +2385,7 @@ begin
     IBQboock.Transaction       := BaseDados.TRS_BD_Base_Dados ;
     IBQExportado.Transaction   := BaseDados.TRS_BD_Base_Dados ;
     IBQContratos.Transaction   := BaseDados.TRS_BD_Base_Dados ;
-    DCERBO_TMP.Transaction     := BaseDados.TRS_BD_Base_Dados ;
+
     DCERBO_L.Transaction       := BaseDados.TRS_BD_Base_Dados ;
     DCERBO_L_DET.Transaction   := BaseDados.TRS_BD_Base_Dados ;
 
@@ -2719,14 +2752,16 @@ end;
 
 procedure TFormInforme.BitB_FiltroClick(Sender: TObject);
 VAR
-  S_CLICOD, S_FILTRO_CERBO , S_FILTRO , S_DIVCOD ,  S_EMBARQUE_CERBO , S_Contrato_VALORSCCTOTAL , S_FILTRO_TMP ,
+  S_CLICOD, S_FILTRO_CERBO , S_FILTRO_CERBO_NV ,S_FILTRO , S_DIVCOD ,  S_EMBARQUE_CERBO , S_Contrato_VALORSCCTOTAL , S_FILTRO_TMP ,
   S_Contrato_QUANTIDADETOTAL , S_Total_Pais_CAOMPOS_P1 , S_Total_Pais_CAOMPOS , S_FILTRO_CT , S_FILTRO_EXP ,
-  S_FILTRO_QUANTIDADE_DT : STRING ;  // , SC_Contrato_princ_v_JA_EXP SC_Contrato_princ_q_JA_EXP : STRING ;
-
+  S_FILTRO_QUANTIDADE_DT, S_CERBO_INICI_MEIO  , S_FILTRO_CT_NV , S_FILTRO_EXP_NV  : STRING ;
   N_INC  , N_FIN : INTEGER ;
 begin
 
   Screen.Cursor := crHourGlass;
+  S_CERBO_INICI_MEIO  := '' ;
+  S_FILTRO_CT_NV := '' ;
+  S_FILTRO_EXP_NV  := '' ;
   S_FILTRO := '';
   S_EMBARQUE := '';
   S_EMBARQUE_CERBO := '' ;
@@ -2741,6 +2776,7 @@ begin
   IF  XDE_EMB_I.DateValue <> -693594 THEN BEGIN
       S_EMBARQUE := ' ( ExportadoTransito.DATAEMBARQUE >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue)) + ' ) ' ;
       S_EMBARQUE_CERBO := ' ( CERBO.DATAEMBARQUE >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue)) + ' ) ' ;
+//      S_EMBARQUE_CERBO_NV := ' ( CERBO.DATAEMBARQUE >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue)) + ' ) ' ;
       S_Contrato_VALORSCCTOTAL   := '( Informe.VALORSCCTOTAL   - IIF( ' +  SC_Contrato_princ_V_I + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' )) IS NULL ,0 ,'+ SC_Contrato_princ_V_I + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' ))'+')) AS VALORSCCTOTAL,'+                  NOVA_LINHA ;
       S_Contrato_QUANTIDADETOTAL := '( Informe.QUANTIDADETOTAL - IIF( ' +  SC_Contrato_princ_q_i + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' )) IS NULL ,0 ,'+ SC_Contrato_princ_q_i + ' AND ( ExportadoTransito.DATAEMBARQUE < '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_EMB_I.DateValue))  + ' ))'+')) AS QUANTIDADETOTAL,'+                  NOVA_LINHA ;
       S_Total_Pais_CAOMPOS_P1    := S_Contrato_VALORSCCTOTAL + S_Contrato_QUANTIDADETOTAL ;
@@ -2762,10 +2798,6 @@ begin
   IF S_EMBARQUE <> '' THEN  BEGIN
      S_EMBARQUE := ' AND '+ S_EMBARQUE ;
   END;
-
-  /// EMBARQUE FIM     /* and  ( ExportadoTransito.DATAEMBARQUE is not null   ) */
-
-
 
   // inicio divisao
   IF Cbox_div_I.Text <> '' THEN BEGIN
@@ -2910,29 +2942,42 @@ begin
   /// CADASTRO INICIO
   S_FILTRO_TMP :=  S_FILTRO ;
   S_FILTRO_QUANTIDADE_DT := '' ;
-
+  S_FILTRO_CERBO_NV  := S_FILTRO_CERBO ;
   IF  XDE_Periodo_I.DateValue <> -693594 THEN BEGIN
       IF  S_FILTRO = '' THEN BEGIN
-         S_FILTRO := ' ( Informe.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO_CERBO := ' ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
-         S_FILTRO_CT := ' ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO_EXP := ' ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+         S_FILTRO       := ' ( Informe.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+         S_FILTRO_CERBO_NV := ' ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+         S_FILTRO_CERBO := ' ( CERBO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+         S_FILTRO_CT    := ' ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+         S_FILTRO_EXP   := ' ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+//         S_FILTRO_CT_NV := ' ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+//         S_FILTRO_EXP_NV:= ' ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+
 
       END
       else begin
-         S_FILTRO_CT    := S_FILTRO_TMP + ' AND ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO_EXP   := S_FILTRO_TMP + ' AND ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO       := S_FILTRO +' AND ( Informe.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
-         S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+         S_FILTRO_CT    := S_FILTRO_TMP   + ' AND ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+         S_FILTRO_EXP   := S_FILTRO_TMP   + ' AND ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+//         S_FILTRO_CT_NV :=                  '     ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+//         S_FILTRO_EXP_NV:=                  '     ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+
+         S_FILTRO       := S_FILTRO       + ' AND ( Informe.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+         S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
+         S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CERBO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue)) + ' ) '  ;
       END ;
       S_FILTRO_QUANTIDADE_DT := ' AND ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  +' ) ' ;
+
+      S_FILTRO_CT_NV := ' ( PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+      S_FILTRO_EXP_NV:= ' ( ExportadoTransito.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_I.DateValue))  + ' ) ' ;
+
   END;
   IF  XDE_Periodo_F.DateValue <> -693594 THEN BEGIN
       IF  S_FILTRO = '' THEN BEGIN
           S_FILTRO_EXP   := ' ( ExportadoTransito.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
           S_FILTRO_CT    := ' ( PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
           S_FILTRO       := ' ( Informe.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
-          S_FILTRO_CERBO := ' ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ';
+          S_FILTRO_CERBO_NV := ' ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ';
+          S_FILTRO_CERBO := ' ( CERBO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ';
       END
       ELSE BEGIN
           IF S_FILTRO_CT = '' THEN BEGIN
@@ -2945,9 +2990,20 @@ begin
           END;
 
           S_FILTRO := S_FILTRO + ' AND ( Informe.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ';
-          S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
+          S_FILTRO_CERBO_NV := S_FILTRO_CERBO + ' AND ( CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
+          S_FILTRO_CERBO := S_FILTRO_CERBO + ' AND ( CERBO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue)) + ' ) ' ;
 
       END;
+
+      IF S_FILTRO_CT_NV = '' THEN BEGIN
+         S_FILTRO_CT_NV  :=   '  ( PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
+         S_FILTRO_EXP_NV :=   '  ( ExportadoTransito.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
+      END
+      else BEGIN
+         S_FILTRO_CT_NV  := S_FILTRO_CT_NV  + ' AND ( PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
+         S_FILTRO_EXP_NV := S_FILTRO_EXP_NV + ' AND ( ExportadoTransito.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) ' ;
+      END;
+
 
       if S_FILTRO_QUANTIDADE_DT = '' THEN
          S_FILTRO_QUANTIDADE_DT := ' AND ( PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDE_Periodo_f.DateValue))  + ' ) '
@@ -2961,7 +3017,7 @@ begin
      S_Contrato_QUANTIDADETOTAL := SC_Contrato_QUANTIDADETOTAL_Inicial + S_FILTRO_QUANTIDADE_DT + SC_Contrato_QUANTIDADETOTAL_FIN ;
      S_Contrato_VALORSCCTOTAL   := SC_Contrato_VALORSCCTOTAL_inicial   + S_FILTRO_QUANTIDADE_DT + SC_Contrato_VALORSCCTOTAL_Fin;
   end;
-                                                                                                                                      
+
 
   S_SQL_WHERE_CT := ' ';
   S_SQL_WHERE_EXP := ' ' ;
@@ -2975,6 +3031,13 @@ begin
 
   if S_FILTRO_CT  <> '' then
      S_SQL_WHERE_CT  := '  and ' + S_FILTRO_CT ;
+
+  IF S_FILTRO_CT_NV <> ''  THEN
+  BEGIN
+     S_FILTRO_CT_NV  := ' AND ' + S_FILTRO_CT_NV  ;
+     S_FILTRO_EXP_NV := ' AND ' + S_FILTRO_EXP_NV ;
+  END ;
+
 
 
 
@@ -3027,34 +3090,58 @@ begin
 
   DCERBO_TMP.CLOSE;
   DCERBO_TMP.Filtro.Clear ;
-  DCERBO_TMP.Filtro.Add(S_FILTRO_CERBO + S_EMBARQUE_CERBO )  ;
+  DCERBO_TMP.Filtro.Add(S_FILTRO_CERBO_NV + S_EMBARQUE_CERBO )  ;
   DCERBO_TMP.AtualizaSql(FALSE) ;
+  DCERBO_TMP.SQL.SaveToFile('_DCERBO_TMP.SQL');
+
   DCERBO_TMP.Open;
   DCERBO_TMP.Last;
   DCERBO_TMP.First;
 
+{
+     S_FILTRO_CT_NV  := ' AND ' + S_FILTRO_CT_NV  ;
+     S_FILTRO_EXP_NV := ' AND ' + S_FILTRO_EXP_NV ;
+ }
+
+
+  S_CERBO_INICI_MEIO  :=
+  SC_QUANTIDADETOTAL_I + S_FILTRO_CT_NV               + //       = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.QUANTIDADE)       IS NULL ,0,SUM(PRODUTOCONTRATOT.QUANTIDADE) )       FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_QUANTIDADETOTAL_F                                + //       = ' )  AS  QUANTIDADETOTAL, ' +    NOVA_LINHA  ;
+  SC_VALORSCCTOTAL_I + S_FILTRO_CT_NV                 + //          = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.VALORSCC)         IS NULL ,0,SUM(PRODUTOCONTRATOT.VALORSCC) )         FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_VALORSCCTOTAL_F                                  + // = ' )  AS  VALORSCCTOTAL, ' +    NOVA_LINHA  ;
+  SC_QUANTTOTALEXP_I + S_FILTRO_EXP_NV                + //          = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.QUANTIDADEEXP)   IS NULL ,0,SUM(EXPORTADOTRANSITO.QUANTIDADEEXP) )   FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+  SC_QUANTTOTALEXP_F                                  + // = ' )  AS  QUANTTOTALEXP, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALEXP_I + S_FILTRO_EXP_NV                + //            = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.VALOR)           IS NULL ,0,SUM(EXPORTADOTRANSITO.VALOR) )           FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+  SC_VALORTOTALEXP_F                                  + // =     ' )  AS  VALORTOTALEXP, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALCOMISSAO_I + S_FILTRO_CT_NV            + //          = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.COMISAOSFATURA)   IS NULL ,0,SUM(PRODUTOCONTRATOT.COMISAOSFATURA) )   FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_VALORTOTALCOMISSAO_F                             + // =     ' )  AS  VALORTOTALCOMISSAO, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALCOMISSAOEXECUTADO_I + S_FILTRO_EXP_NV  + // = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.COMISAOSFATURA) IS NULL ,0,SUM(EXPORTADOTRANSITO.COMISAOSFATURA) ) FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )  and ( EXPORTADOTRANSITO.numnfemit is not null )'  ;
+  SC_VALORTOTALCOMISSAOEXECUTADO_F                    ; // =     ' )  AS  VALORTOTALCOMISSAOEXECUTADO ' +    NOVA_LINHA  ;
+
+
+
 // SC_CERBO_INICI + ' WHERE ' + SC_CERBO_ORDE
-   DCERBO_L.Close;
-   DCERBO_L.SQL.Clear ;
-   if (S_FILTRO_CERBO <> '') OR ( S_EMBARQUE_CERBO <> '' )  then
-       DCERBO_L.SQL.Add(SC_CERBO_INICI + ' WHERE ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE)
-   else
-       DCERBO_L.SQL.Add(SC_CERBO_INICI + '  ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE) ;
+  DCERBO_L.Close;
+  DCERBO_L.SQL.Clear ;
+  if (S_FILTRO_CERBO <> '') OR ( S_EMBARQUE_CERBO <> '' )  then
+      DCERBO_L.SQL.Add(SC_CERBO_INICI + S_CERBO_INICI_MEIO + SC_CERBO_INICI_2 + ' WHERE ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE)
+  else
+      DCERBO_L.SQL.Add(SC_CERBO_INICI + S_CERBO_INICI_MEIO + SC_CERBO_INICI_2 + '  ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE) ;
 
-   DCERBO_L.SQL.SaveToFile('_DCERBO_L.SQL');
-   DCERBO_L.Prepare ;
-   DCERBO_L.Open ;
+  DCERBO_L.SQL.SaveToFile('_DCERBO_L.SQL');
+  DCERBO_L.Prepare ;
+  DCERBO_L.Open ;
 
-   DCERBO_L_DET.Close;
-   DCERBO_L_DET.SQL.Clear ;
-   if (S_FILTRO_CERBO <> '') OR ( S_EMBARQUE_CERBO <> '' )  then
-      DCERBO_L_DET.SQL.Add(SC_CERBO_DET_INICI + ' AND ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE + ', CERBO.DataEmbarque' )
-   else
-      DCERBO_L_DET.SQL.Add(SC_CERBO_DET_INICI + '  '    + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE + ', CERBO.DataEmbarque' ) ;
+  DCERBO_L_DET.Close;
+  DCERBO_L_DET.SQL.Clear ;
+  if (S_FILTRO_CERBO <> '') OR ( S_EMBARQUE_CERBO <> '' )  then
+     DCERBO_L_DET.SQL.Add(SC_CERBO_DET_INICI + ' AND ' + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE + ', CERBO.DataEmbarque' )
+  else
+     DCERBO_L_DET.SQL.Add(SC_CERBO_DET_INICI + '  '    + S_FILTRO_CERBO + S_EMBARQUE_CERBO + SC_CERBO_ORDE + ', CERBO.DataEmbarque' ) ;
 
-   DCERBO_L_DET.SQL.SaveToFile('_DCERBO_L_DET.SQL');
-   DCERBO_L_DET.Prepare ;
-   DCERBO_L_DET.Open ;
+  DCERBO_L_DET.SQL.SaveToFile('_DCERBO_L_DET.SQL');
+  DCERBO_L_DET.Prepare ;
+  DCERBO_L_DET.Open ;
 
   IBQContratos.Close;
   IBQContratos.sql.clear;
@@ -3070,7 +3157,7 @@ begin
 
 
   IBQuery_Total_Pais.Close;// S_SQL_WHERE_CT
-  IBQuery_Total_Pais.sql.clear;  
+  IBQuery_Total_Pais.sql.clear;
   IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio_NOVO + IBQContratos.sql.Text + SC_Total_Pais_Final)   ;
 
   IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');

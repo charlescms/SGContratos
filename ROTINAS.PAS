@@ -74,6 +74,10 @@ function RetCorFundo(opcao : string): TColor;
 function RetCorFundoFatura(opcao : STRING): TColor;
 function RoundDec(valor : double ; decimais : integer ): double;
 
+// funcoes especificas para este projeto
+
+function DT0112 : TDateTime ;
+
 //function PaisForn():integer ;
 
 implementation
@@ -83,6 +87,10 @@ uses FR_SMTP, UCMS_CONST;
 const
   FatorBloco = 32767;
 
+function DT0112 : TDateTime ;
+begin
+  Result := STRTODATE('01/12/'+INTTOSTR(STRTOINT(ANO(Date)) - 1));
+end;
 function RoundDec( Valor : double ; Decimais : integer ): double;
 var
  Mult : double ;

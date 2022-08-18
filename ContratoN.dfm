@@ -1,8 +1,8 @@
 object FormContratoN: TFormContratoN
-  Left = 234
-  Top = 32
-  Width = 1081
-  Height = 623
+  Left = 261
+  Top = 293
+  Width = 1031
+  Height = 714
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,8 +27,8 @@ object FormContratoN: TFormContratoN
   object PagePrincipal: TPageControl
     Left = 0
     Top = 33
-    Width = 1065
-    Height = 552
+    Width = 1015
+    Height = 643
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,8 +38,8 @@ object FormContratoN: TFormContratoN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 493
-        Width = 1057
+        Top = 584
+        Width = 1007
         Height = 31
         Align = alBottom
         BevelOuter = bvNone
@@ -124,7 +124,7 @@ object FormContratoN: TFormContratoN
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
-          OnClick = BtnDesistirClick
+          OnClick = BTNDESISTIRclick
           Glyph.Data = {
             76010000424D7601000000000000760000002800000020000000100000000100
             04000000000000010000130B0000130B00001000000000000000000000000000
@@ -195,7 +195,7 @@ object FormContratoN: TFormContratoN
           ParentShowHint = False
           ShowHint = True
           TabOrder = 4
-          OnClick = btn_CancelaContratoClick
+          OnClick = BTN_CANCELACONTRATOclick
           Glyph.Data = {
             F6000000424DF600000000000000760000002800000010000000100000000100
             04000000000080000000120B0000120B00001000000000000000000000000000
@@ -209,8 +209,8 @@ object FormContratoN: TFormContratoN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 472
-        Width = 1057
+        Top = 563
+        Width = 1007
         Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -227,8 +227,8 @@ object FormContratoN: TFormContratoN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1057
-        Height = 472
+        Width = 1007
+        Height = 563
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -237,8 +237,8 @@ object FormContratoN: TFormContratoN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1057
-          Height = 472
+          Width = 1007
+          Height = 563
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -248,15 +248,15 @@ object FormContratoN: TFormContratoN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1057
-              Height = 472
+              Width = 1007
+              Height = 563
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object Panel1: TPanel
                 Left = 0
                 Top = 0
-                Width = 1057
+                Width = 1007
                 Height = 233
                 Align = alTop
                 TabOrder = 0
@@ -1402,9 +1402,9 @@ object FormContratoN: TFormContratoN
                     0000}
                 end
                 object GroupBox4: TGroupBox
-                  Left = 368
+                  Left = 352
                   Top = 112
-                  Width = 505
+                  Width = 530
                   Height = 113
                   Color = clActiveBorder
                   ParentColor = False
@@ -1477,12 +1477,22 @@ object FormContratoN: TFormContratoN
                     ShowHint = True
                   end
                   object LbcValorTotalComissaoExecutado: TLabel
-                    Left = 247
-                    Top = 86
+                    Left = 535
+                    Top = 70
                     Width = 96
                     Height = 13
                     Alignment = taRightJustify
                     Caption = 'Vll. Tot. Com. Exect.'
+                    ParentShowHint = False
+                    ShowHint = True
+                  end
+                  object LbcVALORTOTALCOMISSAOEXECUTADOUS: TLabel
+                    Left = 250
+                    Top = 86
+                    Width = 135
+                    Height = 13
+                    Alignment = taRightJustify
+                    Caption = 'Vll. Tot. Comiss'#227'o Exect. US'
                     ParentShowHint = False
                     ShowHint = True
                   end
@@ -1686,7 +1696,7 @@ object FormContratoN: TFormContratoN
                     OnExit = VALORSCCTOTALexit
                   end
                   object QuantidadeTotal: TXDBNumEdit
-                    Left = 348
+                    Left = 388
                     Top = 13
                     Width = 140
                     Height = 21
@@ -1752,7 +1762,7 @@ object FormContratoN: TFormContratoN
                     OnExit = QUANTIDADETOTALexit
                   end
                   object QUANTTOTALEXP: TXDBNumEdit
-                    Left = 348
+                    Left = 388
                     Top = 37
                     Width = 140
                     Height = 21
@@ -1818,7 +1828,7 @@ object FormContratoN: TFormContratoN
                     OnExit = QUANTTOTALEXPexit
                   end
                   object QuantadePendente: TXDBNumEdit
-                    Left = 348
+                    Left = 388
                     Top = 61
                     Width = 140
                     Height = 21
@@ -1884,9 +1894,9 @@ object FormContratoN: TFormContratoN
                     OnExit = QUANTADEPENDENTEexit
                   end
                   object ValorTotalComissaoExecutado: TXDBNumEdit
-                    Left = 349
-                    Top = 85
-                    Width = 140
+                    Left = 533
+                    Top = 86
+                    Width = 108
                     Height = 21
                     AutoHideCalculator = False
                     Color = cl3DLight
@@ -1945,7 +1955,7 @@ object FormContratoN: TFormContratoN
                   end
                   object ValorTotalComissao: TXDBNumEdit
                     Left = 101
-                    Top = 85
+                    Top = 86
                     Width = 140
                     Height = 21
                     AutoHideCalculator = False
@@ -2009,12 +2019,70 @@ object FormContratoN: TFormContratoN
                     TabOrder = 7
                     OnExit = VALORTOTALCOMISSAOexit
                   end
+                  object VALORTOTALCOMISSAOEXECUTADOUS: TXDBNumEdit
+                    Left = 388
+                    Top = 86
+                    Width = 140
+                    Height = 21
+                    AutoHideCalculator = False
+                    Glyph.Data = {
+                      7E050000424D7E0500000000000036000000280000001A0000000D0000000100
+                      2000000000004805000000000000000000000000000000000000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C0008040400080404000804040008040400080404000804040008040
+                      4000804040008040400080404000FFC0C000FFC0C000FFC0C000FFFFFF008080
+                      8000808080008080800080808000808080008080800080808000808080008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF406000FFC0
+                      0000FFFFFF00FFC00000FFFFFF00FFC00000FFFFFF00FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF0080808000FFFF
+                      FF0080808000FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF406000FF406000FF406000FF406000FF406000FF406000FF406000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000FFC00000FFFFFF00FFC00000FFFFFF00FFC0
+                      0000FFFFFF00FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C00080808000FFFFFF0080808000FFFFFF0080808000FFFFFF00FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FF4060004000
+                      0000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FF40600080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC0
+                      0000FF40600040000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FF40
+                      600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0C00080808000FFC0C000FFC0
+                      C000FFC0C000FFC00000FF406000400000004000000040000000400000004000
+                      000040000000FF40600080404000FFC0C000FFC0C000FFC0C000FFFFFF00FFC0
+                      C000808080008080800080808000808080008080800080808000FFC0C0008080
+                      8000FFC0C000FFC0C000FFC0C000FFC00000FF406000FF406000FF406000FF40
+                      6000FF406000FF406000FF406000FF40600080404000FFC0C000FFC0C000FFC0
+                      C000FFFFFF00FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C00080808000FFC0C000FFC0C000FFC0C000FFC00000FFC00000FFC0
+                      0000FFC00000FFC00000FFC00000FFC00000FFC00000FFC0000080404000FFC0
+                      C000FFC0C000FFC0C000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+                      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0C000FFC0
+                      C000}
+                    ParentShowHint = False
+                    ShowHint = True
+                    ShowButton = True
+                    TabOrder = 8
+                    OnExit = VALORTOTALCOMISSAOEXECUTADOUSExit
+                  end
                 end
               end
               object GroupBox1: TGroupBox
                 Left = 0
                 Top = 233
-                Width = 1057
+                Width = 1007
                 Height = 120
                 Align = alTop
                 Caption = 'Produtos'
@@ -2022,7 +2090,7 @@ object FormContratoN: TFormContratoN
                 object Grid_PrudutoContratoT: TDBGrid
                   Left = 2
                   Top = 15
-                  Width = 1053
+                  Width = 1003
                   Height = 103
                   Align = alClient
                   Font.Charset = DEFAULT_CHARSET
@@ -2048,10 +2116,11 @@ object FormContratoN: TFormContratoN
                 end
               end
               object Panel2: TPanel
-                Left = 32
-                Top = 328
-                Width = 617
+                Left = 0
+                Top = 353
+                Width = 1007
                 Height = 129
+                Align = alTop
                 TabOrder = 2
                 object GroupBox2: TGroupBox
                   Left = 1
@@ -2090,9 +2159,9 @@ object FormContratoN: TFormContratoN
                   end
                 end
                 object GroupBox3: TGroupBox
-                  Left = 376
+                  Left = 560
                   Top = 1
-                  Width = 240
+                  Width = 446
                   Height = 127
                   Align = alRight
                   Caption = 'Exportado'
@@ -2100,7 +2169,7 @@ object FormContratoN: TFormContratoN
                   object Grid_ExportadoTransito: TDBGrid
                     Left = 2
                     Top = 15
-                    Width = 236
+                    Width = 442
                     Height = 614
                     Align = alTop
                     Font.Charset = DEFAULT_CHARSET
@@ -2314,7 +2383,7 @@ object FormContratoN: TFormContratoN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1065
+    Width = 1015
     Height = 33
     Align = alTop
     BevelOuter = bvNone
@@ -2577,7 +2646,7 @@ object FormContratoN: TFormContratoN
     object Divisao_sup: TPanel
       Left = 0
       Top = 29
-      Width = 1065
+      Width = 1015
       Height = 4
       Align = alBottom
       TabOrder = 0

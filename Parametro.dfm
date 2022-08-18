@@ -1,6 +1,6 @@
 object FormParametro: TFormParametro
-  Left = 232
-  Top = 176
+  Left = 293
+  Top = 115
   Width = 735
   Height = 508
   Caption = 'Entrada de Dados'
@@ -35,7 +35,7 @@ object FormParametro: TFormParametro
       Caption = 'Manutencao'
       object TabPaginas: TTabSet
         Left = 0
-        Top = 363
+        Top = 354
         Width = 719
         Height = 22
         Align = alBottom
@@ -53,15 +53,15 @@ object FormParametro: TFormParametro
       end
       object PnInferior: TPanel
         Left = 0
-        Top = 385
+        Top = 376
         Width = 719
-        Height = 33
+        Height = 42
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 552
-          Top = 15
+          Left = 624
+          Top = 39
           Width = 32
           Height = 16
           AutoSize = True
@@ -82,8 +82,8 @@ object FormParametro: TFormParametro
           Visible = False
         end
         object Img_Form: TImage
-          Left = 584
-          Top = 15
+          Left = 640
+          Top = 87
           Width = 32
           Height = 16
           AutoSize = True
@@ -104,10 +104,10 @@ object FormParametro: TFormParametro
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 4
+          Left = 12
           Top = 5
           Width = 75
-          Height = 25
+          Height = 33
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -130,10 +130,10 @@ object FormParametro: TFormParametro
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 86
+          Left = 97
           Top = 5
           Width = 75
-          Height = 25
+          Height = 33
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -156,19 +156,19 @@ object FormParametro: TFormParametro
           NumGlyphs = 2
         end
         object BitBtn1: TBitBtn
-          Left = 165
+          Left = 175
           Top = 5
-          Width = 169
-          Height = 25
+          Width = 146
+          Height = 33
           Caption = 'Corrigir Erros de Dados'
           TabOrder = 2
           OnClick = BITBTN1click
         end
         object bitbtn_correcao: TJvBitBtn
-          Left = 337
+          Left = 324
           Top = 5
           Width = 97
-          Height = 24
+          Height = 32
           Caption = 'Recebimento'
           TabOrder = 3
           OnClick = bitbtn_correcaoClick
@@ -179,19 +179,19 @@ object FormParametro: TFormParametro
           HotTrackFont.Style = []
         end
         object btn_correcao_exp: TButton
-          Left = 552
-          Top = 8
+          Left = 504
+          Top = 5
           Width = 145
-          Height = 25
+          Height = 33
           Caption = 'Limpar Corre'#231#227'o Exp.'
           TabOrder = 4
           OnClick = btn_correcao_expClick
         end
         object btn_exib: TButton
-          Left = 464
-          Top = 8
+          Left = 426
+          Top = 5
           Width = 75
-          Height = 25
+          Height = 33
           Caption = 'Corre'#231#227'o Exp.'
           TabOrder = 5
           OnClick = btn_exibClick
@@ -201,7 +201,7 @@ object FormParametro: TFormParametro
         Left = 0
         Top = 0
         Width = 719
-        Height = 362
+        Height = 353
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -211,7 +211,7 @@ object FormParametro: TFormParametro
           Left = 0
           Top = 0
           Width = 719
-          Height = 362
+          Height = 353
           Align = alClient
           PageIndex = 2
           TabOrder = 0
@@ -223,7 +223,7 @@ object FormParametro: TFormParametro
               Left = 0
               Top = 0
               Width = 719
-              Height = 362
+              Height = 353
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -998,7 +998,7 @@ object FormParametro: TFormParametro
               Left = 0
               Top = 0
               Width = 719
-              Height = 362
+              Height = 353
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1006,7 +1006,7 @@ object FormParametro: TFormParametro
                 Left = 0
                 Top = 25
                 Width = 719
-                Height = 337
+                Height = 328
                 Align = alClient
                 DataSource = DS_analise
                 TabOrder = 0
@@ -1144,7 +1144,7 @@ object FormParametro: TFormParametro
       end
       object Divisao_inf: TPanel
         Left = 0
-        Top = 362
+        Top = 353
         Width = 719
         Height = 1
         Align = alBottom

@@ -658,7 +658,7 @@ TRY
 
   // INICIALIZACAO DE OBJETOS
   CBox_FormaPag.Text := 'PROEX' ;
-  XDT_INIC.DateValue := StrToDate('01/12/2012');
+  XDT_INIC.DateValue := DT0112 ; // StrToDate('01/12/2012');
   XDT_FIM.DateValue := DATE ;  
   FormResize(Self);
 except

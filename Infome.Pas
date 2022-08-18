@@ -750,7 +750,7 @@ begin
   S_FILTRO_EXP     := '';
   S_FILTRO_PRO     := '';
 
-  XDT_INIC.DATEVALUE := StrToDate('01/12/2012') ;
+  XDT_INIC.DATEVALUE := DT0112 ; // StrToDate('01/12/2012') ;
   XDT_FIM.DATEVALUE  := Date ;
 
   {05-Início do Bloco Modular. Modificações não serão preservadas}
