@@ -1948,13 +1948,37 @@ end;
 procedure TFormOrdemCobranca.Btn_gravaClick(Sender: TObject);
 var
     s_titulo : string  ;
+    S_FILTRO : string ;
 begin
+
+// //////////////////////////////
+// ErroValidacao   CONTINUA
+// ERRO DE COMPILACAO
+// //////////////////////////////
 
 if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
    if MessageDlg( MSG_ConfirmaAtualizaroNumerodeFaturaemtodasosregistrosselecionadosjaExportados ,mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-      Screen.Cursor := crHourGlass      ;
+      Screen.Cursor := crHourGlass;
+      try
+
+      S_FILTRO := TabGlobal.DFatura.Filtro.Text ;
+
+      TabGlobal.DFatura.Close ;
+      TabGlobal.DFatura.Filtro.Clear ;
+      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+      TabGlobal.DFatura.ATUALIZASQL(False);
+      TabGlobal.DFatura.PREPARE ;
+      TabGlobal.DFatura.OPEN ;
+
+
+
+      TabGlobal.DFatura.Transaction.StartTransaction    ;
+
+
+
       TabGlobal.DFatura.First ;
       while NOT TabGlobal.DFatura.Eof do begin
+
         if (( TabGlobal.DFatura.State <>  dsEdit)    and
            (TabGlobal.DFatura.State  <>  dsinsert)) then
            TabGlobal.DFatura.Modifica ;
@@ -1972,10 +1996,36 @@ if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
         TabGlobal.DFatura.Next ;
       end;
 
+      TabGlobal.DFatura.Transaction.COMMIT    ;
+
+      except
+
+      TabGlobal.DFatura.Transaction.Rollback    ;
+
+      end;
+
+      try
+      TabGlobal.DOrdemCobranca.Transaction.StartTransaction    ;
+
       // alterea o status da fatura
       TabGlobal.DOrdemCobranca.Modifica;
       TabGlobal.DOrdemCobranca.Status.Conteudo :=   s_ST_FA_F ;
       TabGlobal.DOrdemCobranca.Salva;
+
+      TabGlobal.DOrdemCobranca.Transaction.COMMIT    ;
+
+      except
+      TabGlobal.DOrdemCobranca.Transaction.Rollback    ;
+      end;
+
+      TabGlobal.DFatura.Close ;
+      TabGlobal.DFatura.Filtro.Clear ;
+      TabGlobal.DFatura.Filtro.Add( S_FILTRO );
+      TabGlobal.DFatura.ATUALIZASQL(False);
+      TabGlobal.DFatura.PREPARE ;
+      TabGlobal.DFatura.OPEN ;
+
+
       Screen.Cursor := crDefault ;
 
       Refresh ;

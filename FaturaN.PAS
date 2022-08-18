@@ -115,7 +115,6 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
-    GroupBox5: TGroupBox;
     Image1: TImage;
     Image2: TImage;
     Img_Form: TImage;
@@ -222,6 +221,7 @@ type
     XNumEdit_Rate: TXNumEdit;
     XNumEdit_ValorNF: TXNumEdit;
     BitBtn28: TBitBtn;
+    Panel3: TPanel;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure SeqExit(Sender: TObject);

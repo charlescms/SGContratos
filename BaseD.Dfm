@@ -4,8 +4,8 @@ object BaseDados: TBaseDados
   OnDestroy = DataModuleDestroy
   Left = 192
   Top = 107
-  Height = 375
-  Width = 544
+  Height = 573
+  Width = 837
   object frTextExport: TfrTextExport
     Left = 24
     Top = 1
