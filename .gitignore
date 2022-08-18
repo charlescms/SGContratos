@@ -1,0 +1,10 @@
+*.dcu
+*.ddp
+*.exe
+*.bak
+*.gdb
+*.xml
+*.map 
+*.cfg
+*.log
+*.drc

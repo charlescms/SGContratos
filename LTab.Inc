@@ -1,0 +1,31 @@
+{
+ Arquivos de Classe de tabelas
+}
+
+  DBoocking in 'DBoocking.Pas',
+  DClientes in 'DClientes.Pas',
+  DContratoTransporte in 'DContratoTransporte.Pas',
+  DDIVISOES in 'DDIVISOES.Pas',
+  DExpotadoTransito in 'DExpotadoTransito.Pas',
+  DFatura in 'DFatura.Pas',
+  DFornecedores in 'DFornecedores.Pas',
+  DPARAMETROS in 'DPARAMETROS.Pas',
+  DProdutos in 'DProdutos.Pas',
+  DPrudutoContratoT in 'DPrudutoContratoT.Pas',
+  DTAB_PAIS in 'DTAB_PAIS.Pas',
+  DTbAtividades in 'DTbAtividades.Pas',
+  DTbCategClientes in 'DTbCategClientes.Pas',
+  DTbCondicaoCompra in 'DTbCondicaoCompra.Pas',
+  DTbFormaPagamento in 'DTbFormaPagamento.Pas',
+  DTbPorto in 'DTbPorto.Pas',
+  DTbSitClientes in 'DTbSitClientes.Pas',
+  DUSER_AGENDA in 'DUSER_AGENDA.Pas',
+  DUSER_BARRA_F in 'DUSER_BARRA_F.Pas',
+  DUSER_GRUPOS in 'DUSER_GRUPOS.Pas',
+  DUSER_LOG in 'DUSER_LOG.Pas',
+  DUSER_MENU_LATERAL in 'DUSER_MENU_LATERAL.Pas',
+  DUSER_MENU_SUPERIOR in 'DUSER_MENU_SUPERIOR.Pas',
+  DUSER_NOMES in 'DUSER_NOMES.Pas',
+  DUSER_TABELAS in 'DUSER_TABELAS.Pas',
+  CSCNS_Infome in 'CSCNS_Infome.Pas',
+
