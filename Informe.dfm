@@ -1,8 +1,8 @@
 object FormInforme: TFormInforme
-  Left = 230
-  Top = 277
+  Left = 247
+  Top = 89
   Width = 980
-  Height = 630
+  Height = 541
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -29,7 +29,7 @@ object FormInforme: TFormInforme
     Left = 0
     Top = 53
     Width = 964
-    Height = 539
+    Height = 450
     ActivePage = TabSheet1
     Align = alClient
     HotTrack = True
@@ -39,7 +39,7 @@ object FormInforme: TFormInforme
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 480
+        Top = 391
         Width = 956
         Height = 31
         Align = alBottom
@@ -127,7 +127,7 @@ object FormInforme: TFormInforme
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 459
+        Top = 370
         Width = 956
         Height = 21
         Align = alBottom
@@ -145,7 +145,7 @@ object FormInforme: TFormInforme
         Left = 0
         Top = 0
         Width = 956
-        Height = 459
+        Height = 370
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -155,7 +155,7 @@ object FormInforme: TFormInforme
           Left = 0
           Top = 0
           Width = 956
-          Height = 459
+          Height = 370
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -166,7 +166,7 @@ object FormInforme: TFormInforme
               Left = 0
               Top = 0
               Width = 956
-              Height = 459
+              Height = 370
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1721,8 +1721,8 @@ object FormInforme: TFormInforme
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 429
-        Width = 1055
+        Top = 391
+        Width = 956
         Height = 31
         Align = alBottom
         BevelOuter = bvNone
@@ -1757,8 +1757,8 @@ object FormInforme: TFormInforme
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1055
-        Height = 408
+        Width = 956
+        Height = 370
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
@@ -1782,8 +1782,8 @@ object FormInforme: TFormInforme
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 408
-        Width = 1055
+        Top = 370
+        Width = 956
         Height = 21
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -1802,7 +1802,7 @@ object FormInforme: TFormInforme
       ImageIndex = 2
       object Panel1: TPanel
         Left = 0
-        Top = 383
+        Top = 294
         Width = 956
         Height = 97
         Align = alBottom
@@ -2253,7 +2253,7 @@ object FormInforme: TFormInforme
       end
       object Panel3: TPanel
         Left = 0
-        Top = 480
+        Top = 391
         Width = 956
         Height = 31
         Align = alBottom
@@ -2369,12 +2369,21 @@ object FormInforme: TFormInforme
             33333F7F7777F8333333FFFFFFFF333333333FFFFFFFF3333333}
           NumGlyphs = 2
         end
+        object btn1: TBitBtn
+          Left = 616
+          Top = 8
+          Width = 75
+          Height = 25
+          Caption = 'btn1'
+          TabOrder = 5
+          OnClick = btn1Click
+        end
       end
       object PageControl1: TPageControl
         Left = 0
         Top = 0
         Width = 956
-        Height = 383
+        Height = 294
         ActivePage = TabSheet2
         Align = alClient
         TabOrder = 0
@@ -2494,8 +2503,8 @@ object FormInforme: TFormInforme
             end
           end
           object GroupBox_Excel: TGroupBox
-            Left = 536
-            Top = 384
+            Left = 480
+            Top = 296
             Width = 633
             Height = 305
             Caption = 'Excel'
@@ -3273,7 +3282,6 @@ object FormInforme: TFormInforme
     Top = 120
   end
   object IBQContratos: TIBQuery
-    CachedUpdates = True
     SQL.Strings = (
       'Select  distinct'
       ' Informe.Contrato AS Contrato,'
@@ -4915,5 +4923,9 @@ object FormInforme: TFormInforme
       FieldName = 'DIVISAO'
       Size = 50
     end
+  end
+  object IBQuery1: TIBQuery
+    Left = 648
+    Top = 165
   end
 end

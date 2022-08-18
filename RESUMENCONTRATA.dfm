@@ -1,8 +1,8 @@
 object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
-  Left = 436
-  Top = 503
+  Left = 516
+  Top = 79
   Width = 1296
-  Height = 740
+  Height = 662
   Caption = 'Relat'#243'rio'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -97,7 +97,7 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
     Left = 0
     Top = 20
     Width = 1280
-    Height = 626
+    Height = 548
     Align = alClient
     BorderStyle = bsNone
     Color = clBtnFace
@@ -105,7 +105,7 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
     TabOrder = 0
     object Panel_Filtro: TPanel
       Left = 0
-      Top = 548
+      Top = 470
       Width = 1280
       Height = 78
       Cursor = crArrow
@@ -514,7 +514,7 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
       Top = 8
       Width = 777
       Height = 385
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       TabOrder = 1
       object TabSheet2: TTabSheet
         Caption = 'Dados Geradores'
@@ -596,7 +596,6 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
           Height = 241
           Caption = 'Planilha'
           TabOrder = 0
-          Visible = False
           object DBNavig_Excel: TDBNavigator
             Left = 192
             Top = 24
@@ -625,7 +624,7 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 646
+    Top = 568
     Width = 1280
     Height = 21
     Align = alBottom
@@ -637,7 +636,7 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
   end
   object Panel1: TPanel
     Left = 0
-    Top = 667
+    Top = 589
     Width = 1280
     Height = 35
     Align = alBottom
@@ -787,20 +786,20 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
   end
   object frDBDataSet: TfrDBDataSet
     DataSet = DContratoTransporte
-    Left = 104
-    Top = 200
+    Left = 48
+    Top = 296
   end
   object frDesigner: TfrDesigner
-    Left = 96
-    Top = 256
+    Left = 88
+    Top = 288
   end
   object frReport: TfrReport
     Dataset = frDBDataSet
     InitialZoom = pzDefault
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     StoreInDFM = True
-    Left = 95
-    Top = 296
+    Left = 87
+    Top = 320
     ReportForm = {
       17000000061A000017000000000F0044656661756C74207072696E74657200FF
       090000009A0B0000340800000000000000000000000000000000000001000000
@@ -1064,8 +1063,8 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
         '      GROUP BY CONTRATOTRANSPORTE.CLICOD,CONTRATOTRANSPORTE.SEQ,' +
         'DIVISOES.NOME,CONTRATOTRANSPORTE.NOMEMIX'
       '')
-    Left = 168
-    Top = 260
+    Left = 160
+    Top = 284
     object IBQ_PRODUTOSNOME: TIBStringField
       DisplayLabel = 'DIVIS'#195'O'
       FieldName = 'NOME'
@@ -1144,13 +1143,13 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
         'AO,'
       '         '#39'TOTAL '#39
       'FROM CONTRATOTRANSPORTE')
-    Left = 136
-    Top = 260
+    Left = 128
+    Top = 284
   end
   object DS_EXCEL: TDataSource
     DataSet = DContratoTransporte
-    Left = 196
-    Top = 307
+    Left = 204
+    Top = 323
   end
   object DContratoTransporte: TIBQuery
     SQL.Strings = (
@@ -1173,8 +1172,8 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
         'ORDER BY RESUMENCONTRATACION.FormPago,RESUMENCONTRATACION.CLICOD' +
         ' ,  RESUMENCONTRATACION.seq , RESUMENCONTRATACION.NomeMix')
     UpdateObject = IBUpdateSQL1
-    Left = 195
-    Top = 260
+    Left = 203
+    Top = 292
     object DContratoTransporteNOME: TIBStringField
       DisplayLabel = 'DIVIS'#195'O'
       FieldName = 'NOME'
@@ -1274,6 +1273,6 @@ object FormRESUMENCONTRATA: TFormRESUMENCONTRATA
       'where'
       '  CODIGO = :OLD_CODIGO')
     Left = 236
-    Top = 260
+    Top = 292
   end
 end

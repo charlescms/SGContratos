@@ -35,7 +35,7 @@ sql_navio_inicio  =
   '    Situacao.Valor AS Valor ' + NOVA_LINHA +
   'from ( ' + NOVA_LINHA +
   ' select distinct ' + NOVA_LINHA +
-  '    ExportadoTransito.Contrato as Contrato, ' + NOVA_LINHA +
+  '    ContratoTransporte.Contrato as Contrato, ' + NOVA_LINHA +
   '    ExportadoTransito.Navio AS Navio, ' + NOVA_LINHA +
   '    ExportadoTransito.DataEmbarque AS DataEmbarque, ' + NOVA_LINHA +
   '    ExportadoTransito.QuantidadeExp AS QuantidadeExp, ' + NOVA_LINHA +
@@ -54,7 +54,7 @@ sql_navio_inicio  =
 
 // filtro
 sql_navio_order =
-  '  order by    ExportadoTransito.Contrato ' + NOVA_LINHA +
+  '  order by    ContratoTransporte.Contrato ' + NOVA_LINHA +
   ') as  Situacao ' + NOVA_LINHA ;
 
 
@@ -656,7 +656,10 @@ TRY
 
 //  BitB_FILTROClick(SELF) ;
 
-
+  // INICIALIZACAO DE OBJETOS
+  CBox_FormaPag.Text := 'PROEX' ;
+  XDT_INIC.DateValue := StrToDate('01/12/2012');
+  XDT_FIM.DateValue := DATE ;  
   FormResize(Self);
 except
   on Erro: Exception do
@@ -847,20 +850,25 @@ procedure TFormRelSitucaoCred.BitB_FILTROClick(Sender: TObject);
 VAR
   S_CLICOD,s_titulo, s_titulo_c , S_FILTRO_EMB , S_FILTRO_EMB_NAVIO , s_corpo_novos1 , s_corpo_novos2 ,S_FILTRO_WHERE_contrato_pais : STRING ;
   N_INC  , N_FIN : INTEGER ;
-  S_FILTRO_ProdCont, S_FILTRO_proFM  :string ;
-  S_FILTRO_ExpTrans, S_FILTRO_expFM :string ;
- s_QuantidadeTotal,  s_VALORSCCTOTAL  ,  s_QUANTTOTALEXP  ,  s_VALORTOTALEXP , S_FILTRO_NV: string  ;
+  S_FILTRO_ProdCont, S_FILTRO_proFM  , S_FILTRO_ExpTrans_TP  :string ;
+  S_FILTRO_ExpTrans, S_FILTRO_expFM , S_FILTRO_ProdCont_TP :string ;
+ s_QuantidadeTotal,  s_VALORSCCTOTAL  , s_VALORSCCTOTAL_TP  , s_QUANTTOTALEXP  , s_QUANTTOTALEXP_TP  , s_VALORTOTALEXP , s_VALORTOTALEXP_TP ,S_FILTRO_NV,  s_QuantidadeTotal_TP : string  ;
 
 begin
   S_FILTRO_ProdCont := '';
   S_FILTRO_ExpTrans := '';
   s_QuantidadeTotal := '';
+  s_QuantidadeTotal_TP := '';  
   s_VALORSCCTOTAL   := '';
   s_QUANTTOTALEXP   := '' ;
   s_VALORTOTALEXP   := '' ;
   S_FILTRO_proFM    := '' ;
   S_FILTRO_expFM    := '' ;
-
+  S_FILTRO_ProdCont_TP := '' ;
+  s_VALORSCCTOTAL_TP   := '';
+  s_QUANTTOTALEXP_TP   := '' ;
+  s_VALORTOTALEXP_TP   := '' ;
+  S_FILTRO_ExpTrans_TP := '' ;
 try
 
   IF CBox_FormaPag.Text = '' THEN begin
@@ -886,25 +894,6 @@ try
   s_corpo_novos1 := sql_corpo_novos1  ;
   s_corpo_novos2 := sql_corpo_novos2  ;
 
-  // ExportadoTransito embarque
-  IF XDT_INIC_EMB.DateValue <> -693594 THEN begin
-     S_FILTRO       := ' ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
-     S_FILTRO_NV    := ' ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
-     s_corpo_novos1 := ' (select sum(ExportadoTransito.QuantidadeExp) from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ')) AS QuantidadeExp, ' +  NOVA_LINHA ;
-     s_corpo_novos2 := ' (select sum(ExportadoTransito.valor)         from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ' )) AS valor,        ' +  NOVA_LINHA ;
-  end;
-
-  IF  XDT_FIM_EMB.DateValue <> -693594 THEN  begin
-      IF  S_FILTRO = '' THEN begin
-          S_FILTRO     := ' ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue));
-          S_FILTRO_NV  := ' ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
-          end
-      ELSE begin
-          S_FILTRO    := S_FILTRO    + ' AND ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
-          S_FILTRO_NV := S_FILTRO_NV + ' AND ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
-          end;
-  end;
-
   //´PERIODO
   IF  ( XDT_FIM.DateValue <> -693594 ) and ( XDT_INIC.DateValue <> -693594) THEN
       s_titulo := ' Periodo ( '+ XDT_INIC.Text + ' a ' + XDT_FIM.Text  + ' )'
@@ -924,12 +913,14 @@ try
   IF XDT_INIC.DateValue <> -693594 THEN
      begin
       IF S_FILTRO = '' THEN begin
-         S_FILTRO    := ' CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+//         S_FILTRO    := ' CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+         S_FILTRO    := ' ProdutoContratoT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
          S_FILTRO_NV := ' ExportadoTransito.CADASTRO  >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
 
          END
       ELSE begin
-          S_FILTRO    := S_FILTRO    + ' AND CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+//          S_FILTRO    := S_FILTRO    + ' AND CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+          S_FILTRO    := S_FILTRO    + ' AND ProdutoContratoT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
           S_FILTRO_NV := S_FILTRO_NV + ' AND ExportadoTransito.CADASTRO  >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
       end;
 
@@ -940,12 +931,14 @@ try
   IF  XDT_FIM.DateValue <> -693594 THEN  begin
       IF  S_FILTRO = '' THEN
       begin
-          S_FILTRO    := ' CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue));
+//          S_FILTRO    := ' CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue));
+          S_FILTRO    := ' ProdutoContratoT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue));
           S_FILTRO_NV := ' ExportadoTransito.CADASTRO  <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue));
       end
       ELSE
       begin
-          S_FILTRO    := S_FILTRO    + ' AND CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+//          S_FILTRO    := S_FILTRO    + ' AND CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          S_FILTRO    := S_FILTRO    + ' AND ProdutoContratoT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
           S_FILTRO_NV := S_FILTRO_NV + ' AND ExportadoTransito.CADASTRO  <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
       end;
 
@@ -962,8 +955,39 @@ try
 
   end;
 
+  IF  ( S_FILTRO <> '')  AND ( S_FILTRO_NV <> '')  then
+      S_FILTRO_NV := '(('+ S_FILTRO_NV + ') OR ( '+ S_FILTRO + '))';
+
+  // ExportadoTransito embarque
+  IF XDT_INIC_EMB.DateValue <> -693594 THEN begin
+     IF S_FILTRO = '' THEN
+     begin
+        S_FILTRO       := ' ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
+        S_FILTRO_NV    := ' ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
+        s_corpo_novos1 := ' (select sum(ExportadoTransito.QuantidadeExp) from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ')) AS QuantidadeExp, ' +  NOVA_LINHA ;
+        s_corpo_novos2 := ' (select sum(ExportadoTransito.valor)         from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ' )) AS valor,        ' +  NOVA_LINHA ;
+     end
+     else
+     begin
+        S_FILTRO       := S_FILTRO       + ' AND  ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
+        S_FILTRO_NV    := S_FILTRO_NV    + ' AND  ExportadoTransito.DataEmbarque >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) ;
+        s_corpo_novos1 := s_corpo_novos1 + ' AND  (select sum(ExportadoTransito.QuantidadeExp) from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ')) AS QuantidadeExp, ' +  NOVA_LINHA ;
+        s_corpo_novos2 := s_corpo_novos2 + ' AND  (select sum(ExportadoTransito.valor)         from ExportadoTransito where (ExportadoTransito.Contrato = ContratoTransporte.Contrato ) and ( ExportadoTransito.DataEmbarque < ' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC_EMB.DateValue)) + ' )) AS valor,        ' +  NOVA_LINHA ;
+     end;
 
 
+  end;
+
+  IF  XDT_FIM_EMB.DateValue <> -693594 THEN  begin
+      IF  S_FILTRO = '' THEN begin
+          S_FILTRO     := ' ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue));
+          S_FILTRO_NV  := ' ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
+          end
+      ELSE begin
+          S_FILTRO    := S_FILTRO    + ' AND ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
+          S_FILTRO_NV := S_FILTRO_NV + ' AND ExportadoTransito.DataEmbarque <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM_EMB.DateValue)) ;
+          end;
+  end;
 
 
 
@@ -1043,26 +1067,41 @@ try
       S_FILTRO_proFM := ' ( ProdutoContratoT.FORMPAGO = '+ AtribuiAspas ( CBox_FormaPag.Text )  +'  )' ;
   END;
 
+  S_FILTRO_ProdCont_TP := S_FILTRO_ProdCont  ;
+  S_FILTRO_ExpTrans_TP := S_FILTRO_ExpTrans  ;
+
+
   if S_FILTRO_ProdCont <> '' then
   begin
      S_FILTRO_ProdCont := ' and ( ' + S_FILTRO_ProdCont + ' )' ;
      S_FILTRO_ExpTrans := ' and ( ' + S_FILTRO_ExpTrans + ' )' ;
+     S_FILTRO_ProdCont_TP := S_FILTRO_ProdCont  ;
+     S_FILTRO_ExpTrans_TP := S_FILTRO_ExpTrans  ;
+
   end;
 
   // composizao de forma de pagamento
   if S_FILTRO_expFM <> '' then
   begin
+
+     S_FILTRO_ProdCont_TP := S_FILTRO_ProdCont  ;
+     S_FILTRO_ExpTrans_TP := S_FILTRO_ExpTrans  ;
+
      S_FILTRO_ProdCont := S_FILTRO_ProdCont + ' and ( ' + S_FILTRO_proFM + ' )' ;
      S_FILTRO_ExpTrans := S_FILTRO_ExpTrans + ' and ( ' + S_FILTRO_expFM + ' )' ;
   end;
 
 
   // novo campo para uma nova realidade
+
   s_QuantidadeTotal := sql_QuantidadeTotal_i + S_FILTRO_ProdCont + sql_QuantidadeTotal_f ;
   s_VALORSCCTOTAL   := sql_VALORSCCTOTAL_i   + S_FILTRO_ProdCont + sql_VALORSCCTOTAL_f ;
   s_QUANTTOTALEXP   := sql_QUANTTOTALEXP_i   + S_FILTRO_ExpTrans + sql_QUANTTOTALEXP_f  ;
   s_VALORTOTALEXP   := sql_VALORTOTALEXP_i   + S_FILTRO_ExpTrans + sql_VALORTOTALEXP_f  ;
-
+  s_QuantidadeTotal_TP := sql_QuantidadeTotal_i + S_FILTRO_ProdCont_TP + sql_QuantidadeTotal_f ;
+  s_VALORSCCTOTAL_TP   := sql_VALORSCCTOTAL_i   + S_FILTRO_ProdCont_TP + sql_VALORSCCTOTAL_f ;
+  s_QUANTTOTALEXP_TP   := sql_QUANTTOTALEXP_i   + S_FILTRO_ExpTrans_TP + sql_QUANTTOTALEXP_f  ;
+  s_VALORTOTALEXP_TP   := sql_VALORTOTALEXP_i   + S_FILTRO_ExpTrans_TP + sql_VALORTOTALEXP_f  ;
 
 
 
@@ -1139,8 +1178,8 @@ try
 //  IBQuery_navio.First ;
 
   IBQuery_TOTAL_PRODUTO.CLOSE;
-  IBQuery_TOTAL_PRODUTO.SQL.Clear ;
-  IBQuery_TOTAL_PRODUTO.SQL.Add( sql_TOTAL_PRODUTO_P_I +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP + s_corpo_novos1 + s_corpo_novos2 +sql_TOTAL_PRODUTO_P_F + S_FILTRO_WHERE_contrato_pais + sql_TOTAL_PRODUTO_S_I   +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP+ s_corpo_novos1 +  s_corpo_novos2 + sql_TOTAL_PRODUTO_S_F + S_FILTRO_WHERE_contrato +                sql_TOTAL_PRODUTO_O ) ;
+  IBQuery_TOTAL_PRODUTO.SQL.Clear ;                                             //ValorSCCTotal      //QUANTTOTALEXP     //VALORTOTALEXP
+  IBQuery_TOTAL_PRODUTO.SQL.Add( sql_TOTAL_PRODUTO_P_I +  s_QuantidadeTotal_TP +s_VALORSCCTOTAL_TP + s_QUANTTOTALEXP_TP+ s_VALORTOTALEXP_TP + s_corpo_novos1 + s_corpo_novos2 +sql_TOTAL_PRODUTO_P_F + S_FILTRO_WHERE_contrato_pais + sql_TOTAL_PRODUTO_S_I   +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP+ s_corpo_novos1 +  s_corpo_novos2 + sql_TOTAL_PRODUTO_S_F + S_FILTRO_WHERE_contrato +                sql_TOTAL_PRODUTO_O ) ;
   IBQuery_TOTAL_PRODUTO.SQL.SaveToFile('_IBQuery_TOTAL_PRODUTO.SQL');
   IBQuery_TOTAL_PRODUTO.Prepare ;
   IBQuery_TOTAL_PRODUTO.Open ;
@@ -1150,7 +1189,7 @@ try
   IBQuery_TOTAL_PAIS.close;
   IBQuery_TOTAL_PAIS.SQL.Clear ;
 
-  IBQuery_TOTAL_PAIS.SQL.Add(    sql_TOTAL_PAIS_P_I   +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP  + s_corpo_novos1 + s_corpo_novos2 + sql_TOTAL_PAIS_P_F + S_FILTRO_WHERE_contrato_pais + sql_TOTAL_PAIS_S_I +s_corpo_novos1  +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP + s_corpo_novos2 + sql_TOTAL_PAIS_S_F + S_FILTRO_WHERE_contrato +                  sql_TOTAL_PAIS_O ) ;
+  IBQuery_TOTAL_PAIS.SQL.Add(    sql_TOTAL_PAIS_P_I   +  s_QuantidadeTotal_TP +s_VALORSCCTOTAL_TP + s_QUANTTOTALEXP_TP+ s_VALORTOTALEXP_TP  + s_corpo_novos1 + s_corpo_novos2 + sql_TOTAL_PAIS_P_F + S_FILTRO_WHERE_contrato_pais + sql_TOTAL_PAIS_S_I +s_corpo_novos1  +  s_QuantidadeTotal+s_VALORSCCTOTAL + s_QUANTTOTALEXP+ s_VALORTOTALEXP + s_corpo_novos2 + sql_TOTAL_PAIS_S_F + S_FILTRO_WHERE_contrato +                  sql_TOTAL_PAIS_O ) ;
   IBQuery_TOTAL_PAIS.SQL.SaveToFile('_IBQuery_TOTAL_PAIS.SQL');
   IBQuery_TOTAL_PAIS.Prepare ;
   IBQuery_TOTAL_PAIS.Open ;
@@ -1159,11 +1198,11 @@ try
 
   ConstroiSql ;
 
-  GroupBox_situacao.Caption := 'Dados Totais Núm. Linhas = ' + INTTOSTR(DSituacao.RecordCount)   ;
+  GroupBox_situacao.Caption   := 'Dados Totais Núm. Linhas = ' + INTTOSTR(DSituacao.RecordCount)   ;
   GroupBox_total_grup.Caption := 'Somatorio de Produtos Núm. Linhas = ' + INTTOSTR(IBQuery_Total_Prod.RecordCount)   ;
-  GroupBox_dados.Caption := 'Contratos Núm. Linhas = ' + INTTOSTR(QSituacao.RecordCount)   ;
+  GroupBox_dados.Caption      := 'Contratos Núm. Linhas = ' + INTTOSTR(QSituacao.RecordCount)   ;
   GroupBox_total_pais.Caption := 'Somatorio de Pais Núm. Linhas = ' + INTTOSTR(IBQuery_Pais.RecordCount)   ;
-  GroupBox_navio.Caption := 'Navios Núm. Linhas = ' + INTTOSTR(IBQuery_navio.RecordCount)   ;
+  GroupBox_navio.Caption      := 'Navios Núm. Linhas = ' + INTTOSTR(IBQuery_navio.RecordCount)   ;
 
 Finally
   Screen.Cursor := crDefault;

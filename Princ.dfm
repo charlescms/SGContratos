@@ -1,8 +1,8 @@
 object FormPrincipal: TFormPrincipal
-  Left = 199
-  Top = 78
+  Left = 276
+  Top = 236
   Width = 950
-  Height = 695
+  Height = 429
   Caption = 'Titulo do Projeto'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,12 +24,12 @@ object FormPrincipal: TFormPrincipal
     Left = 233
     Top = 56
     Width = 0
-    Height = 562
+    Height = 296
     AutoSnap = False
   end
   object StatusBarPrincipal: TStatusBar
     Left = 0
-    Top = 618
+    Top = 352
     Width = 934
     Height = 19
     Panels = <
@@ -294,7 +294,7 @@ object FormPrincipal: TFormPrincipal
     Left = 0
     Top = 56
     Width = 3
-    Height = 562
+    Height = 296
     Align = alLeft
     BevelOuter = bvLowered
     TabOrder = 2
@@ -303,7 +303,7 @@ object FormPrincipal: TFormPrincipal
     Left = 3
     Top = 56
     Width = 230
-    Height = 562
+    Height = 296
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 3
@@ -312,7 +312,7 @@ object FormPrincipal: TFormPrincipal
       Left = 0
       Top = 17
       Width = 230
-      Height = 545
+      Height = 279
       Align = alClient
       Pen.Color = 7021576
     end
@@ -364,10 +364,10 @@ object FormPrincipal: TFormPrincipal
       end
     end
     object TreeOpcoes: TTreeView
-      Left = 47
-      Top = 57
-      Width = 90
-      Height = 332
+      Left = -1
+      Top = -183
+      Width = 226
+      Height = 488
       BorderStyle = bsNone
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -564,7 +564,7 @@ object FormPrincipal: TFormPrincipal
     Left = 233
     Top = 56
     Width = 3
-    Height = 562
+    Height = 296
     Align = alLeft
     BevelOuter = bvLowered
     TabOrder = 5
@@ -573,7 +573,7 @@ object FormPrincipal: TFormPrincipal
     Left = 236
     Top = 56
     Width = 698
-    Height = 562
+    Height = 296
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 4
@@ -581,7 +581,7 @@ object FormPrincipal: TFormPrincipal
       Left = 0
       Top = 0
       Width = 698
-      Height = 562
+      Height = 296
       Align = alClient
       AutoSize = True
       Center = True

@@ -1,8 +1,8 @@
 object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
-  Left = 189
-  Top = 65
-  Width = 943
-  Height = 588
+  Left = 221
+  Top = 0
+  Width = 1010
+  Height = 800
   Caption = 'Relat'#243'rio'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,7 +23,7 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 927
+    Width = 994
     Height = 20
     Align = alTop
     BevelOuter = bvNone
@@ -31,7 +31,7 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 927
+      Width = 994
       Height = 20
       Align = alClient
       Brush.Color = 14743792
@@ -42,7 +42,7 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 927
+      Width = 994
       Height = 20
       Align = alClient
       Alignment = taCenter
@@ -96,15 +96,15 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
   object Selecao_1: TScrollBox
     Left = 0
     Top = 20
-    Width = 927
-    Height = 474
+    Width = 994
+    Height = 686
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
     object Panel_Filtro: TPanel
       Left = 0
-      Top = 389
-      Width = 927
+      Top = 601
+      Width = 994
       Height = 85
       Cursor = crArrow
       Align = alBottom
@@ -412,6 +412,23 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
           TabOrder = 1
         end
       end
+      object GroupBox3: TGroupBox
+        Left = 641
+        Top = 1
+        Width = 128
+        Height = 83
+        Align = alLeft
+        Caption = 'Ordem'
+        TabOrder = 3
+        object cbb_order: TComboBox
+          Left = 8
+          Top = 24
+          Width = 105
+          Height = 21
+          ItemHeight = 13
+          TabOrder = 0
+        end
+      end
     end
     object GroupBoxAnalise: TGroupBox
       Left = 44
@@ -445,9 +462,9 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
       end
     end
     object GroupBoxProduto: TGroupBox
-      Left = 0
-      Top = 284
-      Width = 927
+      Left = 56
+      Top = 228
+      Width = 457
       Height = 105
       Cursor = crArrow
       Caption = 'Total Produtos'
@@ -478,8 +495,8 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 494
-    Width = 927
+    Top = 706
+    Width = 994
     Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -490,8 +507,8 @@ object FormINFOMECOMERCIAL: TFormINFOMECOMERCIAL
   end
   object Panel1: TPanel
     Left = 0
-    Top = 515
-    Width = 927
+    Top = 727
+    Width = 994
     Height = 35
     Align = alBottom
     BevelOuter = bvNone

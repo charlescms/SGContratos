@@ -1,6 +1,6 @@
 object FormInfome: TFormInfome
-  Left = 40
-  Top = 29
+  Left = 250
+  Top = 0
   Width = 919
   Height = 740
   Caption = 'Relat'#243'rio'
@@ -531,7 +531,7 @@ object FormInfome: TFormInfome
       NumGlyphs = 2
     end
     object BitBtn1: TBitBtn
-      Left = 8
+      Left = 16
       Top = 7
       Width = 75
       Height = 25

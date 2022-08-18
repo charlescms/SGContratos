@@ -22,6 +22,50 @@ uses
 
 const
  NOVA_LINHA = CHR(13)+CHR(10) ;
+
+ SC_SQL_SUM = 'SELECT                                                                                                                           '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.QUANTIDADETOTAL) 	            AS QuantidadeTotal,                                                   '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.VALORSCCTOTAL)   	            AS VALORSCCTOTAL ,                                                    '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.QUANTTOTALEXP)   	            AS QUANTTOTALEXP,                                                     '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.VALORTOTALEXP)   	            AS VALORTOTALEXP,                                                     '+ NOVA_LINHA +
+              '    sum(CONTRATOTRANSPORTE2.QUANTIDADETOTAL - CONTRATOTRANSPORTE2.QUANTTOTALEXP ) AS QUANTADEPENDENTE ,                          '+ NOVA_LINHA +
+              '    sum(CONTRATOTRANSPORTE2.VALORSCCTOTAL - CONTRATOTRANSPORTE2.VALORTOTALEXP ) AS VALORTOTALPENDENTE ,                          '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.VALORTOTALCOMISSAO)           	AS VALORTOTALCOMISSAO ,                                               '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.ValorTotalComissaoExecutado)  	AS ValorTotalComissaoExecutado ,                                      '+ NOVA_LINHA +
+              '    Sum(CONTRATOTRANSPORTE2.VALORTOTALCOMISSAO - CONTRATOTRANSPORTE2.ValorTotalComissaoExecutado ) AS VlTotalComissaoPendente ,  '+ NOVA_LINHA ;
+
+
+
+
+ SC_SQL_SUM_Prin_i                = '   (                                ' +    NOVA_LINHA +
+                                    '      SELECT  DISTINCT                        ' +    NOVA_LINHA +
+                                    '        CONTRATOTRANSPORTE.CONTRATO , ' +    NOVA_LINHA ;
+
+ SC_QUANTIDADETOTAL_I             = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.QUANTIDADE)       IS NULL ,0,SUM(PRODUTOCONTRATOT.QUANTIDADE) )       FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ SC_QUANTIDADETOTAL_F             = ' )  AS  QUANTIDADETOTAL, ' +    NOVA_LINHA  ;
+
+ SC_VALORSCCTOTAL_I               = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.VALORSCC)         IS NULL ,0,SUM(PRODUTOCONTRATOT.VALORSCC) )         FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ SC_VALORSCCTOTAL_F               = ' )  AS  VALORSCCTOTAL, ' +    NOVA_LINHA  ;
+
+ SC_QUANTTOTALEXP_I               = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.QUANTIDADEEXP)   IS NULL ,0,SUM(EXPORTADOTRANSITO.QUANTIDADEEXP) )   FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+ SC_QUANTTOTALEXP_F               = ' )  AS  QUANTTOTALEXP, ' +    NOVA_LINHA  ;
+
+ SC_VALORTOTALEXP_I               = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.VALOR)           IS NULL ,0,SUM(EXPORTADOTRANSITO.VALOR) )           FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+ SC_VALORTOTALEXP_F               =     ' )  AS  VALORTOTALEXP, ' +    NOVA_LINHA  ;
+
+ SC_VALORTOTALCOMISSAO_I          = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.COMISAOSFATURA)   IS NULL ,0,SUM(PRODUTOCONTRATOT.COMISAOSFATURA) )   FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+ SC_VALORTOTALCOMISSAO_F          =     ' )  AS  VALORTOTALCOMISSAO, ' +    NOVA_LINHA  ;
+
+ SC_VALORTOTALCOMISSAOEXECUTADO_I = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.COMISAOSFATURA) IS NULL ,0,SUM(EXPORTADOTRANSITO.COMISAOSFATURA) ) FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )'  ;
+ SC_VALORTOTALCOMISSAOEXECUTADO_F =     ' )  AS  VALORTOTALCOMISSAOEXECUTADO ' +    NOVA_LINHA  ;
+
+ SC_SQL_SUM_Prin_FROM             = '      FROM '  +    NOVA_LINHA +
+                                    '        CONTRATOTRANSPORTE , PRODUTOCONTRATOT ' +    NOVA_LINHA  ;
+ SC_SQL_SUM_Prin_F                = '   )  AS  CONTRATOTRANSPORTE2 '   ;
+
+
+
+{
  SC_SQL_TOTAL ='SELECT ' +
 	              ' IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	           IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          ) AS QuantidadeTotal, ' + NOVA_LINHA +
 	              ' IIF( Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	           IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	          ) AS VALORSCCTOTAL ,  ' + NOVA_LINHA +
@@ -32,15 +76,15 @@ const
 	              ' IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         ) AS VALORTOTALCOMISSAO , ' + NOVA_LINHA +
                 ' IIF( Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) IS NULL ,0, Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado)) AS ValorTotalComissaoExecutado , ' + NOVA_LINHA +
 	              ' IIF( Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     IS NULL ,0, Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)    ) AS VlTotalComissaoPendente , ' + NOVA_LINHA +
+}
+
+ SC_SQL_TOTAL =  SC_SQL_SUM +
                 ' '' < = TOTAL GERAL  '' ' + NOVA_LINHA +
-                ' FROM CONTRATOTRANSPORTE  ,    PRODUTOS  ' ;         // 25/03/2012
+                ' FROM CONTRATOTRANSPORTE  ,    PRODUTOS , ' ;         // 25/03/2012
 
- SC_SQL_TOTAL_WHERE = ' WHERE CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO  '  ;
-
+ SC_SQL_TOTAL_WHERE = ' WHERE ( CONTRATOTRANSPORTE2.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO  '  ;
+{
   SC_SQL_PROD = 'SELECT ' + NOVA_LINHA +
-                '  CONTRATOTRANSPORTE.NOMEMIX                 as NOMEMIX , ' +         NOVA_LINHA +
-                '  PRODUTOs.QUANT_PREVISTA                              as QUANT_PREVISTA , ' +NOVA_LINHA +
-                '  PRODUTOs.VALOR_PREVISTO                              as VALOR_PREVISTO , ' +NOVA_LINHA +
                 '	 IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	         ) AS QuantidadeTotal, ' +NOVA_LINHA +
                 '	 IIF( Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	         )  AS VALORSCCTOTAL , '  +NOVA_LINHA +
                 '	 IIF( Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	         )  AS QUANTTOTALEXP, '   +NOVA_LINHA +
@@ -49,12 +93,17 @@ const
                 '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)         )  AS VALORTOTALPENDENTE,'+NOVA_LINHA +
     	          '  IIF( Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) IS NULL ,0, Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado))  AS ValorTotalComissaoExecutado , ' +NOVA_LINHA +
 	              '  IIF( Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     IS NULL ,0, Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)    )  AS VlTotalComissaoPendente , ' +NOVA_LINHA +
-                '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         )  AS VALORTOTALCOMISSAO ' +NOVA_LINHA +
-                'FROM CONTRATOTRANSPORTE ,  PRODUTOS ';        // 25/03/2012
-
-  SC_SQL_PROD_WHERE  = ' where CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO';
+                '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         )  AS VALORTOTALCOMISSAO, ' +NOVA_LINHA +
+}
+ SC_SQL_PROD = SC_SQL_SUM +
+                '  CONTRATOTRANSPORTE.NOMEMIX                 as NOMEMIX , ' +         NOVA_LINHA +
+                '  PRODUTOs.QUANT_PREVISTA                              as QUANT_PREVISTA , ' +NOVA_LINHA +
+                '  PRODUTOs.VALOR_PREVISTO                              as VALOR_PREVISTO  ' +NOVA_LINHA +
+                'FROM CONTRATOTRANSPORTE ,  PRODUTOS ,';        // 25/03/2012
+  SC_SQL_PROD_WHERE_S= ' where ( ContratoTransporte.Contrato = PRODUTOCONTRATOT.Contrato ) ' +NOVA_LINHA ;
+  SC_SQL_PROD_WHERE  = ' where ( CONTRATOTRANSPORTE2.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO';
   SC_SQL_PROD_ORDER  = ' GROUP BY CONTRATOTRANSPORTE.NOMEMIX     ,PRODUTOs.QUANT_PREVISTA, PRODUTOs.VALOR_PREVISTO';
-
+{
   SC_SQL_PAIS =  'SELECT ' +NOVA_LINHA +
 	               '  IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL)  	         IS NULL ,0,Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL)  	        )  AS QuantidadeTotal,' +NOVA_LINHA +
 	               '  IIF( Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)    	         IS NULL,0,Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)    	        )  AS VALORSCCTOTAL ,  ' +NOVA_LINHA +
@@ -65,20 +114,20 @@ const
 	               '  IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL,0,Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         )  AS VALORTOTALCOMISSAO ,' +NOVA_LINHA +
                  '  IIF( Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) IS NULL,0,Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado))  AS ValorTotalComissaoExecutado , ' +NOVA_LINHA +
 	               '  IIF( Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     IS NULL,0,Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)    )  AS VlTotalComissaoPendente , ' +NOVA_LINHA +
+}
+  SC_SQL_PAIS =  SC_SQL_SUM +
                  '  ''TOTAL '' || TAB_PAIS.NOME AS PAIS ' +NOVA_LINHA +
-                 ' FROM CONTRATOTRANSPORTE,TAB_PAIS  ,   PRODUTOS' ;
-  SC_SQL_PAIS_WHERE = ' WHERE CONTRATOTRANSPORTE.ID=TAB_PAIS.ID ' +NOVA_LINHA +
+                 ' FROM CONTRATOTRANSPORTE,TAB_PAIS  ,   PRODUTOS , ' ;
+
+  SC_SQL_PAIS_WHERE = ' WHERE ( CONTRATOTRANSPORTE2.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) AND CONTRATOTRANSPORTE.ID=TAB_PAIS.ID ' +NOVA_LINHA +
                       ' and CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO ' ;
 
 
   SC_SQL_PAIS_ORDER   = ' GROUP BY TAB_PAIS.NOME'    ;
 
-
+{
   SC_SQL_PROD_EX = 'SELECT ' + NOVA_LINHA +
-              '  CONTRATOTRANSPORTE.NOMEMIX                 as NOMEMIX , ' +         NOVA_LINHA +
-              '  PRODUTOs.QUANT_PREVISTA                              as QUANT_PREVISTA , ' +NOVA_LINHA +
-              '  PRODUTOs.VALOR_PREVISTO                              as VALOR_PREVISTO , ' +NOVA_LINHA +
-              '	 IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	         ) AS QuantidadeTotal, ' +NOVA_LINHA +
+              '	 IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	         )  AS QuantidadeTotal, ' +NOVA_LINHA +
               '	 IIF( Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	         )  AS VALORSCCTOTAL , '  +NOVA_LINHA +
               '	 IIF( Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTTOTALEXP)   	         )  AS QUANTTOTALEXP, '   +NOVA_LINHA +
               '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALEXP)   	         )  AS VALORTOTALEXP, '   +NOVA_LINHA +
@@ -86,14 +135,20 @@ const
               '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALPENDENTE)         )  AS VALORTOTALPENDENTE,'+NOVA_LINHA +
   	          '  IIF( Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) IS NULL ,0, Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado))  AS ValorTotalComissaoExecutado , ' +NOVA_LINHA +
 	            '  IIF( Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     IS NULL ,0, Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)    )  AS VlTotalComissaoPendente , ' +NOVA_LINHA +
-              '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         )  AS VALORTOTALCOMISSAO ' +NOVA_LINHA +
-              'FROM CONTRATOTRANSPORTE ,   PRODUTOS ';        // 25/03/2012
+              '	 IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         )  AS VALORTOTALCOMISSAO  ,   ' +NOVA_LINHA +
+}
+  SC_SQL_PROD_EX = SC_SQL_SUM +
+              '  CONTRATOTRANSPORTE.NOMEMIX                           as NOMEMIX , ' +         NOVA_LINHA +
+              '  PRODUTOs.QUANT_PREVISTA                              as QUANT_PREVISTA , ' +NOVA_LINHA +
+              '  PRODUTOs.VALOR_PREVISTO                              as VALOR_PREVISTO  ' +NOVA_LINHA +
 
-  SC_SQL_PROD_WHERE_EX  = ' where ( CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO )' +NOVA_LINHA   ;
-  
+              ' FROM CONTRATOTRANSPORTE ,   PRODUTOS, ';        // 25/03/2012
+
+  SC_SQL_PROD_WHERE_EX  = ' where ( CONTRATOTRANSPORTE2.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) and ( CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO )' +NOVA_LINHA   ;
+
   SC_SQL_NOME_EX = '   AND ( CONTRATOTRANSPORTE.FORCOD =  ( SELECT FORCOD FROM FORNECEDORES  WHERE  (Fornecedores.RAZAO LIKE '  ;
   SC_SQL_PROD_ORDER_EX  = ' GROUP BY CONTRATOTRANSPORTE.NOMEMIX     ,PRODUTOs.QUANT_PREVISTA, PRODUTOs.VALOR_PREVISTO';
-
+{
   SC_SQL_TOTAL_EX ='SELECT ' +
 	                 ' IIF( Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.QUANTIDADETOTAL) 	          ) AS QuantidadeTotal, ' + NOVA_LINHA +
 	                 ' IIF( Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORSCCTOTAL)   	          ) AS VALORSCCTOTAL ,  ' + NOVA_LINHA +
@@ -104,10 +159,12 @@ const
 	                 ' IIF( Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)          IS NULL ,0, Sum(CONTRATOTRANSPORTE.VALORTOTALCOMISSAO)         ) AS VALORTOTALCOMISSAO , ' + NOVA_LINHA +
                    ' IIF( Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado) IS NULL ,0, Sum(CONTRATOTRANSPORTE.ValorTotalComissaoExecutado)) AS ValorTotalComissaoExecutado , ' + NOVA_LINHA +
 	                 ' IIF( Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)     IS NULL ,0, Sum(CONTRATOTRANSPORTE.VlTotalComissaoPendente)    ) AS VlTotalComissaoPendente , ' + NOVA_LINHA +
+}
+ SC_SQL_TOTAL_EX = SC_SQL_SUM +
                    ' '' < = TOTAL GERAL  '' ' + NOVA_LINHA +
-                   ' FROM CONTRATOTRANSPORTE  ,    PRODUTOS  ' ;         // 25/03/2012
+                   ' FROM CONTRATOTRANSPORTE  ,    PRODUTOS , ' ;         // 25/03/2012
 
-SC_SQL_TOTAL_WHERE_EX = ' WHERE CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO '  ;
+SC_SQL_TOTAL_WHERE_EX = ' WHERE  ( CONTRATOTRANSPORTE2.CONTRATO = CONTRATOTRANSPORTE.CONTRATO ) and ( CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO ) '  ;
 
 type
   TFormRESUMEN = class(TForm)
@@ -186,9 +243,13 @@ type
     procedure FormCreate(Sender: TObject);
   private
      Caption_rel : string ;
+     S_FILTRO_EXP, S_FILTRO_PRO , S_SQL_PROD_WHERE_SUB: STRING ;
+     S_SQL_PROD_WHERE ,   S_SQL_PAIS_WHERE , S_FILTRO , S_SQL_SUM, S_SQL_ANO, S_SQL_NOME_EX   : string ;
+
     { Private declarations }
     
-    QyRelatorio, T_SQL_PROD,T_SQL_PAIS : TTabela; // T_SQL ,
+    QyRelatorio, T_SQL_PROD  : TTabela; // T_SQL ,
+    // T_SQL_PAIS : TTabela; // T_SQL ,
     {02-Início do Bloco Modular. Modificações não serão preservadas}
     DContratoTransporte: TDContratoTransporte;
     procedure CalculosDContratoTransporte(DataSet: TDataSet);
@@ -296,10 +357,8 @@ end;
 procedure TFormRESUMEN.FormShow(Sender: TObject);
 Var
   I: Integer;
-  S_SQL_PROD_WHERE , S_SQL_PAIS_WHERE, S_SQL_ANO,S_SQL_NOME_EX : STRING ;
-//S_SQL_PROD_WHERE , S_SQL_PAIS_WHERE,S_SC_SQL_TOTAL_WHERE : STRING ;
 begin
-
+  S_SQL_PROD_WHERE_SUB := '' ;
   {05-Início do Bloco Modular. Modificações não serão preservadas}
   Caption := 'Resumo Geral';
   {99-Final do Bloco Modular. Modificações não serão preservadas}
@@ -312,109 +371,50 @@ begin
   Caption := 'Resumo Geral';
   ConstroiSql ;
 
- // S_SQL_ANO := ' AND  PRODUTOs.ANO_PREVISAO = '+Ano(Date);
-  S_SQL_NOME_EX := SC_SQL_NOME_EX  + AtribuiAspas( '%SURIMPEX%' ) + ' ))) '  ;
-
- // SC_SQL_TOTAL_WHERE = ' WHERE CONTRATOTRANSPORTE.NOMEMIX = PRODUTOs.PRODUTO  '  ;
+  
   IBQ_TOT.DataBase := TabGlobal.DContratoTransporte.DataBase ;
   IBQ_TOT.Transaction := TabGlobal.DContratoTransporte.Transaction ;
-
-  IBQ_TOT.SQL.Clear ;
-  IBQ_TOT.SQL.Add(SC_SQL_TOTAL + SC_SQL_TOTAL_WHERE + S_SQL_ANO ) ;
-  IBQ_TOT.SQL.SaveToFile('_IBQ_TOT.SQL');
-  IBQ_TOT.Prepare ;
-  IBQ_TOT.Open ;
-
-  IBQ_TOT.Fields[0].EditMask := 'ZZZ.ZZZ.ZZ9,999' ;
-  IBQ_TOT.Fields[0].DisplayLabel := 'Quantidade Total' ;
-
- // CARREGANDO   LIST BOX
-  Carrega_CB(CBox_INIC,CBox_FIM,'SELECT RAZAO || '' >> '' || CLICOD || '' <<''  AS CAMPOS FROM CLIENTES ORDER BY RAZAO', 'CAMPOS',SELF);
-
-  Carrega_CB(cbb_EXPORTADOR,nil,'SELECT RAZAO AS CAMPOS FROM Fornecedores ORDER BY RAZAO', 'CAMPOS',SELF);
-  cbb_EXPORTADOR.Text := 'SURIMPEX'     ;
-
-  T_SQL_PROD.SQL.Clear;
-  S_SQL_PROD_WHERE     := SC_SQL_PROD_WHERE ;  //+  ' AND CONTRATOTRANSPORTE.CADASTRO = '  + '' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',DATE) )  + '' ;
-
-//  S_SC_SQL_TOTAL_WHERE := SC_SQL_TOTAL_WHERE + '' +  AtribuiAspas ( FormatDateTime('YYYY/MM/DD',DATE) )  + '' ;
-
-
-  T_SQL_PROD.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE +  S_SQL_ANO + SC_SQL_PROD_ORDER );
-  T_SQL_PROD.SQL.SaveToFile('_T_SQL_PROD.SQL');
-  T_SQL_PROD.Prepare ;
-  T_SQL_PROD.Open ;
-
-  // DATA SER PAIS
-  T_SQL_PAIS.DataBase := TabGlobal.DContratoTransporte.DataBase ;
-  T_SQL_PAIS.Transaction := TabGlobal.DContratoTransporte.Transaction ;
-
-  T_SQL_PAIS.SQL.Clear;
-  S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE + ' AND CONTRATOTRANSPORTE.CADASTRO = '  + '' + AtribuiAspas ( FormatDateTime('YYYY/MM/DD',DATE)) + '' ;
-  T_SQL_PAIS.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE  + S_SQL_ANO + SC_SQL_PAIS_ORDER );
-  T_SQL_PAIS.SQL.SaveToFile('_T_SQL_PAIS.SQL');
-  T_SQL_PAIS.Prepare ;
-  T_SQL_PAIS.Open ;
-
-  DS_PAIS.DataSet := T_SQL_PAIS ;
-  DS_PROD.DataSet := T_SQL_PROD;
-
+  
   DContratoTransporte.DataBase := TabGlobal.DContratoTransporte.DataBase ;
   DContratoTransporte.Transaction := TabGlobal.DContratoTransporte.Transaction ;
   DContratoTransporte.SQL.Clear ;
 
-  for I:=0 to DContratoTransporte.Campos.Count-1 do
-    TAtributo(DContratoTransporte.Campos[I]).Valor.DataSet := Nil;
-
-  DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE + S_SQL_ANO + SC_SQL_PROD_ORDER) ;
-  DContratoTransporte.sql.SaveToFile('_DContratoTransporte.sql');
-  DContratoTransporte.Prepare ;
-  DContratoTransporte.Open ;
-
-
-
   IBQuery_pais.DataBase := TabGlobal.DContratoTransporte.DataBase ;
   IBQuery_pais.Transaction := TabGlobal.DContratoTransporte.Transaction ;
-
   IBQuery_pais.SQL.Clear ;
-  IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE + S_SQL_ANO + SC_SQL_PAIS_ORDER ) ;
-  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.sql');
-  IBQuery_pais.Prepare ;
-  IBQuery_pais.Open ;
-
-  QyRelatorio := T_SQL_PROD;  // DContratoTransporte;
-
-  BtnAjuda.Visible  := False;
-  BtnFechar.Visible := False;
-  FormResize(Self);
-  frReport.OnUserFunction := FuncoesExtras;
-
-
-  BtnAjuda.Visible  := False;
-  BtnFechar.Visible := False;
 
   ibq_TOT_EX.DataBase := TabGlobal.DContratoTransporte.DataBase ;
   ibq_TOT_EX.Transaction := TabGlobal.DContratoTransporte.Transaction ;
   ibq_TOT_EX.SQL.Clear ;
-  ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX + S_SQL_ANO ) ;
-  ibq_TOT_EX.SQL.SaveToFile('_IBQ_TOT_EX.SQL');
-  ibq_TOT_EX.Prepare ;
-  ibq_TOT_EX.Open ;
-
 
   ibq_PROD_EX.DataBase := TabGlobal.DContratoTransporte.DataBase ;
   ibq_PROD_EX.Transaction := TabGlobal.DContratoTransporte.Transaction ;
-
   ibq_PROD_EX.SQL.Clear ;
-  ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX + S_SQL_ANO + SC_SQL_PROD_ORDER_EX );
-  ibq_PROD_EX.SQL.SaveToFile('_ibq_PROD_EX.SQL');
-  ibq_PROD_EX.Prepare ;
-  ibq_PROD_EX.Open ;
+
+  CBox_INIC.items.add(' ') ;
+  CBox_FIM.items.add(' ') ;
+  Carrega_CB(CBox_INIC,CBox_FIM,'SELECT RAZAO || '' >> '' || CLICOD || '' <<''  AS CAMPOS FROM CLIENTES ORDER BY RAZAO', 'CAMPOS',SELF);
+
+  cbb_EXPORTADOR.items.add(' ') ;
+
+  Carrega_CB(cbb_EXPORTADOR ,nil,'SELECT RAZAO AS CAMPOS FROM Fornecedores ORDER BY RAZAO', 'CAMPOS',SELF);
+  cbb_EXPORTADOR.Text := 'SURIMPEX'     ;
 
 
-  FormResize(Self);
-  frReport.OnUserFunction := FuncoesExtras;
+
+  BtnAjuda.Visible  := False;
+  BtnFechar.Visible := False;
+  QyRelatorio := T_SQL_PROD;  // DContratoTransporte;
+  DS_PROD.DataSet := T_SQL_PROD;
+
+
+  BtnAjuda.Visible  := False;
+  BtnFechar.Visible := False;
   edt_ano.ValueInt := StrToInt( ano(Date) ) ;
+
+  frReport.OnUserFunction := FuncoesExtras;
+  FormResize(Self);
+  BitBtn1Click(Sender);
 end;
 
 procedure TFormRESUMEN.BtnFecharClick(Sender: TObject);
@@ -468,14 +468,22 @@ begin
   if QyRelatorio.Eof then
     MessageDlg('Nenhum registro selecionado !',mtInformation,[mbOk],0)
   else
-    frReport.ShowReport;  // DesignReport  ->  Permite ao usuário final editar o Layout do Relatório
-//  QyRelatorio.Close;
+    frReport.ShowReport;
+
 end;
 
 procedure TFormRESUMEN.FormResize(Sender: TObject);
+var
+  larhura : Integer ;
 begin
+  larhura := 0 ;
   BtnAjuda.Left  := ShapeSup.Width - 37;
   BtnFechar.Left := ShapeSup.Width - 19;
+  larhura :=  (( Selecao_1.Height - 240 ) mod  3 ) ;
+  larhura :=  (( Selecao_1.Height - 240 ) div  3 ) ;
+  grp2.Height := larhura ;
+  PRODUTO.Height := larhura ;
+  PAIS.Height :=  (( Selecao_1.Height - 240 ) - (larhura *2 ));
 end;
 
 procedure TFormRESUMEN.FormKeyPress(Sender: TObject; var Key: Char);
@@ -499,8 +507,8 @@ begin
 
   T_SQL_PROD.Close ;
   T_SQL_PROD.Free ;
-  T_SQL_PAIS.Close ;
-  T_SQL_PAIS.Free ;
+//  T_SQL_PAIS.Close ;
+//  T_SQL_PAIS.Free ;
 
 end;
 
@@ -572,9 +580,14 @@ end;
 
 procedure TFormRESUMEN.BitBtn1Click(Sender: TObject);
 VAR
-  S_T , S_SQL_PROD_WHERE ,   S_SQL_PAIS_WHERE , S_FILTRO , S_CLICOD, S_SQL_NOME_EX : STRING ;
+  S_T ,    S_SQL_PAIS_WHERE , S_FILTRO , S_CLICOD, S_SQL_NOME_EX : STRING ;
   N_INC  , N_FIN , I: INTEGER ;
 begin
+
+  S_FILTRO_EXP     := '';
+  S_FILTRO_PRO     := '';
+  S_SQL_PROD_WHERE_SUB := '' ;
+
   if edt_ano.ValueInt = 0 then
   begin
     MessageDlg('O Ano não pode ser Banco !',mtError,[mbOk],0);
@@ -585,15 +598,20 @@ begin
   S_FILTRO := '';
   Caption_rel := 'Resumo Geral';  //19/06/2012 'INFORMES';
 
-  IF  XDT_INIC.DateValue <> -693594 THEN
-      S_FILTRO := ' CONTRATOTRANSPORTE.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
-
+  IF  XDT_INIC.DateValue <> -693594 THEN begin
+      S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+      S_FILTRO_PRO := ' PRODUTOCONTRATOT.CADASTRO >= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_INIC.DateValue)) ;
+  end;
 
   IF  XDT_FIM.DateValue <> -693594 THEN
-      IF  S_FILTRO = '' THEN
-          S_FILTRO := '     CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue))
-      ELSE
-          S_FILTRO := S_FILTRO + ' AND CONTRATOTRANSPORTE.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+      IF  S_FILTRO_PRO = '' THEN begin
+          S_FILTRO_EXP := ' EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          S_FILTRO_PRO := ' PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue))  ;
+      end
+      ELSE begin
+          S_FILTRO_EXP := S_FILTRO_EXP + ' AND  EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+          S_FILTRO_PRO := S_FILTRO_PRO + ' AND  PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+      end;
 
   IF CBox_INIC.Text <> '' THEN BEGIN
      N_INC := POS('>>',CBox_INIC.Text) + 2   ;
@@ -615,119 +633,145 @@ begin
      ELSE
          S_FILTRO := S_FILTRO +' AND CONTRATOTRANSPORTE.CLICOD <= '+ S_CLICOD ;
 
-     // 19/06/2012
-     // CAPTION_rel := CAPTION_rel + COPY( CBox_INIC.Text,1, N_INC  );
   END;
 
-{ 03/05/2012
-  IF edt_ano.Value <> 0 THEN BEGIN
-     S_CLICOD := edt_ano.Text ;
-     IF  S_FILTRO = '' THEN
-         S_FILTRO := ' PRODUTOS.ANO_PREVISAO = '+ S_CLICOD
-     ELSE
-         S_FILTRO := S_FILTRO +' AND PRODUTOS.ANO_PREVISAO = '+ S_CLICOD ;
-  END;
-}
   if cbb_EXPORTADOR.Text <> '' then
   begin
      S_SQL_NOME_EX := SC_SQL_NOME_EX  + AtribuiAspas( '%'+trim(cbb_EXPORTADOR.Text)+'%' ) + ' ))) '  ;
   end;
 
+  S_SQL_PROD_WHERE_SUB := SC_SQL_PROD_WHERE_S ;
+
   IF  S_FILTRO <> '' THEN BEGIN
-      S_SQL_PROD_WHERE := Sc_SQL_PROD_WHERE + ' AND ' + S_FILTRO ;
-      S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE + ' AND '  + S_FILTRO ;
+      S_SQL_PROD_WHERE_SUB := S_SQL_PROD_WHERE_SUB  + ' AND ' + S_FILTRO ;
+      S_SQL_PROD_WHERE := Sc_SQL_PROD_WHERE        + ' AND ' + S_FILTRO ;
+      S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE        + ' AND ' + S_FILTRO ;
+
+      IF S_FILTRO_PRO <> '' THEN
+      BEGIN
+         S_SQL_PROD_WHERE_SUB := S_SQL_PROD_WHERE_SUB  + ' AND ' + S_FILTRO_PRO ;
+      end;
   END
   ELSE BEGIN
       S_SQL_PROD_WHERE := Sc_SQL_PROD_WHERE;
       S_SQL_PAIS_WHERE := SC_SQL_PAIS_WHERE;
   END;
 
+ if S_FILTRO_PRO <> '' then
+ begin
+    S_FILTRO_EXP :=' AND ' + S_FILTRO_EXP; // + ' AND  EXPORTADOTRANSITO.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+    S_FILTRO_PRO :=' AND ' + S_FILTRO_PRO; // + ' AND  PRODUTOCONTRATOT.CADASTRO <= '+ AtribuiAspas ( FormatDateTime('YYYY/MM/DD',XDT_FIM.DateValue)) ;
+ end;
 
-//  S_SQL_ANO := ' AND  PRODUTOs.ANO_PREVISAO = '+Ano(Date);
-//  S_SQL_NOME_EX := SC_SQL_NOME_EX  + ASPA + '%SURIMPEX%' + ASPA ))) '
+
+  S_SQL_SUM :=
+  SC_SQL_SUM_Prin_i +                               //           = '   (                                ' +    NOVA_LINHA +
+                                                    //             '      SELECT                          ' +    NOVA_LINHA +
+                                                    //             '        CONTRATOTRANSPORTE.CONTRATO , ' +    NOVA_LINHA ;
+  SC_QUANTIDADETOTAL_I +  S_FILTRO_PRO            + //         = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.QUANTIDADE)       IS NULL ,0,SUM(PRODUTOCONTRATOT.QUANTIDADE) )       FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_QUANTIDADETOTAL_F                            + // = ' )  AS  QUANTIDADETOTAL, ' +    NOVA_LINHA  ;
+  SC_VALORSCCTOTAL_I   + S_FILTRO_PRO             + // = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.VALORSCC)         IS NULL ,0,SUM(PRODUTOCONTRATOT.VALORSCC) )         FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_VALORSCCTOTAL_F                              + // = ' )  AS  VALORSCCTOTAL, ' +    NOVA_LINHA  ;
+  SC_QUANTTOTALEXP_I  + S_FILTRO_EXP              + // = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.QUANTIDADEEXP)   IS NULL ,0,SUM(EXPORTADOTRANSITO.QUANTIDADEEXP) )   FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+  SC_QUANTTOTALEXP_F                              + // = ' )  AS  QUANTTOTALEXP, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALEXP_I + S_FILTRO_EXP               + // = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.VALOR)           IS NULL ,0,SUM(EXPORTADOTRANSITO.VALOR) )           FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )' ;
+  SC_VALORTOTALEXP_F                              + // =     ' )  AS  VALORTOTALEXP, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALCOMISSAO_I + S_FILTRO_PRO          + // = '       (SELECT IIF(SUM( PRODUTOCONTRATOT.COMISAOSFATURA)   IS NULL ,0,SUM(PRODUTOCONTRATOT.COMISAOSFATURA) )   FROM PRODUTOCONTRATOT  WHERE ( CONTRATOTRANSPORTE.CONTRATO = PRODUTOCONTRATOT.CONTRATO  )' ;
+  SC_VALORTOTALCOMISSAO_F                         + // =     ' )  AS  VALORTOTALCOMISSAO, ' +    NOVA_LINHA  ;
+  SC_VALORTOTALCOMISSAOEXECUTADO_I + S_FILTRO_EXP + ' and EXPORTADOTRANSITO.numnfemit is not null ' +  // = '       (SELECT IIF(SUM( EXPORTADOTRANSITO.COMISAOSFATURA) IS NULL ,0,SUM(EXPORTADOTRANSITO.COMISAOSFATURA) ) FROM EXPORTADOTRANSITO WHERE ( CONTRATOTRANSPORTE.CONTRATO = EXPORTADOTRANSITO.CONTRATO )'  ;
+  SC_VALORTOTALCOMISSAOEXECUTADO_F                + // =     ' )  AS  VALORTOTALCOMISSAOEXECUTADO ' +    NOVA_LINHA  ;
+  SC_SQL_SUM_Prin_FROM                            +  // = '      FROM '  +    NOVA_LINHA +
+                                                    //   '        CONTRATOTRANSPORTE ' +    NOVA_LINHA  ;
+  S_SQL_PROD_WHERE_SUB                                +
+  SC_SQL_SUM_Prin_F                                ;// = '   )  AS  CONTRATOTRANSPORTE2 '   ;
 
 
 
   T_SQL_PROD.Close;
   T_SQL_PROD.SQL.Clear;
-//T_SQL_PROD.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE + S_FILTRO + SC_SQL_PROD_ORDER );  
-  T_SQL_PROD.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE +  SC_SQL_PROD_ORDER );
+  T_SQL_PROD.SQL.Add(SC_SQL_PROD  );
+  T_SQL_PROD.SQL.Add( S_SQL_SUM  );
+  T_SQL_PROD.SQL.Add( S_SQL_PROD_WHERE );
+  T_SQL_PROD.SQL.Add( SC_SQL_PROD_ORDER );
   T_SQL_PROD.SQL.SaveToFile('_T_SQL_PROD.SQL');
   T_SQL_PROD.Prepare ;
   T_SQL_PROD.Open ;
 
-//  T_SQL_PROD.Last ;
-//  T_SQL_PROD.First ;
-  PRODUTO.Caption := 'PRODUTO  Núm. Linhas = ' + INTTOSTR(T_SQL_PROD.RecordCount)   ;
+  T_SQL_PROD.First ;
+  T_SQL_PROD.Last ;
+  T_SQL_PROD.First ;  
+  grp2.Caption := 'PRODUTO Núm. Linhas = ' + INTTOSTR(T_SQL_PROD.RecordCount)   ;
 
+  ibq_PROD_EX.Close ;
+  ibq_PROD_EX.SQL.Clear ;
+  IF S_FILTRO <> '' THEN
+     ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + S_SQL_SUM + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX + ' and '+ S_FILTRO  + SC_SQL_PROD_ORDER_EX )
+  ELSE
+     ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + S_SQL_SUM + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX +                      SC_SQL_PROD_ORDER_EX );
+
+  ibq_PROD_EX.SQL.SaveToFile('_ibq_PROD_EX.SQL');
+  ibq_PROD_EX.Prepare ;
+  ibq_PROD_EX.Open ;
+  ibq_PROD_EX.Last ;
+  ibq_PROD_EX.First ;
+  PRODUTO.Caption := 'PRODUTO/SURIMPEX  Núm. Linhas = ' + INTTOSTR(ibq_PROD_EX.RecordCount)   ;
+ {
   T_SQL_PAIS.Close ;
   T_SQL_PAIS.SQL.Clear;
-//  T_SQL_PAIS.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE + S_FILTRO + SC_SQL_PAIS_ORDER );
-  T_SQL_PAIS.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE +  SC_SQL_PAIS_ORDER );
+  T_SQL_PAIS.SQL.Add(SC_SQL_PAIS  + S_SQL_SUM + S_SQL_PAIS_WHERE +  SC_SQL_PAIS_ORDER );
   T_SQL_PAIS.SQL.SaveToFile('_T_SQL_PAIS.SQL');
   T_SQL_PAIS.Prepare ;
   T_SQL_PAIS.Open ;
-
   T_SQL_PAIS.Last ;
   T_SQL_PAIS.First ;
-  PAIS.Caption := 'PAIS Núm. Linhas = ' + INTTOSTR(T_SQL_PAIS.RecordCount)     ;
+}
 
+  IBQuery_pais.Close ;
+  IBQuery_pais.SQL.Clear;
+  IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_SUM + S_SQL_PAIS_WHERE  + SC_SQL_PAIS_ORDER );
+  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.SQL');
+  IBQuery_pais.Prepare ;
+  IBQuery_pais.Open ;
+  IBQuery_pais.First ;  
+  IBQuery_pais.Last ;
+  IBQuery_pais.First ;
+  PAIS.Caption := 'PAIS Núm. Linhas = ' + INTTOSTR(IBQuery_pais.RecordCount)     ;
 
   IBQ_TOT.Close ;
   IBQ_TOT.SQL.Clear ;
-  //IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_PROD_WHERE + S_FILTRO ) ;
-  IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_PROD_WHERE  ) ;
+  IBQ_TOT.SQL.Add(SC_SQL_TOTAL + S_SQL_SUM + S_SQL_PROD_WHERE  ) ;
   IBQ_TOT.SQL.SaveToFile('_IBQ_TOT.SQL');
   IBQ_TOT.Prepare ;
   IBQ_TOT.Open ;
+  IBQ_TOT.First ;
+  IBQ_TOT.Last ;
+  IBQ_TOT.First ;
+  TOTAL.Caption := 'TOTAL Núm. Linhas = ' + INTTOSTR(IBQ_TOT.RecordCount)   ;
 
+  ibq_TOT_EX.Close;
+  ibq_TOT_EX.SQL.Clear ;
+  IF S_FILTRO <> '' THEN
+     ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + S_SQL_SUM + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX +' and '+ S_FILTRO  )
+  ELSE
+     ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + S_SQL_SUM + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX                     ) ;
+
+  ibq_TOT_EX.SQL.SaveToFile('_ibq_TOT_EX.SQL');
+  ibq_TOT_EX.Prepare ;
+  ibq_TOT_EX.Open ;
+  ibq_TOT_EX.First ;  
+  ibq_TOT_EX.Last ;
+  ibq_TOT_EX.First ;
+  grp3.Caption := 'TOTAL/SURIMPEX Núm. Linhas = ' + INTTOSTR(ibq_TOT_EX.RecordCount)   ;
 
   DContratoTransporte.Close;
   DContratoTransporte.SQL.Clear;
   for I:=0 to DContratoTransporte.Campos.Count-1 do
     TAtributo(DContratoTransporte.Campos[I]).Valor.DataSet := Nil;
 
-//  DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE + S_FILTRO + SC_SQL_PROD_ORDER );
-  DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
+  DContratoTransporte.SQL.Add(SC_SQL_PROD + S_SQL_SUM + S_SQL_PROD_WHERE + SC_SQL_PROD_ORDER );
   DContratoTransporte.SQL.SaveToFile('_DContratoTransporte.SQL');
   DContratoTransporte.Prepare ;
   DContratoTransporte.Open ;
-
-
-
-  IBQuery_pais.Close ;
-  IBQuery_pais.SQL.Clear;
- // IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE + S_FILTRO + SC_SQL_PAIS_ORDER );
-  IBQuery_pais.SQL.Add(SC_SQL_PAIS + S_SQL_PAIS_WHERE  + SC_SQL_PAIS_ORDER );
-  IBQuery_pais.SQL.SaveToFile('_IBQuery_pais.SQL');
-  IBQuery_pais.Prepare ;
-  IBQuery_pais.Open ;
-
-
-
-  ibq_TOT_EX.Close;
-  ibq_TOT_EX.SQL.Clear ;
-  IF S_FILTRO <> '' THEN
-     ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX +' and '+ S_FILTRO  )
-  ELSE
-     ibq_TOT_EX.SQL.Add(SC_SQL_TOTAL_EX + SC_SQL_TOTAL_WHERE_EX + S_SQL_NOME_EX                     ) ;
-
-  ibq_TOT_EX.SQL.SaveToFile('_ibq_TOT_EX.SQL');
-  ibq_TOT_EX.Prepare ;
-  ibq_TOT_EX.Open ;
-
-
-  ibq_PROD_EX.Close ;
-  ibq_PROD_EX.SQL.Clear ;
-  IF S_FILTRO <> '' THEN
-     ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX + ' and '+ S_FILTRO  + SC_SQL_PROD_ORDER_EX )
-  ELSE
-     ibq_PROD_EX.SQL.Add(SC_SQL_PROD_EX + SC_SQL_PROD_WHERE_EX + S_SQL_NOME_EX       + SC_SQL_PROD_ORDER_EX );
-     
-  ibq_PROD_EX.SQL.SaveToFile('_ibq_PROD_EX.SQL');
-  ibq_PROD_EX.Prepare ;
-  ibq_PROD_EX.Open ;
-
 
   Screen.Cursor := crDefault;
 
@@ -736,17 +780,17 @@ end;
 procedure TFormRESUMEN.FormCreate(Sender: TObject);
 begin
 
-//  T_SQL:= TTabela.Create(NIL);
-  T_SQL_PROD:= TTabela.Create(NIL);
-  T_SQL_PAIS:= TTabela.Create(NIL);
 
-  // DATA SET PRODUTOS
+  T_SQL_PROD:= TTabela.Create(NIL);
+//  T_SQL_PAIS:= TTabela.Create(NIL);
+
+
   T_SQL_PROD.DataBase :=  TabGlobal.DContratoTransporte.DataBase ;
   T_SQL_PROD.Transaction := TabGlobal.DContratoTransporte.Transaction ;
 
-   // DATA SET PRODUTOS
-  T_SQL_PAIS.DataBase    :=  TabGlobal.DContratoTransporte.DataBase ;
-  T_SQL_PAIS.Transaction := TabGlobal.DContratoTransporte.Transaction ;
+
+//  T_SQL_PAIS.DataBase    :=  TabGlobal.DContratoTransporte.DataBase ;
+//  T_SQL_PAIS.Transaction := TabGlobal.DContratoTransporte.Transaction ;
 
 end;
 

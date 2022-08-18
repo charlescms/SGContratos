@@ -1,7 +1,7 @@
 object FormFaturaN: TFormFaturaN
-  Left = 178
-  Top = 36
-  Width = 1032
+  Left = 51
+  Top = 23
+  Width = 1222
   Height = 617
   Caption = 'Entrada de Dados'
   Color = clBtnFace
@@ -27,7 +27,7 @@ object FormFaturaN: TFormFaturaN
   object PagePrincipal: TPageControl
     Left = 0
     Top = 33
-    Width = 1016
+    Width = 1206
     Height = 546
     ActivePage = TabManutencao
     Align = alClient
@@ -39,7 +39,7 @@ object FormFaturaN: TFormFaturaN
       object PnSalva: TPanel
         Left = 0
         Top = 488
-        Width = 1008
+        Width = 1198
         Height = 30
         Align = alBottom
         BevelOuter = bvNone
@@ -250,7 +250,7 @@ object FormFaturaN: TFormFaturaN
         object Panel2: TPanel
           Left = 0
           Top = 2
-          Width = 1008
+          Width = 1198
           Height = 28
           Align = alBottom
           BevelOuter = bvNone
@@ -483,7 +483,7 @@ object FormFaturaN: TFormFaturaN
       object TabPaginas: TTabSet
         Left = 0
         Top = 466
-        Width = 1008
+        Width = 1198
         Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -499,7 +499,7 @@ object FormFaturaN: TFormFaturaN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1008
+        Width = 1198
         Height = 466
         Align = alClient
         BorderStyle = bsNone
@@ -509,7 +509,7 @@ object FormFaturaN: TFormFaturaN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1008
+          Width = 1198
           Height = 466
           Align = alClient
           TabOrder = 0
@@ -520,7 +520,7 @@ object FormFaturaN: TFormFaturaN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1008
+              Width = 1198
               Height = 466
               Align = alClient
               BorderStyle = bsNone
@@ -3015,7 +3015,7 @@ object FormFaturaN: TFormFaturaN
       object PnInfConsulta: TPanel
         Left = 0
         Top = 488
-        Width = 1008
+        Width = 1198
         Height = 30
         Align = alBottom
         BevelOuter = bvNone
@@ -3107,7 +3107,7 @@ object FormFaturaN: TFormFaturaN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1008
+        Width = 1198
         Height = 383
         Align = alClient
         BorderStyle = bsNone
@@ -3133,7 +3133,7 @@ object FormFaturaN: TFormFaturaN
       object AbaConsulta: TTabSet
         Left = 0
         Top = 466
-        Width = 1008
+        Width = 1198
         Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -3149,7 +3149,7 @@ object FormFaturaN: TFormFaturaN
       object GroupBox1: TGroupBox
         Left = 0
         Top = 383
-        Width = 1008
+        Width = 1198
         Height = 83
         Align = alBottom
         TabOrder = 3
@@ -3253,7 +3253,7 @@ object FormFaturaN: TFormFaturaN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1016
+    Width = 1206
     Height = 33
     Align = alTop
     BevelOuter = bvNone
@@ -3518,7 +3518,7 @@ object FormFaturaN: TFormFaturaN
     object Divisao_sup: TPanel
       Left = 0
       Top = 30
-      Width = 1016
+      Width = 1206
       Height = 3
       Align = alBottom
       TabOrder = 0

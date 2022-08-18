@@ -96,7 +96,7 @@ Begin
   with Sistema Do
   Begin
     Titulo         := 'Gestor de Contrato';
-    Versao         := '3.28';
+    Versao         := '3.36';
     Analista       := 'Charles';
     Programador    := 'Charles';
     Projetista     := 'CMS';

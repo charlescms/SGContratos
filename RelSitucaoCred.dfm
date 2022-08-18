@@ -1,8 +1,8 @@
 object FormRelSitucaoCred: TFormRelSitucaoCred
-  Left = 699
-  Top = 661
+  Left = 207
+  Top = 80
   Width = 992
-  Height = 605
+  Height = 620
   Caption = 'Relat'#243'rio'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -99,13 +99,13 @@ object FormRelSitucaoCred: TFormRelSitucaoCred
     Left = 0
     Top = 20
     Width = 976
-    Height = 491
+    Height = 506
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
     object Panel_filtro: TPanel
       Left = 0
-      Top = 415
+      Top = 430
       Width = 976
       Height = 76
       Cursor = crArrow
@@ -509,7 +509,7 @@ object FormRelSitucaoCred: TFormRelSitucaoCred
       Left = 0
       Top = 0
       Width = 976
-      Height = 415
+      Height = 430
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 1
@@ -728,7 +728,7 @@ object FormRelSitucaoCred: TFormRelSitucaoCred
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 511
+    Top = 526
     Width = 976
     Height = 21
     Align = alBottom
@@ -740,7 +740,7 @@ object FormRelSitucaoCred: TFormRelSitucaoCred
   end
   object Panel1: TPanel
     Left = 0
-    Top = 532
+    Top = 547
     Width = 976
     Height = 35
     Align = alBottom

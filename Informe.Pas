@@ -283,13 +283,11 @@ SC_Total_Pais_Inicio2 =
       '               CONTRATOTRANSPORTE.SEQ as SEQ , ' +    NOVA_LINHA +
       '               CONTRATOTRANSPORTE.CADASTRO as CADASTRO , ' +  NOVA_LINHA +
       '               ContratoTransporte.SDataEmbarque AS SDataEmbarque,'+ NOVA_LINHA +
-
       '               ContratoTransporte.QUANTIDADETOTAL AS QUANTIDADETOTAL,'+ NOVA_LINHA +
       '               ContratoTransporte.PRECOFOBTOTAL AS PRECOFOBTOTAL,'+ NOVA_LINHA +
       '               ContratoTransporte.VALORSCCTOTAL AS VALORSCCTOTAL,'+ NOVA_LINHA +
       '               ContratoTransporte.QUANTTOTALEXP AS QUANTTOTALEXP,'+ NOVA_LINHA +
       '               ContratoTransporte.ValorTotalExp AS ValorTotalExp,'+ NOVA_LINHA +
-
       '               ContratoTransporte.ID AS ID'+ NOVA_LINHA +
       '               from  ContratoTransporte'+ NOVA_LINHA +
       '             ) as  Informe'+ NOVA_LINHA +
@@ -704,6 +702,8 @@ type
     RxMemoryData_Excel_DTETADESTINO: TDateTimeField;
     RxMemoryData_Excel_DTOBS: TStringField;
     RxMemoryData_Excel_DTDIVISAO: TStringField;
+    btn1: TBitBtn;
+    IBQuery1: TIBQuery;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure NomeMixExit(Sender: TObject);
@@ -796,6 +796,7 @@ type
       State: TGridDrawState);
     procedure FuncoesExtras(const Name: String; p1, p2, p3: Variant;
       var Val: String);
+    procedure btn1Click(Sender: TObject);
   private
     S_SQL_WHERE, S_EMBARQUE , S_SQL_WHERE_CT , S_SQL_WHERE_EXP : string ;
     RxMemData_tmp : TClientDataSet ;
@@ -2355,6 +2356,9 @@ begin
     DCERBO_L.Transaction       := BaseDados.TRS_BD_Base_Dados ;
     DCERBO_L_DET.Transaction   := BaseDados.TRS_BD_Base_Dados ;
 
+    IBQuery1.Database   := BaseDados.BD_Base_Dados ;
+    IBQuery1.Transaction   := BaseDados.TRS_BD_Base_Dados ;
+
     IBQuery_Total_Pais.Transaction := BaseDados.TRS_BD_Base_Dados ;
     IBQuery_Total_Pais.Close;
     IBQuery_Total_Pais.sql.clear;
@@ -3066,8 +3070,9 @@ begin
 
 
   IBQuery_Total_Pais.Close;// S_SQL_WHERE_CT
+  IBQuery_Total_Pais.sql.clear;  
   IBQuery_Total_Pais.sql.Add(SC_Total_Pais_Inicio_NOVO + IBQContratos.sql.Text + SC_Total_Pais_Final)   ;
-  IBQuery_Total_Pais.sql.clear;
+
   IBQuery_Total_Pais.sql.SaveToFile('_IBQuery_Total_Pais.sql');
   IBQuery_Total_Pais.Prepare ;
   IBQuery_Total_Pais.Open;
@@ -3085,7 +3090,7 @@ var
  S_NOMEMIX , S_SDATAEMBARQUE, stest : string ;
  LINHA,n_reg, tam : INTEGER ;
 begin
-
+  IBQContratos.SQL.SaveToFile('___IBQContratos.SQL');
   BitB_FiltroClick( Sender ) ;
   Screen.Cursor := crHourGlass;
   RxMemData_tmp.EmptyDataSet ;
@@ -3369,10 +3374,12 @@ end;
 
 procedure TFormInforme.Caption_GrupBox;
 begin
+  IBQContratos.SQL.SaveToFile('__1IBQContratos.SQL');
   GroupB_contrato.Caption    := 'Contrato Número de Linhas = '  + inttostr(IBQContratos.RecordCount )     ;
   GroupBox_Exportado.Caption := 'Exportado Número de Linhas = ' + inttostr(IBQExportado.RecordCount)  ;
   GroupBox_Prod.Caption      := 'Produtos Número de Linhas= '  + inttostr(IBQProduto.RecordCount)  ;
   GroupBox_Boock.Caption     := 'Boock Número de Linhas = '     + inttostr(IBQboock.RecordCount) ;
+  IBQContratos.SQL.SaveToFile('__IBQContratos.SQL');
 end;
 
 procedure TFormInforme.BtnVisualizarClick(Sender: TObject);
@@ -3519,6 +3526,22 @@ begin
   DBGrid_CERBO.Canvas.Font.Color:= clBlack;
   DBGrid_CERBO.Canvas.Brush.Color := RetCorFundo(DCERBO_TMP.StatusCT.Conteudo) ; // $00FFF4DF;
   DBGrid_CERBO.DefaultDrawDataCell(Rect, GridConsulta.columns[datacol].field, State);
+
+end;
+
+procedure TFormInforme.btn1Click(Sender: TObject);
+begin
+   IBQuery1.Close ;
+   GroupB_contrato.Caption    := 'Contrato Número de Linhas = '  + inttostr(IBQContratos.RecordCount )     ;
+   IBQContratos.SQL.SaveToFile('__1IBQContratos.SQL');
+   DS_Contrato.DataSet := IBQuery1 ;
+   IBQuery1.SQL.LoadFromFile('__1IBQContratos.SQL'); ;
+   IBQuery1.Open ;
+   IBQuery1.Last ;
+   IBQuery1.First;
+
+   GroupB_contrato.Caption    := 'Contrato Número de Linhas = '  + inttostr(IBQuery1.RecordCount )     ;
+
 
 end;
 

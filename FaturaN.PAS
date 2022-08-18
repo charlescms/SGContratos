@@ -2868,7 +2868,10 @@ begin
   while not TabGlobal.DFatura.Eof do begin
      TabGlobal.DFatura.Modifica;
      TabGlobal.DFatura.Selecionado.Conteudo := 'S' ;
-     TabGlobal.DFatura.ComisaoSFatura.Conteudo := 0 ;
+     // 07/10/2013 modificado encontrado o erro
+     // esta regra de negocio esta erra
+     // TabGlobal.DFatura.ComisaoSFatura.Conteudo := 0 ;
+
      TabGlobal.DFatura.Salva ;
      TabGlobal.DFatura.Next;
   end;

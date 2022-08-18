@@ -108,8 +108,25 @@
   // correcao de erro do relatorio  arquivo => Informe
   // campos nao estavam corretos os campos estao conciderando o campo data de cadsatro para corrigi os
   // relatorio os dados
+// VERSAO   08/10/2013 3.26  Versao         := '3.32';
+// CORRECAO DOS ARQUIVOS
+unit RESUMEN;
+unit Informe;
+unit Infome;
+unit RESUMENCONTRATA; PENDENTE CONTINUAR NESTE ARQUIVO
+// VERSAO   08/10/2013 3.26  Versao         := '3.33';
+// CORRECAO DOS ARQUIVOS
+unit RESUMEN;      funcionando e testado
+unit Informe;
+unit Infome;
+unit RESUMENCONTRATA; PENDENTE CONTINUAR NESTE ARQUIVO
+unit RelSitucaoCred;
+Versao         := '3.35';
+unit RelSitucaoCred;
+Versao         := '3.36';
 
 }
+
 
 unit Princ;
 
