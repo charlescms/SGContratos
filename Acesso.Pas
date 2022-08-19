@@ -717,8 +717,8 @@ begin
 //  Usuario.text := 'master' ;
 //  Senha.Text := Encript(UpperCase('CMS1354219'));
 
-  Usuario.text := 'master' ;
-  Senha.Text := Encript(UpperCase('123'));
+//  Usuario.text := 'master' ;
+//  Senha.Text := Encript(UpperCase('123'));
 
 
   BtnCancelaNovaSenhaClick(Self);

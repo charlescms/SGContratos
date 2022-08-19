@@ -140,6 +140,7 @@ function RetCorFundoFatura(opcao : STRING): TColor;
 VAR
  C_RET : TColor ;
 begin
+
 // CORRECAO 05/12/2011 VARIAVEL  C_RET NAO ERA INICIALIZADA
 //C_RET := clWhite ;
 C_RET := clWindow ;
@@ -148,6 +149,7 @@ IF opcao = s_ST_AB_F THEN  {'Aberto'); }
        C_RET := clWhite ;
 //IF opcao =  s_ST_BO_F THEN  { 'Boocking'); }
 //       C_RET :=  clGradientInactiveCaption;
+
 IF opcao =  s_ST_RT_F THEN  { 'Aplicar Rate'); }
        C_RET := clLime ; // clGradientInactiveCaption;
 IF opcao =  s_ST_EM_F  THEN  { 'Em Execução ( Exportação )'); }

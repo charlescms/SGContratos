@@ -212,7 +212,9 @@ arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
 
 23/09/2021    versao := 3.56
    ARQUIVO MODIFICADO unit RESUMEN;
-   
+
+27/06/2022 corecao deerro relatorio informe
+solicitacao karina /    
       }
 
 

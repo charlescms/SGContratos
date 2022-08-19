@@ -499,7 +499,7 @@ begin
 {
 // 16/08/2012
            TabGlobal.DFatura.Selecionado. Conteudo       := 'N';
-           TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
+//           TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
            TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
 
            TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;

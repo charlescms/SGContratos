@@ -1,13 +1,13 @@
 object FormRESUMEN: TFormRESUMEN
-  Left = 113
-  Top = 648
+  Left = 545
+  Top = 127
   Width = 1044
   Height = 729
   Caption = 'Relat'#243'rio'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -17
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -19,21 +19,21 @@ object FormRESUMEN: TFormRESUMEN
   OnKeyPress = FormKeyPress
   OnResize = FormResize
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 144
+  TextHeight = 20
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 1028
-    Height = 20
+    Width = 1036
+    Height = 31
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 1028
-      Height = 20
+      Width = 1036
+      Height = 31
       Align = alClient
       Brush.Color = 14743792
       ParentShowHint = False
@@ -43,14 +43,14 @@ object FormRESUMEN: TFormRESUMEN
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 1028
-      Height = 20
+      Width = 1036
+      Height = 31
       Align = alClient
       Alignment = taCenter
       Caption = 'Relat'#243'rio'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clMaroon
-      Font.Height = -11
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -58,15 +58,15 @@ object FormRESUMEN: TFormRESUMEN
       Layout = tlCenter
     end
     object BtnAjuda: TSpeedButton
-      Left = 421
-      Top = 2
-      Width = 16
-      Height = 14
+      Left = 648
+      Top = 3
+      Width = 24
+      Height = 22
       Hint = 'Ajuda'
       Caption = '?'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
@@ -75,15 +75,15 @@ object FormRESUMEN: TFormRESUMEN
       Transparent = False
     end
     object BtnFechar: TSpeedButton
-      Left = 439
-      Top = 2
-      Width = 16
-      Height = 14
+      Left = 675
+      Top = 3
+      Width = 25
+      Height = 22
       Hint = 'Fechar'
       Caption = 'X'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -18
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
@@ -95,26 +95,26 @@ object FormRESUMEN: TFormRESUMEN
   end
   object Selecao_1: TScrollBox
     Left = 0
-    Top = 20
-    Width = 1028
-    Height = 615
+    Top = 31
+    Width = 1036
+    Height = 568
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
     object PRODUTO: TGroupBox
       Left = 0
-      Top = 100
-      Width = 1028
-      Height = 100
+      Top = 154
+      Width = 1012
+      Height = 154
       Cursor = crArrow
       Align = alTop
       Caption = 'PRODUTO/SURIMPEX'
       TabOrder = 0
       object DBNav_PROD: TDBNavigator
         Left = 2
-        Top = 15
-        Width = 1024
-        Height = 18
+        Top = 22
+        Width = 1008
+        Height = 28
         Cursor = crArrow
         DataSource = ds_TOT_EX
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
@@ -123,34 +123,34 @@ object FormRESUMEN: TFormRESUMEN
       end
       object DBGrid_PROD: TDBGrid
         Left = 2
-        Top = 33
-        Width = 1024
-        Height = 65
+        Top = 50
+        Width = 1008
+        Height = 102
         Cursor = crArrow
         Align = alClient
         DataSource = ds_prod_ex
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
+        TitleFont.Height = -17
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
       end
     end
     object PAIS: TGroupBox
       Left = 0
-      Top = 200
-      Width = 1028
-      Height = 175
+      Top = 308
+      Width = 1012
+      Height = 0
       Cursor = crArrow
       Align = alClient
       Caption = 'PAIS'
       TabOrder = 1
       object DBNav_PAIS: TDBNavigator
         Left = 2
-        Top = 15
-        Width = 1024
-        Height = 18
+        Top = 22
+        Width = 1008
+        Height = 28
         Cursor = crArrow
         DataSource = DS_PAIS
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
@@ -159,83 +159,82 @@ object FormRESUMEN: TFormRESUMEN
       end
       object DBGrid_PAIS: TDBGrid
         Left = 2
-        Top = 33
-        Width = 1024
-        Height = 140
+        Top = 50
+        Width = 1008
+        Height = 217
         Cursor = crArrow
         Align = alClient
         DataSource = DS_PAIS
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
+        TitleFont.Height = -17
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
       end
     end
     object TOTAL: TGroupBox
       Left = 0
-      Top = 375
-      Width = 1028
-      Height = 80
+      Top = 308
+      Width = 1012
+      Height = 123
       Cursor = crArrow
       Align = alBottom
       Caption = 'TOTAL'
       TabOrder = 2
       object DBGrid3: TDBGrid
         Left = 2
-        Top = 15
-        Width = 1024
-        Height = 63
+        Top = 22
+        Width = 1008
+        Height = 99
         Cursor = crArrow
         Align = alClient
         DataSource = DS_TOT
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
+        TitleFont.Height = -17
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
       end
     end
     object Panel2: TPanel
       Left = 0
-      Top = 535
-      Width = 1028
-      Height = 80
+      Top = 554
+      Width = 1012
+      Height = 123
       Align = alBottom
       Caption = 'Panel2'
       TabOrder = 3
       object GroupBox1: TGroupBox
-        Left = 209
+        Left = 321
         Top = 1
-        Width = 200
-        Height = 78
+        Width = 307
+        Height = 121
         Cursor = crArrow
         Align = alLeft
         Caption = 'DATA CADASTRO'
         TabOrder = 0
         object Label1: TLabel
-          Left = 8
-          Top = 24
-          Width = 37
-          Height = 13
+          Left = 12
+          Top = 37
+          Width = 57
+          Height = 20
           Caption = 'INICIAL'
         end
         object Label2: TLabel
-          Left = 8
-          Top = 48
-          Width = 30
-          Height = 13
+          Left = 12
+          Top = 74
+          Width = 46
+          Height = 20
           Caption = 'FINAL'
         end
         object XDT_INIC: TXDateEdit
-          Left = 56
-          Top = 20
-          Width = 137
+          Left = 86
+          Top = 31
+          Width = 211
           Height = 21
           Cursor = crArrow
-          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -290,16 +289,16 @@ object FormRESUMEN: TFormRESUMEN
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
           TabOrder = 0
         end
         object XDT_FIM: TXDateEdit
-          Left = 56
-          Top = 44
-          Width = 137
+          Left = 86
+          Top = 68
+          Width = 211
           Height = 21
           Cursor = crArrow
-          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -354,65 +353,66 @@ object FormRESUMEN: TFormRESUMEN
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
           TabOrder = 1
         end
       end
       object GroupBox2: TGroupBox
-        Left = 409
+        Left = 628
         Top = 1
-        Width = 496
-        Height = 78
+        Width = 763
+        Height = 121
         Cursor = crArrow
         Align = alLeft
         Caption = 'C'#211'DIGO CLIENTE/EXPORTADO'
         TabOrder = 1
         object Label3: TLabel
-          Left = 8
-          Top = 16
-          Width = 37
-          Height = 13
+          Left = 12
+          Top = 25
+          Width = 57
+          Height = 20
           Caption = 'INICIAL'
         end
         object Label4: TLabel
-          Left = 8
-          Top = 36
-          Width = 30
-          Height = 13
+          Left = 12
+          Top = 55
+          Width = 46
+          Height = 20
           Caption = 'FINAL'
         end
         object lbl4: TLabel
-          Left = 8
-          Top = 60
-          Width = 51
-          Height = 13
+          Left = 12
+          Top = 92
+          Width = 78
+          Height = 20
           Caption = 'Exportador'
         end
         object CBox_INIC: TComboBox
-          Left = 64
-          Top = 12
-          Width = 329
-          Height = 21
+          Left = 98
+          Top = 18
+          Width = 507
+          Height = 28
           Cursor = crArrow
-          ItemHeight = 13
+          ItemHeight = 20
           TabOrder = 0
         end
         object CBox_FIM: TComboBox
-          Left = 64
-          Top = 32
-          Width = 329
-          Height = 21
+          Left = 98
+          Top = 49
+          Width = 507
+          Height = 28
           Cursor = crArrow
-          ItemHeight = 13
+          ItemHeight = 20
           TabOrder = 1
         end
         object cbb_EXPORTADOR: TComboBox
-          Left = 64
-          Top = 56
-          Width = 329
-          Height = 21
+          Left = 98
+          Top = 86
+          Width = 507
+          Height = 28
           Cursor = crArrow
-          ItemHeight = 13
+          ItemHeight = 20
           TabOrder = 2
           Text = 'SURIMPEX'
         end
@@ -420,43 +420,42 @@ object FormRESUMEN: TFormRESUMEN
       object grp1: TGroupBox
         Left = 1
         Top = 1
-        Width = 208
-        Height = 78
+        Width = 320
+        Height = 121
         Cursor = crArrow
         Align = alLeft
         Caption = 'Previ'#227'o'
         TabOrder = 2
         Visible = False
         object lbl1: TLabel
-          Left = 16
-          Top = 24
-          Width = 37
-          Height = 13
+          Left = 25
+          Top = 37
+          Width = 57
+          Height = 20
           Caption = 'INICIAL'
           Visible = False
         end
         object lbl2: TLabel
-          Left = 16
-          Top = 48
-          Width = 30
-          Height = 13
+          Left = 25
+          Top = 74
+          Width = 46
+          Height = 20
           Caption = 'FINAL'
           Visible = False
         end
         object lbl3: TLabel
-          Left = 24
-          Top = 24
-          Width = 19
-          Height = 13
+          Left = 37
+          Top = 37
+          Width = 29
+          Height = 20
           Caption = 'Ano'
         end
         object edt_inic: TXDateEdit
-          Left = 64
-          Top = 28
-          Width = 137
+          Left = 98
+          Top = 43
+          Width = 211
           Height = 21
           Cursor = crArrow
-          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -511,17 +510,17 @@ object FormRESUMEN: TFormRESUMEN
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
           TabOrder = 0
           Visible = False
         end
         object edt_fim: TXDateEdit
-          Left = 64
-          Top = 44
-          Width = 137
+          Left = 98
+          Top = 68
+          Width = 211
           Height = 21
           Cursor = crArrow
-          Hora = False
           DateText = '00/00/0000'
           DateValue = -693594.000000000000000000
           Glyph.Data = {
@@ -576,14 +575,15 @@ object FormRESUMEN: TFormRESUMEN
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
           TabOrder = 1
           Visible = False
         end
         object edt_ano: TXNumEdit
-          Left = 64
-          Top = 24
-          Width = 57
+          Left = 98
+          Top = 37
+          Width = 88
           Height = 21
           Decimals = 0
           Glyph.Data = {
@@ -641,17 +641,17 @@ object FormRESUMEN: TFormRESUMEN
     object grp2: TGroupBox
       Left = 0
       Top = 0
-      Width = 1028
-      Height = 100
+      Width = 1012
+      Height = 154
       Cursor = crArrow
       Align = alTop
       Caption = 'PRODUTO'
       TabOrder = 4
       object dbnvgr1: TDBNavigator
         Left = 2
-        Top = 15
-        Width = 1024
-        Height = 18
+        Top = 22
+        Width = 1008
+        Height = 28
         Cursor = crArrow
         DataSource = DS_PROD
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
@@ -660,41 +660,41 @@ object FormRESUMEN: TFormRESUMEN
       end
       object dbgrd1: TDBGrid
         Left = 2
-        Top = 33
-        Width = 1024
-        Height = 65
+        Top = 50
+        Width = 1008
+        Height = 102
         Cursor = crArrow
         Align = alClient
         DataSource = DS_PROD
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
+        TitleFont.Height = -17
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
       end
     end
     object grp3: TGroupBox
       Left = 0
-      Top = 455
-      Width = 1028
-      Height = 80
+      Top = 431
+      Width = 1012
+      Height = 123
       Cursor = crArrow
       Align = alBottom
       Caption = 'TOTAL/SURIMPEX'
       TabOrder = 5
       object dbgrd2: TDBGrid
         Left = 2
-        Top = 15
-        Width = 1024
-        Height = 63
+        Top = 22
+        Width = 1008
+        Height = 99
         Cursor = crArrow
         Align = alClient
         DataSource = ds_TOT_EX
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
+        TitleFont.Height = -17
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
       end
@@ -702,29 +702,29 @@ object FormRESUMEN: TFormRESUMEN
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 635
-    Width = 1028
-    Height = 21
+    Top = 599
+    Width = 1036
+    Height = 32
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -18
     Font.Name = 'MS Sans Serif'
     Font.Style = []
   end
   object Panel1: TPanel
     Left = 0
-    Top = 656
-    Width = 1028
-    Height = 35
+    Top = 631
+    Width = 1036
+    Height = 54
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 3
     object BtnVisualizar: TBitBtn
-      Left = 90
-      Top = 6
-      Width = 75
-      Height = 25
+      Left = 138
+      Top = 9
+      Width = 116
+      Height = 39
       Hint = 'Visualizar impress'#227'o'
       Caption = '&Visualizar'
       ParentShowHint = False
@@ -747,10 +747,10 @@ object FormRESUMEN: TFormRESUMEN
       NumGlyphs = 2
     end
     object BtnCancelar: TBitBtn
-      Left = 172
-      Top = 6
-      Width = 75
-      Height = 25
+      Left = 265
+      Top = 9
+      Width = 115
+      Height = 39
       Hint = 'Cancelar relat'#243'rio'
       Caption = '&Cancelar'
       ModalResult = 2
@@ -816,10 +816,10 @@ object FormRESUMEN: TFormRESUMEN
       NumGlyphs = 2
     end
     object BitBtn1: TBitBtn
-      Left = 8
-      Top = 8
-      Width = 75
-      Height = 25
+      Left = 12
+      Top = 12
+      Width = 116
+      Height = 39
       Caption = 'Filtrar'
       TabOrder = 2
       OnClick = BitBtn1Click

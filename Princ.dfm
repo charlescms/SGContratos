@@ -1,6 +1,6 @@
 object FormPrincipal: TFormPrincipal
-  Left = 422
-  Top = 247
+  Left = 682
+  Top = 296
   Width = 950
   Height = 732
   Caption = 'Titulo do Projeto'
@@ -25,13 +25,13 @@ object FormPrincipal: TFormPrincipal
     Left = 358
     Top = 72
     Width = 0
-    Height = 559
+    Height = 561
     AutoSnap = False
   end
   object StatusBarPrincipal: TStatusBar
     Left = 0
-    Top = 631
-    Width = 940
+    Top = 633
+    Width = 942
     Height = 19
     Panels = <
       item
@@ -57,7 +57,7 @@ object FormPrincipal: TFormPrincipal
   object BarraPrincipal: TPanel
     Left = 0
     Top = 26
-    Width = 940
+    Width = 942
     Height = 46
     Align = alTop
     BevelOuter = bvNone
@@ -295,7 +295,7 @@ object FormPrincipal: TFormPrincipal
     Left = 0
     Top = 72
     Width = 5
-    Height = 559
+    Height = 561
     Align = alLeft
     BevelOuter = bvLowered
     TabOrder = 2
@@ -304,7 +304,7 @@ object FormPrincipal: TFormPrincipal
     Left = 5
     Top = 72
     Width = 353
-    Height = 559
+    Height = 561
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 3
@@ -313,7 +313,7 @@ object FormPrincipal: TFormPrincipal
       Left = 0
       Top = 26
       Width = 353
-      Height = 533
+      Height = 535
       Align = alClient
       Pen.Color = 7021576
     end
@@ -565,7 +565,7 @@ object FormPrincipal: TFormPrincipal
     Left = 358
     Top = 72
     Width = 5
-    Height = 559
+    Height = 561
     Align = alLeft
     BevelOuter = bvLowered
     TabOrder = 5
@@ -573,16 +573,16 @@ object FormPrincipal: TFormPrincipal
   object PnImagemFundo: TPanel
     Left = 363
     Top = 72
-    Width = 577
-    Height = 559
+    Width = 579
+    Height = 561
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 4
     object ImagemFundo: TImage
       Left = 0
       Top = 0
-      Width = 577
-      Height = 559
+      Width = 579
+      Height = 561
       Align = alClient
       AutoSize = True
       Center = True
@@ -737,7 +737,7 @@ object FormPrincipal: TFormPrincipal
   object BarraFerramentas: TToolBar
     Left = 0
     Top = 0
-    Width = 940
+    Width = 942
     Height = 26
     AutoSize = True
     Caption = 'BarraFerramentas'

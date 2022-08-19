@@ -1,8 +1,8 @@
 object FormExportadorN: TFormExportadorN
-  Left = 194
-  Top = 193
-  Width = 952
-  Height = 732
+  Left = 631
+  Top = 229
+  Width = 1157
+  Height = 694
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -26,9 +26,9 @@ object FormExportadorN: TFormExportadorN
   object PagePrincipal: TPageControl
     Left = 0
     Top = 51
-    Width = 942
-    Height = 635
-    ActivePage = TabConsulta
+    Width = 1149
+    Height = 599
+    ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
     TabOrder = 0
@@ -37,8 +37,8 @@ object FormExportadorN: TFormExportadorN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 554
-        Width = 934
+        Top = 518
+        Width = 1141
         Height = 46
         Align = alBottom
         BevelOuter = bvNone
@@ -169,8 +169,8 @@ object FormExportadorN: TFormExportadorN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 520
-        Width = 934
+        Top = 484
+        Width = 1141
         Height = 34
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -187,8 +187,8 @@ object FormExportadorN: TFormExportadorN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 934
-        Height = 520
+        Width = 1141
+        Height = 484
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -197,8 +197,8 @@ object FormExportadorN: TFormExportadorN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 934
-          Height = 520
+          Width = 1141
+          Height = 484
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -208,8 +208,8 @@ object FormExportadorN: TFormExportadorN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 934
-              Height = 520
+              Width = 1141
+              Height = 484
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -1839,8 +1839,8 @@ object FormExportadorN: TFormExportadorN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 552
-        Width = 934
+        Top = 516
+        Width = 1141
         Height = 48
         Align = alBottom
         BevelOuter = bvNone
@@ -1875,8 +1875,8 @@ object FormExportadorN: TFormExportadorN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 934
-        Height = 520
+        Width = 1141
+        Height = 484
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
@@ -1899,8 +1899,8 @@ object FormExportadorN: TFormExportadorN
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 520
-        Width = 934
+        Top = 484
+        Width = 1141
         Height = 32
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -1918,7 +1918,7 @@ object FormExportadorN: TFormExportadorN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 942
+    Width = 1149
     Height = 51
     Align = alTop
     BevelOuter = bvNone
@@ -2181,7 +2181,7 @@ object FormExportadorN: TFormExportadorN
     object Divisao_sup: TPanel
       Left = 0
       Top = 46
-      Width = 942
+      Width = 1149
       Height = 5
       Align = alBottom
       TabOrder = 0

@@ -1,6 +1,6 @@
 object FormInforme: TFormInforme
-  Left = 393
-  Top = 152
+  Left = 828
+  Top = 609
   Width = 1658
   Height = 777
   Caption = 'Entrada de Dados'
@@ -28,8 +28,8 @@ object FormInforme: TFormInforme
   object PagePrincipal: TPageControl
     Left = 0
     Top = 82
-    Width = 1648
-    Height = 649
+    Width = 1650
+    Height = 651
     ActivePage = TabSheet1
     Align = alClient
     HotTrack = True
@@ -39,8 +39,8 @@ object FormInforme: TFormInforme
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 567
-        Width = 1640
+        Top = 569
+        Width = 1642
         Height = 47
         Align = alBottom
         BevelOuter = bvNone
@@ -127,8 +127,8 @@ object FormInforme: TFormInforme
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 534
-        Width = 1640
+        Top = 536
+        Width = 1642
         Height = 33
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -144,8 +144,8 @@ object FormInforme: TFormInforme
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1640
-        Height = 534
+        Width = 1642
+        Height = 536
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -154,8 +154,8 @@ object FormInforme: TFormInforme
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1640
-          Height = 534
+          Width = 1642
+          Height = 536
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -165,8 +165,8 @@ object FormInforme: TFormInforme
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1640
-              Height = 534
+              Width = 1642
+              Height = 536
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -585,7 +585,7 @@ object FormInforme: TFormInforme
                 Left = 243
                 Top = 98
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -700,7 +700,7 @@ object FormInforme: TFormInforme
                 Left = 529
                 Top = 98
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -758,7 +758,7 @@ object FormInforme: TFormInforme
                 Left = 712
                 Top = 98
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -816,7 +816,7 @@ object FormInforme: TFormInforme
                 Left = 895
                 Top = 98
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -874,7 +874,7 @@ object FormInforme: TFormInforme
                 Left = 1078
                 Top = 98
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -988,7 +988,7 @@ object FormInforme: TFormInforme
                 Left = 206
                 Top = 160
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1103,7 +1103,7 @@ object FormInforme: TFormInforme
                 Left = 578
                 Top = 160
                 Width = 177
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1161,7 +1161,7 @@ object FormInforme: TFormInforme
                 Left = 762
                 Top = 160
                 Width = 176
-                Height = 21
+                Height = 28
                 AutoHideCalculator = False
                 Glyph.Data = {
                   7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1276,7 +1276,7 @@ object FormInforme: TFormInforme
                 Left = 258
                 Top = 220
                 Width = 134
-                Height = 21
+                Height = 28
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 7
@@ -1512,7 +1512,7 @@ object FormInforme: TFormInforme
                 Left = 945
                 Top = 158
                 Width = 133
-                Height = 21
+                Height = 28
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 21
@@ -1804,8 +1804,8 @@ object FormInforme: TFormInforme
       ImageIndex = 2
       object Panel1: TPanel
         Left = 0
-        Top = 417
-        Width = 1640
+        Top = 419
+        Width = 1642
         Height = 150
         Align = alBottom
         TabOrder = 1
@@ -1867,7 +1867,7 @@ object FormInforme: TFormInforme
             Left = 62
             Top = 25
             Width = 153
-            Height = 21
+            Height = 28
             DateText = '00/00/0000'
             DateValue = -693594.000000000000000000
             Glyph.Data = {
@@ -1930,7 +1930,7 @@ object FormInforme: TFormInforme
             Left = 62
             Top = 62
             Width = 153
-            Height = 21
+            Height = 28
             DateText = '00/00/0000'
             DateValue = -693594.000000000000000000
             Glyph.Data = {
@@ -2133,7 +2133,7 @@ object FormInforme: TFormInforme
             Left = 62
             Top = 25
             Width = 153
-            Height = 21
+            Height = 28
             DateText = '00/00/0000'
             DateValue = -693594.000000000000000000
             Glyph.Data = {
@@ -2196,7 +2196,7 @@ object FormInforme: TFormInforme
             Left = 62
             Top = 62
             Width = 153
-            Height = 21
+            Height = 28
             DateText = '00/00/0000'
             DateValue = -693594.000000000000000000
             Glyph.Data = {
@@ -2259,8 +2259,8 @@ object FormInforme: TFormInforme
       end
       object Panel3: TPanel
         Left = 0
-        Top = 567
-        Width = 1640
+        Top = 569
+        Width = 1642
         Height = 47
         Align = alBottom
         BevelOuter = bvNone
@@ -2388,8 +2388,8 @@ object FormInforme: TFormInforme
       object PageControl1: TPageControl
         Left = 0
         Top = 0
-        Width = 1640
-        Height = 417
+        Width = 1642
+        Height = 419
         ActivePage = TabSheet2
         Align = alClient
         TabOrder = 0
@@ -2398,21 +2398,21 @@ object FormInforme: TFormInforme
           object Panel2: TPanel
             Left = 0
             Top = 0
-            Width = 1632
+            Width = 1634
             Height = 408
             Align = alTop
             TabOrder = 0
             object Panel4: TPanel
               Left = 1
               Top = 198
-              Width = 1630
+              Width = 1632
               Height = 209
               Align = alBottom
               TabOrder = 1
               object GroupBox_Prod: TGroupBox
                 Left = 1
                 Top = 1
-                Width = 800
+                Width = 802
                 Height = 207
                 Align = alClient
                 Caption = 'Produtos'
@@ -2420,7 +2420,7 @@ object FormInforme: TFormInforme
                 object DBGrid1: TDBGrid
                   Left = 2
                   Top = 22
-                  Width = 194
+                  Width = 798
                   Height = 183
                   Align = alClient
                   DataSource = DSProduto
@@ -2433,7 +2433,7 @@ object FormInforme: TFormInforme
                 end
               end
               object GroupBox_Boock: TGroupBox
-                Left = 801
+                Left = 803
                 Top = 1
                 Width = 357
                 Height = 207
@@ -2456,7 +2456,7 @@ object FormInforme: TFormInforme
                 end
               end
               object GroupBox_Exportado: TGroupBox
-                Left = 1158
+                Left = 1160
                 Top = 1
                 Width = 471
                 Height = 207
@@ -2587,7 +2587,7 @@ object FormInforme: TFormInforme
   object PnSup: TPanel
     Left = 0
     Top = 0
-    Width = 1648
+    Width = 1650
     Height = 31
     Align = alTop
     BevelOuter = bvNone
@@ -2596,7 +2596,7 @@ object FormInforme: TFormInforme
     object ShapeSup: TShape
       Left = 0
       Top = 0
-      Width = 1648
+      Width = 1650
       Height = 31
       Align = alClient
       Brush.Color = 14743792
@@ -2607,7 +2607,7 @@ object FormInforme: TFormInforme
     object LbTituloForm: TLabel
       Left = 0
       Top = 0
-      Width = 1648
+      Width = 1650
       Height = 31
       Align = alClient
       Alignment = taCenter
@@ -2662,7 +2662,7 @@ object FormInforme: TFormInforme
   object PnSuperior: TPanel
     Left = 0
     Top = 31
-    Width = 1648
+    Width = 1650
     Height = 51
     Align = alTop
     BevelOuter = bvNone
@@ -2928,7 +2928,7 @@ object FormInforme: TFormInforme
     object Divisao_sup: TPanel
       Left = 0
       Top = 48
-      Width = 1648
+      Width = 1650
       Height = 3
       Align = alBottom
       TabOrder = 0
