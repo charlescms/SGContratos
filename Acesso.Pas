@@ -344,6 +344,7 @@ begin
     Begin
       Usuario := Encript(UpperCase('Master'));
       Pass    := Encript(UpperCase(Sistema.SenhaInicial));
+
 //      Pass    := Encript(UpperCase('CMS1354219'));
       Pass    := Encript(UpperCase('123'));
       Master  := True;
@@ -717,8 +718,8 @@ begin
 //  Usuario.text := 'master' ;
 //  Senha.Text := Encript(UpperCase('CMS1354219'));
 
-//  Usuario.text := 'master' ;
-//  Senha.Text := Encript(UpperCase('123'));
+ // Usuario.text := 'master' ;
+ // Senha.Text := Encript(UpperCase('123'));
 
 
   BtnCancelaNovaSenhaClick(Self);

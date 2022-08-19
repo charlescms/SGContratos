@@ -19,6 +19,8 @@
        Versao         := '3.54'; 24/09/2015 solicitada a modificacao
        Versao         := '3.55'; 01/10/2015 solicitada a modificacao
        Versao         := '3.56'; 01/10/2015 solicitada a modificacao
+       Versao         := '3.57'; 01/10/2015 solicitada a modificacao
+       arquivos modificadoss  ( faturaN)   identicado cms-2022/07/2
 }
 
 unit Publicas;
@@ -111,7 +113,7 @@ Begin
   with Sistema Do
   Begin
     Titulo         := 'Gestor de Contrato';
-    Versao         := '3.56';  //  23/09/2021 '3.55';
+    Versao         := '3.57'; //'3.56';  //  23/09/2021 '3.55';
     Analista       := 'Charles';
     Programador    := 'Charles';
     Projetista     := 'CMS';

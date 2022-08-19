@@ -1,13 +1,13 @@
 object FormFaturaN: TFormFaturaN
-  Left = 290
-  Top = 212
-  Width = 1736
-  Height = 795
+  Left = 720
+  Top = 291
+  Width = 1292
+  Height = 543
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -17
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIChild
@@ -22,13 +22,13 @@ object FormFaturaN: TFormFaturaN
   OnKeyPress = formkeypress
   OnResize = formresize
   OnShow = formshow
-  PixelsPerInch = 144
-  TextHeight = 20
+  PixelsPerInch = 96
+  TextHeight = 13
   object PagePrincipal: TPageControl
     Left = 0
-    Top = 51
-    Width = 1728
-    Height = 700
+    Top = 33
+    Width = 1284
+    Height = 478
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,15 +38,15 @@ object FormFaturaN: TFormFaturaN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 619
-        Width = 1720
-        Height = 46
+        Top = 420
+        Width = 1276
+        Height = 30
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
         object Img_Tabela: TImage
-          Left = 1675
-          Top = 11
+          Left = 1089
+          Top = 7
           Width = 32
           Height = 16
           AutoSize = True
@@ -67,8 +67,8 @@ object FormFaturaN: TFormFaturaN
           Visible = False
         end
         object Img_Form: TImage
-          Left = 1488
-          Top = 13
+          Left = 967
+          Top = 8
           Width = 32
           Height = 16
           AutoSize = True
@@ -89,10 +89,10 @@ object FormFaturaN: TFormFaturaN
           Visible = False
         end
         object BtnSalvar: TBitBtn
-          Left = 13
-          Top = 8
-          Width = 115
-          Height = 38
+          Left = 8
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Salvar registro'
           Caption = '&Salvar'
           ParentShowHint = False
@@ -115,10 +115,10 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BtnDesistir: TBitBtn
-          Left = 131
-          Top = 8
-          Width = 115
-          Height = 38
+          Left = 85
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
           Caption = '&Desistir'
           ParentShowHint = False
@@ -141,10 +141,10 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BtnRelac_1: TBitBtn
-          Left = 1529
-          Top = 8
-          Width = 116
-          Height = 38
+          Left = 994
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -168,47 +168,47 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BitBtn2: TBitBtn
-          Left = 388
-          Top = 8
-          Width = 138
-          Height = 38
+          Left = 252
+          Top = 5
+          Width = 90
+          Height = 25
           Caption = 'Concilia'#231#227'o'
           TabOrder = 3
           OnClick = BITBTN2click
         end
         object BitBtn3: TBitBtn
-          Left = 979
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 636
+          Top = 5
+          Width = 91
+          Height = 25
           Caption = 'Troca Situa'#231#227'o'
           TabOrder = 4
           OnClick = BITBTN3click
         end
         object BitBtn4: TBitBtn
-          Left = 529
-          Top = 8
-          Width = 152
-          Height = 38
+          Left = 344
+          Top = 5
+          Width = 99
+          Height = 25
           Caption = 'Concilia'#231#227'o Real.'
           TabOrder = 5
           OnClick = BITBTN4click
         end
         object BitBtn8: TBitBtn
-          Left = 683
-          Top = 8
-          Width = 155
-          Height = 38
+          Left = 444
+          Top = 5
+          Width = 101
+          Height = 25
           Hint = 'A'#231#245'es Sobre Fatura'
           Caption = 'Gerar Or. Coban'#231'a'
           TabOrder = 6
           OnClick = BITBTN8click
         end
         object BitBtn9: TBitBtn
-          Left = 255
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 166
+          Top = 5
+          Width = 90
+          Height = 25
           Caption = 'Filtrar'
           TabOrder = 7
           Glyph.Data = {
@@ -227,10 +227,10 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BitBtn_NotaFiscal: TBitBtn
-          Left = 1293
-          Top = 8
-          Width = 185
-          Height = 38
+          Left = 840
+          Top = 5
+          Width = 121
+          Height = 25
           Caption = '&Aplicar Nota Fiscal'
           TabOrder = 8
           Visible = False
@@ -238,10 +238,10 @@ object FormFaturaN: TFormFaturaN
           Kind = bkAll
         end
         object BitBtn_Rate: TBitBtn
-          Left = 838
-          Top = 8
-          Width = 137
-          Height = 38
+          Left = 545
+          Top = 5
+          Width = 89
+          Height = 25
           Caption = '&Aplicar Rate'
           TabOrder = 9
           OnClick = BITBTN_RATEclick
@@ -249,15 +249,15 @@ object FormFaturaN: TFormFaturaN
         end
         object Panel2: TPanel
           Left = 0
-          Top = 3
-          Width = 1720
-          Height = 43
+          Top = 2
+          Width = 1276
+          Height = 28
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 10
           object Image1: TImage
-            Left = 1675
-            Top = 11
+            Left = 1089
+            Top = 7
             Width = 32
             Height = 16
             AutoSize = True
@@ -278,8 +278,8 @@ object FormFaturaN: TFormFaturaN
             Visible = False
           end
           object Image2: TImage
-            Left = 1599
-            Top = 13
+            Left = 1039
+            Top = 8
             Width = 32
             Height = 16
             AutoSize = True
@@ -300,10 +300,10 @@ object FormFaturaN: TFormFaturaN
             Visible = False
           end
           object BitBtn15: TBitBtn
-            Left = 21
+            Left = 14
             Top = 1
-            Width = 128
-            Height = 39
+            Width = 83
+            Height = 25
             Hint = 'Salvar registro'
             Caption = '&Salvar'
             ParentShowHint = False
@@ -327,10 +327,10 @@ object FormFaturaN: TFormFaturaN
             Spacing = 0
           end
           object BitBtn18: TBitBtn
-            Left = 149
+            Left = 97
             Top = 1
-            Width = 129
-            Height = 39
+            Width = 84
+            Height = 25
             Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
             Caption = '&Desistir'
             ParentShowHint = False
@@ -353,10 +353,10 @@ object FormFaturaN: TFormFaturaN
             NumGlyphs = 2
           end
           object BitBtn19: TBitBtn
-            Left = 1749
-            Top = 5
-            Width = 116
-            Height = 38
+            Left = 1137
+            Top = 3
+            Width = 75
+            Height = 25
             Hint = 'Tabelas relacionadas ...'
             Caption = '&Tabelas'
             ParentShowHint = False
@@ -379,47 +379,47 @@ object FormFaturaN: TFormFaturaN
             NumGlyphs = 2
           end
           object BitBtn20: TBitBtn
-            Left = 431
+            Left = 280
             Top = 1
-            Width = 150
-            Height = 39
+            Width = 98
+            Height = 25
             Caption = 'Concilia'#231#227'o'
             TabOrder = 3
             OnClick = BITBTN2click
           end
           object BitBtn21: TBitBtn
-            Left = 1031
-            Top = 43
-            Width = 138
-            Height = 38
+            Left = 670
+            Top = 28
+            Width = 90
+            Height = 25
             Caption = 'Troca Situa'#231#227'o'
             TabOrder = 9
             OnClick = BITBTN3click
           end
           object BitBtn22: TBitBtn
-            Left = 583
+            Left = 379
             Top = 1
-            Width = 165
-            Height = 39
+            Width = 107
+            Height = 25
             Caption = 'Concilia'#231#227'o Real.'
             TabOrder = 4
             OnClick = BITBTN4click
           end
           object BitBtn23: TBitBtn
-            Left = 749
+            Left = 487
             Top = 1
-            Width = 166
-            Height = 39
+            Width = 108
+            Height = 25
             Hint = 'A'#231#245'es Sobre Fatura'
             Caption = 'Gerar Or. Coban'#231'a'
             TabOrder = 5
             OnClick = BITBTN8click
           end
           object BitBtn24: TBitBtn
-            Left = 278
+            Left = 181
             Top = 1
-            Width = 150
-            Height = 39
+            Width = 97
+            Height = 25
             Caption = 'Filtrar'
             TabOrder = 2
             OnClick = BITBTN1click
@@ -439,10 +439,10 @@ object FormFaturaN: TFormFaturaN
             NumGlyphs = 2
           end
           object BitBtn25: TBitBtn
-            Left = 1374
+            Left = 893
             Top = 0
-            Width = 185
-            Height = 39
+            Width = 120
+            Height = 25
             Caption = '&Aplicar Nota Fiscal'
             TabOrder = 10
             Visible = False
@@ -451,29 +451,29 @@ object FormFaturaN: TFormFaturaN
             Spacing = 9
           end
           object BitBtn26: TBitBtn
-            Left = 914
+            Left = 594
             Top = 1
-            Width = 151
-            Height = 39
+            Width = 98
+            Height = 25
             Caption = '&Aplicar Taxa'
             TabOrder = 6
             OnClick = BITBTN_RATEclick
             Kind = bkAll
           end
           object BitBtn27: TBitBtn
-            Left = 1068
+            Left = 694
             Top = 1
-            Width = 151
-            Height = 39
+            Width = 98
+            Height = 25
             Caption = 'Rel. Fatura'
             TabOrder = 7
             OnClick = BITBTN10click
           end
           object BitBtn28: TBitBtn
-            Left = 1220
+            Left = 793
             Top = 1
-            Width = 151
-            Height = 39
+            Width = 98
+            Height = 25
             Caption = 'Corrigir Comiss'#227'o'
             TabOrder = 8
             OnClick = BitBtn28Click
@@ -482,13 +482,13 @@ object FormFaturaN: TFormFaturaN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 585
-        Width = 1720
-        Height = 34
+        Top = 398
+        Width = 1276
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -22
+        Font.Height = -15
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -499,8 +499,8 @@ object FormFaturaN: TFormFaturaN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1720
-        Height = 585
+        Width = 1276
+        Height = 398
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -509,8 +509,8 @@ object FormFaturaN: TFormFaturaN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1720
-          Height = 585
+          Width = 1276
+          Height = 398
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -520,20 +520,20 @@ object FormFaturaN: TFormFaturaN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1720
-              Height = 585
+              Width = 1276
+              Height = 398
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
               object DBG_FATURA: TDBGrid
-                Left = 14
-                Top = 490
-                Width = 1569
-                Height = 223
+                Left = 9
+                Top = 319
+                Width = 1020
+                Height = 144
                 TabOrder = 0
                 TitleFont.Charset = DEFAULT_CHARSET
                 TitleFont.Color = clWindowText
-                TitleFont.Height = -17
+                TitleFont.Height = -11
                 TitleFont.Name = 'MS Sans Serif'
                 TitleFont.Style = []
                 OnColExit = DBG_FATURAcolexit
@@ -542,25 +542,25 @@ object FormFaturaN: TFormFaturaN
                 OnKeyPress = DBG_FATURAkeypress
               end
               object Panel1: TPanel
-                Left = 13
-                Top = 9
-                Width = 1700
-                Height = 452
+                Left = 8
+                Top = 6
+                Width = 1105
+                Height = 294
                 TabOrder = 1
                 object LbcComentario: TLabel
                   Left = 1
-                  Top = 371
-                  Width = 82
-                  Height = 20
+                  Top = 241
+                  Width = 53
+                  Height = 13
                   Caption = 'Coment'#225'rio'
                   ParentShowHint = False
                   ShowHint = True
                 end
                 object Comentario: TDBMemo
                   Left = 1
-                  Top = 391
-                  Width = 1698
-                  Height = 60
+                  Top = 254
+                  Width = 1103
+                  Height = 39
                   Align = alBottom
                   ParentShowHint = False
                   ScrollBars = ssVertical
@@ -571,199 +571,199 @@ object FormFaturaN: TFormFaturaN
                 object GroupBox_Contrato: TGroupBox
                   Left = 1
                   Top = 1
-                  Width = 1698
-                  Height = 199
+                  Width = 1103
+                  Height = 129
                   Align = alTop
                   Caption = 'Contrato'
                   Enabled = False
                   TabOrder = 1
                   object LbcFORCOD: TLabel
-                    Left = 13
-                    Top = 138
-                    Width = 78
-                    Height = 20
+                    Left = 8
+                    Top = 90
+                    Width = 51
+                    Height = 13
                     Caption = 'Exportador'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcRAZAO: TLabel
-                    Left = 119
-                    Top = 138
-                    Width = 94
-                    Height = 20
+                    Left = 75
+                    Top = 90
+                    Width = 63
+                    Height = 13
                     Alignment = taRightJustify
                     Caption = 'Raz'#227'o Social'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcFormPago: TLabel
-                    Left = 13
-                    Top = 80
-                    Width = 110
-                    Height = 20
+                    Left = 8
+                    Top = 52
+                    Width = 75
+                    Height = 13
                     Caption = 'F. Pag p/Fatura'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcContrato: TLabel
-                    Left = 13
-                    Top = 21
-                    Width = 62
-                    Height = 20
+                    Left = 8
+                    Top = 14
+                    Width = 40
+                    Height = 13
                     Caption = 'Contrato'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcSeq: TLabel
-                    Left = 166
-                    Top = 21
-                    Width = 33
-                    Height = 20
+                    Left = 108
+                    Top = 14
+                    Width = 22
+                    Height = 13
                     Caption = 'Seq.'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcNavio: TLabel
-                    Left = 206
-                    Top = 21
-                    Width = 39
-                    Height = 20
+                    Left = 134
+                    Top = 14
+                    Width = 28
+                    Height = 13
                     Caption = 'Navio'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcPrecoFOB: TLabel
-                    Left = 198
-                    Top = 80
-                    Width = 109
-                    Height = 20
+                    Left = 129
+                    Top = 52
+                    Width = 73
+                    Height = 13
                     Caption = 'Pre'#231'o FOB Exp'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcComissao: TLabel
-                    Left = 533
-                    Top = 80
-                    Width = 70
-                    Height = 20
+                    Left = 346
+                    Top = 52
+                    Width = 45
+                    Height = 13
                     Caption = 'Comiss'#227'o'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcDataEmbarque: TLabel
-                    Left = 494
-                    Top = 21
-                    Width = 113
-                    Height = 20
+                    Left = 321
+                    Top = 14
+                    Width = 74
+                    Height = 13
                     Caption = 'Data Embarque'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcCadastro: TLabel
-                    Left = 360
-                    Top = 21
-                    Width = 65
-                    Height = 20
+                    Left = 234
+                    Top = 14
+                    Width = 42
+                    Height = 13
                     Caption = 'Cadastro'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcETADestino: TLabel
-                    Left = 618
-                    Top = 21
-                    Width = 90
-                    Height = 20
+                    Left = 402
+                    Top = 14
+                    Width = 60
+                    Height = 13
                     Caption = 'ETA Destino'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcFatura: TLabel
-                    Left = 751
-                    Top = 21
-                    Width = 107
-                    Height = 20
+                    Left = 488
+                    Top = 14
+                    Width = 70
+                    Height = 13
                     Caption = 'N'#250'mero Fatura'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcQuantidade: TLabel
-                    Left = 949
-                    Top = 21
-                    Width = 83
-                    Height = 20
+                    Left = 617
+                    Top = 14
+                    Width = 55
+                    Height = 13
                     Caption = 'Quantidade'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcValor: TLabel
-                    Left = 1134
-                    Top = 21
-                    Width = 123
-                    Height = 20
+                    Left = 737
+                    Top = 14
+                    Width = 81
+                    Height = 13
                     Caption = 'Valor Fatura Exp.'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcStatus: TLabel
-                    Left = 1305
-                    Top = 21
-                    Width = 47
-                    Height = 20
+                    Left = 848
+                    Top = 14
+                    Width = 30
+                    Height = 13
                     Caption = 'Status'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcOBS: TLabel
-                    Left = 754
-                    Top = 138
-                    Width = 80
-                    Height = 20
+                    Left = 490
+                    Top = 90
+                    Width = 55
+                    Height = 13
                     Caption = 'Obseva'#231#227'o'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcMOEDACOMISSAO: TLabel
-                    Left = 568
-                    Top = 138
-                    Width = 123
-                    Height = 20
+                    Left = 369
+                    Top = 90
+                    Width = 81
+                    Height = 13
                     Caption = 'Moeda Comiss'#227'o'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcFormComissao: TLabel
-                    Left = 346
-                    Top = 80
-                    Width = 120
-                    Height = 20
+                    Left = 225
+                    Top = 52
+                    Width = 77
+                    Height = 13
                     Caption = 'Forma Comiss'#227'o'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcComisaoSFatura: TLabel
-                    Left = 681
-                    Top = 80
-                    Width = 125
-                    Height = 20
+                    Left = 443
+                    Top = 52
+                    Width = 83
+                    Height = 13
                     Caption = 'Comis'#227'o s/Fatura'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcNomeMix: TLabel
-                    Left = 841
-                    Top = 80
-                    Width = 69
-                    Height = 20
+                    Left = 547
+                    Top = 52
+                    Width = 47
+                    Height = 13
                     Caption = 'Nome Mix'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object FormComissao: TDBComboBox
-                    Left = 346
-                    Top = 101
-                    Width = 182
-                    Height = 28
-                    ItemHeight = 20
+                    Left = 225
+                    Top = 66
+                    Width = 118
+                    Height = 21
+                    ItemHeight = 13
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -772,10 +772,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = FORMCOMISSAOexit
                   end
                   object RAZAO: TXDBEdit
-                    Left = 103
-                    Top = 155
-                    Width = 456
-                    Height = 28
+                    Left = 67
+                    Top = 101
+                    Width = 296
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -830,10 +830,10 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object FORCOD: TXDBNumEdit
-                    Left = 13
-                    Top = 155
-                    Width = 88
-                    Height = 28
+                    Left = 8
+                    Top = 101
+                    Width = 58
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -888,10 +888,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = FORCODexit
                   end
                   object FormPago: TXDBLookUp
-                    Left = 13
-                    Top = 101
-                    Width = 180
-                    Height = 28
+                    Left = 8
+                    Top = 66
+                    Width = 117
+                    Height = 21
                     DropDownRows = 14
                     ParentShowHint = False
                     ShowHint = True
@@ -899,10 +899,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = FORMPAGOexit
                   end
                   object Contrato: TXDBEdit
-                    Left = 13
-                    Top = 45
-                    Width = 148
-                    Height = 28
+                    Left = 8
+                    Top = 29
+                    Width = 97
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -957,10 +957,10 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object Seq: TXDBNumEdit
-                    Left = 166
-                    Top = 45
-                    Width = 35
-                    Height = 28
+                    Left = 108
+                    Top = 29
+                    Width = 23
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1015,10 +1015,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = SEQexit
                   end
                   object Navio: TXDBEdit
-                    Left = 206
-                    Top = 45
-                    Width = 149
-                    Height = 28
+                    Left = 134
+                    Top = 29
+                    Width = 97
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1073,10 +1073,10 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object Cadastro: TXDBDateEdit
-                    Left = 360
-                    Top = 45
-                    Width = 131
-                    Height = 28
+                    Left = 234
+                    Top = 29
+                    Width = 85
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1139,10 +1139,10 @@ object FormFaturaN: TFormFaturaN
                     ShowButton = True
                   end
                   object PrecoFOB: TXDBNumEdit
-                    Left = 198
-                    Top = 101
-                    Width = 143
-                    Height = 28
+                    Left = 129
+                    Top = 66
+                    Width = 93
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1197,10 +1197,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = PRECOFOBexit
                   end
                   object Comissao: TXDBNumEdit
-                    Left = 533
-                    Top = 101
-                    Width = 145
-                    Height = 28
+                    Left = 346
+                    Top = 66
+                    Width = 95
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1256,10 +1256,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = COMISSAOexit
                   end
                   object DataEmbarque: TXDBDateEdit
-                    Left = 494
-                    Top = 45
-                    Width = 117
-                    Height = 28
+                    Left = 321
+                    Top = 29
+                    Width = 76
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1322,11 +1322,11 @@ object FormFaturaN: TFormFaturaN
                     ShowButton = True
                   end
                   object Status: TDBComboBox
-                    Left = 1293
-                    Top = 45
-                    Width = 112
-                    Height = 28
-                    ItemHeight = 20
+                    Left = 840
+                    Top = 29
+                    Width = 73
+                    Height = 21
+                    ItemHeight = 13
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 11
@@ -1334,10 +1334,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = STATUSexit
                   end
                   object Valor: TXDBNumEdit
-                    Left = 1134
-                    Top = 45
-                    Width = 154
-                    Height = 28
+                    Left = 737
+                    Top = 29
+                    Width = 100
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1393,10 +1393,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = VALORexit
                   end
                   object QuantidadeExp: TXDBNumEdit
-                    Left = 954
-                    Top = 45
-                    Width = 177
-                    Height = 28
+                    Left = 620
+                    Top = 29
+                    Width = 115
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1451,10 +1451,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = QUANTIDADEEXPexit
                   end
                   object Fatura: TXDBEdit
-                    Left = 751
-                    Top = 45
-                    Width = 192
-                    Height = 28
+                    Left = 488
+                    Top = 29
+                    Width = 125
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1509,10 +1509,10 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object ComisaoSFatura: TXDBNumEdit
-                    Left = 681
-                    Top = 101
-                    Width = 144
-                    Height = 28
+                    Left = 443
+                    Top = 66
+                    Width = 93
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1567,10 +1567,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = COMISAOSFATURAexit
                   end
                   object NomeMix: TXDBLookUp
-                    Left = 843
-                    Top = 101
-                    Width = 230
-                    Height = 28
+                    Left = 548
+                    Top = 66
+                    Width = 149
+                    Height = 21
                     DropDownRows = 14
                     ParentShowHint = False
                     ShowHint = True
@@ -1578,10 +1578,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = NOMEMIXexit
                   end
                   object StDocumento: TDBRadioGroup
-                    Left = 1095
-                    Top = 83
-                    Width = 186
-                    Height = 80
+                    Left = 712
+                    Top = 54
+                    Width = 121
+                    Height = 52
                     Caption = 'Status Documentos'
                     ParentShowHint = False
                     ShowHint = True
@@ -1589,10 +1589,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = STDOCUMENTOexit
                   end
                   object OBS: TXDBEdit
-                    Left = 753
-                    Top = 155
-                    Width = 306
-                    Height = 28
+                    Left = 489
+                    Top = 101
+                    Width = 199
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 18
@@ -1646,11 +1646,11 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object MOEDACOMISSAO: TDBComboBox
-                    Left = 568
-                    Top = 155
-                    Width = 181
-                    Height = 28
-                    ItemHeight = 20
+                    Left = 369
+                    Top = 101
+                    Width = 118
+                    Height = 21
+                    ItemHeight = 13
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1659,10 +1659,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = MOEDACOMISSAOexit
                   end
                   object ETADestino: TXDBDateEdit
-                    Left = 618
-                    Top = 45
-                    Width = 123
-                    Height = 28
+                    Left = 402
+                    Top = 29
+                    Width = 80
+                    Height = 21
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1727,81 +1727,81 @@ object FormFaturaN: TFormFaturaN
                 end
                 object GroupBox_Fatura: TGroupBox
                   Left = 1
-                  Top = 200
-                  Width = 1698
-                  Height = 89
+                  Top = 130
+                  Width = 1103
+                  Height = 58
                   Align = alTop
                   Caption = 'Dados Ordem Cobran'#231'a'
                   TabOrder = 2
                   object LbcDataLiq: TLabel
-                    Left = 21
-                    Top = 19
-                    Width = 64
-                    Height = 20
+                    Left = 14
+                    Top = 12
+                    Width = 43
+                    Height = 13
                     Caption = 'Data Liq.'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcRate: TLabel
-                    Left = 158
-                    Top = 19
-                    Width = 35
-                    Height = 20
+                    Left = 103
+                    Top = 12
+                    Width = 23
+                    Height = 13
                     Caption = 'Rate'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcValorConvertido: TLabel
-                    Left = 475
-                    Top = 19
-                    Width = 117
-                    Height = 20
+                    Left = 309
+                    Top = 12
+                    Width = 78
+                    Height = 13
                     Caption = 'Valor Convertido'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcValorDesconto: TLabel
-                    Left = 941
-                    Top = 19
-                    Width = 69
-                    Height = 20
+                    Left = 612
+                    Top = 12
+                    Width = 46
+                    Height = 13
                     Caption = 'Desconto'
                     ParentShowHint = False
                     ShowHint = True
                     Visible = False
                   end
                   object LbcDataOrdCobranca: TLabel
-                    Left = 766
-                    Top = 19
-                    Width = 142
-                    Height = 20
+                    Left = 498
+                    Top = 12
+                    Width = 95
+                    Height = 13
                     Caption = 'Data Ord. Cobran'#231'a'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcNumOrdCobranca: TLabel
-                    Left = 639
-                    Top = 19
-                    Width = 103
-                    Height = 20
+                    Left = 415
+                    Top = 12
+                    Width = 69
+                    Height = 13
                     Caption = 'Ord. Cobran'#231'a'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcMOEDACOMISSAOTAXA: TLabel
-                    Left = 334
-                    Top = 19
-                    Width = 87
-                    Height = 20
+                    Left = 217
+                    Top = 12
+                    Width = 60
+                    Height = 13
                     Caption = 'Moeda Taxa'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object DataLiq: TXDBDateEdit
-                    Left = 18
-                    Top = 35
-                    Width = 128
-                    Height = 28
+                    Left = 12
+                    Top = 23
+                    Width = 83
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 0
@@ -1863,10 +1863,10 @@ object FormFaturaN: TFormFaturaN
                     ShowButton = True
                   end
                   object Rate: TXDBNumEdit
-                    Left = 154
-                    Top = 35
-                    Width = 167
-                    Height = 28
+                    Left = 100
+                    Top = 23
+                    Width = 109
+                    Height = 21
                     AutoHideCalculator = False
                     Decimals = 11
                     Glyph.Data = {
@@ -1922,10 +1922,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = RATEexit
                   end
                   object ValorConvertido: TXDBNumEdit
-                    Left = 478
-                    Top = 35
-                    Width = 153
-                    Height = 28
+                    Left = 311
+                    Top = 23
+                    Width = 99
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1980,10 +1980,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = VALORCONVERTIDOexit
                   end
                   object ValorDesconto: TXDBNumEdit
-                    Left = 911
-                    Top = 35
-                    Width = 150
-                    Height = 28
+                    Left = 592
+                    Top = 23
+                    Width = 98
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2039,10 +2039,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = VALORDESCONTOexit
                   end
                   object DataOrdCobranca: TXDBDateEdit
-                    Left = 769
-                    Top = 35
-                    Width = 134
-                    Height = 28
+                    Left = 500
+                    Top = 23
+                    Width = 87
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 5
@@ -2104,10 +2104,10 @@ object FormFaturaN: TFormFaturaN
                     ShowButton = True
                   end
                   object NumOrdCobranca: TXDBEdit
-                    Left = 640
-                    Top = 35
-                    Width = 119
-                    Height = 28
+                    Left = 416
+                    Top = 23
+                    Width = 77
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 4
@@ -2161,11 +2161,11 @@ object FormFaturaN: TFormFaturaN
                       0000}
                   end
                   object MOEDACOMISSAOTAXA: TDBComboBox
-                    Left = 333
-                    Top = 35
-                    Width = 136
-                    Height = 28
-                    ItemHeight = 20
+                    Left = 216
+                    Top = 23
+                    Width = 89
+                    Height = 21
+                    ItemHeight = 13
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 2
@@ -2173,35 +2173,35 @@ object FormFaturaN: TFormFaturaN
                     OnExit = MOEDACOMISSAOTAXAexit
                   end
                   object Panel3: TPanel
-                    Left = 1325
-                    Top = 22
-                    Width = 371
-                    Height = 65
+                    Left = 860
+                    Top = 15
+                    Width = 241
+                    Height = 41
                     Align = alRight
                     TabOrder = 7
                     object BitBtn16: TBitBtn
-                      Left = 193
-                      Top = 35
-                      Width = 138
-                      Height = 30
+                      Left = 125
+                      Top = 23
+                      Width = 90
+                      Height = 19
                       Caption = 'Selecionar Todos'
                       TabOrder = 0
                       OnClick = BITBTN16click
                     end
                     object BitBtn17: TBitBtn
-                      Left = 190
-                      Top = 3
-                      Width = 111
-                      Height = 31
+                      Left = 124
+                      Top = 2
+                      Width = 72
+                      Height = 20
                       Caption = 'Deselecionar'
                       TabOrder = 1
                       OnClick = BITBTN17click
                     end
                     object Selecionado: TDBCheckBox
-                      Left = 3
-                      Top = 3
-                      Width = 186
-                      Height = 26
+                      Left = 2
+                      Top = 2
+                      Width = 121
+                      Height = 17
                       Caption = 'Selecionar Individual'
                       ParentShowHint = False
                       ShowHint = True
@@ -2212,14 +2212,14 @@ object FormFaturaN: TFormFaturaN
                       OnExit = SELECIONADOexit
                     end
                     object Button1: TButton
-                      Left = 4
-                      Top = 31
-                      Width = 84
-                      Height = 24
+                      Left = 3
+                      Top = 20
+                      Width = 54
+                      Height = 16
                       Caption = '->'
                       Font.Charset = DEFAULT_CHARSET
                       Font.Color = clWindowText
-                      Font.Height = -22
+                      Font.Height = -15
                       Font.Name = 'MS Sans Serif'
                       Font.Style = [fsBold]
                       ParentFont = False
@@ -2230,55 +2230,55 @@ object FormFaturaN: TFormFaturaN
                 end
                 object GroupBox_NotaF: TGroupBox
                   Left = 1
-                  Top = 289
-                  Width = 1698
-                  Height = 87
+                  Top = 188
+                  Width = 1103
+                  Height = 56
                   Align = alTop
                   Caption = 'Nota Fiscal'
                   TabOrder = 3
                   object LbcDataNF: TLabel
-                    Left = 153
-                    Top = 19
-                    Width = 60
-                    Height = 20
+                    Left = 99
+                    Top = 12
+                    Width = 40
+                    Height = 13
                     Caption = 'Data NF'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcNumNFEmit: TLabel
-                    Left = 13
-                    Top = 19
-                    Width = 79
-                    Height = 20
+                    Left = 8
+                    Top = 12
+                    Width = 53
+                    Height = 13
                     Caption = 'Nota Fiscal'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcValor_NF: TLabel
-                    Left = 281
-                    Top = 67
-                    Width = 62
-                    Height = 20
+                    Left = 182
+                    Top = 44
+                    Width = 41
+                    Height = 13
                     Alignment = taRightJustify
                     Caption = 'Valor NF'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object LbcRecebimento: TLabel
-                    Left = 480
-                    Top = 19
-                    Width = 95
-                    Height = 20
+                    Left = 311
+                    Top = 12
+                    Width = 63
+                    Height = 13
                     Alignment = taRightJustify
                     Caption = 'Recebimento'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object DataNF: TXDBDateEdit
-                    Left = 153
-                    Top = 43
-                    Width = 156
-                    Height = 28
+                    Left = 99
+                    Top = 28
+                    Width = 102
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 0
@@ -2340,10 +2340,10 @@ object FormFaturaN: TFormFaturaN
                     ShowButton = True
                   end
                   object NumNFEmit: TXDBNumEdit
-                    Left = 13
-                    Top = 43
-                    Width = 136
-                    Height = 28
+                    Left = 8
+                    Top = 28
+                    Width = 89
+                    Height = 21
                     AutoHideCalculator = False
                     Decimals = 0
                     Glyph.Data = {
@@ -2398,10 +2398,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = NUMNFEMITexit
                   end
                   object Valor_NF: TXDBNumEdit
-                    Left = 318
-                    Top = 41
-                    Width = 136
-                    Height = 28
+                    Left = 207
+                    Top = 27
+                    Width = 88
+                    Height = 21
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2456,10 +2456,10 @@ object FormFaturaN: TFormFaturaN
                     OnExit = VALOR_NFexit
                   end
                   object Recebimento: TXDBDateEdit
-                    Left = 468
-                    Top = 43
-                    Width = 147
-                    Height = 28
+                    Left = 304
+                    Top = 28
+                    Width = 96
+                    Height = 21
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 3
@@ -2522,60 +2522,60 @@ object FormFaturaN: TFormFaturaN
                   end
                 end
                 object GroupBox_CalcularRate: TGroupBox
-                  Left = 698
-                  Top = 309
-                  Width = 502
-                  Height = 125
+                  Left = 454
+                  Top = 201
+                  Width = 326
+                  Height = 81
                   Color = 16776176
                   ParentColor = False
                   TabOrder = 4
                   Visible = False
                   object Label5: TLabel
-                    Left = 49
-                    Top = 15
-                    Width = 35
-                    Height = 20
+                    Left = 32
+                    Top = 10
+                    Width = 23
+                    Height = 13
                     Caption = 'Rate'
                   end
                   object Label6: TLabel
-                    Left = 234
-                    Top = 13
-                    Width = 64
-                    Height = 20
+                    Left = 152
+                    Top = 8
+                    Width = 43
+                    Height = 13
                     Caption = 'Data Liq.'
                   end
                   object Label10: TLabel
-                    Left = 359
-                    Top = 13
-                    Width = 87
-                    Height = 20
+                    Left = 233
+                    Top = 8
+                    Width = 60
+                    Height = 13
                     Caption = 'Moeda Taxa'
                     ParentShowHint = False
                     ShowHint = True
                   end
                   object BitBtn11: TBitBtn
-                    Left = 113
-                    Top = 78
-                    Width = 115
-                    Height = 37
+                    Left = 73
+                    Top = 51
+                    Width = 75
+                    Height = 24
                     TabOrder = 0
                     OnClick = BITBTN11click
                     Kind = bkOK
                   end
                   object BitBtn12: TBitBtn
-                    Left = 283
-                    Top = 78
-                    Width = 116
-                    Height = 37
+                    Left = 184
+                    Top = 51
+                    Width = 75
+                    Height = 24
                     TabOrder = 1
                     OnClick = BITBTN12click
                     Kind = bkCancel
                   end
                   object XDateEdit_DataLiq: TXDateEdit
-                    Left = 198
-                    Top = 38
-                    Width = 136
-                    Height = 28
+                    Left = 129
+                    Top = 25
+                    Width = 88
+                    Height = 21
                     DateText = '00/00/0000'
                     DateValue = -693594.000000000000000000
                     Glyph.Data = {
@@ -2634,10 +2634,10 @@ object FormFaturaN: TFormFaturaN
                     TabOrder = 2
                   end
                   object XNumEdit_Rate: TXNumEdit
-                    Left = 25
-                    Top = 38
-                    Width = 161
-                    Height = 28
+                    Left = 16
+                    Top = 25
+                    Width = 105
+                    Height = 21
                     Decimals = 11
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2689,67 +2689,67 @@ object FormFaturaN: TFormFaturaN
                     ValueInt = 0
                   end
                   object cmb_moeda: TComboBox
-                    Left = 345
-                    Top = 38
-                    Width = 149
-                    Height = 28
-                    ItemHeight = 20
+                    Left = 224
+                    Top = 25
+                    Width = 97
+                    Height = 21
+                    ItemHeight = 13
                     TabOrder = 4
                   end
                 end
                 object GroupBox_notaFiscal: TGroupBox
-                  Left = 1229
-                  Top = 308
-                  Width = 482
-                  Height = 125
+                  Left = 799
+                  Top = 200
+                  Width = 313
+                  Height = 81
                   Color = 16776176
                   ParentColor = False
                   TabOrder = 5
                   Visible = False
                   object Label7: TLabel
-                    Left = 38
-                    Top = 13
-                    Width = 79
-                    Height = 20
+                    Left = 25
+                    Top = 8
+                    Width = 53
+                    Height = 13
                     Caption = 'Nota Fiscal'
                   end
                   object Label8: TLabel
-                    Left = 198
-                    Top = 13
-                    Width = 60
-                    Height = 20
+                    Left = 129
+                    Top = 8
+                    Width = 40
+                    Height = 13
                     Caption = 'Data NF'
                   end
                   object Label9: TLabel
-                    Left = 369
-                    Top = 13
-                    Width = 62
-                    Height = 20
+                    Left = 240
+                    Top = 8
+                    Width = 41
+                    Height = 13
                     Caption = 'Valor NF'
                   end
                   object BitBtn13: TBitBtn
-                    Left = 99
-                    Top = 74
-                    Width = 115
-                    Height = 39
+                    Left = 64
+                    Top = 48
+                    Width = 75
+                    Height = 25
                     TabOrder = 0
                     OnClick = BITBTN13click
                     Kind = bkOK
                   end
                   object BitBtn14: TBitBtn
-                    Left = 271
-                    Top = 74
-                    Width = 115
-                    Height = 39
+                    Left = 176
+                    Top = 48
+                    Width = 75
+                    Height = 25
                     TabOrder = 1
                     OnClick = BITBTN14click
                     Kind = bkCancel
                   end
                   object XDateEdit_DataNF: TXDateEdit
-                    Left = 173
-                    Top = 38
-                    Width = 136
-                    Height = 28
+                    Left = 112
+                    Top = 25
+                    Width = 89
+                    Height = 21
                     DateText = '00/00/0000'
                     DateValue = -693594.000000000000000000
                     Glyph.Data = {
@@ -2808,10 +2808,10 @@ object FormFaturaN: TFormFaturaN
                     TabOrder = 2
                   end
                   object XNumEdit_NotaFiscal: TXNumEdit
-                    Left = 13
-                    Top = 38
-                    Width = 136
-                    Height = 28
+                    Left = 8
+                    Top = 25
+                    Width = 89
+                    Height = 21
                     Decimals = 0
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2863,10 +2863,10 @@ object FormFaturaN: TFormFaturaN
                     ValueInt = 0
                   end
                   object XNumEdit_ValorNF: TXNumEdit
-                    Left = 333
-                    Top = 38
-                    Width = 136
-                    Height = 28
+                    Left = 216
+                    Top = 25
+                    Width = 89
+                    Height = 21
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                       2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -2919,10 +2919,10 @@ object FormFaturaN: TFormFaturaN
                 end
               end
               object Ck_Selecionado: TDBCheckBox
-                Left = 714
-                Top = 406
-                Width = 51
-                Height = 27
+                Left = 464
+                Top = 264
+                Width = 33
+                Height = 17
                 Caption = 'Ck_Selecionado'
                 TabOrder = 2
                 ValueChecked = 'True'
@@ -2939,8 +2939,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 1720
-              Height = 644
+              Width = 1276
+              Height = 398
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2953,8 +2953,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 1720
-              Height = 644
+              Width = 1276
+              Height = 398
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2967,8 +2967,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina3: TScrollBox
               Left = 0
               Top = 0
-              Width = 1720
-              Height = 644
+              Width = 1276
+              Height = 398
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2981,8 +2981,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina4: TScrollBox
               Left = 0
               Top = 0
-              Width = 1720
-              Height = 644
+              Width = 1276
+              Height = 398
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -3026,17 +3026,17 @@ object FormFaturaN: TFormFaturaN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 619
-        Width = 1720
-        Height = 46
+        Top = 420
+        Width = 1276
+        Height = 30
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
         object BtnRelac_2: TBitBtn
-          Left = 726
-          Top = 8
-          Width = 115
-          Height = 38
+          Left = 472
+          Top = 5
+          Width = 75
+          Height = 25
           Hint = 'Tabelas relacionadas ...'
           Caption = '&Tabelas'
           ParentShowHint = False
@@ -3059,35 +3059,35 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BitBtn5: TBitBtn
-          Left = 159
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 103
+          Top = 5
+          Width = 91
+          Height = 25
           Caption = 'Concilia'#231#227'o'
           TabOrder = 1
         end
         object BitBtn6: TBitBtn
-          Left = 309
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 201
+          Top = 5
+          Width = 90
+          Height = 25
           Caption = 'Concilia'#231#227'o Real.'
           TabOrder = 2
         end
         object BitBtn7: TBitBtn
-          Left = 451
-          Top = 8
-          Width = 138
-          Height = 38
+          Left = 293
+          Top = 5
+          Width = 90
+          Height = 25
           Hint = 'A'#231#245'es Sobre Fatura'
           Caption = 'Gerar Ord. Comb.'
           TabOrder = 3
         end
         object BitBtn1: TBitBtn
-          Left = 9
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 6
+          Top = 5
+          Width = 90
+          Height = 25
           Caption = 'Filtrar'
           TabOrder = 4
           OnClick = BITBTN1click
@@ -3107,10 +3107,10 @@ object FormFaturaN: TFormFaturaN
           NumGlyphs = 2
         end
         object BitBtn10: TBitBtn
-          Left = 589
-          Top = 8
-          Width = 139
-          Height = 38
+          Left = 383
+          Top = 5
+          Width = 90
+          Height = 25
           Caption = 'Rel. Fatura'
           TabOrder = 5
           OnClick = BITBTN10click
@@ -3119,14 +3119,14 @@ object FormFaturaN: TFormFaturaN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1720
-        Height = 458
+        Width = 1276
+        Height = 315
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -22
+        Font.Height = -15
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -3144,13 +3144,13 @@ object FormFaturaN: TFormFaturaN
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 585
-        Width = 1720
-        Height = 34
+        Top = 398
+        Width = 1276
+        Height = 22
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -22
+        Font.Height = -15
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         Tabs.Strings = (
@@ -3160,116 +3160,116 @@ object FormFaturaN: TFormFaturaN
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Top = 458
-        Width = 1720
-        Height = 127
+        Top = 315
+        Width = 1276
+        Height = 83
         Align = alBottom
         TabOrder = 3
         object GroupBox2: TGroupBox
-          Left = 459
-          Top = 13
-          Width = 232
-          Height = 100
+          Left = 298
+          Top = 8
+          Width = 151
+          Height = 65
           Caption = 'Periodo Embarque'
           TabOrder = 0
           object Label3: TLabel
-            Left = 11
-            Top = 26
-            Width = 40
-            Height = 20
+            Left = 7
+            Top = 17
+            Width = 27
+            Height = 13
             Caption = 'Inicial'
           end
           object Label4: TLabel
-            Left = 13
-            Top = 63
-            Width = 34
-            Height = 20
+            Left = 8
+            Top = 41
+            Width = 22
+            Height = 13
             Caption = 'Final'
           end
           object DT_INCIAL: TDateEdit
-            Left = 60
-            Top = 19
-            Width = 153
-            Height = 27
-            ButtonWidth = 26
+            Left = 39
+            Top = 12
+            Width = 99
+            Height = 18
+            ButtonWidth = 17
             NumGlyphs = 2
             TabOrder = 0
           end
           object DT_FINAL: TDateEdit
-            Left = 61
-            Top = 58
-            Width = 153
-            Height = 27
-            ButtonWidth = 26
+            Left = 40
+            Top = 38
+            Width = 99
+            Height = 17
+            ButtonWidth = 17
             NumGlyphs = 2
             TabOrder = 1
           end
         end
         object GroupBox3: TGroupBox
           Left = 0
-          Top = 13
-          Width = 458
-          Height = 100
+          Top = 8
+          Width = 298
+          Height = 65
           TabOrder = 1
           object Label1: TLabel
-            Left = 25
-            Top = 26
-            Width = 78
-            Height = 20
+            Left = 16
+            Top = 17
+            Width = 51
+            Height = 13
             Caption = 'Exportador'
           end
           object Label2: TLabel
-            Left = 25
-            Top = 63
-            Width = 63
-            Height = 20
+            Left = 16
+            Top = 41
+            Width = 42
+            Height = 13
             Caption = 'Situa'#231#227'o'
           end
           object CMB_SITUACAO: TComboBox
-            Left = 115
-            Top = 58
-            Width = 336
+            Left = 75
+            Top = 38
+            Width = 218
             Height = 28
-            ItemHeight = 20
+            ItemHeight = 0
             TabOrder = 0
           end
           object CMB_EXP: TComboBox
-            Left = 115
-            Top = 19
-            Width = 336
+            Left = 75
+            Top = 12
+            Width = 218
             Height = 28
-            ItemHeight = 20
+            ItemHeight = 0
             TabOrder = 1
             OnChange = CMB_EXPchange
           end
         end
         object GroupBox4: TGroupBox
-          Left = 701
-          Top = 19
-          Width = 285
-          Height = 102
+          Left = 456
+          Top = 12
+          Width = 185
+          Height = 67
           Caption = 'Fatura Exporta'#231#227'o'
           TabOrder = 2
           object CMB_FATURA: TComboBox
-            Left = 5
-            Top = 25
-            Width = 260
+            Left = 3
+            Top = 16
+            Width = 169
             Height = 28
-            ItemHeight = 20
+            ItemHeight = 0
             TabOrder = 0
           end
         end
         object GroupBox5: TGroupBox
-          Left = 989
-          Top = 19
-          Width = 285
-          Height = 102
+          Left = 643
+          Top = 12
+          Width = 185
+          Height = 67
           Caption = 'Contrato N'#250'mero'
           TabOrder = 3
           object Ed_contrato_num1: TXEdit
-            Left = 8
-            Top = 24
-            Width = 257
+            Left = 5
+            Top = 16
+            Width = 167
             Height = 28
             TabOrder = 0
           end
@@ -3280,16 +3280,16 @@ object FormFaturaN: TFormFaturaN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1728
-    Height = 51
+    Width = 1284
+    Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
     object BtnIncluir: TSpeedButton
-      Left = 6
-      Top = 5
-      Width = 115
-      Height = 38
+      Left = 4
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Incluir novo registro'
       Caption = '&Incluir'
       Flat = True
@@ -3313,10 +3313,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNINCLUIRclick
     end
     object BtnModificar: TSpeedButton
-      Left = 121
-      Top = 5
-      Width = 117
-      Height = 38
+      Left = 79
+      Top = 3
+      Width = 76
+      Height = 25
       Hint = 'Modificar registro'
       Caption = '&Modificar'
       Flat = True
@@ -3339,10 +3339,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNMODIFICARclick
     end
     object BtnExcluir: TSpeedButton
-      Left = 238
-      Top = 5
-      Width = 115
-      Height = 38
+      Left = 155
+      Top = 3
+      Width = 74
+      Height = 25
       Hint = 'Excluir registro'
       Caption = '&Excluir'
       Flat = True
@@ -3366,10 +3366,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNEXCLUIRclick
     end
     object BtnLocalizar: TSpeedButton
-      Left = 353
-      Top = 5
-      Width = 115
-      Height = 38
+      Left = 229
+      Top = 3
+      Width = 75
+      Height = 25
       Hint = 'Localizar registro(s)'
       Caption = '&Localizar'
       Flat = True
@@ -3392,10 +3392,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNLOCALIZARclick
     end
     object BtnTabela: TSpeedButton
-      Left = 480
-      Top = 54
-      Width = 115
-      Height = 39
+      Left = 312
+      Top = 35
+      Width = 75
+      Height = 25
       Hint = 'Visualizar registros em forma de tabela'
       Caption = 'Tabela'
       Flat = True
@@ -3418,10 +3418,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNTABELAclick
     end
     object BtnPrimeiro: TSpeedButton
-      Left = 583
-      Top = 5
-      Width = 37
-      Height = 38
+      Left = 379
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -3443,10 +3443,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 620
-      Top = 5
-      Width = 38
-      Height = 38
+      Left = 403
+      Top = 3
+      Width = 25
+      Height = 25
       Hint = 'Posicionar no registro anterior'
       Flat = True
       Glyph.Data = {
@@ -3468,10 +3468,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 658
-      Top = 5
-      Width = 36
-      Height = 38
+      Left = 428
+      Top = 3
+      Width = 23
+      Height = 25
       Hint = 'Posicionar no pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -3493,10 +3493,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 694
-      Top = 5
-      Width = 37
-      Height = 38
+      Left = 451
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Posicionar no '#250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -3518,10 +3518,10 @@ object FormFaturaN: TFormFaturaN
       OnClick = BTNULTIMOclick
     end
     object BtnRefresh: TSpeedButton
-      Left = 731
-      Top = 5
-      Width = 37
-      Height = 38
+      Left = 475
+      Top = 3
+      Width = 24
+      Height = 25
       Hint = 'Atualizar registros'
       Flat = True
       Glyph.Data = {
@@ -3544,9 +3544,9 @@ object FormFaturaN: TFormFaturaN
     end
     object Divisao_sup: TPanel
       Left = 0
-      Top = 46
-      Width = 1728
-      Height = 5
+      Top = 30
+      Width = 1284
+      Height = 3
       Align = alBottom
       TabOrder = 0
     end

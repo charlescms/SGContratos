@@ -215,7 +215,11 @@ arquivo modificado unit INFOMECOMERCIAL; e unit RESUMEN;
 
 27/06/2022    versao := 3.56
  corecao deerro relatorio informe
-solicitacao karina /    
+solicitacao karina /
+
+       Versao         := '3.57'; 01/10/2015 solicitada a modificacao
+       arquivos modificadoss  ( faturaN)   identicado cms-2022/07/2
+
       }
 
 

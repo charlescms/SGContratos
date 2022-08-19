@@ -1,13 +1,13 @@
 object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
-  Left = 333
-  Top = 171
+  Left = 514
+  Top = 259
   Width = 1190
   Height = 598
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -17
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -19,13 +19,13 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
   OnKeyPress = formkeypress
   OnKeyUp = formkeyup
   OnShow = formshow
-  PixelsPerInch = 144
-  TextHeight = 20
+  PixelsPerInch = 96
+  TextHeight = 13
   object NoManutencao: TNotebook
     Left = 0
     Top = 0
     Width = 1182
-    Height = 471
+    Height = 507
     Align = alClient
     TabOrder = 0
     object PgPrincipal: TPage
@@ -36,60 +36,60 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
         object LbcNumOrdCobranca: TLabel
-          Left = 15
-          Top = 2
-          Width = 103
-          Height = 20
+          Left = 10
+          Top = 1
+          Width = 69
+          Height = 13
           Caption = 'Ord. Cobran'#231'a'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcSeq: TLabel
-          Left = 129
-          Top = 2
-          Width = 33
-          Height = 20
+          Left = 84
+          Top = 1
+          Width = 22
+          Height = 13
           Caption = 'Seq.'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcObservacao: TLabel
-          Left = 254
-          Top = 2
-          Width = 85
-          Height = 20
+          Left = 165
+          Top = 1
+          Width = 58
+          Height = 13
           Caption = 'Observa'#231#227'o'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcValor: TLabel
-          Left = 14
-          Top = 62
-          Width = 37
-          Height = 20
+          Left = 9
+          Top = 40
+          Width = 24
+          Height = 13
           Caption = 'Valor'
           ParentShowHint = False
           ShowHint = True
         end
         object LbcUsuario: TLabel
-          Left = 197
-          Top = 62
-          Width = 55
-          Height = 20
+          Left = 128
+          Top = 40
+          Width = 36
+          Height = 13
           Caption = 'Usu'#225'rio'
           ParentShowHint = False
           ShowHint = True
         end
         object NumOrdCobranca: TXDBEdit
-          Left = 15
-          Top = 23
-          Width = 108
-          Height = 21
+          Left = 10
+          Top = 15
+          Width = 70
+          Height = 28
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
@@ -143,10 +143,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
             0000}
         end
         object Seq: TXDBNumEdit
-          Left = 129
-          Top = 23
-          Width = 119
-          Height = 21
+          Left = 84
+          Top = 15
+          Width = 77
+          Height = 28
           AutoHideCalculator = False
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -200,10 +200,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
           OnExit = SEQExit
         end
         object Observacao: TXDBEdit
-          Left = 254
-          Top = 23
-          Width = 883
-          Height = 21
+          Left = 165
+          Top = 15
+          Width = 574
+          Height = 28
           ParentShowHint = False
           ShowHint = True
           TabOrder = 2
@@ -257,10 +257,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
             0000}
         end
         object Valor: TXDBNumEdit
-          Left = 14
-          Top = 83
-          Width = 177
-          Height = 21
+          Left = 9
+          Top = 54
+          Width = 115
+          Height = 28
           AutoHideCalculator = False
           Glyph.Data = {
             7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -315,10 +315,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
           OnExit = VALORExit
         end
         object Usuario: TXDBEdit
-          Left = 197
-          Top = 83
-          Width = 237
-          Height = 21
+          Left = 128
+          Top = 54
+          Width = 154
+          Height = 28
           ParentShowHint = False
           ShowHint = True
           TabOrder = 4
@@ -381,7 +381,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -395,7 +395,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -409,7 +409,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -423,7 +423,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -437,7 +437,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -451,7 +451,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -465,7 +465,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -479,7 +479,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -493,7 +493,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -507,7 +507,7 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
         Left = 0
         Top = 0
         Width = 1182
-        Height = 471
+        Height = 507
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -516,17 +516,17 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
   end
   object PnSalva: TPanel
     Left = 0
-    Top = 503
+    Top = 528
     Width = 1182
-    Height = 58
+    Height = 38
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object BtnPrimeiro: TSpeedButton
-      Left = 638
-      Top = 12
-      Width = 36
-      Height = 39
+      Left = 415
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Primeiro registro'
       Flat = True
       Glyph.Data = {
@@ -548,10 +548,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       OnClick = BTNPRIMEIROclick
     end
     object BtnAnterior: TSpeedButton
-      Left = 674
-      Top = 12
-      Width = 35
-      Height = 39
+      Left = 438
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Registro anterior'
       Flat = True
       Glyph.Data = {
@@ -573,10 +573,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       OnClick = BTNANTERIORclick
     end
     object BtnProximo: TSpeedButton
-      Left = 709
-      Top = 12
-      Width = 36
-      Height = 39
+      Left = 461
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = 'Pr'#243'ximo registro'
       Flat = True
       Glyph.Data = {
@@ -598,10 +598,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       OnClick = BTNPROXIMOclick
     end
     object BtnUltimo: TSpeedButton
-      Left = 745
-      Top = 12
-      Width = 35
-      Height = 39
+      Left = 484
+      Top = 8
+      Width = 23
+      Height = 25
       Hint = #250'ltimo registro'
       Flat = True
       Glyph.Data = {
@@ -623,15 +623,15 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       OnClick = BTNULTIMOclick
     end
     object BtnIncluir: TBitBtn
-      Left = 265
-      Top = 12
-      Width = 115
-      Height = 39
+      Left = 172
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Incluir registro'
       Caption = 'Incluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -655,15 +655,15 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       NumGlyphs = 2
     end
     object BtnModificar: TBitBtn
-      Left = 391
-      Top = 12
-      Width = 115
-      Height = 39
+      Left = 254
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Modificar registro'
       Caption = 'Modificar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -687,15 +687,15 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       NumGlyphs = 2
     end
     object BtnExcluir: TBitBtn
-      Left = 517
-      Top = 12
-      Width = 115
-      Height = 39
+      Left = 336
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Excluir registro'
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -719,10 +719,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       NumGlyphs = 2
     end
     object BtnSalvar: TBitBtn
-      Left = 12
-      Top = 12
-      Width = 116
-      Height = 39
+      Left = 8
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Salvar registro'
       Caption = '&Salvar'
       ParentShowHint = False
@@ -745,10 +745,10 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
       NumGlyphs = 2
     end
     object BtnDesistir: TBitBtn
-      Left = 138
-      Top = 12
-      Width = 116
-      Height = 39
+      Left = 90
+      Top = 8
+      Width = 75
+      Height = 25
       Hint = 'Desistir da inclus'#227'o/modifica'#231#227'o'
       Caption = '&Desistir'
       ParentShowHint = False
@@ -773,13 +773,13 @@ object FormOrdCobrancaDesc: TFormOrdCobrancaDesc
   end
   object TabPaginas: TTabSet
     Left = 0
-    Top = 471
+    Top = 507
     Width = 1182
-    Height = 32
+    Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     Tabs.Strings = (

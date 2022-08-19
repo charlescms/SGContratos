@@ -5,7 +5,7 @@ interface
 
 
 Uses SysUtils, Math, Classes {, UTextos } 
-    {$IFDEF COMPILER6_UP} ,StrUtils, DateUtils {$ELSE} ,{ACBrD5,} FileCtrl {$ENDIF}
+    {$IFDEF COMPILER6_UP} ,StrUtils, DateUtils {$ELSE} {,ACBrD5} , FileCtrl {$ENDIF}
     {$IFDEF FPC}
       ,dynlibs
       {$IFDEF USE_LConvEncoding} ,LConvEncoding {$ENDIF}

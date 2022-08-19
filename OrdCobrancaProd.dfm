@@ -1,6 +1,6 @@
 object FormOrdCobrancaProd: TFormOrdCobrancaProd
-  Left = 369
-  Top = 421
+  Left = 612
+  Top = 326
   Width = 853
   Height = 317
   Caption = 'Entrada de Dados'
@@ -24,8 +24,8 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
   object NoManutencao: TNotebook
     Left = 0
     Top = 0
-    Width = 837
-    Height = 220
+    Width = 845
+    Height = 226
     Align = alClient
     TabOrder = 0
     object PgPrincipal: TPage
@@ -35,8 +35,8 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
       object Pagina0: TScrollBox
         Left = 0
         Top = 0
-        Width = 837
-        Height = 220
+        Width = 845
+        Height = 226
         Align = alClient
         BorderStyle = bsNone
         TabOrder = 0
@@ -864,6 +864,7 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
         end
         object QuantidadeExp: TXDBNumEdit
@@ -1054,6 +1055,7 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
         end
         object ETADestino: TXDBDateEdit
@@ -1118,6 +1120,7 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
         end
         object FormPago: TXDBLookUp
@@ -1320,6 +1323,7 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
         end
         object NomeMix: TXDBLookUp
@@ -1852,6 +1856,7 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0
             C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000}
+          Hora = False
           ShowButton = True
         end
       end
@@ -2011,8 +2016,8 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
   end
   object PnSalva: TPanel
     Left = 0
-    Top = 241
-    Width = 837
+    Top = 247
+    Width = 845
     Height = 38
     Align = alBottom
     BevelOuter = bvNone
@@ -2269,8 +2274,8 @@ object FormOrdCobrancaProd: TFormOrdCobrancaProd
   end
   object TabPaginas: TTabSet
     Left = 0
-    Top = 220
-    Width = 837
+    Top = 226
+    Width = 845
     Height = 21
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET

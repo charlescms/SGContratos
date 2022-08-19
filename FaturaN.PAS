@@ -2488,16 +2488,19 @@ var
  l_criar_ordrmCobranca : boolean ;
 begin
 
+// cms-2022/07/21 cms foir modificado a ordem para facilitar o trabalho 
+if S_FILTRO = '' then begin
+  MessageDlg( MSG_FILTROTEMQUESERCRIADO,mtWarning,[mbOk],0);
+  exit ;
+end ;
+
 // 2021/09/02 inclui9da para facilitar o trabalho verificar se os registros foream selecionados
 if not Existe_selecionados()  then begin
    MessageDlg( MSG_RegTemqueSerSelecionado ,mtWarning, [mbOK], 0);
    exit ;
 end;
 
-if S_FILTRO = '' then begin
-  MessageDlg( MSG_FILTROTEMQUESERCRIADO,mtWarning,[mbOk],0);
-  exit ;
-end ;
+
 
 //if TabGlobal.DFatura.Rate.isnull then begin
 //if TabelaPrincipal.FieldByName('Rate').isnull  then begin
@@ -2514,141 +2517,140 @@ l_criar_ordrmCobranca := false ;
 IF S_FILTRO <> '' THEN BEGIN
 
 //  if TabGlobal.DFatura.NumFatura.Conteudo = '' then begin
-    {codificação... Rel. Fatura }
-    s_NumFaturaInc := '' ;
-    s_NumFaturaFim := '' ;
-    sn_Fatura := '';
+   {codificação... Rel. Fatura }
+   s_NumFaturaInc := '' ;
+   s_NumFaturaFim := '' ;
+   sn_Fatura := '';
    // FormRELFATURA := TFormRELFATURA.Create(Application);
-    Try
+   Try
 
-     TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
-     while not TabelaPrincipal.eof do begin
-      // verificar se existe fatura
-      if ( TabelaPrincipal.FieldByName('Numordcobranca').isnull ) or
-         ( TabelaPrincipal.FieldByName('Numordcobranca').Value = '') then begin
-         l_criar_ordrmCobranca := Existe_selecionados()  ;
+    TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
+    while not TabelaPrincipal.eof do begin
+     // verificar se existe fatura
+     if ( TabelaPrincipal.FieldByName('Numordcobranca').isnull ) or
+        ( TabelaPrincipal.FieldByName('Numordcobranca').Value = '') then begin
+        l_criar_ordrmCobranca := Existe_selecionados()  ;
 
-         if l_criar_ordrmCobranca then begin
-            //  if ( TabelaPrincipal.FieldByName('NumFatura').Value = '' ) then begin
-            // cria um nova fatura
-            sn_Fatura := Get_NumOrdCobranca() ; // Get_Fatura();
-            // criar produtos exportador fatura
-            TabelaPrincipal.First ;
-            valor_Fatura := 0 ;
-            while not TabelaPrincipal.eof do begin
-              // nova regra
-              if ( TabelaPrincipal.FindField('Selecionado').Value = 'S' ) and
-                 ( not TabelaPrincipal.FieldByName('Rate').isnull ) then begin
-                 TabGlobal.DOrdemCobrancaProdExp.Inclui(nil);
-                 TabGlobal.DOrdemCobrancaProdExp.NumOrdCobranca.Conteudo := sn_Fatura ;
-                 TabGlobal.DOrdemCobrancaProdExp.Contrato.Conteudo := TabelaPrincipal.FieldValues['Contrato'];
-                 TabGlobal.DOrdemCobrancaProdExp.Seq.conteudo := TabelaPrincipal.FieldValues['Seq'];
-                 TabGlobal.DOrdemCobrancaProdExp.Valor.conteudo := TabelaPrincipal.FieldValues['Valor'];
-
-                 if TabelaPrincipal.FindField('ValorDesconto').IsNull then
-                    TabGlobal.DOrdemCobrancaProdExp.ValorDesconto.ValorPadrao
-                 else
-                    TabGlobal.DOrdemCobrancaProdExp.ValorDesconto.conteudo := TabelaPrincipal.FieldValues['ValorDesconto'];
-
-                 if not  TabelaPrincipal.FindField('MOEDACOMISSAOTAXA').IsNull  then
-                    TabGlobal.DOrdemCobrancaProdExp.MOEDACOMISSAO.conteudo := TabelaPrincipal.FieldValues['MOEDACOMISSAOTAXA'];
-
-                 if not  TabelaPrincipal.FindField('COMISAOSFATURA').IsNull then
-                    TabGlobal.DOrdemCobrancaProdExp.COMISAOSFATURA.conteudo := TabelaPrincipal.FieldValues['COMISAOSFATURA'];
-
-                 if not  TabelaPrincipal.FindField('Rate').IsNull then
-                    TabGlobal.DOrdemCobrancaProdExp.TAXACONVERCAO.conteudo := TabelaPrincipal.FieldValues['Rate'];
-
-                 if not  TabelaPrincipal.FindField('ValorConvertido').IsNull then
-                    valor_Fatura := valor_Fatura + TabelaPrincipal.FieldValues['ValorConvertido'];
-
-                 TabGlobal.DOrdemCobrancaProdExp.Salva;
-              end ;
-             {
-            // erro de regra identificado
-              TabelaPrincipal.Modifica ; //NumOrdCobranca
-              TabelaPrincipal.FieldByName('Numordcobranca').Value := sn_Fatura ;
-
-              TabelaPrincipal.FindField('Selecionado').Value := 'N' ;
-              TabelaPrincipal.Salva;
-
-              // correcao de problema de objeto
-              TabelaPrincipal.Modifica ;
-              TabelaPrincipal.Salva;
-              }
-
-              TabelaPrincipal.Next;
-            end;
+        if l_criar_ordrmCobranca then begin
+           //  if ( TabelaPrincipal.FieldByName('NumFatura').Value = '' ) then begin
+           // cria um nova fatura
+           sn_Fatura := Get_NumOrdCobranca() ; // Get_Fatura();
 
 
+           // criar produtos exportador fatura
+           TabelaPrincipal.First ;
+           valor_Fatura := 0 ;
+           while not TabelaPrincipal.eof do begin
+             // nova regra
+             if ( TabelaPrincipal.FindField('Selecionado').Value = 'S' ) and
+                ( not TabelaPrincipal.FieldByName('Rate').isnull ) then begin
+                TabGlobal.DOrdemCobrancaProdExp.Inclui(nil);
+                TabGlobal.DOrdemCobrancaProdExp.NumOrdCobranca.Conteudo := sn_Fatura ;
+                TabGlobal.DOrdemCobrancaProdExp.Contrato.Conteudo := TabelaPrincipal.FieldValues['Contrato'];
+                TabGlobal.DOrdemCobrancaProdExp.Seq.conteudo := TabelaPrincipal.FieldValues['Seq'];
+                TabGlobal.DOrdemCobrancaProdExp.Valor.conteudo := TabelaPrincipal.FieldValues['Valor'];
+
+                if TabelaPrincipal.FindField('ValorDesconto').IsNull then
+                   TabGlobal.DOrdemCobrancaProdExp.ValorDesconto.ValorPadrao
+                else
+                   TabGlobal.DOrdemCobrancaProdExp.ValorDesconto.conteudo := TabelaPrincipal.FieldValues['ValorDesconto'];
+
+                if not  TabelaPrincipal.FindField('MOEDACOMISSAOTAXA').IsNull  then
+                   TabGlobal.DOrdemCobrancaProdExp.MOEDACOMISSAO.conteudo := TabelaPrincipal.FieldValues['MOEDACOMISSAOTAXA'];
+
+                if not  TabelaPrincipal.FindField('COMISAOSFATURA').IsNull then
+                   TabGlobal.DOrdemCobrancaProdExp.COMISAOSFATURA.conteudo := TabelaPrincipal.FieldValues['COMISAOSFATURA'];
+
+                if not  TabelaPrincipal.FindField('Rate').IsNull then
+                   TabGlobal.DOrdemCobrancaProdExp.TAXACONVERCAO.conteudo := TabelaPrincipal.FieldValues['Rate'];
+
+                if not  TabelaPrincipal.FindField('ValorConvertido').IsNull then
+                   valor_Fatura := valor_Fatura + TabelaPrincipal.FieldValues['ValorConvertido'];
+
+                TabGlobal.DOrdemCobrancaProdExp.Salva;
+             end ;
             {
-            TabGlobal.DFaturaTab.DataFatura
-            TabGlobal.DFaturaTab.CTTO
-            TabGlobal.DFaturaTab.ValorDesconto
-            TabGlobal.DFaturaTab.VALOR_LIQ
-            TabGlobal.DFaturaTab.NumNFEmit
-            TabGlobal.DFaturaTab.VALOR_NF
-            TabGlobal.DFaturaTab.Comentario
-            TabGlobal.DFaturaTab.DataNF
-            }
+           // erro de regra identificado
+             TabelaPrincipal.Modifica ; //NumOrdCobranca
+             TabelaPrincipal.FieldByName('Numordcobranca').Value := sn_Fatura ;
 
-            // incluir fatuar na tabela de fatura
-            TabGlobal.DOrdemCobranca.Inclui(nil);
-            TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo := sn_Fatura ;
-            TabGlobal.DOrdemCobranca.FORCOD.Conteudo := TabelaPrincipal.FieldValues['FORCOD'];
-            TabGlobal.DOrdemCobranca.Cadastro.Conteudo := date ;
-            TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;
-            TabGlobal.DOrdemCobranca.TEXTO_PADRAO.Conteudo :=  TabGlobal.DParametros.TEXTOFATURA.Conteudo;
-            TabGlobal.DOrdemCobranca.Valor.Conteudo := valor_Fatura ;
-           //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo := 
-            TabGlobal.DOrdemCobranca.Salva;
+             TabelaPrincipal.FindField('Selecionado').Value := 'N' ;
+             TabelaPrincipal.Salva;
+
+             // correcao de problema de objeto
+             TabelaPrincipal.Modifica ;
+             TabelaPrincipal.Salva;
+             }
+
+             TabelaPrincipal.Next;
+           end;
 
 
+           {
+           TabGlobal.DFaturaTab.DataFatura
+           TabGlobal.DFaturaTab.CTTO
+           TabGlobal.DFaturaTab.ValorDesconto
+           TabGlobal.DFaturaTab.VALOR_LIQ
+           TabGlobal.DFaturaTab.NumNFEmit
+           TabGlobal.DFaturaTab.VALOR_NF
+           TabGlobal.DFaturaTab.Comentario
+           TabGlobal.DFaturaTab.DataNF
+           }
 
-         end
-         else begin
-             MessageDlg( MSG_NaoExistemRegistrosSelecionados ,mtWarning, [mbOk],0);
-             exit;
-         end;
+           TabGlobal.DOrdemCobranca.Inclui(nil);
+           TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo := sn_Fatura ;
+           TabGlobal.DOrdemCobranca.FORCOD.Conteudo := TabelaPrincipal.FieldValues['FORCOD'];
+           TabGlobal.DOrdemCobranca.Cadastro.Conteudo := date ;
+           TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;
+           TabGlobal.DOrdemCobranca.TEXTO_PADRAO.Conteudo :=  TabGlobal.DParametros.TEXTOFATURA.Conteudo;
+           TabGlobal.DOrdemCobranca.Valor.Conteudo := valor_Fatura ;
+          //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo :=
+           TabGlobal.DOrdemCobranca.Salva;
+
+        end
+        else begin
+            MessageDlg( MSG_NaoExistemRegistrosSelecionados ,mtWarning, [mbOk],0);
+            exit;
+        end;
 
 
-      end
-      else
-        sn_Fatura := TabelaPrincipal.FieldByName('Numordcobranca').Value ;
+     end
+     else
+       sn_Fatura := TabelaPrincipal.FieldByName('Numordcobranca').Value ;
 
-      TabelaPrincipal.next
+     TabelaPrincipal.next
     end;
 
-      TabGlobal.DOrdemCobranca.Close ;
-      TabGlobal.DOrdemCobranca.Filtro.Clear ;
-      TabGlobal.DOrdemCobranca.Filtro.Add('Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
-      TabGlobal.DOrdemCobranca.AtualizaSql;
+     TabGlobal.DOrdemCobranca.Close ;
+     TabGlobal.DOrdemCobranca.Filtro.Clear ;
+     TabGlobal.DOrdemCobranca.Filtro.Add('Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
+     TabGlobal.DOrdemCobranca.AtualizaSql;
 
-      TabGlobal.DOrdemCobrancaProdExp.Close;
-      TabGlobal.DOrdemCobrancaProdExp.Filtro.Clear ;
-      TabGlobal.DOrdemCobrancaProdExp.Filtro.Add('OrdemCobrancaProdExp.Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
+     TabGlobal.DOrdemCobrancaProdExp.Close;
+     TabGlobal.DOrdemCobrancaProdExp.Filtro.Clear ;
+     TabGlobal.DOrdemCobrancaProdExp.Filtro.Add('OrdemCobrancaProdExp.Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
 
-      TabGlobal.DOrdemCobrancaProdExp.AtualizaSql;
+     TabGlobal.DOrdemCobrancaProdExp.AtualizaSql;
 
-      s_NumFaturaFim := ( trim (copy(sn_Fatura,1,4))+'/'+trim(copy(sn_Fatura,5,4))) ;
-      s_NumFaturaInc := s_NumFaturaFim ;
+     s_NumFaturaFim := ( trim (copy(sn_Fatura,1,4))+'/'+trim(copy(sn_Fatura,5,4))) ;
+     s_NumFaturaInc := s_NumFaturaFim ;
 
-      ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
+     ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
 
-      // ExecutaForm(TFormFaturaTab,FormFaturaTab);
-      BitBtn1Click(SELF);
+     // ExecutaForm(TFormFaturaTab,FormFaturaTab);
+     BitBtn1Click(SELF);
 
-      Refresh;
+     Refresh;
 
-      // fazer os
-      //if l_criar_ordrmCobranca then begin
-      //   Deselecionar_reg();
-      //end;
+     // fazer os
+     //if l_criar_ordrmCobranca then begin
+     //   Deselecionar_reg();
+     //end;
 
 
-    Finally
-      FormRELFATURA.Free;
-    end;
+   Finally
+     FormRELFATURA.Free;
+   end;
 //   end
 //   else
 //      MessageDlg( MSG_FATURASURIMPEXJACRIADA,mtWarning,[mbOk],0);

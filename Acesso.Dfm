@@ -1,14 +1,14 @@
 object FormAcesso: TFormAcesso
-  Left = 314
-  Top = 278
+  Left = 819
+  Top = 253
   BorderStyle = bsDialog
   Caption = 'Login de Acesso'
-  ClientHeight = 331
-  ClientWidth = 442
+  ClientHeight = 215
+  ClientWidth = 287
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
-  Font.Height = -17
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
@@ -18,48 +18,48 @@ object FormAcesso: TFormAcesso
   OnKeyPress = FormKeyPress
   OnMouseDown = FormMouseDown
   OnShow = FormShow
-  PixelsPerInch = 144
-  TextHeight = 20
+  PixelsPerInch = 96
+  TextHeight = 13
   object LbUsuario: TLabel
-    Left = 75
-    Top = 125
-    Width = 69
-    Height = 24
+    Left = 49
+    Top = 81
+    Width = 39
+    Height = 13
     Caption = '&Usu'#225'rio:'
     FocusControl = Usuario
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
     Transparent = True
   end
   object LbSenha: TLabel
-    Left = 75
-    Top = 162
-    Width = 60
-    Height = 24
+    Left = 54
+    Top = 105
+    Width = 34
+    Height = 13
     Alignment = taRightJustify
     Caption = '&Senha:'
     FocusControl = Senha
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
     Transparent = True
   end
   object LbMensagem: TLabel
-    Left = 11
-    Top = 260
-    Width = 15
-    Height = 24
+    Left = 7
+    Top = 169
+    Width = 9
+    Height = 13
     Caption = '...'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -67,10 +67,10 @@ object FormAcesso: TFormAcesso
     Visible = False
   end
   object BtnSobre: TSpeedButton
-    Left = 11
-    Top = 288
-    Width = 35
-    Height = 34
+    Left = 7
+    Top = 187
+    Width = 23
+    Height = 22
     Cursor = crHandPoint
     Hint = 'Sobre...'
     Flat = True
@@ -91,15 +91,15 @@ object FormAcesso: TFormAcesso
     OnClick = BtnSobreClick
   end
   object LbTroca: TLabel
-    Left = 140
-    Top = 192
-    Width = 115
-    Height = 24
+    Left = 91
+    Top = 125
+    Width = 65
+    Height = 13
     Cursor = crHandPoint
     Caption = 'Trocar Senha'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsUnderline]
     ParentFont = False
@@ -108,16 +108,16 @@ object FormAcesso: TFormAcesso
     OnClick = LbTrocaClick
   end
   object LbNova: TLabel
-    Left = 26
-    Top = 198
-    Width = 109
-    Height = 24
+    Left = 25
+    Top = 129
+    Width = 63
+    Height = 13
     Alignment = taRightJustify
     Caption = '&Nova Senha:'
     FocusControl = NovaSenha
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -125,16 +125,16 @@ object FormAcesso: TFormAcesso
     Visible = False
   end
   object LbConfirma: TLabel
-    Left = 0
-    Top = 235
-    Width = 135
-    Height = 24
+    Left = 13
+    Top = 153
+    Width = 75
+    Height = 13
     Alignment = taRightJustify
     Caption = '&Confirma Senha'
     FocusControl = ConfirmaSenha
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -142,10 +142,10 @@ object FormAcesso: TFormAcesso
     Visible = False
   end
   object BtnCancelaNovaSenha: TBitBtn
-    Left = 374
-    Top = 231
-    Width = 35
-    Height = 32
+    Left = 243
+    Top = 150
+    Width = 23
+    Height = 21
     Cursor = crHandPoint
     Hint = 'Cancela nova senha'
     TabOrder = 6
@@ -210,15 +210,15 @@ object FormAcesso: TFormAcesso
     NumGlyphs = 2
   end
   object BtnOk: TBitBtn
-    Left = 188
-    Top = 283
-    Width = 115
-    Height = 39
+    Left = 122
+    Top = 184
+    Width = 75
+    Height = 25
     Caption = 'Ok'
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -227,14 +227,14 @@ object FormAcesso: TFormAcesso
     NumGlyphs = 2
   end
   object BtnCancela: TBitBtn
-    Left = 317
-    Top = 283
-    Width = 115
-    Height = 39
+    Left = 206
+    Top = 184
+    Width = 75
+    Height = 25
     Caption = 'Cancelar'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -243,13 +243,13 @@ object FormAcesso: TFormAcesso
     NumGlyphs = 2
   end
   object Usuario: TEdit
-    Left = 140
-    Top = 118
-    Width = 228
-    Height = 32
+    Left = 91
+    Top = 77
+    Width = 148
+    Height = 21
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     MaxLength = 20
@@ -258,14 +258,14 @@ object FormAcesso: TFormAcesso
     OnChange = USUARIOchange
   end
   object Senha: TEdit
-    Left = 140
-    Top = 155
-    Width = 228
-    Height = 32
+    Left = 91
+    Top = 101
+    Width = 148
+    Height = 21
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     MaxLength = 10
@@ -277,15 +277,15 @@ object FormAcesso: TFormAcesso
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 442
-    Height = 109
+    Width = 287
+    Height = 71
     Align = alTop
     BevelOuter = bvNone
     Color = clWindow
     TabOrder = 7
     object Image1: TImage
-      Left = 337
-      Top = 5
+      Left = 219
+      Top = 3
       Width = 64
       Height = 64
       AutoSize = True
@@ -438,29 +438,29 @@ object FormAcesso: TFormAcesso
       Transparent = True
     end
     object LbTitulo1: TLabel
-      Left = 6
-      Top = 17
-      Width = 331
-      Height = 20
+      Left = 4
+      Top = 11
+      Width = 215
+      Height = 13
       AutoSize = False
       Caption = 'LbTitulo1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -18
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object LbTitulo2: TLabel
-      Left = 25
-      Top = 51
-      Width = 310
-      Height = 44
+      Left = 16
+      Top = 33
+      Width = 202
+      Height = 29
       AutoSize = False
       Caption = 'LbTitulo2'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -18
+      Font.Height = -12
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -469,23 +469,23 @@ object FormAcesso: TFormAcesso
   end
   object Panel2: TPanel
     Left = 0
-    Top = 109
-    Width = 442
-    Height = 3
+    Top = 71
+    Width = 287
+    Height = 2
     Align = alTop
     BevelInner = bvLowered
     BevelOuter = bvNone
     TabOrder = 8
   end
   object NovaSenha: TEdit
-    Left = 140
-    Top = 192
-    Width = 228
-    Height = 32
+    Left = 91
+    Top = 125
+    Width = 148
+    Height = 21
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     MaxLength = 10
@@ -495,14 +495,14 @@ object FormAcesso: TFormAcesso
     Visible = False
   end
   object ConfirmaSenha: TEdit
-    Left = 140
-    Top = 229
-    Width = 228
-    Height = 32
+    Left = 91
+    Top = 149
+    Width = 148
+    Height = 21
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     MaxLength = 10
