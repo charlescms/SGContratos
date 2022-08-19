@@ -1982,6 +1982,12 @@ var
   s_titulo , s_nFiltro : string ;
   l_criar_ordrmCobranca : boolean ;
 begin
+// 2021/09/02 inclui9da para facilitar o trabalho verificar se os registros foream selecionados
+if not Existe_selecionados()  then begin
+   MessageDlg( MSG_RegTemqueSerSelecionado ,mtWarning, [mbOK], 0);
+   exit ;
+end;
+
   {codificação.1..}
 //  s_sql_old := TabGlobal.DFATURA.SQL.Text ;
 
@@ -2221,6 +2227,11 @@ var
   s_titulo , s_nFiltro : string ;
   l_criar_ordrmCobranca : boolean ;
 begin
+           // 2021/09/02 inclui9da para facilitar o trabalho verificar se os registros foream selecionados
+if not Existe_selecionados()  then begin
+   MessageDlg( MSG_RegTemqueSerSelecionado ,mtWarning, [mbOK], 0);
+   exit ;
+end;
 
 if S_FILTRO = '' then begin
   MessageDlg( MSG_FILTROTEMQUESERCRIADO,mtWarning,[mbOk],0);
@@ -2287,6 +2298,9 @@ try
      exit ;
   end;
 
+
+
+
   Screen.Cursor := crHourGlass      ;
   if MessageDlg( MSG_ConfirmaAtualizaroRATEemtodososregistroselecionados ,mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
      TabGlobal.DFatura.First;
@@ -2335,6 +2349,11 @@ end;
 
 procedure TFormFaturaN.BitBtn_RateClick(Sender: TObject);
 begin
+// 2021/09/02 inclui9da para facilitar o trabalho verificar se os registros foream selecionados
+if not Existe_selecionados()  then begin
+   MessageDlg( MSG_RegTemqueSerSelecionado ,mtWarning, [mbOK], 0);
+   exit ;
+end;
 
 if S_FILTRO = '' then begin
   MessageDlg( MSG_FILTROTEMQUESERCRIADO,mtWarning,[mbOk],0);
@@ -2463,6 +2482,12 @@ var
  l_criar_ordrmCobranca : boolean ;
 begin
 
+// 2021/09/02 inclui9da para facilitar o trabalho verificar se os registros foream selecionados
+if not Existe_selecionados()  then begin
+   MessageDlg( MSG_RegTemqueSerSelecionado ,mtWarning, [mbOK], 0);
+   exit ;
+end;
+
 if S_FILTRO = '' then begin
   MessageDlg( MSG_FILTROTEMQUESERCRIADO,mtWarning,[mbOk],0);
   exit ;
@@ -2489,7 +2514,9 @@ IF S_FILTRO <> '' THEN BEGIN
     sn_Fatura := '';
    // FormRELFATURA := TFormRELFATURA.Create(Application);
     Try
-      TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
+
+     TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
+     while not TabelaPrincipal.eof do begin
       // verificar se existe fatura
       if ( TabelaPrincipal.FieldByName('Numordcobranca').isnull ) or
          ( TabelaPrincipal.FieldByName('Numordcobranca').Value = '') then begin
@@ -2531,16 +2558,18 @@ IF S_FILTRO <> '' THEN BEGIN
 
                  TabGlobal.DOrdemCobrancaProdExp.Salva;
               end ;
-
-              TabelaPrincipal.Modifica ;
+             {
+            // erro de regra identificado
+              TabelaPrincipal.Modifica ; //NumOrdCobranca
               TabelaPrincipal.FieldByName('Numordcobranca').Value := sn_Fatura ;
+
               TabelaPrincipal.FindField('Selecionado').Value := 'N' ;
               TabelaPrincipal.Salva;
-              
+
               // correcao de problema de objeto
               TabelaPrincipal.Modifica ;
               TabelaPrincipal.Salva;
-
+              }
 
               TabelaPrincipal.Next;
             end;
@@ -2562,10 +2591,10 @@ IF S_FILTRO <> '' THEN BEGIN
             TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo := sn_Fatura ;
             TabGlobal.DOrdemCobranca.FORCOD.Conteudo := TabelaPrincipal.FieldValues['FORCOD'];
             TabGlobal.DOrdemCobranca.Cadastro.Conteudo := date ;
-            TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;
+            TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;  s_ST_FA_F
             TabGlobal.DOrdemCobranca.TEXTO_PADRAO.Conteudo :=  TabGlobal.DParametros.TEXTOFATURA.Conteudo;
             TabGlobal.DOrdemCobranca.Valor.Conteudo := valor_Fatura ;
-          //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo := 
+            //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo := 
             TabGlobal.DOrdemCobranca.Salva;
 
 
@@ -2581,33 +2610,34 @@ IF S_FILTRO <> '' THEN BEGIN
       else
         sn_Fatura := TabelaPrincipal.FieldByName('Numordcobranca').Value ;
 
-        TabGlobal.DOrdemCobranca.Close ;
-        TabGlobal.DOrdemCobranca.Filtro.Clear ;
-        TabGlobal.DOrdemCobranca.Filtro.Add('Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
-        TabGlobal.DOrdemCobranca.AtualizaSql;
+      TabelaPrincipal.next
+    end;
 
+      TabGlobal.DOrdemCobranca.Close ;
+      TabGlobal.DOrdemCobranca.Filtro.Clear ;
+      TabGlobal.DOrdemCobranca.Filtro.Add('Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
+      TabGlobal.DOrdemCobranca.AtualizaSql;
 
+      TabGlobal.DOrdemCobrancaProdExp.Close;
+      TabGlobal.DOrdemCobrancaProdExp.Filtro.Clear ;
+      TabGlobal.DOrdemCobrancaProdExp.Filtro.Add('OrdemCobrancaProdExp.Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
 
-        TabGlobal.DOrdemCobrancaProdExp.Close;
-        TabGlobal.DOrdemCobrancaProdExp.Filtro.Clear ;
-        TabGlobal.DOrdemCobrancaProdExp.Filtro.Add('OrdemCobrancaProdExp.Numordcobranca ='+AtribuiAspas(sn_Fatura)) ;
+      TabGlobal.DOrdemCobrancaProdExp.AtualizaSql;
 
-        TabGlobal.DOrdemCobrancaProdExp.AtualizaSql;
+      s_NumFaturaFim := ( trim (copy(sn_Fatura,1,4))+'/'+trim(copy(sn_Fatura,5,4))) ;
+      s_NumFaturaInc := s_NumFaturaFim ;
 
-        s_NumFaturaFim := ( trim (copy(sn_Fatura,1,4))+'/'+trim(copy(sn_Fatura,5,4))) ;
-        s_NumFaturaInc := s_NumFaturaFim ;
+      ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
 
-        ExecutaForm(TFormOrdemCobranca,FormOrdemCobranca);
+      // ExecutaForm(TFormFaturaTab,FormFaturaTab);
+      BitBtn1Click(SELF);
 
-        // ExecutaForm(TFormFaturaTab,FormFaturaTab);
-        BitBtn1Click(SELF);
+      Refresh;
 
-        Refresh;
-
-        // fazer os
-        //if l_criar_ordrmCobranca then begin
-        //   Deselecionar_reg();
-        //end;
+      // fazer os
+      //if l_criar_ordrmCobranca then begin
+      //   Deselecionar_reg();
+      //end;
 
 
     Finally
@@ -2998,7 +3028,7 @@ end;
 
 
 BTNSALVARclick(SENDER) ;
-BTNMODIFICARclick (SENDER) ;
+BTNMODIFICARclick(SENDER) ;
 TabelaPrincipal.Next ;
 
 end;

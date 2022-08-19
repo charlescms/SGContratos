@@ -2409,6 +2409,9 @@ var
    i_ano, i_seq  : integer  ;
    s_faturnaNova, s_faturnaGrava : string  ;
 begin
+ if TabGlobal.DPARAMETROS.Active = False then
+    TabGlobal.DPARAMETROS.Open ;
+
  if TabGlobal.DPARAMETROS.FindField('NumFatura').IsNull  then begin
     i_ano :=  YearOf(date) ;
     i_seq := 0 ;

@@ -188,6 +188,7 @@ function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; Valores
 // Pesquisa e realiza a exclusão do registro
 function PTabela(TabelaPrincipal: TTabela; CamposArray: Array of String; ValoresArray: Array of Variant; Excluir: Boolean): Boolean; overload;
 function LocalizaTabela(AOwner: TComponent; NomeTabela: string): TTabela;
+
 {$IFDEF IBX}
 function FindProcedure(Database: TIBDataBase; Name: String): Boolean;
 function FindTrigger(Database: TIBDataBase; Name: String): Boolean;
@@ -195,6 +196,7 @@ function FindTrigger(Database: TIBDataBase; Name: String): Boolean;
 function FindProcedure(Database: TXSQLDatabase; Name: String): Boolean;
 function FindTrigger(Database: TXSQLDatabase; Name: String): Boolean;
 {$ENDIF}
+
 procedure ConfiguraMascaraCampo(Campo: TField; Titulo, Mascara: String; Indice, Largura: Integer; Visivel: Boolean);
 
 var

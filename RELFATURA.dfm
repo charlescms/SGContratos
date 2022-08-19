@@ -24,8 +24,8 @@ object FormRELFATURA: TFormRELFATURA
   object Selecao_1: TScrollBox
     Left = 0
     Top = 0
-    Width = 1499
-    Height = 623
+    Width = 1497
+    Height = 614
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
@@ -37,7 +37,7 @@ object FormRELFATURA: TFormRELFATURA
       ActivePage = TabSheet1
       TabOrder = 0
       object TabSheet1: TTabSheet
-        Caption = 'Principal'
+        Caption = ']'
         object GBox_Exportador: TGroupBox
           Left = 135
           Top = 357
@@ -63,7 +63,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 295
             Top = 49
             Width = 137
-            Height = 21
+            Height = 28
             Cursor = crArrow
             Decimals = 0
             Glyph.Data = {
@@ -88,7 +88,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 74
             Top = 49
             Width = 137
-            Height = 21
+            Height = 28
             Cursor = crArrow
             Decimals = 0
             Glyph.Data = {
@@ -184,7 +184,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 209
             Top = 62
             Width = 149
-            Height = 21
+            Height = 28
             Cursor = crArrow
             Glyph.Data = {
               7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -755,7 +755,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 129
               Top = 35
               Width = 134
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 3
@@ -829,7 +829,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 498
               Top = 35
               Width = 134
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 5
@@ -893,7 +893,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 774
               Top = 35
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -950,7 +950,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 957
               Top = 35
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1007,7 +1007,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 1129
               Top = 35
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1155,7 +1155,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 129
               Top = 42
               Width = 134
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 0
@@ -1275,7 +1275,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 265
               Top = 42
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1332,7 +1332,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 448
               Top = 42
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1389,7 +1389,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 631
               Top = 42
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1446,7 +1446,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 814
               Top = 42
               Width = 177
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1513,7 +1513,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 988
               Top = 43
               Width = 134
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 7
@@ -1577,7 +1577,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 1138
               Top = 42
               Width = 134
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 8
@@ -1644,8 +1644,8 @@ object FormRELFATURA: TFormRELFATURA
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 623
-    Width = 1499
+    Top = 614
+    Width = 1497
     Height = 33
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -1656,8 +1656,8 @@ object FormRELFATURA: TFormRELFATURA
   end
   object Panel1: TPanel
     Left = 0
-    Top = 656
-    Width = 1499
+    Top = 647
+    Width = 1497
     Height = 54
     Align = alBottom
     BevelOuter = bvNone

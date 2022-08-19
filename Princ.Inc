@@ -1,5 +1,5 @@
 {$DEFINE IBX}
-
+{$DEFINE _SV-SQL_}     // CMS
 
 {$DEFINE SENHA_DB}   // Controle de Acesso Interno
 {$IFDEF VER130}      // Delphi 5.0

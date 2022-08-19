@@ -2,10 +2,10 @@ object BaseDados: TBaseDados
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 192
-  Top = 107
-  Height = 375
-  Width = 544
+  Left = 319
+  Top = 376
+  Height = 656
+  Width = 1247
   object frTextExport: TfrTextExport
     Left = 24
     Top = 1

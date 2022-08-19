@@ -1,8 +1,8 @@
 object FormFaturaN: TFormFaturaN
-  Left = 68
-  Top = 70
-  Width = 1630
-  Height = 686
+  Left = 96
+  Top = 129
+  Width = 1736
+  Height = 854
   Caption = 'Entrada de Dados'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,8 +27,8 @@ object FormFaturaN: TFormFaturaN
   object PagePrincipal: TPageControl
     Left = 0
     Top = 51
-    Width = 1622
-    Height = 598
+    Width = 1726
+    Height = 757
     ActivePage = TabManutencao
     Align = alClient
     HotTrack = True
@@ -38,8 +38,8 @@ object FormFaturaN: TFormFaturaN
       Caption = '( &1 ) Manuten'#231#227'o'
       object PnSalva: TPanel
         Left = 0
-        Top = 517
-        Width = 1614
+        Top = 676
+        Width = 1718
         Height = 46
         Align = alBottom
         BevelOuter = bvNone
@@ -250,7 +250,7 @@ object FormFaturaN: TFormFaturaN
         object Panel2: TPanel
           Left = 0
           Top = 3
-          Width = 1614
+          Width = 1718
           Height = 43
           Align = alBottom
           BevelOuter = bvNone
@@ -482,8 +482,8 @@ object FormFaturaN: TFormFaturaN
       end
       object TabPaginas: TTabSet
         Left = 0
-        Top = 483
-        Width = 1614
+        Top = 642
+        Width = 1718
         Height = 34
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -499,8 +499,8 @@ object FormFaturaN: TFormFaturaN
       object PgPagina1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1614
-        Height = 483
+        Width = 1718
+        Height = 642
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -509,8 +509,8 @@ object FormFaturaN: TFormFaturaN
         object NoManutencao: TNotebook
           Left = 0
           Top = 0
-          Width = 1614
-          Height = 483
+          Width = 1718
+          Height = 642
           Align = alClient
           TabOrder = 0
           object PgPrincipal: TPage
@@ -520,8 +520,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina0: TScrollBox
               Left = 0
               Top = 0
-              Width = 1614
-              Height = 483
+              Width = 1718
+              Height = 642
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -775,7 +775,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 103
                     Top = 155
                     Width = 456
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -833,7 +833,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 13
                     Top = 155
                     Width = 88
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -902,7 +902,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 13
                     Top = 45
                     Width = 148
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -960,7 +960,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 166
                     Top = 45
                     Width = 35
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1018,7 +1018,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 206
                     Top = 45
                     Width = 149
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1076,7 +1076,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 360
                     Top = 45
                     Width = 131
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1142,7 +1142,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 198
                     Top = 101
                     Width = 143
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1200,7 +1200,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 533
                     Top = 101
                     Width = 145
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1259,7 +1259,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 494
                     Top = 45
                     Width = 117
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1337,7 +1337,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 1134
                     Top = 45
                     Width = 154
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1396,7 +1396,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 954
                     Top = 45
                     Width = 177
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1454,7 +1454,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 751
                     Top = 45
                     Width = 192
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1512,7 +1512,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 681
                     Top = 101
                     Width = 144
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1592,7 +1592,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 753
                     Top = 155
                     Width = 306
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 18
@@ -1662,7 +1662,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 618
                     Top = 45
                     Width = 123
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ReadOnly = True
                     ShowHint = True
@@ -1801,7 +1801,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 18
                     Top = 35
                     Width = 128
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 0
@@ -1866,7 +1866,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 154
                     Top = 35
                     Width = 167
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Decimals = 11
                     Glyph.Data = {
@@ -1925,7 +1925,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 478
                     Top = 35
                     Width = 153
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -1983,7 +1983,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 911
                     Top = 35
                     Width = 150
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2042,7 +2042,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 769
                     Top = 35
                     Width = 134
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 5
@@ -2107,7 +2107,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 640
                     Top = 35
                     Width = 119
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 4
@@ -2278,7 +2278,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 153
                     Top = 43
                     Width = 156
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 0
@@ -2343,7 +2343,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 13
                     Top = 43
                     Width = 136
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Decimals = 0
                     Glyph.Data = {
@@ -2401,7 +2401,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 318
                     Top = 41
                     Width = 136
-                    Height = 24
+                    Height = 28
                     AutoHideCalculator = False
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2459,7 +2459,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 468
                     Top = 43
                     Width = 147
-                    Height = 24
+                    Height = 28
                     ParentShowHint = False
                     ShowHint = True
                     TabOrder = 3
@@ -2575,7 +2575,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 198
                     Top = 38
                     Width = 136
-                    Height = 24
+                    Height = 28
                     DateText = '00/00/0000'
                     DateValue = -693594.000000000000000000
                     Glyph.Data = {
@@ -2637,7 +2637,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 25
                     Top = 38
                     Width = 161
-                    Height = 24
+                    Height = 28
                     Decimals = 11
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2749,7 +2749,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 173
                     Top = 38
                     Width = 136
-                    Height = 24
+                    Height = 28
                     DateText = '00/00/0000'
                     DateValue = -693594.000000000000000000
                     Glyph.Data = {
@@ -2811,7 +2811,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 13
                     Top = 38
                     Width = 136
-                    Height = 24
+                    Height = 28
                     Decimals = 0
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
@@ -2866,7 +2866,7 @@ object FormFaturaN: TFormFaturaN
                     Left = 333
                     Top = 38
                     Width = 136
-                    Height = 24
+                    Height = 28
                     Glyph.Data = {
                       7E050000424D7E0500000000000036000000280000001A0000000D0000000100
                       2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -2939,8 +2939,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina1: TScrollBox
               Left = 0
               Top = 0
-              Width = 1614
-              Height = 483
+              Width = 1718
+              Height = 642
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2953,8 +2953,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina2: TScrollBox
               Left = 0
               Top = 0
-              Width = 1614
-              Height = 483
+              Width = 1276
+              Height = 414
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2967,8 +2967,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina3: TScrollBox
               Left = 0
               Top = 0
-              Width = 1614
-              Height = 483
+              Width = 1276
+              Height = 414
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -2981,8 +2981,8 @@ object FormFaturaN: TFormFaturaN
             object Pagina4: TScrollBox
               Left = 0
               Top = 0
-              Width = 1614
-              Height = 483
+              Width = 1276
+              Height = 414
               Align = alClient
               BorderStyle = bsNone
               TabOrder = 0
@@ -3026,8 +3026,8 @@ object FormFaturaN: TFormFaturaN
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 517
-        Width = 1614
+        Top = 676
+        Width = 1718
         Height = 46
         Align = alBottom
         BevelOuter = bvNone
@@ -3119,8 +3119,8 @@ object FormFaturaN: TFormFaturaN
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1614
-        Height = 356
+        Width = 1718
+        Height = 515
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
@@ -3144,8 +3144,8 @@ object FormFaturaN: TFormFaturaN
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 483
-        Width = 1614
+        Top = 642
+        Width = 1718
         Height = 34
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -3160,8 +3160,8 @@ object FormFaturaN: TFormFaturaN
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Top = 356
-        Width = 1614
+        Top = 515
+        Width = 1718
         Height = 127
         Align = alBottom
         TabOrder = 3
@@ -3229,7 +3229,7 @@ object FormFaturaN: TFormFaturaN
             Left = 115
             Top = 58
             Width = 336
-            Height = 24
+            Height = 28
             ItemHeight = 0
             TabOrder = 0
           end
@@ -3237,7 +3237,7 @@ object FormFaturaN: TFormFaturaN
             Left = 115
             Top = 19
             Width = 336
-            Height = 24
+            Height = 28
             ItemHeight = 0
             TabOrder = 1
             OnChange = CMB_EXPchange
@@ -3254,7 +3254,7 @@ object FormFaturaN: TFormFaturaN
             Left = 13
             Top = 25
             Width = 260
-            Height = 24
+            Height = 28
             ItemHeight = 0
             TabOrder = 0
           end
@@ -3265,7 +3265,7 @@ object FormFaturaN: TFormFaturaN
   object PnSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 1622
+    Width = 1726
     Height = 51
     Align = alTop
     BevelOuter = bvNone
@@ -3530,7 +3530,7 @@ object FormFaturaN: TFormFaturaN
     object Divisao_sup: TPanel
       Left = 0
       Top = 46
-      Width = 1622
+      Width = 1726
       Height = 5
       Align = alBottom
       TabOrder = 0

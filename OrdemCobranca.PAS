@@ -278,6 +278,7 @@ type
     function ConfirmaGravacao: Boolean;
     procedure CamposCalculados;
     procedure HabilitaEdicao(Valor: Boolean = true);
+    procedure Refreche_Tab_NG(S_FILTRO,S_FILTRO_ORDEMCOBRANCA: string) ;
   public
     { Public declarations }
     {03-Início do Bloco Modular. Modificações não serão preservadas}
@@ -448,6 +449,7 @@ begin
     HabilitaEdicao
   else
     HabilitaEdicao(False);
+
   ExecutaPreValidacoes(TabelaPrincipal, Self, ListaCamposEd);
   TabelaPrincipal.AtribuiRelacionamentos;
 
@@ -1948,7 +1950,11 @@ end;
 procedure TFormOrdemCobranca.Btn_gravaClick(Sender: TObject);
 var
     s_titulo : string  ;
-    S_FILTRO : string ;
+    S_FILTRO ,s_NumOrdCobranca : string ;
+    S_FILTRO_ORDEMCOBRANCA , s_filtro_fatura : string ;
+    sv_Status : string ;
+    l_tmp     : Boolean ;
+    l_Fatura  : Boolean ;
 begin
 
 // //////////////////////////////
@@ -1959,74 +1965,177 @@ begin
 if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
    if MessageDlg( MSG_ConfirmaAtualizaroNumerodeFaturaemtodasosregistrosselecionadosjaExportados ,mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       Screen.Cursor := crHourGlass;
-      try
+
+
 
       S_FILTRO := TabGlobal.DFatura.Filtro.Text ;
 
+//      TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+      S_FILTRO_ORDEMCOBRANCA := TabGlobal.DOrdemCobranca.Filtro.Text ;
+      l_tmp :=  TabGlobal.DOrdemCobranca.Active  ;
+      l_Fatura := False ;
+      s_NumOrdCobranca := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+
+      try
+      S_FILTRO := TabGlobal.DFatura.Filtro.Text ;
       TabGlobal.DFatura.Close ;
       TabGlobal.DFatura.Filtro.Clear ;
-//cms      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+
+      // cms -erro    TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+
       TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S''  ' );
       TabGlobal.DFatura.ATUALIZASQL(False);
       TabGlobal.DFatura.PREPARE ;
       TabGlobal.DFatura.OPEN ;
 
-
-
-      TabGlobal.DFatura.Transaction.StartTransaction    ;
-
-
+      if TabGlobal.DFatura.Transaction.Active = False then
+         TabGlobal.DFatura.Transaction.StartTransaction;
 
       TabGlobal.DFatura.First ;
       while NOT TabGlobal.DFatura.Eof do begin
 
-        if (( TabGlobal.DFatura.State <>  dsEdit)    and
-           (TabGlobal.DFatura.State  <>  dsinsert)) then
+        if (( TabGlobal.DFatura.State <>  dsEdit) and (TabGlobal.DFatura.State  <>  dsinsert)) then
            TabGlobal.DFatura.Modifica ;
 
         if ( TabGlobal.DFatura.NumOrdCobranca.Conteudo = '' ) and
            ( TabGlobal.DFatura.Selecionado. Conteudo = 'S'  )
-           then begin
+           then begin                                                             // NumOrdCobranca
            TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
            TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
-           TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
+           // nao existe um estado para Aplicado iordem de coranca continua no estado em preocessamento
+           // TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
            TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
            TabGlobal.DFatura.Selecionado. Conteudo       := 'N';
+           l_Fatura := false ;
         end;
         TabGlobal.DFatura.Salva ;
         TabGlobal.DFatura.Next ;
       end;
 
-      TabGlobal.DFatura.Transaction.COMMIT    ;
+    //  TabGlobal.DFatura.Transaction.COMMIT    ;
 
       except
 
       TabGlobal.DFatura.Transaction.Rollback    ;
+      end;
+      
+      { // erro de regra retirado devido a novoi entendimento
+      if l_Fatura then begin
+        try
+
+        if TabGlobal.DOrdemCobranca.Active = False then begin
+           TabGlobal.DOrdemCobranca.Filtro.Text := S_FILTRO_ORDEMCOBRANCA ;
+           TabGlobal.DOrdemCobranca.ATUALIZASQL(False);
+           TabGlobal.DOrdemCobranca.Prepare;
+           TabGlobal.DOrdemCobranca.Open ;
+        end;
+
+        TabGlobal.DFatura.Close ;
+        TabGlobal.DFatura.Filtro.Clear ;
+
+        // cms -erro    TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+        // s_filtro_fatura := ' and Fatura.NumOrdCobranca = ' + TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+
+        s_filtro_fatura := ' and Fatura.NumOrdCobranca = ' + AtribuiAspas(s_NumOrdCobranca ) ;
+
+        TabGlobal.DFatura.Filtro.Add( S_FILTRO + s_filtro_fatura ) ; //' and Fatura.NumOrdCobranca = ' + s_filtro_fatura );
+//      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca = ' + TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo );
+        TabGlobal.DFatura.ATUALIZASQL(False);
+        TabGlobal.DFatura.PREPARE ;
+        TabGlobal.DFatura.OPEN ;
+
+        if TabGlobal.DFatura.Transaction.Active = False then
+           TabGlobal.DFatura.Transaction.StartTransaction;
+
+        TabGlobal.DFatura.First ;
+        while NOT TabGlobal.DFatura.Eof do begin
+
+          if (( TabGlobal.DFatura.State <>  dsEdit) and (TabGlobal.DFatura.State  <>  dsinsert)) then
+             TabGlobal.DFatura.Modifica ;
+
+//          if ( TabGlobal.DFatura.NumOrdCobranca.Conteudo = '' ) and
+//             ( TabGlobal.DFatura.Selecionado. Conteudo = 'S'  )
+
+          if ( TabGlobal.DFatura.NumOrdCobranca.Conteudo = TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo )
+             then begin                                                             // NumOrdCobranca
+             TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+             TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
+             TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
+             TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
+             TabGlobal.DFatura.Selecionado. Conteudo       := 'N';
+          end;
+          TabGlobal.DFatura.Salva ;
+          TabGlobal.DFatura.Next ;
+        end;
+ //       TabGlobal.DFatura.Transaction.COMMIT    ;
+        except
+        TabGlobal.DFatura.Transaction.Rollback    ;
+        end;
 
       end;
-
+      } // ErroValidacao de regra corrigido
       try
-      TabGlobal.DOrdemCobranca.Transaction.StartTransaction    ;
+
+//      if TabGlobal.DOrdemCobranca.Transaction.Active = False then
+//         TabGlobal.DOrdemCobranca.Transaction.StartTransaction    ;
 
       // alterea o status da fatura
-      TabGlobal.DOrdemCobranca.Modifica;
-      TabGlobal.DOrdemCobranca.Status.Conteudo :=   s_ST_FA_F ;
-      TabGlobal.DOrdemCobranca.Salva;
 
-      TabGlobal.DOrdemCobranca.Transaction.COMMIT    ;
+//      sv_Status := 'Status = ''' +  s_ST_FA_F + ''''     ;
+//      PTabela(TabGlobal.DOrdemCobranca,['Numordcobranca'],[TabGlobal.DOrdemCobranca.Numordcobranca.conteudo],sv_Status);
+
+ {    codigo desnecessario 2021/09/02
+      if TabGlobal.DOrdemCobranca.Active = False then begin
+         TabGlobal.DOrdemCobranca.Filtro.Text := S_FILTRO_ORDEMCOBRANCA ;
+         TabGlobal.DOrdemCobranca.ATUALIZASQL(False);
+         TabGlobal.DOrdemCobranca.Prepare;
+         TabGlobal.DOrdemCobranca.Open ;
+      end;
+ }
+//      if TabGlobal.DOrdemCobranca.Transaction.Active = False then
+//         TabGlobal.DOrdemCobranca.Transaction.StartTransaction    ;
+//      TabGlobal.DOrdemCobranca.Modifica;
+//      TabGlobal.DOrdemCobranca.Status.Conteudo :=   s_ST_FA_F ;
+//      TabGlobal.DOrdemCobranca.Salva;
+//      Pesquisa e atualiza campos
+//      PTabela(TabGlobal.DExportadoTransito, ['NumOrdCobranca'], [TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo], 'NumOrdCobranca = ''''')
+
+      sv_Status := 'Status = ''' +  s_ST_FA_F + ''''     ;
+      PTabela(TabGlobal.DOrdemCobranca,['Numordcobranca'],[TabGlobal.DOrdemCobranca.Numordcobranca.conteudo],sv_Status);
+
+//       PTabela(TabGlobal.DOrdemCobranca; CamposArray: Array of String; ValoresArray: Array of Variant; Update: String): Boolean; overload;
+//      TabGlobal.DOrdemCobranca.Transaction.COMMIT    ;
 
       except
-      TabGlobal.DOrdemCobranca.Transaction.Rollback    ;
+//      TabGlobal.DOrdemCobranca.Transaction.Rollback    ;
       end;
 
-      TabGlobal.DFatura.Close ;
-      TabGlobal.DFatura.Filtro.Clear ;
-      TabGlobal.DFatura.Filtro.Add( S_FILTRO );
-      TabGlobal.DFatura.ATUALIZASQL(False);
-      TabGlobal.DFatura.PREPARE ;
-      TabGlobal.DFatura.OPEN ;
+      Refreche_Tab_NG(S_FILTRO,S_FILTRO_ORDEMCOBRANCA) ;
+
+{
+      if TabGlobal.DFatura.Active = False then begin
+         TabGlobal.DFatura.Filtro.Clear ;
+         TabGlobal.DFatura.Filtro.Add( S_FILTRO );
+         TabGlobal.DFatura.ATUALIZASQL(False);
+         TabGlobal.DFatura.PREPARE ;
+         TabGlobal.DFatura.OPEN ;
+      end
+      else
+         TabGlobal.DFatura.Refresh ;
 
 
+      if TabGlobal.DOrdemCobranca.Active = False then begin
+         TabGlobal.DOrdemCobranca.Filtro.Text := S_FILTRO_ORDEMCOBRANCA ;
+         TabGlobal.DOrdemCobranca.ATUALIZASQL(False);
+         TabGlobal.DOrdemCobranca.Prepare;
+         TabGlobal.DOrdemCobranca.Open ;
+      end
+      else
+         TabGlobal.DOrdemCobranca.Refresh ;
+
+
+      TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
+}
       Screen.Cursor := crDefault ;
 
       Refresh ;
@@ -2038,20 +2147,95 @@ end;
 
 
 procedure TFormOrdemCobranca.BitB_Nv_FaturaClick(Sender: TObject);
+var
+//    s_titulo : string  ;
+    S_FILTRO ,s_NumOrdCobranca : string ;
+    S_FILTRO_ORDEMCOBRANCA , s_filtro_fatura : string ;
+//    sv_Status : string ;
+//    l_tmp     : Boolean ;
+//    l_Fatura  : Boolean ;
+
 begin
+
 //  if (TabGlobal.DOrdemCobranca.State = dsEdit) or
 //     ( TabGlobal.DOrdemCobranca.State = dsinsert ) then
+
+
   if TabGlobal.DOrdemCobranca.FATURA.Conteudo = '' then begin
      if TabGlobal.DOrdemCobranca.NumNFEmit.Conteudo = 0 then begin
         if MessageDlg( MSG_ConfirmaCriarNumerodeFatura ,mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
            TabGlobal.DOrdemCobranca.Modifica;
            TabGlobal.DOrdemCobranca.FATURA.Conteudo := Get_Fatura() ;
            TabGlobal.DOrdemCobranca.DataFatura.Conteudo := date ;
+           // status muda para fatura surimpes emitida
+           TabGlobal.DOrdemCobranca.Status.Conteudo             := s_ST_FA_F ;
+
            TabGlobal.DOrdemCobranca.Salva ;
+           s_NumOrdCobranca := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+
+// inicio nova regra
+          try
+           S_FILTRO_ORDEMCOBRANCA := TabGlobal.DOrdemCobranca.Filtro.Text;
+           S_FILTRO := TabGlobal.DFatura.Filtro.Text ;
+           TabGlobal.DFatura.Close ;
+           TabGlobal.DFatura.Filtro.Clear ;
+
+           // cms -erro    TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca IS NULL  AND Fatura.Selecionado = ''S'' ) ' );
+           // s_filtro_fatura := ' and Fatura.NumOrdCobranca = ' + TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+
+           // s_filtro_fatura := ' and Fatura.NumOrdCobranca = ' + AtribuiAspas(s_NumOrdCobranca ) ;
+           //TabGlobal.DFatura.Filtro.Add( S_FILTRO + s_filtro_fatura ) ; //' and Fatura.NumOrdCobranca = ' + s_filtro_fatura );
+           // nova regra
+
+           s_filtro_fatura := 'Fatura.NumOrdCobranca = ' + AtribuiAspas(s_NumOrdCobranca ) ;
+           TabGlobal.DFatura.Filtro.Add( s_filtro_fatura ) ; //' and Fatura.NumOrdCobranca = ' + s_filtro_fatura );
+
+           //      TabGlobal.DFatura.Filtro.Add( S_FILTRO + ' and Fatura.NumOrdCobranca = ' + TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo );
+           TabGlobal.DFatura.ATUALIZASQL(False);
+           TabGlobal.DFatura.PREPARE ;
+           TabGlobal.DFatura.OPEN ;
+
+           if TabGlobal.DFatura.Transaction.Active = False then
+              TabGlobal.DFatura.Transaction.StartTransaction;
+
+           TabGlobal.DFatura.First ;
+           while NOT TabGlobal.DFatura.Eof do begin
+
+             if (( TabGlobal.DFatura.State <>  dsEdit) and (TabGlobal.DFatura.State  <>  dsinsert)) then
+                TabGlobal.DFatura.Modifica ;
+
+             //          if ( TabGlobal.DFatura.NumOrdCobranca.Conteudo = '' ) and
+             //             ( TabGlobal.DFatura.Selecionado. Conteudo = 'S'  )
+
+             if ( TabGlobal.DFatura.NumOrdCobranca.Conteudo = TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo )
+                then begin                                                             // NumOrdCobranca
+                TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
+                TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
+                 // status muda para fatura surimpes emitida
+                TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
+                TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
+                TabGlobal.DFatura.Selecionado. Conteudo       := 'N';
+             end;
+             TabGlobal.DFatura.Salva ;
+             TabGlobal.DFatura.Next ;
+           end;
+//           TabGlobal.DFatura.Transaction.COMMIT    ;
+          except
+           TabGlobal.DFatura.Transaction.Rollback    ;
+          end;
+
+// fim regra nova
+
+          Refreche_Tab_NG(S_FILTRO,S_FILTRO_ORDEMCOBRANCA) ;
+
+
         end
      end
      else
         MessageDlg(MSG_ONumerodaFaturatnaopodesergeradoOrdemCobrancacomNFemitido,mtWarning,[mbOk],0)
+
+
+
   end
   else
      MessageDlg(MSG_ONumerodaFaturatemqueestaemBRANCO,mtWarning,[mbOk],0)
@@ -2227,6 +2411,38 @@ except
     MessageDlg('Erro cms0001 : ' + Erro.Message, mtError, [mbOk], 0);
   end;
 end;
+
+end;
+
+procedure  TFormOrdemCobranca.Refreche_Tab_NG(S_FILTRO,S_FILTRO_ORDEMCOBRANCA: string) ;
+begin
+
+
+
+      if TabGlobal.DFatura.Active = False then begin
+         TabGlobal.DFatura.Filtro.Clear ;
+         TabGlobal.DFatura.Filtro.Add( S_FILTRO );
+         TabGlobal.DFatura.ATUALIZASQL(False);
+         TabGlobal.DFatura.PREPARE ;
+         TabGlobal.DFatura.OPEN ;
+      end
+      else
+         TabGlobal.DFatura.Refresh ;
+
+
+      if TabGlobal.DOrdemCobranca.Active = False then begin
+         TabGlobal.DOrdemCobranca.Filtro.Text := S_FILTRO_ORDEMCOBRANCA ;
+         TabGlobal.DOrdemCobranca.ATUALIZASQL(False);
+         TabGlobal.DOrdemCobranca.Prepare;
+         TabGlobal.DOrdemCobranca.Open ;
+      end
+      else
+         TabGlobal.DOrdemCobranca.Refresh ;
+
+
+      TabGlobal.DOrdemCobranca.AtribuiRelacionamentos;
+
+
 
 end;
 

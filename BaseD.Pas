@@ -18,7 +18,7 @@ uses
   XSEngine,
   {$ENDIF}
   Db, IniFiles, FileCtrl, FR_E_HTM, FR_E_CSV, FR_E_RTF, FR_E_TXT, FR_Desgn,
-  FR_Shape, FR_Rich, FR_OLE, FR_ChBox, FR_RRect, FR_Chart, FR_BarC;
+  FR_Shape, FR_Rich, FR_OLE, FR_ChBox, FR_RRect, FR_Chart, FR_BarC, IBQuery;
 
 type
   TBaseDados = class(TDataModule)

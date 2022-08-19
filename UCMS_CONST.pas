@@ -19,7 +19,7 @@ CONST
  MSG_ConfirmaCriarNumerodeFatura = 'Confirma criar Núumero de Fatura';
  MSG_ConfirmaTrocadeSituacao = 'Confirma Troca de Situação?';
  // msg de obrigatoriedade do sistema
- 
+ MSG_RegTemqueSerSelecionado = 'Os Registros tem que ser selecionados ! ' ; 
  MSG_RateTemqueSerAtualizado = 'Os Registros tem que ser selecionados' + NOVA_LINHA + ' e o Rate tem que ser Aplicado ! ' ;
  MSG_ONumerodaFaturatemqueestaemBRANCO = 'O Número da Fatura tem que esta em BRANCO !' ;
  MSG_ONumerodaFaturatnaopodesergeradoOrdemCobrancacomNFemitido = 'O Número da Fatura não pode ser gerado Ordem Cobrança com NF já emitida ! ';
