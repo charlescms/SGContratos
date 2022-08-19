@@ -2002,6 +2002,7 @@ if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
            then begin                                                             // NumOrdCobranca
            TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
            TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
+           // cms comp
            // nao existe um estado para Aplicado iordem de coranca continua no estado em preocessamento
            // TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
            TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
@@ -2060,7 +2061,7 @@ if TabGlobal.DFatura.Filtro.Text  <> '' then  begin
              then begin                                                             // NumOrdCobranca
              TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
              TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
-             TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
+//             TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
              TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
              TabGlobal.DFatura.Selecionado. Conteudo       := 'N';
           end;
@@ -2211,6 +2212,7 @@ begin
                 then begin                                                             // NumOrdCobranca
                 TabGlobal.DFatura.NumOrdCobranca.Conteudo     := TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo ;
                 TabGlobal.DFatura.ValorDesconto.Conteudo      := TabGlobal.DOrdemCobranca.ValorDesconto.Conteudo ;
+                // cms novo
                  // status muda para fatura surimpes emitida
                 TabGlobal.DFatura.Status.Conteudo             := s_ST_FA_F ;
                 TabGlobal.DFatura.DataOrdCobranca.Conteudo    := date ;
@@ -2355,10 +2357,17 @@ if TabGlobal.DOrdemCobranca.NumNFEmit.Conteudo > 0 then  begin
       end;
 
       // alterea o status da fatura
-      TabGlobal.DOrdemCobranca.Modifica;
-      TabGlobal.DOrdemCobranca.Status.Conteudo :=   s_ST_NF_F ;
-      TabGlobal.DOrdemCobranca.Salva;
+     // TabGlobal.DOrdemCobranca.Modifica;
+     // TabGlobal.DOrdemCobranca.Status.Conteudo :=   s_ST_NF_F ;
+     // TabGlobal.DOrdemCobranca.Salva;
 
+
+
+      // Pesquisa e atualiza campos
+      PTabela(TabGlobal.DOrdemCobranca, ['NumOrdCobranca'], [TabGlobal.DOrdemCobranca.Status.Conteudo], 'Status = '+  s_ST_NF_F) ;
+      TabGlobal.DOrdemCobranca.Atualizasql(True);
+
+      TabGlobal.DOrdemCobrancaProdExp.AtualizaSql(True);
 
       TabGlobal.DFatura.close ;
       TabGlobal.DFatura.Filtro.clear ;

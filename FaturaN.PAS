@@ -463,7 +463,7 @@ begin
   TituloModulo       := 'Faturas';
   Caption            := TituloModulo;
   {99-Final do Bloco Modular. Modificações não serão preservadas}
-  
+
   TabelaPrincipal.filtro.Clear  ;
   TabelaPrincipal.AtualizaSql;
 
@@ -2298,9 +2298,6 @@ try
      exit ;
   end;
 
-
-
-
   Screen.Cursor := crHourGlass      ;
   if MessageDlg( MSG_ConfirmaAtualizaroRATEemtodososregistroselecionados ,mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
      TabGlobal.DFatura.First;
@@ -2591,10 +2588,10 @@ IF S_FILTRO <> '' THEN BEGIN
             TabGlobal.DOrdemCobranca.NumOrdCobranca.Conteudo := sn_Fatura ;
             TabGlobal.DOrdemCobranca.FORCOD.Conteudo := TabelaPrincipal.FieldValues['FORCOD'];
             TabGlobal.DOrdemCobranca.Cadastro.Conteudo := date ;
-            TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;  s_ST_FA_F
+            TabGlobal.DOrdemCobranca.Status.Conteudo := s_ST_AB_F ; // '0' ;
             TabGlobal.DOrdemCobranca.TEXTO_PADRAO.Conteudo :=  TabGlobal.DParametros.TEXTOFATURA.Conteudo;
             TabGlobal.DOrdemCobranca.Valor.Conteudo := valor_Fatura ;
-            //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo := 
+           //  TabGlobal.DOrdemCobranca.DataLiq.Conteudo := 
             TabGlobal.DOrdemCobranca.Salva;
 
 
@@ -3028,7 +3025,7 @@ end;
 
 
 BTNSALVARclick(SENDER) ;
-BTNMODIFICARclick(SENDER) ;
+BTNMODIFICARclick (SENDER) ;
 TabelaPrincipal.Next ;
 
 end;

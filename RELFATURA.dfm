@@ -1,6 +1,6 @@
 object FormRELFATURA: TFormRELFATURA
-  Left = 761
-  Top = 550
+  Left = 293
+  Top = 28
   Width = 1507
   Height = 747
   Caption = 'Relat'#243'rio'
@@ -34,7 +34,7 @@ object FormRELFATURA: TFormRELFATURA
       Top = 12
       Width = 1540
       Height = 765
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = ']'
@@ -351,7 +351,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 25
             Top = 32
             Width = 186
-            Height = 21
+            Height = 28
             Glyph.Data = {
               7E050000424D7E0500000000000036000000280000001A0000000D0000000100
               2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -405,7 +405,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 258
             Top = 32
             Width = 187
-            Height = 21
+            Height = 28
             Glyph.Data = {
               7E050000424D7E0500000000000036000000280000001A0000000D0000000100
               2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -459,7 +459,7 @@ object FormRELFATURA: TFormRELFATURA
             Left = 554
             Top = 32
             Width = 186
-            Height = 21
+            Height = 28
             Glyph.Data = {
               7E050000424D7E0500000000000036000000280000001A0000000D0000000100
               2000000000004805000000000000000000000000000000000000FFC0C000FFC0
@@ -632,7 +632,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 638
               Top = 35
               Width = 130
-              Height = 21
+              Height = 28
               ParentShowHint = False
               ShowHint = True
               TabOrder = 0
@@ -698,7 +698,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 15
               Top = 35
               Width = 108
-              Height = 21
+              Height = 28
               Enabled = False
               ParentShowHint = False
               ShowHint = True
@@ -1219,7 +1219,7 @@ object FormRELFATURA: TFormRELFATURA
               Left = 15
               Top = 42
               Width = 108
-              Height = 21
+              Height = 28
               AutoHideCalculator = False
               Glyph.Data = {
                 7E050000424D7E0500000000000036000000280000001A0000000D0000000100
