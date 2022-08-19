@@ -365,8 +365,8 @@ object FormPrincipal: TFormPrincipal
       end
     end
     object TreeOpcoes: TTreeView
-      Left = 11
-      Top = 38
+      Left = 3
+      Top = 22
       Width = 347
       Height = 751
       BorderStyle = bsNone

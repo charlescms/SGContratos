@@ -1,6 +1,6 @@
 object FormInforme: TFormInforme
-  Left = 828
-  Top = 609
+  Left = -229
+  Top = 30
   Width = 1658
   Height = 777
   Caption = 'Entrada de Dados'

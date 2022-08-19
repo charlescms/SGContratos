@@ -246,7 +246,7 @@ object FormAcesso: TFormAcesso
     Left = 140
     Top = 118
     Width = 228
-    Height = 21
+    Height = 32
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -18
@@ -261,7 +261,7 @@ object FormAcesso: TFormAcesso
     Left = 140
     Top = 155
     Width = 228
-    Height = 21
+    Height = 32
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -481,7 +481,7 @@ object FormAcesso: TFormAcesso
     Left = 140
     Top = 192
     Width = 228
-    Height = 21
+    Height = 32
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -498,7 +498,7 @@ object FormAcesso: TFormAcesso
     Left = 140
     Top = 229
     Width = 228
-    Height = 21
+    Height = 32
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack

@@ -2192,8 +2192,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       ImageIndex = 1
       object PnInfConsulta: TPanel
         Left = 0
-        Top = 654
-        Width = 1485
+        Top = 656
+        Width = 1487
         Height = 48
         Align = alBottom
         BevelOuter = bvNone
@@ -2228,8 +2228,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       object GridConsulta: TDBGrid
         Left = 0
         Top = 0
-        Width = 1485
-        Height = 622
+        Width = 1487
+        Height = 624
         Align = alClient
         BorderStyle = bsNone
         DataSource = DataSource
@@ -2252,8 +2252,8 @@ object FormOrdemCobranca: TFormOrdemCobranca
       end
       object AbaConsulta: TTabSet
         Left = 0
-        Top = 622
-        Width = 1485
+        Top = 624
+        Width = 1487
         Height = 32
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET

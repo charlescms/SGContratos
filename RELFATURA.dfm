@@ -1,6 +1,6 @@
 object FormRELFATURA: TFormRELFATURA
-  Left = 293
-  Top = 28
+  Left = 469
+  Top = 265
   Width = 1507
   Height = 747
   Caption = 'Relat'#243'rio'
@@ -24,8 +24,8 @@ object FormRELFATURA: TFormRELFATURA
   object Selecao_1: TScrollBox
     Left = 0
     Top = 0
-    Width = 1497
-    Height = 614
+    Width = 1499
+    Height = 616
     Align = alClient
     BorderStyle = bsNone
     TabOrder = 0
@@ -136,7 +136,7 @@ object FormRELFATURA: TFormRELFATURA
             Top = 49
             Width = 149
             Height = 28
-            ItemHeight = 20
+            ItemHeight = 0
             TabOrder = 0
           end
           object CmbBox_Fatura_Final: TComboBox
@@ -144,7 +144,7 @@ object FormRELFATURA: TFormRELFATURA
             Top = 49
             Width = 150
             Height = 28
-            ItemHeight = 20
+            ItemHeight = 0
             TabOrder = 1
           end
         end
@@ -1644,8 +1644,8 @@ object FormRELFATURA: TFormRELFATURA
   end
   object Divisao: TTabSet
     Left = 0
-    Top = 614
-    Width = 1497
+    Top = 616
+    Width = 1499
     Height = 33
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -1656,8 +1656,8 @@ object FormRELFATURA: TFormRELFATURA
   end
   object Panel1: TPanel
     Left = 0
-    Top = 647
-    Width = 1497
+    Top = 649
+    Width = 1499
     Height = 54
     Align = alBottom
     BevelOuter = bvNone

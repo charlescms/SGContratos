@@ -222,6 +222,8 @@ type
     XNumEdit_ValorNF: TXNumEdit;
     BitBtn28: TBitBtn;
     Panel3: TPanel;
+    GroupBox5: TGroupBox;
+    Ed_contrato_num1: TXEdit;
     {99-Final do Bloco Modular. Modificações não serão preservadas}
     procedure ContratoExit(Sender: TObject);
     procedure SeqExit(Sender: TObject);
@@ -2114,6 +2116,13 @@ IF S_SITUACAO <> '' THEN
    ELSE
       S_FILTRO := S_FILTRO + ' AND '+ S_SITUACAO ;
 
+// 27/06/2022 incluido para atender uma necessicada operacional
+
+IF Ed_contrato_num1.Text <> ''   THEN
+   IF S_FILTRO = '' THEN
+      S_FILTRO := ' Fatura.Contrato = '+ AtribuiAspas(Ed_contrato_num1.Text)
+   ELSE
+      S_FILTRO := S_FILTRO +' AND Fatura.Contrato = ' + AtribuiAspas(Ed_contrato_num1.Text)  ;
 
 
 TabelaPrincipal.Filtro.Clear;
